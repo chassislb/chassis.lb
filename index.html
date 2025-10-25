@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chassis – Build. Believe. Become.</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome for Social Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ========== COLORS ========== */
+:root {
+  --power-red: #D72638;
+  --electric-indigo: #4F46E5;
+  --cyber-yellow: #FFD100;
+  --jet-black: #1A1A1A;
+  --off-white: #F7F7F7;
+  --text-grey: #A0A0A0;
+}
+
+/* ========== GLOBAL STYLES ========== */
+* { box-sizing: border-box; margin:0; padding:0; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--off-white);
+  color: var(--jet-black);
+  line-height: 1.6;
+}
+
+/* ========== HEADER ========== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: var(--electric-indigo);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+header img { height: 60px; }
+nav a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
+}
+nav a:hover { color: var(--cyber-yellow); }
+
+/* ========== HERO ========== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 90vh;
+  background-color: var(--off-white);
+  background-image: url('images/hero-texture.png'); /* optional subtle texture */
+  background-size: cover;
+  background-position: center;
+  padding: 0 20px;
+}
+.hero h1 { font-size: 64px; font-weight: 700; margin-bottom: 15px; color: var(--jet-black);}
+.hero h2 { font-size: 28px; font-weight: 500; margin-bottom: 20px; color: var(--electric-indigo);}
+.hero p { font-size: 18px; margin-bottom: 30px; color: var(--text-grey);}
+.hero a {
+  padding: 16px 40px;
+  border-radius: 30px;
+  background-color: var(--power-red);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.hero a:hover {
+  background-color: var(--cyber-yellow);
+  color: var(--jet-black);
+}
+
+/* ========== ABOUT SECTION ========== */
+.about {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.about h2 { font-size: 36px; margin-bottom: 25px; color: var(--power-red);}
+.about p { font-size: 18px; color: var(--jet-black); }
+
+/* ========== SERVICES SECTION ========== */
+.services {
+  display: flex;
+  justify-content: center; /* center cards */
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.service-card {
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  flex: 1 1 320px;
+  max-width: 350px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+.service-card h3 { color: var(--electric-indigo); font-weight: 600; margin-bottom: 12px; }
+.service-card p { color: var(--jet-black); margin-bottom: 12px; }
+.service-card span { font-weight: 600; color: var(--power-red); font-size: 18px; }
+
+/* ========== HOW I WORK ========== */
+.how-i-work {
+  background-color: #fdf5f5;
+  padding: 50px 20px;
+  border-radius: 20px;
+  max-width: 900px;
+  margin: 50px auto;
+  text-align: center;
+}
+.how-i-work h3 { color: var(--electric-indigo); font-size: 28px; margin-bottom: 20px; }
+.how-i-work p { font-size: 18px; color: var(--jet-black); }
+
+/* ========== CONTACT ========== */
+.contact {
+  text-align: center;
+  padding: 80px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+.contact p { font-size: 18px; margin: 8px 0; }
+.social-links { margin-top: 15px; }
+.social-links a {
+  color: var(--jet-black);
+  margin: 0 12px;
+  font-size: 24px;
+  transition: 0.3s;
+}
+.social-links a:hover { color: var(--power-red); }
+
+/* ========== FOOTER ========== */
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  background-color: var(--jet-black);
+  color: var(--off-white);
+  font-size: 14px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media(max-width:768px){
+  .hero h1 { font-size: 48px;}
+  .hero h2 { font-size: 22px;}
+  .service-card { max-width: 100%; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="images/chassis-logo.png" alt="Chassis Logo">
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Chassis</h1>
+  <h2>Build. Believe. Become.</h2>
+  <p>Project Management by Sophia Ayoubi</p>
+  <a href="https://wa.me/96171085824" target="_blank">Let’s Start Your Project</a>
+</section>
+
+<section id="about" class="about">
+  <h2>About Sophia</h2>
+  <p>Sophia Ayoubi is the founder and project manager behind Chassis — a transparent and personalized project management service helping individuals and small businesses plan, execute, and complete their goals with confidence.</p>
+</section>
+
+<section id="services">
+  <h2>Services</h2>
+  <div class="services">
+    <div class="service-card">
+      <h3>Project Kick-Off & Planning</h3>
+      <p><strong>Get your project organised and ready to execute.</strong><br>I turn your idea into a realistic plan: scope, timeline, risk register, and a clear kickoff roadmap so execution runs smoothly.</p>
+      <p><strong>Deliverables:</strong> Project charter, timeline, budget, risk register, stakeholder map, 60-min kickoff call, 1 revision.</p>
+      <span>USD $500</span>
+    </div>
+
+    <div class="service-card">
+      <h3>Execution & Monitoring</h3>
+      <p><strong>Manage progress without hiring full-time.</strong><br>I act as your Project Manager for a defined period: weekly check-ins, progress updates, problem-solving, schedule control.</p>
+      <p><strong>Deliverables:</strong> Weekly status report, updated timeline, risk tracker, 30–45 min weekly call, executive summary.</p>
+      <span>USD $1,200 / 6 weeks</span>
+    </div>
+
+    <div class="service-card">
+      <h3>Project Recovery or Closure</h3>
+      <p><strong>Stop losing time and money.</strong><br>Project behind schedule? Going over budget? I audit and produce a recovery plan or closure pack.</p>
+      <p><strong>Deliverables:</strong> Audit report, recovery plan with milestones, 60-min presentation, closure checklist/lessons learned.</p>
+      <span>USD $800</span>
+    </div>
+  </div>
+
+  <div class="how-i-work">
+    <h3>How I Work</h3>
+    <p>Single dedicated Project Manager — direct communication. Every engagement starts with a plan and ends with deliverables. Transparent pricing (50% upfront for projects >$800). Languages: Arabic, English, Russian.</p>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:chassis.lb@gmail.com">chassis.lb@gmail.com</a></p>
+  <p>Phone: <a href="tel:+96171085824">+96171085824</a></p>
+  <p>WhatsApp: <a href="https://wa.me/96171085824" target="_blank">Chat now</a></p>
+  <div class="social-links">
+    <a href="https://www.instagram.com/chassis.lb/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.linkedin.com/company/109408069/admin/dashboard/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</section>
+
+<footer>© 2025 Chassis by Sophia Ayoubi. All rights reserved.</footer>
+
+</body>
+</html>
