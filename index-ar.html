@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شاسي – ابْنِ. آمِن. تَطَوّر.</title>
+
+<!-- Google Fonts (Poppins + Noto Kufi Arabic) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome for Social Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --power-red: #D72638;
+  --electric-indigo: #4F46E5;
+  --cyber-yellow: #FFD100;
+  --jet-black: #1A1A1A;
+  --off-white: #F7F7F7;
+  --text-grey: #A0A0A0;
+}
+
+* { box-sizing: border-box; margin:0; padding:0; }
+body {
+  font-family: 'Noto Kufi Arabic', sans-serif;
+  background-color: var(--off-white);
+  color: var(--jet-black);
+  line-height: 1.8;
+  direction: rtl;
+}
+
+/* ===== HEADER ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: var(--electric-indigo);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+header img { height: 60px; }
+nav a {
+  margin-right: 25px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
+}
+nav a:hover { color: var(--cyber-yellow); }
+
+.lang-toggle a {
+  color: white;
+  font-weight: 600;
+  margin: 0 8px;
+  text-decoration: none;
+}
+.lang-toggle a:hover { color: var(--cyber-yellow); }
+
+/* ===== HERO ===== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 90vh;
+  background-color: var(--off-white);
+  background-image: url('images/hero-texture.png');
+  background-size: cover;
+  background-position: center;
+  padding: 0 20px;
+}
+.hero h1 { font-size: 64px; font-weight: 700; margin-bottom: 15px; color: var(--jet-black);}
+.hero h2 { font-size: 28px; font-weight: 500; margin-bottom: 20px; color: var(--electric-indigo);}
+.hero p { font-size: 18px; margin-bottom: 30px; color: var(--text-grey);}
+.hero a {
+  padding: 16px 40px;
+  border-radius: 30px;
+  background-color: var(--power-red);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.hero a:hover {
+  background-color: var(--cyber-yellow);
+  color: var(--jet-black);
+}
+
+/* ===== ABOUT ===== */
+.about {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.about h2 { font-size: 36px; margin-bottom: 25px; color: var(--power-red);}
+.about p { font-size: 18px; color: var(--jet-black); }
+
+/* ===== SERVICES ===== */
+.services {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.service-card {
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  flex: 1 1 320px;
+  max-width: 350px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+.service-card h3 { color: var(--electric-indigo); font-weight: 600; margin-bottom: 12px; }
+.service-card p { color: var(--jet-black); margin-bottom: 12px; text-align: right; }
+.service-card span { font-weight: 600; color: var(--power-red); font-size: 18px; }
+
+/* ===== HOW I WORK ===== */
+.how-i-work {
+  background-color: #fdf5f5;
+  padding: 50px 20px;
+  border-radius: 20px;
+  max-width: 900px;
+  margin: 50px auto;
+  text-align: center;
+}
+.how-i-work h3 { color: var(--electric-indigo); font-size: 28px; margin-bottom: 20px; }
+.how-i-work p { font-size: 18px; color: var(--jet-black); text-align: right; }
+
+/* ===== FORM ===== */
+form label { font-weight: 500; display: block; text-align: right; }
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: 'Noto Kufi Arabic', sans-serif;
+}
+form button {
+  background-color: var(--electric-indigo);
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+}
+form button:hover {
+  background-color: var(--cyber-yellow);
+  color: var(--jet-black);
+}
+
+/* ===== CONTACT ===== */
+.contact {
+  text-align: center;
+  padding: 80px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+.contact p { font-size: 18px; margin: 8px 0; }
+.social-links { margin-top: 15px; }
+.social-links a {
+  color: var(--jet-black);
+  margin: 0 12px;
+  font-size: 24px;
+  transition: 0.3s;
+}
+.social-links a:hover { color: var(--power-red); }
+
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  background-color: var(--jet-black);
+  color: var(--off-white);
+  font-size: 14px;
+}
+
+@media(max-width:768px){
+  .hero h1 { font-size: 48px;}
+  .hero h2 { font-size: 22px;}
+  .service-card { max-width: 100%; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="images/chassis-logo.png" alt="شعار شاسيس">
+  <nav>
+    <a href="#about">عنّي</a>
+    <a href="#services">الخدمات</a>
+    <a href="#questionnaire">الاستبيان</a>
+    <a href="#contact">التواصل</a>
+  </nav>
+  <div class="lang-toggle">
+    <a href="index.html">EN</a> | 
+    <a href="index-ar.html">AR</a>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>شاسيس</h1>
+  <h2>ابْنِ. آمِن. تَطَوّر.</h2>
+  <p>إدارة المشاريع بإشراف صوفيا أيّوبي</p>
+  <a href="https://wa.me/96171085824" target="_blank">ابدأ مشروعك الآن</a>
+</section>
+
+<section id="about" class="about">
+  <h2>عن صوفيا</h2>
+  <p>صوفيا أيّوبي هي المؤسِّسة ومديرة المشاريع وراء "شاسيس" — خدمة إدارة مشاريع شخصية وشفافة تُساعد الأفراد والشركات الصغيرة على التخطيط والتنفيذ وتحقيق أهدافهم بثقة ووضوح.</p>
+</section>
+
+<section id="services">
+  <h2 style="text-align:center;color:var(--power-red);">الخدمات</h2>
+  <div class="services">
+    <div class="service-card">
+      <h3>إطلاق المشروع والتخطيط</h3>
+      <p><strong>نظّم مشروعك واستعدّ للتنفيذ.</strong><br>أحوّل فكرتك إلى خطة عملية تشمل نطاق العمل، الجدول الزمني، المخاطر، وخطّة الانطلاق بوضوح.</p>
+      <p><strong>المخرجات:</strong> ميثاق المشروع، الجدول الزمني، الميزانية، سجل المخاطر، خريطة أصحاب المصلحة، اجتماع افتتاحي (60 دقيقة)، ومراجعة واحدة.</p>
+      <span>500 دولار أمريكي</span>
+    </div>
+
+    <div class="service-card">
+      <h3>التنفيذ والمتابعة</h3>
+      <p><strong>إدارة سير العمل دون الحاجة إلى توظيف دائم.</strong><br>أتولّى إدارة مشروعك لفترة محدّدة: اجتماعات أسبوعية، تقارير تقدّم، معالجة المشكلات، وضبط المواعيد.</p>
+      <p><strong>المخرجات:</strong> تقرير أسبوعي، جدول محدّث، سجلّ للمخاطر، مكالمة أسبوعية (30–45 دقيقة)، وتقرير ختامي.</p>
+      <span>1200 دولار / 6 أسابيع</span>
+    </div>
+
+    <div class="service-card">
+      <h3>استعادة المشروع أو إغلاقه</h3>
+      <p><strong>أوقف الهدر في الوقت والمال.</strong><br>هل مشروعك متأخر أو غير منظّم؟ أُجري تدقيقًا وأقدّم خطة استعادة أو إغلاق احترافية.</p>
+      <p><strong>المخرجات:</strong> تقرير تدقيق، خطة استعادة تتضمّن مراحل محدّدة، عرض تقديمي (60 دقيقة)، وتقرير ختامي بالدروس المستفادة.</p>
+      <span>800 دولار أمريكي</span>
+    </div>
+  </div>
+
+  <div class="how-i-work">
+    <h3>أسلوبي في العمل</h3>
+    <p>مديرة مشروع واحدة مخصّصة لكل عميل — تواصل مباشر وتسليم واضح. تبدأ كل شراكة بخطة وتنتهي بمخرجات محدّدة. الشفافية في الأسعار (50٪ مقدّمًا للمشاريع التي تتجاوز 800 دولار). اللغات: العربية، الإنجليزية، الروسية.</p>
+  </div>
+</section>
+
+<section id="questionnaire" class="contact">
+  <h2>استبيان المشروع</h2>
+  <p>يُرجى ملء هذا النموذج القصير لمساعدتي على فهم أهداف مشروعك.</p>
+  
+  <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
+    <label>الاسم الكامل</label>
+    <input type="text" name="name" required>
+    
+    <label>البريد الإلكتروني</label>
+    <input type="email" name="email" required>
+    
+    <label>ما هو مشروعك أو هدفك؟</label>
+    <textarea name="project" rows="4" required></textarea>
+    
+    <label>ما هو أكبر تحدٍ تواجهه حاليًا؟</label>
+    <textarea name="challenge" rows="3"></textarea>
+    
+    <label>تاريخ البدء المفضّل</label>
+    <input type="text" name="start_date">
+    
+    <button type="submit">إرسال النموذج</button>
+  </form>
+</section>
+
+<section id="contact" class="contact">
+  <h2>التواصل</h2>
+  <p>البريد الإلكتروني: <a href="mailto:chassis.lb@gmail.com">chassis.lb@gmail.com</a></p>
+  <p>الهاتف: <a href="tel:+96171085824">+96171085824</a></p>
+  <p>واتساب: <a href="https://wa.me/96171085824" target="_blank">تحدث الآن</a></p>
+
+  <div class="social-links">
+    <a href="https://www.instagram.com/chassis.lb/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.linkedin.com/company/109408069/admin/dashboard/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</section>
+
+<footer>© 2025 شاسي بإدارة صوفيا أيّوبي. جميع الحقوق محفوظة.</footer>
+
+</body>
+</html>
