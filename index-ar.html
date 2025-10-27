@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ابنِ. آمن. أصبح.</title>
+<title>شاسي – ابني. آمن. أصبح.</title>
+
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -15,110 +16,159 @@
   --power-red: #D72638;
   --electric-indigo: #4F46E5;
   --cyber-yellow: #FFD100;
-  --jet-black: #1A1A1A;
+  --nav-bg: linear-gradient(90deg, #4F46E5, #D72638);
   --off-white: #F7F7F7;
+  --light-bg: #F2F0FF;
+  --light-pastel: #FFF2F2;
   --text-grey: #555555;
+  --footer-bg: linear-gradient(90deg, #1A1A1A, #4F46E5);
 }
 
 /* GLOBAL STYLES */
 * { box-sizing: border-box; margin:0; padding:0; }
-body { font-family:'Poppins', sans-serif; background-color:var(--off-white); color:var(--jet-black); line-height:1.6; scroll-behavior: smooth; }
+body { font-family:'Cairo','Poppins', sans-serif; background:var(--off-white); color:#1A1A1A; line-height:1.6; scroll-behavior:smooth; direction:rtl; }
 a { text-decoration:none; transition:0.3s; }
+img { display:block; max-width:100%; }
 
 /* HEADER */
 header {
   display:flex; justify-content:space-between; align-items:center;
-  padding:20px 50px; background:var(--electric-indigo);
-  color:white; position:sticky; top:0; z-index:100;
-  box-shadow:0 4px 15px rgba(0,0,0,0.2);
+  padding:20px 50px; background:var(--nav-bg);
+  position:sticky; top:0; z-index:100; border-radius:0 0 30px 30px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 header img { height:60px; }
-nav a { margin-right:30px; color:white; font-weight:500; position:relative; }
+nav { display:flex; gap:35px; }
+nav a { color:#fff; font-weight:600; font-size:16px; position:relative; }
+nav a::after { content:''; display:block; width:0; height:2px; background:var(--cyber-yellow); transition:width 0.3s; margin-top:4px; }
+nav a:hover::after { width:100%; }
 nav a:hover { color:var(--cyber-yellow); }
-.lang-toggle a { color:white; margin:0 10px; font-weight:600; }
+.lang-toggle a { color:#fff; margin:0 8px; font-weight:600; }
 .lang-toggle a:hover { color:var(--cyber-yellow); }
+@media(max-width:768px){
+  header { flex-direction:column; padding:15px; gap:12px; }
+  nav { flex-direction:column; gap:15px; }
+}
 
 /* HERO */
 .hero {
   display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-  height:100vh; background:linear-gradient(135deg, rgba(215,38,56,0.8), rgba(79,70,229,0.8)), url('images/hero-texture.png') center/cover no-repeat;
-  color:white; padding:0 20px;
+  height:95vh; background:linear-gradient(135deg, rgba(79,70,229,0.7), rgba(215,38,56,0.7)), url('images/hero-texture.png') center/cover no-repeat;
+  color:white; padding:0 20px; position:relative; overflow:hidden;
 }
-.hero h1 { font-size:72px; font-weight:700; margin-bottom:15px; animation:fadeInDown 1s ease forwards; }
+.hero::after {
+  content:'';
+  position:absolute; width:120%; height:120%; top:-10%; left:-10%;
+  background:radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 70%);
+  animation:rotateBG 25s linear infinite;
+  z-index:0;
+}
+@keyframes rotateBG { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
+
+.hero h1 {
+  font-size:72px; font-weight:700; margin-bottom:15px;
+  background: linear-gradient(90deg, var(--cyber-yellow), var(--power-red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation:fadeInDown 1s ease forwards;
+}
 .hero h2 { font-size:32px; font-weight:600; margin-bottom:20px; animation:fadeInDown 1.3s ease forwards; }
 .hero p { font-size:20px; max-width:600px; margin-bottom:30px; animation:fadeInDown 1.6s ease forwards; }
 .hero a {
-  padding:18px 50px; border-radius:50px; background:white; color:var(--electric-indigo);
-  font-weight:600; font-size:18px; box-shadow:0 5px 20px rgba(0,0,0,0.2); transition:0.3s;
+  padding:18px 50px; border-radius:50px; background:var(--cyber-yellow); color:#1A1A1A;
+  font-weight:600; font-size:18px; box-shadow:0 10px 30px rgba(0,0,0,0.15); transition:0.3s;
   animation:fadeInUp 2s ease forwards;
 }
-.hero a:hover { background:var(--cyber-yellow); color:var(--jet-black); transform:scale(1.05); }
+.hero a:hover { background:var(--power-red); color:white; transform:scale(1.05); }
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
 
 /* ABOUT SOPHIA */
 .about-section {
-  background:linear-gradient(135deg, var(--off-white), #e6e6f0);
-  clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 95%);
-  border-radius:30px; padding:100px 30px; max-width:1200px; margin:0 auto 80px auto;
-  text-align:center;
+  background:var(--light-bg); padding:120px 20px; text-align:center; border-radius:50px 50px 0 0; box-shadow:0 25px 60px rgba(0,0,0,0.08); position:relative; z-index:1;
 }
-.about-section h2 { color:var(--power-red); font-size:40px; margin-bottom:50px; }
-.about-content { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:50px; }
-.about-content img { width:220px; border-radius:50%; box-shadow:0 20px 50px rgba(0,0,0,0.2); transition:0.3s; }
-.about-content img:hover { transform:scale(1.05); }
-.about-content p { font-size:18px; max-width:650px; text-align:center; line-height:1.8; }
+.about-section h2 { color:var(--power-red); font-size:44px; margin-bottom:50px; font-weight:700; }
+.about-content { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:50px; position:relative; }
+.about-content img { width:220px; border-radius:50%; box-shadow:0 25px 60px rgba(0,0,0,0.08); transition:0.3s; }
+.about-content img:hover { transform:scale(1.05) rotate(1deg); }
+.about-content p { font-size:18px; max-width:650px; text-align:center; line-height:1.8; color:var(--text-grey); }
 
 /* SERVICES */
-.services-section {
-  padding:100px 20px; background:var(--off-white);
-}
-.services-section h2 { text-align:center; color:var(--power-red); font-size:40px; margin-bottom:60px; }
-.services-cards { display:flex; flex-wrap:wrap; justify-content:center; gap:50px; }
+.services-section { padding:100px 20px; background:var(--light-pastel); }
+.services-section h2 { text-align:center; color:var(--electric-indigo); font-size:42px; margin-bottom:60px; font-weight:700; }
+.services-cards { display:flex; flex-wrap:wrap; justify-content:center; gap:40px; }
 .service-card {
-  background:white; border-radius:30px; padding:40px 30px; flex:1 1 320px; max-width:360px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.15); transition:0.5s; transform-style: preserve-3d;
+  background:white; border-radius:45px; padding:40px 30px; flex:1 1 320px; max-width:360px;
+  box-shadow:0 25px 60px rgba(0,0,0,0.08); transition:0.5s; transform-style:preserve-3d;
 }
-.service-card:hover { transform:translateY(-15px) scale(1.05); box-shadow:0 25px 60px rgba(0,0,0,0.25); }
-.service-card h3 { color:var(--electric-indigo); font-size:24px; margin-bottom:20px; }
-.service-card p { color:var(--jet-black); margin-bottom:20px; }
-.service-card span { font-weight:700; color:var(--power-red); font-size:18px; }
+.service-card:hover { transform:translateY(-12px) rotateX(2deg) scale(1.03); box-shadow:0 30px 60px rgba(0,0,0,0.15); }
+.service-card h3 { color:var(--power-red); font-size:26px; margin-bottom:20px; }
+.service-card p { color:#1A1A1A; margin-bottom:20px; font-size:16px; line-height:1.6; }
+.service-card span { font-weight:700; color:var(--electric-indigo); font-size:18px; }
 
 /* HOW I WORK */
 .how-i-work {
-  background:linear-gradient(135deg, var(--electric-indigo), var(--cyber-yellow));
-  color:white; border-radius:30px; padding:80px 30px; max-width:1000px; margin:80px auto; text-align:center;
+  background:var(--off-white); color:#1A1A1A; border-radius:45px; padding:80px 30px; max-width:1000px; margin:80px auto; text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,0.05); position:relative; z-index:1;
 }
-.how-i-work h3 { font-size:32px; margin-bottom:25px; }
-.how-i-work p { font-size:20px; line-height:1.8; }
+.how-i-work h3 { font-size:32px; margin-bottom:25px; font-weight:600; }
+.how-i-work p { font-size:18px; line-height:1.7; color:var(--text-grey); }
 
 /* FORM SECTION */
 .form-section {
-  max-width:800px; margin:80px auto; text-align:center; padding:50px 20px; background:white; border-radius:30px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.15);
+  max-width:800px; margin:80px auto; text-align:center; padding:50px 20px; background:var(--light-bg); border-radius:45px;
+  box-shadow:0 25px 60px rgba(0,0,0,0.08);
 }
-.form-section h2 { font-size:36px; color:var(--power-red); margin-bottom:30px; }
+.form-section h2 { font-size:38px; color:var(--power-red); margin-bottom:30px; font-weight:700; }
 .form-section p { margin-bottom:30px; color:var(--text-grey); }
-form label { font-weight:500; margin-top:15px; display:block; text-align:right; }
+form label { font-weight:500; margin-top:15px; display:block; }
 form input, form textarea {
-  width:100%; padding:16px; margin-top:10px; border-radius:15px; border:1px solid #ccc; font-size:16px;
+  width:100%; padding:16px; margin-top:10px; border-radius:20px; border:1px solid #ccc; font-size:16px;
 }
 form button {
-  background:var(--electric-indigo); color:white; padding:18px 50px; border:none; border-radius:50px;
-  font-weight:600; font-size:18px; margin-top:25px; cursor:pointer; transition:0.3s; box-shadow:0 5px 20px rgba(0,0,0,0.2);
+  background:var(--electric-indigo); color:white; padding:16px 50px; border:none; border-radius:50px;
+  font-weight:600; font-size:18px; margin-top:25px; cursor:pointer; transition:0.3s; box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
-form button:hover { background:var(--cyber-yellow); color:var(--jet-black); transform:scale(1.05); }
+form button:hover { background:var(--cyber-yellow); color:#1A1A1A; transform:scale(1.05); }
 
 /* CONTACT */
 .contact-section {
-  text-align:center; padding:100px 20px; max-width:900px; margin:auto;
+  text-align:center; padding:100px 20px; max-width:900px; margin:auto; background:linear-gradient(135deg, #FFF2F2, #F2F0FF); border-radius:45px;
 }
-.contact-section h2 { color:var(--power-red); font-size:40px; margin-bottom:40px; }
-.contact-section p { font-size:18px; margin:10px 0; }
-.social-links { margin-top:20px; }
-.social-links a { font-size:28px; margin:0 15px; color:var(--jet-black); transition:0.3s; }
+.contact-section h2 { color:var(--power-red); font-size:42px; margin-bottom:40px; font-weight:700; }
+.contact-section p { font-size:18px; margin:10px 0; color:var(--text-grey); }
+.social-links { margin-top:25px; }
+.social-links a { font-size:28px; margin:0 15px; color:var(--electric-indigo); transition:0.3s; }
 .social-links a:hover { color:var(--power-red); }
+.whatsapp-inline {
+  display:inline-flex; align-items:center; gap:8px; background:#25D366; color:white; padding:8px 15px; border-radius:50px; font-weight:600; transition:0.3s; box-shadow:0 5px 20px rgba(0,0,0,0.2); text-decoration:none;
+}
+.whatsapp-inline:hover { transform:scale(1.05); box-shadow:0 8px 25px rgba(0,0,0,0.3); background:#1ebe5b; }
 
 /* FOOTER */
-footer { text-align:center; padding:30px 20px; background-color:var(--jet-black); color:var(--off-white); font-size:14px; }
+footer { text-align:center; padding:40px 20px; background:var(--footer-bg); color:white; font-size:14px; border-radius:30px 30px 0 0; }
 
 /* ANIMATIONS */
 @keyframes fadeInDown { 0% {opacity:0; transform:translateY(-40px);} 100% {opacity:1; transform:translateY(0);} }
@@ -127,19 +177,17 @@ footer { text-align:center; padding:30px 20px; background-color:var(--jet-black)
 /* RESPONSIVE */
 @media(max-width:1024px){ .hero h1{font-size:60px;} .hero h2{font-size:28px;} }
 @media(max-width:768px){
-  header { flex-direction:column; padding:20px; }
-  nav { margin-top:10px; }
   .hero h1{font-size:48px;} .hero h2{font-size:24px;}
-  .about-content { flex-direction:column; }
+  .about-content, .services-cards { flex-direction:column; }
 }
 </style>
 </head>
 <body>
 
 <header>
-  <img src="images/chassis-logo.png" alt="شاسي Logo">
+  <img src="images/chassis-logo.png" alt="شاسي">
   <nav>
-    <a href="#about">عن</a>
+    <a href="#about">عن صوفيا</a>
     <a href="#services">الخدمات</a>
     <a href="#questionnaire">الاستبيان</a>
     <a href="#contact">تواصل</a>
@@ -151,16 +199,16 @@ footer { text-align:center; padding:30px 20px; background-color:var(--jet-black)
 
 <section class="hero">
   <h1>شاسي</h1>
-  <h2>ابنِ. آمن. أصبح.</h2>
+  <h2>ابني. آمن. أصبح.</h2>
   <p>إدارة المشاريع بواسطة صوفيا ايوبي</p>
-  <a href="https://wa.me/96171085824" target="_blank">ابدأ مشروعك</a>
+  <a href="https://wa.me/96171085824" target="_blank">لنبدأ مشروعك</a>
 </section>
 
 <section class="about-section" id="about">
   <h2>عن صوفيا</h2>
   <div class="about-content">
     <img src="images/sophia-profile.jpg" alt="صوفيا ايوبي">
-    <p>صوفيا ايوبي هي المؤسِسة ومديرة المشاريع لشاسي — خدمة إدارة مشاريع شخصية وشفافة تساعد الأفراد والشركات الصغيرة على التخطيط والتنفيذ وتحقيق أهدافهم بثقة.</p>
+    <p>صوفيا ايوبي هي المؤسسة ومديرة المشاريع خلف شاسي — خدمة إدارة مشاريع شخصية وشفافة تساعد الأفراد والشركات الصغيرة على تخطيط وتنفيذ وإتمام مشاريعهم بثقة.</p>
   </div>
 </section>
 
@@ -169,26 +217,27 @@ footer { text-align:center; padding:30px 20px; background-color:var(--jet-black)
   <div class="services-cards">
     <div class="service-card">
       <h3>بدء المشروع والتخطيط</h3>
-      <p><strong>جهز مشروعك للتنفيذ بكفاءة.</strong><br>أحوّل فكرتك إلى خطة واقعية: نطاق العمل، الجدول الزمني، سجل المخاطر، وخارطة طريق واضحة.</p>
-      <p><strong>المخرجات:</strong> ميثاق المشروع، الجدول الزمني، الميزانية، سجل المخاطر، خريطة أصحاب المصلحة، مكالمة انطلاق 60 دقيقة، تعديل واحد.</p>
+      <p><strong>تنظيم مشروعك وجاهزيته للتنفيذ.</strong><br>أحوّل فكرتك إلى خطة واضحة تشمل نطاق العمل والجدول الزمني ومؤشرات المخاطر وخريطة الطريق.</p>
+      <p><strong>المخرجات:</strong> ميثاق المشروع، الجدول الزمني، الميزانية، سجل المخاطر، خريطة أصحاب المصلحة، مكالمة بدء 60 دقيقة، مراجعة واحدة.</p>
       <span>500 دولار أمريكي</span>
     </div>
     <div class="service-card">
-      <h3>التنفيذ والمتابعة</h3>
-      <p><strong>إدارة التقدم بدون توظيف دائم.</strong><br>أعمل كمديرة مشروعك لفترة محددة: مراجعات أسبوعية، تحديثات، حل المشكلات.</p>
+      <h3>التنفيذ والمراقبة</h3>
+      <p><strong>إدارة التقدم دون توظيف دائم.</strong><br>أعمل كمديرة مشروعك لفترة محددة: متابعة أسبوعية، تحديثات، حل المشكلات.</p>
       <p><strong>المخرجات:</strong> تقرير أسبوعي، جدول زمني محدث، متتبع المخاطر، مكالمة أسبوعية 30–45 دقيقة، ملخص تنفيذي.</p>
       <span>1,200 دولار أمريكي / 6 أسابيع</span>
     </div>
     <div class="service-card">
-      <h3>استعادة المشروع أو إغلاقه</h3>
-      <p><strong>توقف عن فقدان الوقت والمال.</strong><br>أقوم بتدقيق المشروع وإعداد خطة استعادة أو حزمة إغلاق.</p>
-      <p><strong>المخرجات:</strong> تقرير تدقيق، خطة استعادة مع المعالم، عرض تقديمي 60 دقيقة، قائمة مراجعة الإغلاق والدروس المستفادة.</p>
+      <h3>استعادة المشروع أو الإغلاق</h3>
+      <p><strong>توقف عن خسارة الوقت والمال.</strong><br>أجري تدقيقاً وأقدم خطة استعادة أو حزمة إغلاق للمشاريع المتأخرة أو خارج الميزانية.</p>
+      <p><strong>المخرجات:</strong> تقرير تدقيق، خطة استعادة، عرض تقديمي 60 دقيقة، قائمة إغلاق/دروس مستفادة.</p>
       <span>800 دولار أمريكي</span>
     </div>
   </div>
+
   <div class="how-i-work">
     <h3>كيف أعمل</h3>
-    <p>مديرة مشروع مخصصة — تواصل مباشر. يبدأ كل مشروع بخطة وينتهي بالمخرجات. التسعير شفاف: 50% مقدماً. اللغات: العربية، الإنجليزية، الروسية.</p>
+    <p>مديرة مشروع واحدة مخصصة — تواصل مباشر. كل مشروع يبدأ بخطة وينتهي بمخرجات واضحة. الأسعار شفافة: 50% مقدماً. اللغات: العربية، الإنجليزية، الروسية.</p>
   </div>
 </section>
 
@@ -202,19 +251,19 @@ footer { text-align:center; padding:30px 20px; background-color:var(--jet-black)
     <input type="email" name="email" required>
     <label>ما هو مشروعك أو هدفك؟</label>
     <textarea name="project" rows="4" required></textarea>
-    <label>ما أكبر تحدي تواجهه حالياً؟</label>
+    <label>ما هو أكبر تحدٍ تواجهه حالياً؟</label>
     <textarea name="challenge" rows="3"></textarea>
     <label>تاريخ البدء المفضل</label>
     <input type="text" name="start_date">
-    <button type="submit">إرسال</button>
+    <button type="submit">إرسال النموذج</button>
   </form>
 </section>
 
 <section class="contact-section" id="contact">
   <h2>تواصل</h2>
   <p>البريد الإلكتروني: <a href="mailto:chassis.lb@gmail.com">chassis.lb@gmail.com</a></p>
-  <p>الهاتف: <a href="tel:+96171085824">+96171085824</a></p>
-  <p>واتساب: <a href="https://wa.me/96171085824" target="_blank">ابدأ الدردشة</a></p>
+  <p>الهاتف: <span dir="ltr"><a href="tel:+96171085824">+961 71 085824</a></span></p>
+  <p><a href="https://wa.me/96171085824" class="whatsapp-inline" target="_blank"><i class="fab fa-whatsapp"></i> تواصل الآن</a></p>
   <div class="social-links">
     <a href="https://www.instagram.com/chassis.lb/" target="_blank"><i class="fab fa-instagram"></i></a>
     <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -224,6 +273,10 @@ footer { text-align:center; padding:30px 20px; background-color:var(--jet-black)
 
 <footer>© 2025 شاسي بواسطة صوفيا ايوبي. جميع الحقوق محفوظة.</footer>
 
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/96171085824" target="_blank" class="whatsapp-float">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
 </body>
 </html>
-
