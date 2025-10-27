@@ -8,200 +8,133 @@
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Font Awesome for Social Icons -->
+<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-/* ========== COLORS ========== */
 :root {
   --power-red: #D72638;
   --electric-indigo: #4F46E5;
   --cyber-yellow: #FFD100;
   --jet-black: #1A1A1A;
   --off-white: #F7F7F7;
-  --text-grey: #A0A0A0;
+  --text-grey: #555555;
 }
 
-/* ========== GLOBAL STYLES ========== */
+/* GLOBAL STYLES */
 * { box-sizing: border-box; margin:0; padding:0; }
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--off-white);
-  color: var(--jet-black);
-  line-height: 1.6;
-}
+body { font-family:'Poppins', sans-serif; background-color:var(--off-white); color:var(--jet-black); line-height:1.6; scroll-behavior: smooth;}
+a { text-decoration:none; transition:0.3s; }
 
-/* ========== HEADER ========== */
+/* HEADER */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px;
-  background-color: var(--electric-indigo);
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  display:flex; justify-content:space-between; align-items:center;
+  padding:20px 50px; background:var(--electric-indigo);
+  color:white; position:sticky; top:0; z-index:100;
+  box-shadow:0 4px 15px rgba(0,0,0,0.2);
 }
-header img { height: 60px; }
-nav a {
-  margin-left: 25px;
-  text-decoration: none;
-  color: white;
-  font-weight: 500;
-  transition: 0.3s;
-}
-nav a:hover { color: var(--cyber-yellow); }
+header img { height:60px; }
+nav a { margin-left:30px; color:white; font-weight:500; position:relative; }
+nav a:hover { color:var(--cyber-yellow); }
+.lang-toggle a { color:white; margin:0 10px; font-weight:600; }
+.lang-toggle a:hover { color:var(--cyber-yellow); }
 
-/* Language toggle */
-.lang-toggle a {
-  color: white;
-  font-weight: 600;
-  margin: 0 8px;
-  text-decoration: none;
-}
-.lang-toggle a:hover { color: var(--cyber-yellow); }
-
-/* ========== HERO ========== */
+/* HERO */
 .hero {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 90vh;
-  background-color: var(--off-white);
-  background-image: url('images/hero-texture.png'); 
-  background-size: cover;
-  background-position: center;
-  padding: 0 20px;
+  display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+  height:100vh; background:linear-gradient(135deg, rgba(215,38,56,0.8), rgba(79,70,229,0.8)), url('images/hero-texture.png') center/cover no-repeat;
+  color:white; padding:0 20px;
 }
-.hero h1 { font-size: 64px; font-weight: 700; margin-bottom: 15px; color: var(--jet-black);}
-.hero h2 { font-size: 28px; font-weight: 500; margin-bottom: 20px; color: var(--electric-indigo);}
-.hero p { font-size: 18px; margin-bottom: 30px; color: var(--text-grey);}
+.hero h1 { font-size:72px; font-weight:700; margin-bottom:15px; animation:fadeInDown 1s ease forwards; }
+.hero h2 { font-size:32px; font-weight:600; margin-bottom:20px; animation:fadeInDown 1.3s ease forwards; }
+.hero p { font-size:20px; max-width:600px; margin-bottom:30px; animation:fadeInDown 1.6s ease forwards; }
 .hero a {
-  padding: 16px 40px;
-  border-radius: 30px;
-  background-color: var(--power-red);
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
+  padding:18px 50px; border-radius:50px; background:white; color:var(--electric-indigo);
+  font-weight:600; font-size:18px; box-shadow:0 5px 20px rgba(0,0,0,0.2); transition:0.3s;
+  animation:fadeInUp 2s ease forwards;
 }
-.hero a:hover {
-  background-color: var(--cyber-yellow);
-  color: var(--jet-black);
-}
+.hero a:hover { background:var(--cyber-yellow); color:var(--jet-black); transform:scale(1.05); }
 
-/* ========== ABOUT SECTION ========== */
-.about {
-  max-width: 900px;
-  margin: 80px auto;
-  padding: 0 20px;
-  text-align: center;
+/* ABOUT SOPHIA */
+.about-section {
+  background:linear-gradient(135deg, var(--off-white), #e6e6f0);
+  clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 95%);
+  border-radius:30px; padding:100px 30px; max-width:1200px; margin:0 auto 80px auto;
+  text-align:center;
 }
-.about h2 { font-size: 36px; margin-bottom: 25px; color: var(--power-red);}
-.about p { font-size: 18px; color: var(--jet-black); }
+.about-section h2 { color:var(--power-red); font-size:40px; margin-bottom:50px; }
+.about-content { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:50px; }
+.about-content img { width:220px; border-radius:50%; box-shadow:0 20px 50px rgba(0,0,0,0.2); transition:0.3s; }
+.about-content img:hover { transform:scale(1.05); }
+.about-content p { font-size:18px; max-width:650px; text-align:center; line-height:1.8; }
 
-/* ========== SERVICES SECTION ========== */
-.services {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 30px;
-  max-width: 1200px;
-  margin: 50px auto;
-  padding: 0 20px;
-  text-align: center;
+/* SERVICES */
+.services-section {
+  padding:100px 20px; background:var(--off-white);
 }
+.services-section h2 { text-align:center; color:var(--power-red); font-size:40px; margin-bottom:60px; }
+.services-cards { display:flex; flex-wrap:wrap; justify-content:center; gap:50px; }
 .service-card {
-  background-color: white;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-  flex: 1 1 320px;
-  max-width: 350px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  background:white; border-radius:30px; padding:40px 30px; flex:1 1 320px; max-width:360px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.15); transition:0.5s; transform-style: preserve-3d;
 }
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-}
-.service-card h3 { color: var(--electric-indigo); font-weight: 600; margin-bottom: 12px; }
-.service-card p { color: var(--jet-black); margin-bottom: 12px; }
-.service-card span { font-weight: 600; color: var(--power-red); font-size: 18px; }
+.service-card:hover { transform:translateY(-15px) scale(1.05); box-shadow:0 25px 60px rgba(0,0,0,0.25); }
+.service-card h3 { color:var(--electric-indigo); font-size:24px; margin-bottom:20px; }
+.service-card p { color:var(--jet-black); margin-bottom:20px; }
+.service-card span { font-weight:700; color:var(--power-red); font-size:18px; }
 
-/* ========== HOW I WORK ========== */
+/* HOW I WORK */
 .how-i-work {
-  background-color: #fdf5f5;
-  padding: 50px 20px;
-  border-radius: 20px;
-  max-width: 900px;
-  margin: 50px auto;
-  text-align: center;
+  background:linear-gradient(135deg, var(--electric-indigo), var(--cyber-yellow));
+  color:white; border-radius:30px; padding:80px 30px; max-width:1000px; margin:80px auto; text-align:center;
 }
-.how-i-work h3 { color: var(--electric-indigo); font-size: 28px; margin-bottom: 20px; }
-.how-i-work p { font-size: 18px; color: var(--jet-black); }
+.how-i-work h3 { font-size:32px; margin-bottom:25px; }
+.how-i-work p { font-size:20px; line-height:1.8; }
 
-/* ========== QUESTIONNAIRE ========== */
-form label { font-weight: 500; }
+/* FORM SECTION */
+.form-section {
+  max-width:800px; margin:80px auto; text-align:center; padding:50px 20px; background:white; border-radius:30px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.15);
+}
+.form-section h2 { font-size:36px; color:var(--power-red); margin-bottom:30px; }
+.form-section p { margin-bottom:30px; color:var(--text-grey); }
+form label { font-weight:500; margin-top:15px; display:block; }
 form input, form textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  width:100%; padding:16px; margin-top:10px; border-radius:15px; border:1px solid #ccc; font-size:16px;
 }
 form button {
-  background-color: var(--electric-indigo);
-  color: white;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: 600;
+  background:var(--electric-indigo); color:white; padding:18px 50px; border:none; border-radius:50px;
+  font-weight:600; font-size:18px; margin-top:25px; cursor:pointer; transition:0.3s; box-shadow:0 5px 20px rgba(0,0,0,0.2);
 }
-form button:hover {
-  background-color: var(--cyber-yellow);
-  color: var(--jet-black);
-}
+form button:hover { background:var(--cyber-yellow); color:var(--jet-black); transform:scale(1.05); }
 
-/* ========== CONTACT ========== */
-.contact {
-  text-align: center;
-  padding: 80px 20px;
-  max-width: 900px;
-  margin: auto;
+/* CONTACT */
+.contact-section {
+  text-align:center; padding:100px 20px; max-width:900px; margin:auto;
 }
-.contact p { font-size: 18px; margin: 8px 0; }
-.social-links { margin-top: 15px; }
-.social-links a {
-  color: var(--jet-black);
-  margin: 0 12px;
-  font-size: 24px;
-  transition: 0.3s;
-}
-.social-links a:hover { color: var(--power-red); }
+.contact-section h2 { color:var(--power-red); font-size:40px; margin-bottom:40px; }
+.contact-section p { font-size:18px; margin:10px 0; }
+.social-links { margin-top:20px; }
+.social-links a { font-size:28px; margin:0 15px; color:var(--jet-black); transition:0.3s; }
+.social-links a:hover { color:var(--power-red); }
 
-/* ========== FOOTER ========== */
-footer {
-  text-align: center;
-  padding: 25px 20px;
-  background-color: var(--jet-black);
-  color: var(--off-white);
-  font-size: 14px;
-}
+/* FOOTER */
+footer { text-align:center; padding:30px 20px; background-color:var(--jet-black); color:var(--off-white); font-size:14px; }
 
-/* ========== RESPONSIVE ========== */
+/* ANIMATIONS */
+@keyframes fadeInDown { 0% {opacity:0; transform:translateY(-40px);} 100% {opacity:1; transform:translateY(0);} }
+@keyframes fadeInUp { 0% {opacity:0; transform:translateY(40px);} 100% {opacity:1; transform:translateY(0);} }
+
+/* RESPONSIVE */
+@media(max-width:1024px){ .hero h1{font-size:60px;} .hero h2{font-size:28px;} }
 @media(max-width:768px){
-  .hero h1 { font-size: 48px;}
-  .hero h2 { font-size: 22px;}
-  .service-card { max-width: 100%; }
+  header { flex-direction:column; padding:20px; }
+  nav { margin-top:10px; }
+  .hero h1{font-size:48px;} .hero h2{font-size:24px;}
+  .about-content { flex-direction:column; }
 }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -213,8 +146,7 @@ footer {
     <a href="#contact">Contact</a>
   </nav>
   <div class="lang-toggle">
-    <a href="index.html">EN</a> | 
-    <a href="index-ar.html">AR</a>
+    <a href="index.html">EN</a> | <a href="index-ar.html">AR</a>
   </div>
 </header>
 
@@ -225,79 +157,68 @@ footer {
   <a href="https://wa.me/96171085824" target="_blank">Let’s Start Your Project</a>
 </section>
 
-<section id="about" class="about">
+<section class="about-section" id="about">
   <h2>About Sophia</h2>
-  <div style="display:flex; flex-direction:row; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap;">
-    <img src="images/sophia-profile.jpg" alt="Sophia Ayoubi" style="width:180px; height:auto; border-radius:50%; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
-    <p style="max-width:600px; text-align:left;">
+  <div class="about-content">
+    <img src="images/sophia-profile.jpg" alt="Sophia Ayoubi">
+    <p>
       Sophia Ayoubi is the founder and project manager behind Chassis — a transparent and personalized project management service helping individuals and small businesses plan, execute, and complete their goals with confidence.
     </p>
   </div>
 </section>
 
-
-<section id="services">
-  <h2 style="text-align:center;color:var(--power-red);">Services</h2>
-  <div class="services">
+<section class="services-section" id="services">
+  <h2>Services</h2>
+  <div class="services-cards">
     <div class="service-card">
       <h3>Project Kick-Off & Planning</h3>
-      <p><strong>Get your project organised and ready to execute.</strong><br>I turn your idea into a realistic plan: scope, timeline, risk register, and a clear kickoff roadmap so execution runs smoothly.</p>
+      <p><strong>Get your project organized and ready to execute.</strong><br>I turn your idea into a clear plan with scope, timeline, risk register, and roadmap.</p>
       <p><strong>Deliverables:</strong> Project charter, timeline, budget, risk register, stakeholder map, 60-min kickoff call, 1 revision.</p>
       <span>USD $500</span>
     </div>
-
     <div class="service-card">
       <h3>Execution & Monitoring</h3>
-      <p><strong>Manage progress without hiring full-time.</strong><br>I act as your Project Manager for a defined period: weekly check-ins, progress updates, problem-solving, schedule control.</p>
-      <p><strong>Deliverables:</strong> Weekly status report, updated timeline, risk tracker, 30–45 min weekly call, executive summary.</p>
+      <p><strong>Manage progress without hiring full-time.</strong><br>I act as your Project Manager for a defined period: weekly check-ins, progress updates, problem-solving.</p>
+      <p><strong>Deliverables:</strong> Weekly report, updated timeline, risk tracker, 30–45 min weekly call, executive summary.</p>
       <span>USD $1,200 / 6 weeks</span>
     </div>
-
     <div class="service-card">
       <h3>Project Recovery or Closure</h3>
-      <p><strong>Stop losing time and money.</strong><br>Project behind schedule? Going over budget? I audit and produce a recovery plan or closure pack.</p>
-      <p><strong>Deliverables:</strong> Audit report, recovery plan with milestones, 60-min presentation, closure checklist/lessons learned.</p>
+      <p><strong>Stop losing time and money.</strong><br>I audit and produce a recovery plan or closure pack for projects behind schedule or budget.</p>
+      <p><strong>Deliverables:</strong> Audit report, recovery plan, 60-min presentation, closure checklist/lessons learned.</p>
       <span>USD $800</span>
     </div>
   </div>
 
   <div class="how-i-work">
     <h3>How I Work</h3>
-    <p>Single dedicated Project Manager — direct communication. Every engagement starts with a plan and ends with deliverables. Transparent pricing (50% upfront). Languages: Arabic, English, Russian.</p>
+    <p>Single dedicated Project Manager — direct communication. Every engagement starts with a plan and ends with deliverables. Transparent pricing: 50% upfront. Languages: Arabic, English, Russian.</p>
   </div>
 </section>
 
-<section id="questionnaire" class="contact">
+<section class="form-section" id="questionnaire">
   <h2>Project Questionnaire</h2>
   <p>Please fill this short form to help me understand your project goals.</p>
-  
   <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
-    <label>Name</label><br>
-    <input type="text" name="name" required><br>
-    
-    <label>Email</label><br>
-    <input type="email" name="email" required><br>
-    
-    <label>What is your project or goal?</label><br>
-    <textarea name="project" rows="4" required></textarea><br>
-    
-    <label>What’s your biggest challenge right now?</label><br>
-    <textarea name="challenge" rows="3"></textarea><br>
-    
-    <label>Preferred start date</label><br>
-    <input type="text" name="start_date"><br>
-    
+    <label>Name</label>
+    <input type="text" name="name" required>
+    <label>Email</label>
+    <input type="email" name="email" required>
+    <label>What is your project or goal?</label>
+    <textarea name="project" rows="4" required></textarea>
+    <label>What’s your biggest challenge right now?</label>
+    <textarea name="challenge" rows="3"></textarea>
+    <label>Preferred start date</label>
+    <input type="text" name="start_date">
     <button type="submit">Submit Form</button>
   </form>
 </section>
 
-<section id="contact" class="contact">
+<section class="contact-section" id="contact">
   <h2>Contact</h2>
   <p>Email: <a href="mailto:chassis.lb@gmail.com">chassis.lb@gmail.com</a></p>
   <p>Phone: <a href="tel:+96171085824">+96171085824</a></p>
   <p>WhatsApp: <a href="https://wa.me/96171085824" target="_blank">Chat now</a></p>
-
-
   <div class="social-links">
     <a href="https://www.instagram.com/chassis.lb/" target="_blank"><i class="fab fa-instagram"></i></a>
     <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -309,4 +230,3 @@ footer {
 
 </body>
 </html>
-

@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شاسي – ابْنِ. آمِن. تَطَوّر.</title>
+<title>شاسي – ابنِ. آمن. اصنع.</title>
 
-<!-- Google Fonts (Poppins + Noto Kufi Arabic) -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Font Awesome for Social Icons -->
+<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -18,282 +18,204 @@
   --cyber-yellow: #FFD100;
   --jet-black: #1A1A1A;
   --off-white: #F7F7F7;
-  --text-grey: #A0A0A0;
+  --text-grey: #555555;
 }
 
+/* GLOBAL STYLES */
 * { box-sizing: border-box; margin:0; padding:0; }
-body {
-  font-family: 'Noto Kufi Arabic', sans-serif;
-  background-color: var(--off-white);
-  color: var(--jet-black);
-  line-height: 1.8;
-  direction: rtl;
-}
+body { font-family:'Poppins', sans-serif; background-color:var(--off-white); color:var(--jet-black); line-height:1.6; scroll-behavior: smooth; }
+a { text-decoration:none; transition:0.3s; }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px;
-  background-color: var(--electric-indigo);
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  display:flex; justify-content:space-between; align-items:center;
+  padding:20px 50px; background:var(--electric-indigo);
+  color:white; position:sticky; top:0; z-index:100;
+  box-shadow:0 4px 15px rgba(0,0,0,0.2);
 }
-header img { height: 60px; }
-nav a {
-  margin-right: 25px;
-  text-decoration: none;
-  color: white;
-  font-weight: 500;
-  transition: 0.3s;
-}
-nav a:hover { color: var(--cyber-yellow); }
+header img { height:60px; }
+nav a { margin-right:30px; color:white; font-weight:500; position:relative; }
+nav a:hover { color:var(--cyber-yellow); }
+.lang-toggle a { color:white; margin:0 10px; font-weight:600; }
+.lang-toggle a:hover { color:var(--cyber-yellow); }
 
-.lang-toggle a {
-  color: white;
-  font-weight: 600;
-  margin: 0 8px;
-  text-decoration: none;
-}
-.lang-toggle a:hover { color: var(--cyber-yellow); }
-
-/* ===== HERO ===== */
+/* HERO */
 .hero {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 90vh;
-  background-color: var(--off-white);
-  background-image: url('images/hero-texture.png');
-  background-size: cover;
-  background-position: center;
-  padding: 0 20px;
+  display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+  height:100vh; background:linear-gradient(135deg, rgba(215,38,56,0.8), rgba(79,70,229,0.8)), url('images/hero-texture.png') center/cover no-repeat;
+  color:white; padding:0 20px;
 }
-.hero h1 { font-size: 64px; font-weight: 700; margin-bottom: 15px; color: var(--jet-black);}
-.hero h2 { font-size: 28px; font-weight: 500; margin-bottom: 20px; color: var(--electric-indigo);}
-.hero p { font-size: 18px; margin-bottom: 30px; color: var(--text-grey);}
+.hero h1 { font-size:72px; font-weight:700; margin-bottom:15px; animation:fadeInDown 1s ease forwards; }
+.hero h2 { font-size:32px; font-weight:600; margin-bottom:20px; animation:fadeInDown 1.3s ease forwards; }
+.hero p { font-size:20px; max-width:600px; margin-bottom:30px; animation:fadeInDown 1.6s ease forwards; }
 .hero a {
-  padding: 16px 40px;
-  border-radius: 30px;
-  background-color: var(--power-red);
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
+  padding:18px 50px; border-radius:50px; background:white; color:var(--electric-indigo);
+  font-weight:600; font-size:18px; box-shadow:0 5px 20px rgba(0,0,0,0.2); transition:0.3s;
+  animation:fadeInUp 2s ease forwards;
 }
-.hero a:hover {
-  background-color: var(--cyber-yellow);
-  color: var(--jet-black);
-}
+.hero a:hover { background:var(--cyber-yellow); color:var(--jet-black); transform:scale(1.05); }
 
-/* ===== ABOUT ===== */
-.about {
-  max-width: 900px;
-  margin: 80px auto;
-  padding: 0 20px;
-  text-align: center;
+/* ABOUT SOPHIA */
+.about-section {
+  background:linear-gradient(135deg, var(--off-white), #e6e6f0);
+  clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 95%);
+  border-radius:30px; padding:100px 30px; max-width:1200px; margin:0 auto 80px auto;
+  text-align:center;
 }
-.about h2 { font-size: 36px; margin-bottom: 25px; color: var(--power-red);}
-.about p { font-size: 18px; color: var(--jet-black); }
+.about-section h2 { color:var(--power-red); font-size:40px; margin-bottom:50px; }
+.about-content { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:50px; }
+.about-content img { width:220px; border-radius:50%; box-shadow:0 20px 50px rgba(0,0,0,0.2); transition:0.3s; }
+.about-content img:hover { transform:scale(1.05); }
+.about-content p { font-size:18px; max-width:650px; text-align:center; line-height:1.8; }
 
-/* ===== SERVICES ===== */
-.services {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 30px;
-  max-width: 1200px;
-  margin: 50px auto;
-  padding: 0 20px;
-  text-align: center;
+/* SERVICES */
+.services-section {
+  padding:100px 20px; background:var(--off-white);
 }
+.services-section h2 { text-align:center; color:var(--power-red); font-size:40px; margin-bottom:60px; }
+.services-cards { display:flex; flex-wrap:wrap; justify-content:center; gap:50px; }
 .service-card {
-  background-color: white;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-  flex: 1 1 320px;
-  max-width: 350px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  background:white; border-radius:30px; padding:40px 30px; flex:1 1 320px; max-width:360px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.15); transition:0.5s; transform-style: preserve-3d;
 }
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-}
-.service-card h3 { color: var(--electric-indigo); font-weight: 600; margin-bottom: 12px; }
-.service-card p { color: var(--jet-black); margin-bottom: 12px; text-align: right; }
-.service-card span { font-weight: 600; color: var(--power-red); font-size: 18px; }
+.service-card:hover { transform:translateY(-15px) scale(1.05); box-shadow:0 25px 60px rgba(0,0,0,0.25); }
+.service-card h3 { color:var(--electric-indigo); font-size:24px; margin-bottom:20px; }
+.service-card p { color:var(--jet-black); margin-bottom:20px; }
+.service-card span { font-weight:700; color:var(--power-red); font-size:18px; }
 
-/* ===== HOW I WORK ===== */
+/* HOW I WORK */
 .how-i-work {
-  background-color: #fdf5f5;
-  padding: 50px 20px;
-  border-radius: 20px;
-  max-width: 900px;
-  margin: 50px auto;
-  text-align: center;
+  background:linear-gradient(135deg, var(--electric-indigo), var(--cyber-yellow));
+  color:white; border-radius:30px; padding:80px 30px; max-width:1000px; margin:80px auto; text-align:center;
 }
-.how-i-work h3 { color: var(--electric-indigo); font-size: 28px; margin-bottom: 20px; }
-.how-i-work p { font-size: 18px; color: var(--jet-black); text-align: right; }
+.how-i-work h3 { font-size:32px; margin-bottom:25px; }
+.how-i-work p { font-size:20px; line-height:1.8; }
 
-/* ===== FORM ===== */
-form label { font-weight: 500; display: block; text-align: right; }
+/* FORM SECTION */
+.form-section {
+  max-width:800px; margin:80px auto; text-align:center; padding:50px 20px; background:white; border-radius:30px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.15);
+}
+.form-section h2 { font-size:36px; color:var(--power-red); margin-bottom:30px; }
+.form-section p { margin-bottom:30px; color:var(--text-grey); }
+form label { font-weight:500; margin-top:15px; display:block; text-align:right; }
 form input, form textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-family: 'Noto Kufi Arabic', sans-serif;
+  width:100%; padding:16px; margin-top:10px; border-radius:15px; border:1px solid #ccc; font-size:16px;
 }
 form button {
-  background-color: var(--electric-indigo);
-  color: white;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: 600;
+  background:var(--electric-indigo); color:white; padding:18px 50px; border:none; border-radius:50px;
+  font-weight:600; font-size:18px; margin-top:25px; cursor:pointer; transition:0.3s; box-shadow:0 5px 20px rgba(0,0,0,0.2);
 }
-form button:hover {
-  background-color: var(--cyber-yellow);
-  color: var(--jet-black);
-}
+form button:hover { background:var(--cyber-yellow); color:var(--jet-black); transform:scale(1.05); }
 
-/* ===== CONTACT ===== */
-.contact {
-  text-align: center;
-  padding: 80px 20px;
-  max-width: 900px;
-  margin: auto;
+/* CONTACT */
+.contact-section {
+  text-align:center; padding:100px 20px; max-width:900px; margin:auto;
 }
-.contact p { font-size: 18px; margin: 8px 0; }
-.social-links { margin-top: 15px; }
-.social-links a {
-  color: var(--jet-black);
-  margin: 0 12px;
-  font-size: 24px;
-  transition: 0.3s;
-}
-.social-links a:hover { color: var(--power-red); }
+.contact-section h2 { color:var(--power-red); font-size:40px; margin-bottom:40px; }
+.contact-section p { font-size:18px; margin:10px 0; }
+.social-links { margin-top:20px; }
+.social-links a { font-size:28px; margin:0 15px; color:var(--jet-black); transition:0.3s; }
+.social-links a:hover { color:var(--power-red); }
 
-footer {
-  text-align: center;
-  padding: 25px 20px;
-  background-color: var(--jet-black);
-  color: var(--off-white);
-  font-size: 14px;
-}
+/* FOOTER */
+footer { text-align:center; padding:30px 20px; background-color:var(--jet-black); color:var(--off-white); font-size:14px; }
 
+/* ANIMATIONS */
+@keyframes fadeInDown { 0% {opacity:0; transform:translateY(-40px);} 100% {opacity:1; transform:translateY(0);} }
+@keyframes fadeInUp { 0% {opacity:0; transform:translateY(40px);} 100% {opacity:1; transform:translateY(0);} }
+
+/* RESPONSIVE */
+@media(max-width:1024px){ .hero h1{font-size:60px;} .hero h2{font-size:28px;} }
 @media(max-width:768px){
-  .hero h1 { font-size: 48px;}
-  .hero h2 { font-size: 22px;}
-  .service-card { max-width: 100%; }
+  header { flex-direction:column; padding:20px; }
+  nav { margin-top:10px; }
+  .hero h1{font-size:48px;} .hero h2{font-size:24px;}
+  .about-content { flex-direction:column; }
 }
 </style>
 </head>
-
 <body>
 
 <header>
-  <img src="images/chassis-logo.png" alt="شعار شاسي">
+  <img src="images/chassis-logo.png" alt="شاسي Logo">
   <nav>
-    <a href="#about">عنّي</a>
+    <a href="#about">عن</a>
     <a href="#services">الخدمات</a>
     <a href="#questionnaire">الاستبيان</a>
-    <a href="#contact">التواصل</a>
+    <a href="#contact">تواصل</a>
   </nav>
   <div class="lang-toggle">
-    <a href="index.html">EN</a> | 
-    <a href="index-ar.html">AR</a>
+    <a href="index.html">EN</a> | <a href="index-ar.html">AR</a>
   </div>
 </header>
 
 <section class="hero">
   <h1>شاسي</h1>
-  <h2>ابْنِ. آمِن. تَطَوّر.</h2>
-  <p>إدارة المشاريع بإشراف صوفيا أيّوبي</p>
-  <a href="https://wa.me/96171085824" target="_blank">ابدأ مشروعك الآن</a>
+  <h2>ابنِ. آمن. أصبح.</h2>
+  <p>إدارة المشاريع بواسطة صوفيا ايوبي</p>
+  <a href="https://wa.me/96171085824" target="_blank">ابدأ مشروعك</a>
 </section>
 
-<section id="about" class="about">
-  <h2>من أنا</h2>
-  <div style="display:flex; flex-direction:row-reverse; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap;">
-    <img src="images/sophia-profile.jpg" alt="صوفيا أيّوبي" style="width:180px; height:auto; border-radius:50%; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
-    <p style="max-width:600px; text-align:right;">
-      صوفيا أيّوبي هي المؤسسة ومديرة المشاريع وراء شاسي — خدمة إدارة مشاريع شخصية وشفافة تساعد الأفراد والشركات الصغيرة على التخطيط والتنفيذ وتحقيق أهدافهم بثقة.
-    </p>
+<section class="about-section" id="about">
+  <h2>عن صوفيا</h2>
+  <div class="about-content">
+    <img src="images/sophia-profile.jpg" alt="صوفيا ايوبي">
+    <p>صوفيا ايوبي هي المؤسِسة ومديرة المشاريع لشاسي — خدمة إدارة مشاريع شخصية وشفافة تساعد الأفراد والشركات الصغيرة على التخطيط والتنفيذ وتحقيق أهدافهم بثقة.</p>
   </div>
 </section>
 
-
-<section id="services">
-  <h2 style="text-align:center;color:var(--power-red);">الخدمات</h2>
-  <div class="services">
+<section class="services-section" id="services">
+  <h2>الخدمات</h2>
+  <div class="services-cards">
     <div class="service-card">
-      <h3>إطلاق المشروع والتخطيط</h3>
-      <p><strong>نظّم مشروعك واستعدّ للتنفيذ.</strong><br>أحوّل فكرتك إلى خطة عملية تشمل نطاق العمل، الجدول الزمني، المخاطر، وخطّة الانطلاق بوضوح.</p>
-      <p><strong>المخرجات:</strong> ميثاق المشروع، الجدول الزمني، الميزانية، سجل المخاطر، خريطة أصحاب المصلحة، اجتماع افتتاحي (60 دقيقة)، ومراجعة واحدة.</p>
+      <h3>بدء المشروع والتخطيط</h3>
+      <p><strong>جهز مشروعك للتنفيذ بكفاءة.</strong><br>أحوّل فكرتك إلى خطة واقعية: نطاق العمل، الجدول الزمني، سجل المخاطر، وخارطة طريق واضحة.</p>
+      <p><strong>المخرجات:</strong> ميثاق المشروع، الجدول الزمني، الميزانية، سجل المخاطر، خريطة أصحاب المصلحة، مكالمة انطلاق 60 دقيقة، تعديل واحد.</p>
       <span>500 دولار أمريكي</span>
     </div>
-
     <div class="service-card">
       <h3>التنفيذ والمتابعة</h3>
-      <p><strong>إدارة سير العمل دون الحاجة إلى توظيف دائم.</strong><br>أتولّى إدارة مشروعك لفترة محدّدة: اجتماعات أسبوعية، تقارير تقدّم، معالجة المشكلات، وضبط المواعيد.</p>
-      <p><strong>المخرجات:</strong> تقرير أسبوعي، جدول محدّث، سجلّ للمخاطر، مكالمة أسبوعية (30–45 دقيقة)، وتقرير ختامي.</p>
-      <span>1200 دولار / 6 أسابيع</span>
+      <p><strong>إدارة التقدم بدون توظيف دائم.</strong><br>أعمل كمديرة مشروعك لفترة محددة: مراجعات أسبوعية، تحديثات، حل المشكلات.</p>
+      <p><strong>المخرجات:</strong> تقرير أسبوعي، جدول زمني محدث، متتبع المخاطر، مكالمة أسبوعية 30–45 دقيقة، ملخص تنفيذي.</p>
+      <span>1,200 دولار أمريكي / 6 أسابيع</span>
     </div>
-
     <div class="service-card">
       <h3>استعادة المشروع أو إغلاقه</h3>
-      <p><strong>أوقف الهدر في الوقت والمال.</strong><br>هل مشروعك متأخر أو غير منظّم؟ أُجري تدقيقًا وأقدّم خطة استعادة أو إغلاق احترافية.</p>
-      <p><strong>المخرجات:</strong> تقرير تدقيق، خطة استعادة تتضمّن مراحل محدّدة، عرض تقديمي (60 دقيقة)، وتقرير ختامي بالدروس المستفادة.</p>
+      <p><strong>توقف عن فقدان الوقت والمال.</strong><br>أقوم بتدقيق المشروع وإعداد خطة استعادة أو حزمة إغلاق.</p>
+      <p><strong>المخرجات:</strong> تقرير تدقيق، خطة استعادة مع المعالم، عرض تقديمي 60 دقيقة، قائمة مراجعة الإغلاق والدروس المستفادة.</p>
       <span>800 دولار أمريكي</span>
     </div>
   </div>
-
   <div class="how-i-work">
-    <h3>أسلوبي في العمل</h3>
-    <p>مديرة مشروع واحدة مخصّصة لكل عميل — تواصل مباشر وتسليم واضح. تبدأ كل شراكة بخطة وتنتهي بمخرجات محدّدة. الشفافية في الأسعار (50٪ مقدّمًا). اللغات: العربية، الإنجليزية، الروسية.</p>
+    <h3>كيف أعمل</h3>
+    <p>مديرة مشروع مخصصة — تواصل مباشر. يبدأ كل مشروع بخطة وينتهي بالمخرجات. التسعير شفاف: 50% مقدماً. اللغات: العربية، الإنجليزية، الروسية.</p>
   </div>
 </section>
 
-<section id="questionnaire" class="contact">
+<section class="form-section" id="questionnaire">
   <h2>استبيان المشروع</h2>
-  <p>يُرجى ملء هذا النموذج القصير لمساعدتي على فهم أهداف مشروعك.</p>
-  
+  <p>يرجى ملء هذا النموذج القصير لمساعدتي على فهم أهداف مشروعك.</p>
   <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
-    <label>الاسم الكامل</label>
+    <label>الاسم</label>
     <input type="text" name="name" required>
-    
     <label>البريد الإلكتروني</label>
     <input type="email" name="email" required>
-    
     <label>ما هو مشروعك أو هدفك؟</label>
     <textarea name="project" rows="4" required></textarea>
-    
-    <label>ما هو أكبر تحدٍ تواجهه حاليًا؟</label>
+    <label>ما أكبر تحدي تواجهه حالياً؟</label>
     <textarea name="challenge" rows="3"></textarea>
-    
-    <label>تاريخ البدء المفضّل</label>
+    <label>تاريخ البدء المفضل</label>
     <input type="text" name="start_date">
-    
-    <button type="submit">إرسال النموذج</button>
+    <button type="submit">إرسال</button>
   </form>
 </section>
 
-<section id="contact" class="contact">
-  <h2>التواصل</h2>
+<section class="contact-section" id="contact">
+  <h2>تواصل</h2>
   <p>البريد الإلكتروني: <a href="mailto:chassis.lb@gmail.com">chassis.lb@gmail.com</a></p>
   <p>الهاتف: <a href="tel:+96171085824">+96171085824</a></p>
-  <p>واتساب: <a href="https://wa.me/96171085824" target="_blank">تحدث الآن</a></p>
-
+  <p>واتساب: <a href="https://wa.me/96171085824" target="_blank">ابدأ الدردشة</a></p>
   <div class="social-links">
     <a href="https://www.instagram.com/chassis.lb/" target="_blank"><i class="fab fa-instagram"></i></a>
     <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -301,7 +223,7 @@ footer {
   </div>
 </section>
 
-<footer>© 2025 شاسي بإدارة صوفيا أيّوبي. جميع الحقوق محفوظة.</footer>
+<footer>© 2025 شاسي بواسطة صوفيا ايوبي. جميع الحقوق محفوظة.</footer>
 
 </body>
 </html>
