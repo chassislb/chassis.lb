@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chassis – Build. Believe. Become.</title>
+
+<title>Chassis – Business Structuring & Operations Consulting</title>
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,182 +18,241 @@
   --electric-indigo: #4F46E5;
   --cyber-yellow: #FFD100;
   --nav-bg: linear-gradient(90deg, #4F46E5, #D72638);
-  --off-white: #F5F5F5;
+  --off-white: #F7F7F7;
   --light-bg: #F2F0FF;
   --light-pastel: #FFF2F2;
   --text-grey: #555555;
   --footer-bg: linear-gradient(90deg, #1A1A1A, #4F46E5);
 }
 
-/* GLOBAL STYLES */
-* { box-sizing: border-box; margin:0; padding:0; }
-body { font-family:'Poppins', sans-serif; background:var(--off-white); color:#1A1A1A; line-height:1.6; scroll-behavior:smooth; }
+/* GLOBAL */
+* { box-sizing:border-box; margin:0; padding:0; }
+body {
+  font-family:'Poppins', sans-serif;
+  background:var(--off-white);
+  color:#1A1A1A;
+  line-height:1.6;
+}
 a { text-decoration:none; transition:0.3s; }
-img { display:block; max-width:100%; }
+img { max-width:100%; display:block; }
 
 /* HEADER */
 header {
   display:flex; justify-content:space-between; align-items:center;
-  padding:15px 50px; background:var(--nav-bg);
-  position:sticky; top:0; z-index:100; border-radius:0 0 30px 30px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  padding:15px 50px;
+  background:var(--nav-bg);
+  position:sticky; top:0; z-index:100;
+  border-radius:0 0 30px 30px;
 }
 header img { height:55px; }
 nav { display:flex; gap:40px; }
-nav a { color:#fff; font-weight:600; font-size:16px; position:relative; }
-nav a::after {
-  content:'';
-  display:block;
-  width:0;
-  height:2px;
-  background:var(--cyber-yellow);
-  transition:width 0.3s;
-  margin-top:4px;
-}
-nav a:hover::after { width:100%; }
+nav a { color:white; font-weight:600; }
 nav a:hover { color:var(--cyber-yellow); }
-.lang-toggle a { color:#fff; margin:0 8px; font-weight:600; }
-.lang-toggle a:hover { color:var(--cyber-yellow); }
-@media(max-width:768px){
-  header { flex-direction:column; padding:15px; gap:10px; }
-  nav { flex-direction:column; gap:15px; }
-}
+.lang-toggle a { color:white; margin:0 8px; font-weight:600; }
 
 /* HERO */
 .hero {
-  display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-  height:95vh; background:linear-gradient(135deg, rgba(79,70,229,0.6), rgba(215,38,56,0.6)), url('images/hero-texture.png') center/cover no-repeat;
-  color:white; padding:0 20px; position:relative; overflow:hidden;
+  height:95vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  padding:0 20px;
+  background:
+    linear-gradient(135deg, rgba(79,70,229,0.6), rgba(215,38,56,0.6)),
+    url('images/hero-texture.png') center/cover no-repeat;
 }
-.hero::after {
-  content:'';
-  position:absolute; width:120%; height:120%; top:-10%; left:-10%;
-  background:radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 70%);
-  animation:rotateBG 20s linear infinite;
-  z-index:0;
+.hero h1 {
+  font-size:68px;
+  font-weight:700;
+  background:linear-gradient(90deg, var(--cyber-yellow), var(--power-red));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
-@keyframes rotateBG { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
-.hero h1, .hero h2, .hero p, .hero a { position:relative; z-index:1; }
-.hero h1 { 
-  font-size:68px; 
-  font-weight:700; 
-  margin-bottom:15px; 
-  background: linear-gradient(90deg, var(--cyber-yellow), var(--power-red));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation:fadeInDown 1s ease forwards; 
+.hero h2 {
+  font-size:32px;
+  font-weight:600;
+  margin:20px 0;
 }
-
-.hero h2 { font-size:32px; font-weight:600; margin-bottom:20px; animation:fadeInDown 1.3s ease forwards; }
-.hero p { font-size:20px; max-width:600px; margin-bottom:30px; animation:fadeInDown 1.6s ease forwards; }
+.hero p {
+  font-size:20px;
+  max-width:620px;
+  margin-bottom:35px;
+}
 .hero a {
-  padding:18px 50px; border-radius:50px; background:var(--cyber-yellow); color:#1A1A1A;
-  font-weight:600; font-size:18px; box-shadow:0 10px 30px rgba(0,0,0,0.15); transition:0.3s;
-  animation:fadeInUp 2s ease forwards;
+  background:var(--cyber-yellow);
+  color:#1A1A1A;
+  padding:18px 50px;
+  border-radius:50px;
+  font-weight:600;
 }
-.hero a:hover { background:var(--power-red); color:white; transform:scale(1.05); }
+.hero a:hover {
+  background:var(--power-red);
+  color:white;
+}
 
-/* ABOUT SOPHIA */
+/* ABOUT */
 .about-section {
-  background:var(--light-bg); padding:120px 20px; text-align:center; border-radius:50px 50px 0 0; box-shadow:0 20px 60px rgba(0,0,0,0.05); position:relative; z-index:1;
+  padding:120px 20px;
+  text-align:center;
+  background:var(--light-bg);
+  border-radius:50px 50px 0 0;
 }
-.about-section h2 { color:var(--power-red); font-size:42px; margin-bottom:50px; font-weight:700; }
-.about-content { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:50px; position:relative; }
-.about-content img { width:220px; border-radius:50%; box-shadow:0 25px 50px rgba(0,0,0,0.08); transition:0.3s; }
-.about-content img:hover { transform:scale(1.05) rotate(1deg); }
-.about-content p { font-size:18px; max-width:650px; text-align:center; line-height:1.8; color:var(--text-grey); }
+.about-section h2 {
+  font-size:42px;
+  color:var(--power-red);
+  margin-bottom:40px;
+}
+.about-content {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:50px;
+}
+.about-content img {
+  width:220px;
+  border-radius:50%;
+}
+.about-content p {
+  max-width:680px;
+  font-size:18px;
+  color:var(--text-grey);
+}
 
 /* SERVICES */
 .services-section {
-  padding:100px 20px; background:var(--light-pastel);
+  padding:100px 20px;
+  background:var(--light-pastel);
 }
-.services-section h2 { text-align:center; color:var(--electric-indigo); font-size:40px; margin-bottom:60px; font-weight:700; }
-.services-cards { display:flex; flex-wrap:wrap; justify-content:center; gap:40px; }
+.services-section h2 {
+  text-align:center;
+  font-size:40px;
+  color:var(--electric-indigo);
+  margin-bottom:60px;
+}
+.services-cards {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:40px;
+}
 .service-card {
-  background:white; border-radius:40px; padding:40px 30px; flex:1 1 320px; max-width:360px;
-  box-shadow:0 25px 50px rgba(0,0,0,0.08); transition:0.5s; transform-style:preserve-3d;
+  background:white;
+  border-radius:40px;
+  padding:40px 30px;
+  max-width:360px;
+  box-shadow:0 25px 50px rgba(0,0,0,0.08);
 }
-.service-card:hover { transform:translateY(-12px) rotateX(2deg) scale(1.03); box-shadow:0 30px 60px rgba(0,0,0,0.15); }
-.service-card h3 { color:var(--power-red); font-size:26px; margin-bottom:20px; }
-.service-card p { color:#1A1A1A; margin-bottom:20px; font-size:16px; line-height:1.6; }
-.service-card span { font-weight:700; color:var(--electric-indigo); font-size:18px; }
+.service-card h3 {
+  color:var(--power-red);
+  font-size:26px;
+  margin-bottom:20px;
+}
+.service-card p {
+  font-size:16px;
+  margin-bottom:15px;
+}
+.service-card span {
+  font-weight:700;
+  color:var(--electric-indigo);
+  font-size:18px;
+}
 
 /* HOW I WORK */
 .how-i-work {
-  background:var(--off-white); color:#1A1A1A; border-radius:40px; padding:80px 30px; max-width:1000px; margin:80px auto; text-align:center;
-  box-shadow:0 20px 50px rgba(0,0,0,0.05); position:relative; z-index:1;
+  max-width:1000px;
+  margin:80px auto;
+  background:white;
+  border-radius:40px;
+  padding:80px 30px;
+  text-align:center;
 }
-.how-i-work h3 { font-size:32px; margin-bottom:25px; font-weight:600; }
-.how-i-work p { font-size:18px; line-height:1.7; color:var(--text-grey); }
+.how-i-work h3 {
+  font-size:32px;
+  margin-bottom:25px;
+}
+.how-i-work p {
+  font-size:18px;
+  color:var(--text-grey);
+}
 
-/* FORM SECTION */
+/* FORM */
 .form-section {
-  max-width:800px; margin:80px auto; text-align:center; padding:50px 20px; background:var(--light-bg); border-radius:40px;
-  box-shadow:0 25px 60px rgba(0,0,0,0.08);
+  max-width:800px;
+  margin:80px auto;
+  padding:50px 20px;
+  text-align:center;
+  background:var(--light-bg);
+  border-radius:40px;
 }
-.form-section h2 { font-size:36px; color:var(--power-red); margin-bottom:30px; font-weight:700; }
-.form-section p { margin-bottom:30px; color:var(--text-grey); }
-form label { font-weight:500; margin-top:15px; display:block; }
+.form-section h2 {
+  font-size:36px;
+  color:var(--power-red);
+  margin-bottom:20px;
+}
+form label { display:block; margin-top:15px; font-weight:500; }
 form input, form textarea {
-  width:100%; padding:16px; margin-top:10px; border-radius:20px; border:1px solid #ccc; font-size:16px;
+  width:100%;
+  padding:15px;
+  margin-top:8px;
+  border-radius:20px;
+  border:1px solid #ccc;
 }
 form button {
-  background:var(--electric-indigo); color:white; padding:16px 50px; border:none; border-radius:50px;
-  font-weight:600; font-size:18px; margin-top:25px; cursor:pointer; transition:0.3s; box-shadow:0 10px 30px rgba(0,0,0,0.15);
+  margin-top:25px;
+  padding:16px 50px;
+  background:var(--electric-indigo);
+  color:white;
+  border:none;
+  border-radius:50px;
+  font-weight:600;
 }
-form button:hover { background:var(--cyber-yellow); color:#1A1A1A; transform:scale(1.05); }
+form button:hover {
+  background:var(--cyber-yellow);
+  color:#1A1A1A;
+}
 
 /* CONTACT */
 .contact-section {
-  text-align:center; padding:100px 20px; max-width:900px; margin:auto; background:linear-gradient(135deg, #FFF2F2, #F2F0FF); border-radius:40px;
+  padding:100px 20px;
+  text-align:center;
 }
-.contact-section h2 { color:var(--power-red); font-size:40px; margin-bottom:40px; font-weight:700; }
-.contact-section p { font-size:18px; margin:10px 0; color:var(--text-grey); }
-.social-links { margin-top:25px; }
-.social-links a { font-size:28px; margin:0 15px; color:var(--electric-indigo); transition:0.3s; }
-.social-links a:hover { color:var(--power-red); }
-
-/* INLINE WHATSAPP BUTTON */
-.whatsapp-inline {
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  background:#25D366;
-  color:white;
-  padding:8px 15px;
-  border-radius:50px;
-  font-weight:600;
-  transition:0.3s;
-  box-shadow:0 5px 20px rgba(0,0,0,0.2);
-  text-decoration:none;
+.contact-section h2 {
+  font-size:40px;
+  color:var(--power-red);
+  margin-bottom:40px;
 }
-.whatsapp-inline:hover {
-  transform:scale(1.05);
-  box-shadow:0 8px 25px rgba(0,0,0,0.3);
-  background:#1ebe5b;
+.social-links a {
+  font-size:28px;
+  margin:0 15px;
+  color:var(--electric-indigo);
 }
 
 /* FOOTER */
-footer { text-align:center; padding:40px 20px; background:var(--footer-bg); color:white; font-size:14px; border-radius:30px 30px 0 0; }
-
-/* ANIMATIONS */
-@keyframes fadeInDown { 0% {opacity:0; transform:translateY(-40px);} 100% {opacity:1; transform:translateY(0);} }
-@keyframes fadeInUp { 0% {opacity:0; transform:translateY(40px);} 100% {opacity:1; transform:translateY(0);} }
-
-/* RESPONSIVE */
-@media(max-width:1024px){ .hero h1{font-size:60px;} .hero h2{font-size:28px;} }
-@media(max-width:768px){
-  .about-content { flex-direction:column; }
-  .services-cards { flex-direction:column; gap:30px; }
+footer {
+  padding:40px 20px;
+  text-align:center;
+  background:var(--footer-bg);
+  color:white;
+  border-radius:30px 30px 0 0;
 }
 
-/* Floating WhatsApp button */
+/* WHATSAPP FLOAT */
 .whatsapp-btn {
-  position:fixed; bottom:30px; right:30px; background:#25D366; color:white; padding:15px 20px; border-radius:50px; font-size:18px; font-weight:600; box-shadow:0 10px 25px rgba(0,0,0,0.3); z-index:100; display:flex; align-items:center; gap:10px; text-decoration:none; transition:0.3s;
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  background:#25D366;
+  color:white;
+  padding:15px 20px;
+  border-radius:50px;
+  font-weight:600;
 }
-.whatsapp-btn:hover { transform:scale(1.1); background:#1ebe5b; }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -200,100 +260,122 @@ footer { text-align:center; padding:40px 20px; background:var(--footer-bg); colo
   <nav>
     <a href="#about">About</a>
     <a href="#services">Services</a>
-    <a href="#questionnaire">Questionnaire</a>
+    <a href="#consultation">Consultation</a>
     <a href="#contact">Contact</a>
   </nav>
-  <div class="lang-toggle">
-    <a href="index.html">EN</a> | <a href="index-ar.html">AR</a>
-  </div>
 </header>
 
 <section class="hero">
   <h1>Chassis</h1>
-  <h2>Build. Believe. Become.</h2>
-  <p>Project Management by Sophia Ayoubi</p>
-  <a href="https://wa.me/96171085824" target="_blank">Let’s Start Your Project</a>
+  <h2>Business Structuring & Operations Consulting</h2>
+  <p>Helping small and early-stage businesses turn ideas into clear, functional operations.</p>
+  <a href="https://wa.me/96171085824" target="_blank">Request a Consultation</a>
 </section>
 
 <section class="about-section" id="about">
-  <h2>About Sophia</h2>
+  <h2>About</h2>
   <div class="about-content">
     <img src="images/sophia-profile.jpg" alt="Sophia Ayoubi">
     <p>
-      Sophia Ayoubi is the founder and project manager behind Chassis — a transparent and personalized project management service helping individuals and small businesses plan, execute, and complete their goals with confidence.
+      Chassis is founded by Sophia Ayoubi, a business structuring and operations consultant.
+      She works with founders and small businesses at critical early stages — when ideas exist,
+      momentum has started, but clarity and structure are missing.
+      <br><br>
+      Chassis focuses on calm decision-making, practical systems,
+      and building businesses that are easier to run and ready to grow.
     </p>
   </div>
 </section>
 
 <section class="services-section" id="services">
-  <h2>Services</h2>
+  <h2>How Chassis Helps</h2>
+
   <div class="services-cards">
+
     <div class="service-card">
-      <h3>Project Kick-Off & Planning</h3>
-      <p><strong>Get your project organized and ready to execute.</strong><br>I turn your idea into a clear plan with scope, timeline, risk register, and roadmap.</p>
-      <p><strong>Deliverables:</strong> Project charter, timeline, budget, risk register, stakeholder map, 60-min kickoff call, 1 revision.</p>
-      <span>USD $700</span>
+      <h3>Business Structuring & Clarity</h3>
+      <p><strong>Deep thinking and direction-setting.</strong></p>
+      <p>
+        We diagnose what the business really is, clarify priorities,
+        and define a clear operational direction.
+      </p>
+      <p><strong>Duration:</strong> 3–5 weeks</p>
+      <span>USD $1,500 – $2,500</span>
     </div>
+
     <div class="service-card">
-      <h3>Execution & Monitoring</h3>
-      <p><strong>Manage progress without hiring full-time.</strong><br>I act as your Project Manager for a defined period: weekly check-ins, progress updates, problem-solving.</p>
-      <p><strong>Deliverables:</strong> Weekly report, updated timeline, risk tracker, 30–45 min weekly call, executive summary.</p>
-      <span>USD $1,500–$2,000</span>
+      <h3>Operations & Systems Design</h3>
+      <p><strong>Turning clarity into reality.</strong></p>
+      <p>
+        We design how the business runs — workflows, roles,
+        tools, and systems that reduce chaos.
+      </p>
+      <p><strong>Duration:</strong> 4–8 weeks</p>
+      <span>USD $2,000 – $4,000</span>
     </div>
+
     <div class="service-card">
-      <h3>Project Recovery or Closure</h3>
-      <p><strong>Stop losing time and money.</strong><br>I audit and produce a recovery plan or closure pack for projects behind schedule or budget.</p>
-      <p><strong>Deliverables:</strong> Audit report, recovery plan, 60-min presentation, closure checklist/lessons learned.</p>
-      <span>USD $900</span>
+      <h3>Growth & Business Development Support</h3>
+      <p><strong>Ongoing strategic support.</strong></p>
+      <p>
+        Structured growth support for businesses ready to expand
+        without breaking what works.
+      </p>
+      <p><strong>Engagement:</strong> Monthly (min. 2–3 months)</p>
+      <span>USD $800 – $1,500 / month</span>
     </div>
+
   </div>
 
   <div class="how-i-work">
-    <h3>How I Work</h3>
-    <p>Single dedicated Project Manager — direct communication. Every engagement starts with a plan and ends with deliverables. Transparent pricing: 50% upfront. Languages: Arabic, English, Russian.</p>
+    <h3>How We Work</h3>
+    <p>
+      Direct collaboration with the founder.
+      Defined scope, clear outcomes, and structured thinking.
+      Chassis works selectively and intentionally.
+    </p>
   </div>
 </section>
 
-<section class="form-section" id="questionnaire">
-  <h2>Project Questionnaire</h2>
-  <p>Please fill this short form to help me understand your project goals.</p>
+<section class="form-section" id="consultation">
+  <h2>Request a Consultation</h2>
+  <p>This short form helps determine fit and scope.</p>
+
   <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
     <label>Name</label>
     <input type="text" name="name" required>
+
     <label>Email</label>
     <input type="email" name="email" required>
-    <label>What is your project or goal?</label>
-    <textarea name="project" rows="4" required></textarea>
-    <label>What’s your biggest challenge right now?</label>
+
+    <label>Tell me briefly about your business</label>
+    <textarea name="business" rows="4" required></textarea>
+
+    <label>Main challenge right now</label>
     <textarea name="challenge" rows="3"></textarea>
-    <label>Preferred start date</label>
-    <input type="text" name="start_date">
-    <button type="submit">Submit Form</button>
+
+    <button type="submit">Submit</button>
   </form>
 </section>
 
 <section class="contact-section" id="contact">
   <h2>Contact</h2>
-  <p>Email: <a href="mailto:chassis.lb@gmail.com">chassis.lb@gmail.com</a></p>
-  <p>Phone: <a href="tel:+96171085824">+96171085824</a></p>
-  <p>
-    WhatsApp: 
-    <a href="https://wa.me/96171085824" target="_blank" class="whatsapp-inline">
-      <i class="fab fa-whatsapp"></i> Chat now
-    </a>
-  </p>
+  <p>Email: chassis.lb@gmail.com</p>
+  <p>Phone / WhatsApp: +961 71 085 824</p>
+
   <div class="social-links">
     <a href="https://www.instagram.com/chassis.lb/" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.linkedin.com/company/109408069/admin/dashboard/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://www.linkedin.com/company/109408069/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
   </div>
 </section>
 
-<footer>© 2025 Chassis by Sophia Ayoubi. All rights reserved.</footer>
+<footer>
+  © 2026 Chassis by Sophia Ayoubi. All rights reserved.
+</footer>
 
-<a href="https://wa.me/96171085824" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
-
+<a href="https://wa.me/96171085824" class="whatsapp-btn" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
 </body>
 </html>
-
