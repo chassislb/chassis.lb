@@ -1,593 +1,804 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Chassis – Business Structuring & Operations Consulting</title>
+  <title>Chassis — Business Structuring, Operations & Project Management</title>
+  <meta name="description" content="Chassis helps small and early-stage businesses turn messy operations into clear, functional systems — with structured project management and execution." />
+  <meta name="theme-color" content="#4F46E5" />
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Chassis — Business Structuring & Operations" />
+  <meta property="og:description" content="Structured project management, operations design, SOPs, reporting, and execution for startups, hospitality, and events." />
+  <meta property="og:type" content="website" />
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
-:root {
-  /* Brand Colors */
-  --power-red: #D72638;
-  --electric-indigo: #4F46E5;
-  --cyber-yellow: #FFD100;
-  --jet-black: #1A1A1A;
-  --off-white: #F7F7F7;
-  --concrete-grey: #A0A0A0;
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  /* Gradients */
-  --nav-bg: linear-gradient(90deg, #4F46E5, #D72638);
-  --footer-bg: linear-gradient(90deg, #1A1A1A, #4F46E5);
+  <style>
+    :root {
+      --power-red: #D72638;
+      --electric-indigo: #4F46E5;
+      --cyber-yellow: #FFD100;
+      --jet-black: #1A1A1A;
+      --off-white: #F7F7F7;
+      --cool-grey: #A0A0A0;
 
-  /* Light Sections */
-  --light-bg: #F2F0FF;
-  --light-pastel: #FFF2F2;
+      --nav-bg: linear-gradient(90deg, #4F46E5, #D72638);
+      --soft-panel: #F2F0FF;
+      --soft-panel-2: #FFF2F2;
+      --shadow: 0 18px 45px rgba(0,0,0,0.10);
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 18px;
+    }
 
-  /* Text */
-  --text-grey: #555555;
-}
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Poppins', sans-serif;
+      background:var(--off-white);
+      color:var(--jet-black);
+      line-height:1.6;
+    }
+    a { text-decoration:none; transition:0.25s; color:inherit; }
+    img { max-width:100%; display:block; }
 
-/* GLOBAL */
-* { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; }
-body {
-  font-family:'Poppins', sans-serif;
-  background:var(--off-white);
-  color:var(--jet-black);
-  line-height:1.6;
-}
-a { text-decoration:none; transition:0.3s; }
-img { max-width:100%; display:block; }
-.container { max-width:1100px; margin:0 auto; }
+    /* LAYOUT HELPERS */
+    .container { max-width:1100px; margin:0 auto; padding:0 18px; }
+    .section { padding:92px 0; }
+    .kicker {
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,209,0,0.18);
+      color:var(--jet-black);
+      font-weight:600;
+      font-size:13px;
+      letter-spacing:0.2px;
+    }
+    .title {
+      font-size:42px;
+      line-height:1.15;
+      margin:18px 0 14px;
+      letter-spacing:-0.5px;
+    }
+    .sub {
+      color:#3b3b3b;
+      max-width:760px;
+      font-size:18px;
+    }
 
-/* HEADER */
-header {
-  display:flex; justify-content:space-between; align-items:center;
-  padding:15px 50px;
-  background:var(--nav-bg);
-  position:sticky; top:0; z-index:100;
-  border-radius:0 0 30px 30px;
-}
-header img { height:55px; }
-nav { display:flex; gap:34px; flex-wrap:wrap; }
-nav a { color:white; font-weight:600; }
-nav a:hover { color:var(--cyber-yellow); }
-.lang-toggle a { color:white; margin:0 8px; font-weight:600; opacity:0.95; }
-.lang-toggle a:hover { color:var(--cyber-yellow); }
+    /* HEADER */
+    header {
+      position:sticky; top:0; z-index:1000;
+      background:var(--nav-bg);
+      border-radius:0 0 26px 26px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.12);
+    }
+    .nav-wrap {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 18px;
+    }
+    .brand {
+      display:flex; align-items:center; gap:12px;
+      color:white;
+      font-weight:700;
+      letter-spacing:0.2px;
+    }
+    .brand img { height:46px; width:auto; }
+    nav {
+      display:flex; gap:26px; align-items:center;
+    }
+    nav a { color:white; font-weight:600; font-size:14px; }
+    nav a:hover { color:var(--cyber-yellow); }
+    .lang-toggle { display:flex; align-items:center; gap:10px; }
+    .lang-toggle a {
+      color:white; font-weight:700; font-size:13px;
+      opacity:0.9;
+    }
+    .lang-toggle a:hover { color:var(--cyber-yellow); opacity:1; }
+    .burger { display:none; color:white; font-size:22px; cursor:pointer; padding:10px; border-radius:12px; }
+    .burger:hover { background:rgba(255,255,255,0.10); }
 
-/* HERO */
-.hero {
-  min-height:95vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  color:white;
-  padding:0 20px;
-  background:
-    linear-gradient(135deg, rgba(79,70,229,0.62), rgba(215,38,56,0.62)),
-    url('images/hero-texture.png') center/cover no-repeat;
-}
-.hero h1 {
-  font-size:68px;
-  font-weight:700;
-  letter-spacing:0.5px;
-  background:linear-gradient(90deg, var(--cyber-yellow), var(--power-red));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.hero h2 {
-  font-size:30px;
-  font-weight:600;
-  margin:18px 0 12px;
-}
-.hero p {
-  font-size:19px;
-  max-width:700px;
-  margin-bottom:28px;
-  opacity:0.95;
-}
-.hero .cta-row {
-  display:flex;
-  gap:14px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-.hero a.primary-cta {
-  background:var(--cyber-yellow);
-  color:var(--jet-black);
-  padding:18px 42px;
-  border-radius:50px;
-  font-weight:700;
-}
-.hero a.primary-cta:hover {
-  background:var(--power-red);
-  color:white;
-}
-.hero a.secondary-cta {
-  background:rgba(255,255,255,0.14);
-  color:white;
-  padding:18px 32px;
-  border-radius:50px;
-  font-weight:600;
-  border:1px solid rgba(255,255,255,0.35);
-}
-.hero a.secondary-cta:hover {
-  background:rgba(255,255,255,0.22);
-}
+    /* MOBILE NAV */
+    .mobile-nav {
+      display:none;
+      padding:12px 18px 18px;
+      border-top:1px solid rgba(255,255,255,0.18);
+    }
+    .mobile-nav a {
+      display:block; padding:12px 10px;
+      color:white; font-weight:700;
+      border-radius:14px;
+    }
+    .mobile-nav a:hover { background:rgba(255,255,255,0.10); color:var(--cyber-yellow); }
 
-/* ABOUT */
-.about-section {
-  padding:120px 20px;
-  text-align:center;
-  background:var(--light-bg);
-  border-radius:50px 50px 0 0;
-}
-.about-section h2 {
-  font-size:42px;
-  color:var(--power-red);
-  margin-bottom:40px;
-}
-.about-content {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  align-items:center;
-  gap:50px;
-}
-.about-content img {
-  width:220px;
-  border-radius:50%;
-  box-shadow:0 20px 40px rgba(0,0,0,0.10);
-}
-.about-content p {
-  max-width:720px;
-  font-size:18px;
-  color:var(--text-grey);
-}
+    /* HERO */
+    .hero {
+      min-height:92vh;
+      display:flex;
+      align-items:center;
+      background:
+        radial-gradient(1000px 500px at 20% 20%, rgba(255,209,0,0.25), transparent 60%),
+        radial-gradient(900px 500px at 80% 30%, rgba(215,38,56,0.25), transparent 55%),
+        linear-gradient(135deg, rgba(79,70,229,0.72), rgba(215,38,56,0.68)),
+        url('images/hero-texture.png') center/cover no-repeat;
+      color:white;
+    }
+    .hero-inner {
+      padding:56px 0;
+      text-align:center;
+    }
+    .hero h1 {
+      font-size:70px;
+      font-weight:800;
+      letter-spacing:-1px;
+      margin-top:16px;
 
-/* PROJECTS */
-.projects-section{
-  padding:105px 20px;
-  background:var(--off-white);
-  text-align:center;
-}
-.projects-section h2{
-  font-size:40px;
-  color:var(--power-red);
-  margin-bottom:14px;
-}
-.projects-sub{
-  max-width:820px;
-  margin:0 auto 55px;
-  color:var(--text-grey);
-  font-size:18px;
-}
-.projects-grid{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:30px;
-}
-.project-card{
-  background:white;
-  border-radius:35px;
-  padding:34px 28px;
-  max-width:360px;
-  text-align:left;
-  box-shadow:0 25px 50px rgba(0,0,0,0.08);
-  border:1px solid rgba(0,0,0,0.06);
-}
-.project-card h3{
-  color:var(--electric-indigo);
-  font-size:24px;
-  margin-bottom:12px;
-}
-.project-card p{
-  margin-bottom:10px;
-  font-size:15px;
-  color:#333;
-}
-.project-note{
-  display:inline-block;
-  margin-top:12px;
-  font-size:13px;
-  color:var(--text-grey);
-}
-.project-card .tag{
-  display:inline-block;
-  margin-top:10px;
-  padding:6px 12px;
-  border-radius:999px;
-  background:rgba(79,70,229,0.10);
-  color:var(--electric-indigo);
-  font-size:12px;
-  font-weight:600;
-}
+      /* Tilt “effect” on text */
+      display:inline-block;
+      transform:skewX(-10deg);
+      background:linear-gradient(90deg, var(--cyber-yellow), #ffffff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      text-shadow:0 22px 60px rgba(0,0,0,0.25);
+    }
+    .hero h2 {
+      font-size:26px;
+      font-weight:700;
+      margin:16px 0 10px;
+      opacity:0.95;
+    }
+    .hero p {
+      font-size:18px;
+      max-width:740px;
+      margin:0 auto 26px;
+      opacity:0.92;
+    }
+    .hero-cta {
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:16px 22px;
+      border-radius:999px;
+      font-weight:800;
+      border:0;
+      cursor:pointer;
+    }
+    .btn-primary {
+      background:var(--cyber-yellow);
+      color:var(--jet-black);
+    }
+    .btn-primary:hover {
+      background:var(--power-red);
+      color:white;
+    }
+    .btn-secondary {
+      background:rgba(255,255,255,0.16);
+      color:white;
+      border:1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(8px);
+    }
+    .btn-secondary:hover {
+      background:rgba(255,255,255,0.22);
+      color:var(--cyber-yellow);
+    }
 
-/* SERVICES */
-.services-section {
-  padding:100px 20px;
-  background:var(--light-pastel);
-}
-.services-section h2 {
-  text-align:center;
-  font-size:40px;
-  color:var(--electric-indigo);
-  margin-bottom:60px;
-}
-.services-cards {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:40px;
-}
-.service-card {
-  background:white;
-  border-radius:40px;
-  padding:40px 30px;
-  max-width:360px;
-  box-shadow:0 25px 50px rgba(0,0,0,0.08);
-  border:1px solid rgba(0,0,0,0.05);
-}
-.service-card h3 {
-  color:var(--power-red);
-  font-size:26px;
-  margin-bottom:20px;
-}
-.service-card p {
-  font-size:16px;
-  margin-bottom:15px;
-}
-.service-card span {
-  font-weight:700;
-  color:var(--electric-indigo);
-  font-size:18px;
-}
+    /* TRUST STRIP */
+    .trust {
+      margin-top:26px;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      opacity:0.95;
+    }
+    .pill {
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(26,26,26,0.16);
+      border:1px solid rgba(255,255,255,0.20);
+      font-weight:700;
+      font-size:13px;
+    }
+    .pill i { color:var(--cyber-yellow); }
 
-/* HOW I WORK */
-.how-i-work {
-  max-width:1000px;
-  margin:80px auto 0;
-  background:white;
-  border-radius:40px;
-  padding:70px 30px;
-  text-align:center;
-  box-shadow:0 20px 45px rgba(0,0,0,0.06);
-}
-.how-i-work h3 {
-  font-size:32px;
-  margin-bottom:18px;
-}
-.how-i-work p {
-  font-size:18px;
-  color:var(--text-grey);
-  max-width:860px;
-  margin:0 auto;
-}
+    /* PANELS */
+    .panel {
+      background:white;
+      border-radius:var(--radius-xl);
+      box-shadow:var(--shadow);
+      padding:34px;
+    }
 
-/* FORM */
-.form-section {
-  max-width:820px;
-  margin:85px auto;
-  padding:55px 22px;
-  text-align:center;
-  background:var(--light-bg);
-  border-radius:40px;
-  box-shadow:0 20px 45px rgba(0,0,0,0.06);
-}
-.form-section h2 {
-  font-size:36px;
-  color:var(--power-red);
-  margin-bottom:12px;
-}
-.form-section p {
-  color:var(--text-grey);
-}
-form { margin-top:18px; text-align:left; }
-form label { display:block; margin-top:15px; font-weight:600; color:var(--jet-black); }
-form input, form textarea {
-  width:100%;
-  padding:15px;
-  margin-top:8px;
-  border-radius:18px;
-  border:1px solid #ccc;
-  font-family:'Poppins', sans-serif;
-}
-form input:focus, form textarea:focus {
-  outline:none;
-  border-color:rgba(79,70,229,0.55);
-  box-shadow:0 0 0 4px rgba(79,70,229,0.12);
-}
-form button {
-  margin-top:25px;
-  padding:16px 50px;
-  background:var(--electric-indigo);
-  color:white;
-  border:none;
-  border-radius:50px;
-  font-weight:700;
-  cursor:pointer;
-  width:100%;
-}
-form button:hover {
-  background:var(--cyber-yellow);
-  color:var(--jet-black);
-}
+    /* ABOUT */
+    .about {
+      background:var(--soft-panel);
+      border-radius:46px 46px 0 0;
+    }
+    .about-grid {
+      display:grid;
+      grid-template-columns: 240px 1fr;
+      gap:30px;
+      align-items:center;
+      margin-top:26px;
+    }
+    .avatar {
+      width:220px;
+      height:220px;
+      border-radius:999px;
+      overflow:hidden;
+      border:6px solid rgba(79,70,229,0.16);
+      background:linear-gradient(135deg, rgba(79,70,229,0.12), rgba(215,38,56,0.10));
+    }
+    .avatar img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .about p { color:#444; font-size:17px; }
 
-/* CONTACT */
-.contact-section {
-  padding:95px 20px;
-  text-align:center;
-}
-.contact-section h2 {
-  font-size:40px;
-  color:var(--power-red);
-  margin-bottom:22px;
-}
-.contact-section p { color:var(--text-grey); margin-bottom:10px; }
-.contact-section a { color:var(--electric-indigo); font-weight:600; }
-.contact-section a:hover { color:var(--power-red); }
+    /* SERVICES */
+    .services {
+      background:var(--soft-panel-2);
+    }
+    .cards {
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+      margin-top:26px;
+    }
+    .card {
+      background:white;
+      border-radius:28px;
+      padding:26px;
+      box-shadow:0 14px 32px rgba(0,0,0,0.08);
+      border:1px solid rgba(0,0,0,0.05);
+    }
+    .card h3 {
+      font-size:18px;
+      margin-bottom:10px;
+      color:var(--power-red);
+      letter-spacing:-0.2px;
+    }
+    .card p { color:#444; font-size:14px; margin-bottom:10px; }
+    .tagline {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:800;
+      color:var(--electric-indigo);
+      font-size:13px;
+      margin-top:6px;
+    }
+    .price {
+      margin-top:14px;
+      font-weight:900;
+      color:var(--jet-black);
+      font-size:14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .price span {
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(255,209,0,0.22);
+      border:1px solid rgba(255,209,0,0.35);
+    }
 
-.social-links { margin-top:20px; }
-.social-links a {
-  font-size:28px;
-  margin:0 15px;
-  color:var(--electric-indigo);
-}
-.social-links a:hover { color:var(--power-red); }
+    /* PROJECTS */
+    .projects {
+      background:var(--off-white);
+    }
+    .project-grid {
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:18px;
+      margin-top:26px;
+    }
+    .project-card {
+      border-radius:28px;
+      padding:26px;
+      background:linear-gradient(180deg, #ffffff, #fbfbff);
+      box-shadow:0 16px 38px rgba(0,0,0,0.09);
+      border:1px solid rgba(79,70,229,0.10);
+      position:relative;
+      overflow:hidden;
+    }
+    .project-card::before {
+      content:"";
+      position:absolute;
+      inset:-80px -80px auto auto;
+      width:220px;
+      height:220px;
+      background: radial-gradient(circle, rgba(79,70,229,0.20), transparent 65%);
+      transform: rotate(15deg);
+    }
+    .project-top {
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      position:relative;
+      z-index:1;
+    }
+    .project-card h3 {
+      font-size:18px;
+      margin:0 0 6px;
+      letter-spacing:-0.2px;
+    }
+    .badge {
+      font-size:12px;
+      font-weight:900;
+      color:white;
+      background:linear-gradient(90deg, var(--electric-indigo), var(--power-red));
+      padding:8px 10px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+    .project-card p { color:#444; font-size:14px; position:relative; z-index:1; }
+    .project-card ul {
+      margin-top:12px;
+      padding-left:18px;
+      color:#444;
+      font-size:14px;
+      position:relative; z-index:1;
+    }
+    .project-card li { margin:6px 0; }
+    .project-result {
+      margin-top:12px;
+      border-left:4px solid rgba(255,209,0,0.75);
+      padding-left:12px;
+      font-weight:700;
+      color:#333;
+      position:relative; z-index:1;
+    }
 
-/* FOOTER */
-footer {
-  padding:38px 20px;
-  text-align:center;
-  background:var(--footer-bg);
-  color:white;
-  border-radius:30px 30px 0 0;
-  font-size:14px;
-  opacity:0.95;
-}
+    /* CTA BAND */
+    .cta-band {
+      margin-top:26px;
+      border-radius:34px;
+      padding:22px;
+      background:linear-gradient(135deg, rgba(79,70,229,0.12), rgba(215,38,56,0.12));
+      border:1px solid rgba(0,0,0,0.05);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .cta-band strong { font-size:16px; }
+    .cta-band small { color:#555; display:block; margin-top:4px; }
 
-/* WHATSAPP FLOAT */
-.whatsapp-btn {
-  position:fixed;
-  bottom:30px;
-  right:30px;
-  background:#25D366;
-  color:white;
-  padding:14px 18px;
-  border-radius:999px;
-  font-weight:700;
-  display:flex;
-  gap:10px;
-  align-items:center;
-  box-shadow:0 18px 35px rgba(0,0,0,0.18);
-}
-.whatsapp-btn:hover { transform:translateY(-2px); }
+    /* FORM */
+    .form-wrap {
+      background:var(--soft-panel);
+      border-radius:46px;
+    }
+    form label { display:block; margin-top:14px; font-weight:700; font-size:13px; }
+    form input, form textarea, form select {
+      width:100%;
+      padding:14px 14px;
+      margin-top:8px;
+      border-radius:18px;
+      border:1px solid rgba(0,0,0,0.14);
+      font-family:'Poppins', sans-serif;
+      outline:none;
+      background:white;
+    }
+    form input:focus, form textarea:focus, form select:focus {
+      border-color: rgba(79,70,229,0.65);
+      box-shadow:0 0 0 4px rgba(79,70,229,0.14);
+    }
+    .form-actions {
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+      align-items:center;
+      justify-content:flex-start;
+    }
+    .btn-submit {
+      background:var(--electric-indigo);
+      color:white;
+    }
+    .btn-submit:hover {
+      background:var(--cyber-yellow);
+      color:var(--jet-black);
+    }
+    .privacy {
+      color:#555;
+      font-size:12px;
+      max-width:520px;
+    }
 
-/* RESPONSIVE */
-@media (max-width: 900px){
-  header { padding:12px 18px; border-radius:0 0 20px 20px; }
-  header img { height:44px; }
-  nav { gap:16px; justify-content:center; }
-  .lang-toggle { display:none; }
+    /* CONTACT + FOOTER */
+    .contact .social a {
+      font-size:22px;
+      margin-right:14px;
+      color:var(--electric-indigo);
+    }
+    .contact .social a:hover { color:var(--power-red); }
 
-  .hero { min-height:auto; padding:95px 18px 85px; }
-  .hero h1 { font-size:46px; }
-  .hero h2 { font-size:22px; }
-  .hero p { font-size:16px; }
+    footer {
+      padding:32px 18px;
+      text-align:center;
+      background:linear-gradient(90deg, #1A1A1A, #4F46E5);
+      color:white;
+      border-radius:30px 30px 0 0;
+      margin-top:50px;
+    }
+    footer small { opacity:0.9; }
 
-  .about-section { padding:85px 18px; }
-  .about-section h2 { font-size:34px; }
-  .services-section { padding:85px 18px; }
-  .services-section h2 { font-size:34px; }
-  .projects-section h2 { font-size:34px; }
-  .how-i-work { margin:50px 16px 0; padding:50px 18px; }
-  .form-section { margin:55px 16px; padding:45px 16px; }
-}
+    /* WHATSAPP FLOAT */
+    .whatsapp-btn {
+      position:fixed;
+      bottom:22px;
+      right:22px;
+      background:#25D366;
+      color:white;
+      padding:14px 18px;
+      border-radius:999px;
+      font-weight:900;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      box-shadow:0 14px 30px rgba(0,0,0,0.18);
+      z-index:2000;
+    }
+    .whatsapp-btn:hover { transform: translateY(-1px); }
 
-@media (max-width: 420px){
-  .hero a.primary-cta, .hero a.secondary-cta { width:100%; text-align:center; }
-  .whatsapp-btn { right:16px; bottom:16px; }
-}
-</style>
+    /* RESPONSIVE */
+    @media (max-width: 980px) {
+      .cards { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; text-align:center; }
+      .avatar { margin:0 auto; }
+      nav { display:none; }
+      .burger { display:block; }
+      .mobile-nav.show { display:block; }
+      .title { font-size:36px; }
+      .hero h1 { font-size:56px; }
+      .hero h2 { font-size:22px; }
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-  <img src="images/chassis-logo.png" alt="Chassis Logo">
-  <nav>
+  <div class="nav-wrap container">
+    <a class="brand" href="#top" aria-label="Chassis home">
+      <img src="images/chassis-logo.png" alt="Chassis Logo">
+      <span>Chassis</span>
+    </a>
+
+    <nav aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#consultation">Consultation</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="lang-toggle" aria-label="Language switch">
+      <a href="index-en.html">EN</a>
+      <span style="color: rgba(255,255,255,0.7); font-weight:800;">|</span>
+      <a href="index-ar.html">AR</a>
+    </div>
+
+    <div class="burger" id="burger" aria-label="Open menu" role="button">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav">
     <a href="#about">About</a>
-    <a href="#projects">Projects</a>
     <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
     <a href="#consultation">Consultation</a>
     <a href="#contact">Contact</a>
-  </nav>
-
-  <!-- Language toggle -->
-  <div class="lang-toggle">
-    <a href="index-en.html">EN</a> | 
-    <a href="index-ar.html">AR</a>
   </div>
 </header>
 
-<section class="hero">
-  <h1>Chassis</h1>
-  <h2>Business Structuring &amp; Operations Consulting</h2>
-  <p>Structure over chaos — systems, coordination, and execution for early-stage and growing businesses.</p>
+<section class="hero" id="top">
+  <div class="container hero-inner">
+    <span class="kicker"><i class="fa-solid fa-diagram-project"></i> Project Management + Operations, but make it calm.</span>
 
-  <div class="cta-row">
-    <a class="primary-cta" href="https://wa.me/96171085824" target="_blank" rel="noopener">Start a Project Inquiry</a>
-    <a class="secondary-cta" href="#projects">View Projects</a>
-  </div>
-</section>
+    <h1>Chassis</h1>
+    <h2>Business Structuring • Operations • Project Execution</h2>
 
-<section class="about-section" id="about">
-  <h2>About</h2>
-  <div class="about-content">
-    <img src="images/sophia-profile.jpg" alt="Sophia Ayoubi">
     <p>
-      Chassis is founded by Sophia Ayoubi, a business structuring and operations consultant.
-      She works with founders and small businesses at critical early stages — when ideas exist,
-      momentum has started, but clarity and structure are missing.
-      <br><br>
-      Chassis focuses on calm decision-making, practical systems,
-      and building businesses that are easier to run and ready to grow.
+      If your business feels messy, it’s not “you being lazy.”
+      It’s missing structure. I help founders build systems, workflows, and reporting that make execution easier — and growth safer.
     </p>
+
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i> Request a Consultation
+      </a>
+      <a class="btn btn-secondary" href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener">
+        <i class="fa-brands fa-instagram"></i> View Work on Instagram
+      </a>
+    </div>
+
+    <div class="trust">
+      <span class="pill"><i class="fa-solid fa-check"></i> SOPs + Task Systems</span>
+      <span class="pill"><i class="fa-solid fa-check"></i> Reporting + Weekly Follow-up</span>
+      <span class="pill"><i class="fa-solid fa-check"></i> Hospitality + Events + Startups</span>
+    </div>
   </div>
 </section>
 
-<section class="projects-section" id="projects">
-  <h2>Selected Project Experience</h2>
-  <p class="projects-sub">
-    A few examples of work across operations, launches, hospitality, and multi-stakeholder coordination.
-    (Documented in a portfolio-style format — no implied affiliation.)
-  </p>
-
-  <div class="projects-grid">
-
-    <div class="project-card">
-      <h3>The Ark Networks</h3>
-      <p><strong>Focus:</strong> Launch support + operational setup</p>
-      <p><strong>Work included:</strong> coordination, supplier setup, operational support, task execution</p>
-      <p><strong>Outcome:</strong> smoother setup-to-launch flow with clearer structure</p>
-      <span class="project-note">Selected project experience</span>
-      <div class="tag">Launch + Operations</div>
-    </div>
-
-    <div class="project-card">
-      <h3>Vartavar Festival</h3>
-      <p><strong>Focus:</strong> Large-scale festival coordination</p>
-      <p><strong>Work included:</strong> task assignment, reminders, weekly reports, stakeholder coordination</p>
-      <p><strong>Outcome:</strong> on-time delivery with clear communication and execution</p>
-      <span class="project-note">Selected project experience</span>
-      <div class="tag">Event Execution</div>
-    </div>
-
-    <div class="project-card">
-      <h3>Hospitality &amp; Operations</h3>
-      <p><strong>Focus:</strong> workflow structure + operational clarity</p>
-      <p><strong>Work included:</strong> process mapping, task coordination, system cleanup</p>
-      <p><strong>Outcome:</strong> less chaos, clearer responsibilities, smoother delivery</p>
-      <span class="project-note">Selected project experience</span>
-      <div class="tag">Systems + Flow</div>
-    </div>
-
-  </div>
-</section>
-
-<section class="services-section" id="services">
-  <h2>How Chassis Helps</h2>
-
-  <div class="services-cards">
-
-    <div class="service-card">
-      <h3>Business Structuring &amp; Clarity</h3>
-      <p><strong>Deep thinking and direction-setting.</strong></p>
-      <p>
-        We diagnose what the business really is, clarify priorities,
-        and define a clear operational direction.
-      </p>
-      <p><strong>Duration:</strong> 3–5 weeks</p>
-      <span>USD $1,500 – $2,500</span>
-    </div>
-
-    <div class="service-card">
-      <h3>Operations &amp; Systems Design</h3>
-      <p><strong>Turning clarity into reality.</strong></p>
-      <p>
-        We design how the business runs — workflows, roles,
-        tools, and systems that reduce chaos.
-      </p>
-      <p><strong>Duration:</strong> 4–8 weeks</p>
-      <span>USD $2,000 – $4,000</span>
-    </div>
-
-    <div class="service-card">
-      <h3>Growth &amp; Business Development Support</h3>
-      <p><strong>Ongoing strategic support.</strong></p>
-      <p>
-        Structured growth support for businesses ready to expand
-        without breaking what works.
-      </p>
-      <p><strong>Engagement:</strong> Monthly (min. 2–3 months)</p>
-      <span>USD $800 – $1,500 / month</span>
-    </div>
-
-  </div>
-
-  <div class="how-i-work">
-    <h3>How We Work</h3>
-    <p>
-      Direct collaboration with the founder. Defined scope, clear outcomes, and structured thinking.
-      Chassis works selectively and intentionally.
-      <br><br>
-      Want to see the style of work? Scroll to <strong>Projects</strong>.
+<section class="section about" id="about">
+  <div class="container">
+    <span class="kicker"><i class="fa-solid fa-user-gear"></i> About</span>
+    <h2 class="title">Structured execution, not vibes.</h2>
+    <p class="sub">
+      Chassis is the professional project management and operations identity of Sophia Ayoubi —
+      focused on planning, milestone tracking, workflow optimization, and practical execution. :contentReference[oaicite:3]{index=3}
     </p>
+
+    <div class="panel about-grid">
+      <div class="avatar">
+        <img src="images/sophia-profile.jpg" alt="Sophia Ayoubi">
+      </div>
+      <div>
+        <p>
+          I work with founders and small businesses at the “we’re doing things but it’s chaos” stage.
+          My job is to translate ideas into clear operations:
+          what to do, who does it, by when, and how we track it — without burning everyone out.
+        </p>
+        <p style="margin-top:14px;">
+          What I’m known for: micromanagement (the healthy kind), tight follow-up, reminders, reporting, and making sure deadlines actually happen. :contentReference[oaicite:4]{index=4}
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="form-section" id="consultation">
-  <h2>Project Inquiry</h2>
-  <p>This short form helps determine fit and scope.</p>
+<section class="section services" id="services">
+  <div class="container">
+    <span class="kicker"><i class="fa-solid fa-screwdriver-wrench"></i> Services</span>
+    <h2 class="title">How Chassis helps</h2>
+    <p class="sub">Pick what you need — clarity, systems, or ongoing execution support.</p>
 
-  <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
-    <!-- Optional: prevent spam bots -->
-    <input type="text" name="_honey" style="display:none">
+    <div class="cards">
+      <div class="card">
+        <h3>Business Structuring & Clarity</h3>
+        <p>Diagnose what the business really is, clarify priorities, and define a clean operational direction.</p>
+        <div class="tagline"><i class="fa-solid fa-compass"></i> Direction + decision-making</div>
+        <div class="price"><span>3–5 weeks</span> USD $1,500 – $2,500</div>
+      </div>
 
-    <!-- Optional: Redirect after submit (replace with your thank-you page later) -->
-    <!-- <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html"> -->
+      <div class="card">
+        <h3>Operations & Systems Design</h3>
+        <p>Workflows, roles, tools, SOPs, reporting — the structure that reduces chaos and increases speed.</p>
+        <div class="tagline"><i class="fa-solid fa-gears"></i> Systems that run</div>
+        <div class="price"><span>4–8 weeks</span> USD $2,000 – $4,000</div>
+      </div>
 
-    <label>Name</label>
-    <input type="text" name="name" required>
+      <div class="card">
+        <h3>Growth & Business Development Support</h3>
+        <p>Structured support for businesses expanding without breaking what already works.</p>
+        <div class="tagline"><i class="fa-solid fa-chart-line"></i> Growth with stability</div>
+        <div class="price"><span>Monthly</span> USD $800 – $1,500 / month</div>
+      </div>
+    </div>
 
-    <label>Email</label>
-    <input type="email" name="email" required>
-
-    <label>Tell me briefly about your business</label>
-    <textarea name="business" rows="4" required></textarea>
-
-    <label>Main challenge right now</label>
-    <textarea name="challenge" rows="3"></textarea>
-
-    <button type="submit">Submit</button>
-  </form>
+    <div class="cta-band">
+      <div>
+        <strong>Not sure what fits?</strong>
+        <small>Send a WhatsApp message with what’s messy right now — I’ll tell you the best starting point.</small>
+      </div>
+      <a class="btn btn-primary" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i> Message on WhatsApp
+      </a>
+    </div>
+  </div>
 </section>
 
-<section class="contact-section" id="contact">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:chassis.lb@gmail.com">chassis.lb@gmail.com</a></p>
-  <p>Phone: <a href="tel:+96171085824">+961 71 085 824</a></p>
-  <p>
-    WhatsApp:
-    <a href="https://wa.me/96171085824" target="_blank" rel="noopener">
-      <i class="fab fa-whatsapp"></i> Chat now
-    </a>
-  </p>
+<section class="section projects" id="projects">
+  <div class="container">
+    <span class="kicker"><i class="fa-solid fa-folder-open"></i> Projects</span>
+    <h2 class="title">Real work. Real execution.</h2>
+    <p class="sub">
+      These are examples of roles and outcomes — the “how” is documented in my Instagram project highlights.
+    </p>
 
-  <div class="social-links">
-    <a href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.linkedin.com/company/109408069/admin/dashboard/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-top">
+          <div>
+            <h3>The Ark Networks</h3>
+            <p><strong>Goal:</strong> Launch a co-working hub for freelancers in Beirut.</p>
+          </div>
+          <div class="badge">Operations / Launch</div>
+        </div>
+        <ul>
+          <li>Supplier management, setup, furniture, recruitment</li>
+          <li>Social media campaigns + community events</li>
+        </ul>
+        <div class="project-result">Result: Hub opened successfully + brand presence established. :contentReference[oaicite:5]{index=5}</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div>
+            <h3>Le Pavé Bar</h3>
+            <p><strong>Goal:</strong> Resolve debts + optimize bar operations.</p>
+          </div>
+          <div class="badge">Hospitality Ops</div>
+        </div>
+        <ul>
+          <li>Restructured finances + streamlined operations</li>
+          <li>Introduced events to increase engagement</li>
+        </ul>
+        <div class="project-result">Result: Reduced debt + improved customer experience. :contentReference[oaicite:6]{index=6}</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div>
+            <h3>Vartavar Festival</h3>
+            <p><strong>Goal:</strong> Coordinate a large-scale summer festival (one-time project).</p>
+          </div>
+          <div class="badge">Events / PM</div>
+        </div>
+        <ul>
+          <li>Task assignment + reminders</li>
+          <li>Weekly reports + stakeholder coordination</li>
+        </ul>
+        <div class="project-result">Result: On-time delivery + clear communication across stakeholders. :contentReference[oaicite:7]{index=7}</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div>
+            <h3>Bookspot Café — Event Organization</h3>
+            <p><strong>Scope:</strong> Small café events + seasonal gatherings (multi-event).</p>
+          </div>
+          <div class="badge">Event Ops</div>
+        </div>
+        <ul>
+          <li>Event planning support + coordination</li>
+          <li>Timing, setup, communication, and execution flow</li>
+        </ul>
+        <div class="project-result">
+          Result: Smooth event delivery with clear run-of-show and coordination.
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-band" style="margin-top:18px;">
+      <div>
+        <strong>Want to see the full breakdown?</strong>
+        <small>Go to Instagram → Highlights → Projects (I keep updating it).</small>
+      </div>
+      <a class="btn btn-secondary" href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener">
+        <i class="fa-brands fa-instagram"></i> Open Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section form-wrap" id="consultation">
+  <div class="container">
+    <span class="kicker"><i class="fa-solid fa-clipboard-question"></i> Consultation</span>
+    <h2 class="title">Request a consultation</h2>
+    <p class="sub">Quick form so I can understand scope + tell you if we’re a fit.</p>
+
+    <div class="panel" style="margin-top:22px;">
+      <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
+        <!-- FormSubmit options -->
+        <input type="hidden" name="_subject" value="New Consultation Request — Chassis Website">
+        <input type="hidden" name="_captcha" value="false">
+        <!-- Optional: add a thank you page later -->
+        <!-- <input type="hidden" name="_next" value="https://YOURDOMAIN/thank-you.html"> -->
+
+        <!-- Honeypot anti-spam -->
+        <input type="text" name="_honey" style="display:none">
+
+        <label for="name">Name</label>
+        <input id="name" type="text" name="name" placeholder="Your name" required>
+
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" placeholder="you@email.com" required>
+
+        <label for="type">What do you need most?</label>
+        <select id="type" name="need">
+          <option value="Business Structuring & Clarity">Business Structuring & Clarity</option>
+          <option value="Operations & Systems Design">Operations & Systems Design</option>
+          <option value="Growth & Business Development Support">Growth & Business Development Support</option>
+          <option value="Not sure yet">Not sure yet</option>
+        </select>
+
+        <label for="business">Tell me briefly about your business</label>
+        <textarea id="business" name="business" rows="4" placeholder="Industry, size, what you sell, where you're stuck..." required></textarea>
+
+        <label for="challenge">Main challenge right now</label>
+        <textarea id="challenge" name="challenge" rows="3" placeholder="Example: team not aligned, tasks not tracked, no SOPs, too much chaos..."></textarea>
+
+        <div class="form-actions">
+          <button class="btn btn-submit" type="submit">
+            <i class="fa-solid fa-paper-plane"></i> Submit
+          </button>
+          <a class="btn btn-secondary" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> Or WhatsApp instead
+          </a>
+        </div>
+
+        <p class="privacy" style="margin-top:14px;">
+          I only use this info to reply and understand your scope. No spam, no mailing list.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="container">
+    <span class="kicker"><i class="fa-solid fa-message"></i> Contact</span>
+    <h2 class="title">Contact</h2>
+    <p class="sub">Fastest response = WhatsApp.</p>
+
+    <div class="panel" style="margin-top:22px;">
+      <p><strong>Email:</strong> <a href="mailto:chassis.lb@gmail.com">chassis.lb@gmail.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:+96171085824">+961 71 085 824</a></p>
+      <p style="margin-top:10px;">
+        <strong>WhatsApp:</strong>
+        <a href="https://wa.me/96171085824" target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i> Chat now
+        </a>
+      </p>
+
+      <div class="social" style="margin-top:16px;">
+        <a href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/company/109408069/admin/dashboard/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
   </div>
 </section>
 
 <footer>
-  © 2026 Chassis. All rights reserved.
+  <small>© 2026 Chassis. All rights reserved.</small>
 </footer>
 
-<a href="https://wa.me/96171085824" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+<a href="https://wa.me/96171085824" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
   <i class="fab fa-whatsapp"></i> WhatsApp
 </a>
+
+<script>
+  const burger = document.getElementById('burger');
+  const mobileNav = document.getElementById('mobileNav');
+
+  burger.addEventListener('click', () => {
+    mobileNav.classList.toggle('show');
+  });
+
+  // Close menu when clicking a link
+  [...mobileNav.querySelectorAll('a')].forEach(a => {
+    a.addEventListener('click', () => mobileNav.classList.remove('show'));
+  });
+</script>
 
 </body>
 </html>
