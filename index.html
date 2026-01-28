@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chassis — Business Structuring, Operations & Project Management</title>
+  <title>Chassis – Business Structuring, Operations & Project Management</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,17 +37,17 @@
       font-family:'Poppins', sans-serif;
       background:var(--off-white);
       color:var(--jet-black);
-      line-height:1.6;
+      line-height:1.75;
     }
     a{ text-decoration:none; transition: .2s ease; }
     img{ max-width:100%; display:block; }
 
-    /* Layout helpers */
     .container{
       max-width:1100px;
       margin:0 auto;
       padding:0 18px;
     }
+
     .pill{
       display:inline-flex;
       gap:10px;
@@ -60,6 +60,7 @@
       font-weight:600;
       font-size:14px;
     }
+
     .btn{
       display:inline-flex;
       align-items:center;
@@ -72,12 +73,13 @@
       cursor:pointer;
       transition:.2s ease;
       white-space:nowrap;
+      font-family:inherit;
     }
     .btn-primary{
       background:var(--cyber-yellow);
       color:var(--jet-black);
     }
-    .btn-primary:hover{ transform: translateY(-1px); background: #ffdf39; }
+    .btn-primary:hover{ transform: translateY(-1px); background:#ffdf39; }
     .btn-secondary{
       background: rgba(255,255,255,0.14);
       color:#fff;
@@ -107,10 +109,8 @@
       gap:12px;
       min-width: 180px;
     }
-    .brand img{
-      height:44px;
-      width:auto;
-    }
+    .brand img{ height:44px; width:auto; }
+
     .nav-links{
       display:flex;
       align-items:center;
@@ -132,9 +132,14 @@
       font-weight:700;
       font-size:13px;
       opacity:0.95;
+      white-space:nowrap;
     }
-    .lang-toggle a{ color:#fff; }
-    .lang-toggle a:hover{ color:var(--cyber-yellow); }
+    .lang-toggle a{ color:#fff; padding:8px 10px; border-radius:12px; }
+    .lang-toggle a:hover{ color:var(--cyber-yellow); background: rgba(255,255,255,0.10); }
+    .lang-toggle .active{
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
 
     .hamburger{
       display:none;
@@ -163,6 +168,7 @@
       border:1px solid rgba(255,255,255,0.16);
     }
     .mobile-menu a:hover{ color:var(--cyber-yellow); }
+    .mobile-menu.show{ display:block; }
 
     /* Hero */
     .hero{
@@ -180,11 +186,12 @@
       grid-template-columns: 1.1fr 0.9fr;
       gap:28px;
       align-items:center;
+      margin-top:14px;
     }
     .hero h1{
       font-size:56px;
       line-height:1.05;
-      margin:14px 0 10px;
+      margin:10px 0 10px;
       letter-spacing:-0.6px;
     }
     .hero h1 .grad{
@@ -199,7 +206,7 @@
       margin-bottom:14px;
     }
     .hero p{
-      max-width: 620px;
+      max-width: 640px;
       font-size:16px;
       opacity:0.96;
       margin-bottom:18px;
@@ -235,12 +242,9 @@
       font-size:14px;
       opacity:0.95;
     }
-    .hero-card li{
-      display:flex; gap:10px; align-items:flex-start;
-    }
+    .hero-card li{ display:flex; gap:10px; align-items:flex-start; }
     .hero-card i{ color: var(--cyber-yellow); margin-top:2px; }
 
-    /* Sections */
     section{ padding:70px 0; }
     .section-title{
       font-size:34px;
@@ -249,9 +253,10 @@
     }
     .section-sub{
       color:#3b3b3b;
-      opacity:0.85;
-      max-width:720px;
+      opacity:0.88;
+      max-width:780px;
       margin-bottom:28px;
+      font-size:15px;
     }
 
     /* About */
@@ -270,6 +275,7 @@
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow);
       padding:22px;
+      border: 1px solid rgba(0,0,0,0.05);
     }
     .profile{
       display:flex;
@@ -277,32 +283,22 @@
       gap:14px;
     }
     .profile img{
-      width:86px;
-      height:86px;
+      width:86px; height:86px;
       object-fit:cover;
       border-radius: 22px;
       border: 3px solid rgba(79,70,229,0.18);
     }
-    .profile .name{
-      font-weight:800;
-      font-size:16px;
-    }
+    .profile .name{ font-weight:800; font-size:16px; }
     .profile .role{
       color: var(--cool-grey);
       font-weight:600;
       font-size:13px;
       margin-top:2px;
     }
-    .about p{
-      margin-top:14px;
-      color:#3e3e3e;
-      font-size:15px;
-    }
+    .about p{ margin-top:14px; color:#2f2f2f; font-size:15px; }
 
     /* Services */
-    .services{
-      background: var(--soft2);
-    }
+    .services{ background: var(--soft2); }
     .cards{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -315,11 +311,7 @@
       padding:22px;
       border: 1px solid rgba(0,0,0,0.05);
     }
-    .card h3{
-      font-size:18px;
-      margin-bottom:10px;
-      letter-spacing:-0.1px;
-    }
+    .card h3{ font-size:18px; margin-bottom:10px; letter-spacing:-0.1px; }
     .tag{
       display:inline-flex;
       align-items:center;
@@ -332,21 +324,11 @@
       background: rgba(79,70,229,0.10);
       color: var(--electric-indigo);
     }
-    .price{
-      margin-top:14px;
-      font-weight:800;
-      color: var(--power-red);
-    }
-    .small{
-      font-size:13px;
-      color:#555;
-      opacity:0.9;
-    }
+    .price{ margin-top:14px; font-weight:800; color: var(--power-red); }
+    .small{ font-size:13px; color:#555; opacity:0.92; }
 
     /* Projects */
-    .projects{
-      background: var(--off-white);
-    }
+    .projects{ background: var(--off-white); }
     .projects-grid{
       display:grid;
       grid-template-columns: repeat(2, 1fr);
@@ -366,10 +348,7 @@
       flex-wrap:wrap;
       margin-bottom:10px;
     }
-    .project h3{
-      font-size:18px;
-      letter-spacing:-0.1px;
-    }
+    .project h3{ font-size:18px; letter-spacing:-0.1px; }
     .label{
       display:inline-flex;
       align-items:center;
@@ -381,11 +360,7 @@
       background: rgba(215,38,56,0.10);
       color: var(--power-red);
     }
-    .project .meta{
-      color:#555;
-      font-size:13px;
-      margin:10px 0 12px;
-    }
+    .project .meta{ color:#555; font-size:13px; margin:10px 0 12px; }
     .bullets{
       list-style:none;
       display:grid;
@@ -393,9 +368,7 @@
       font-size:14px;
       color:#2f2f2f;
     }
-    .bullets li{
-      display:flex; gap:10px; align-items:flex-start;
-    }
+    .bullets li{ display:flex; gap:10px; align-items:flex-start; }
     .bullets i{ color: var(--electric-indigo); margin-top:3px; }
 
     .projects-cta{
@@ -418,15 +391,8 @@
       padding:22px;
       border: 1px solid rgba(0,0,0,0.05);
     }
-    form{
-      display:grid;
-      gap:14px;
-      margin-top:12px;
-    }
-    label{
-      font-weight:700;
-      font-size:13px;
-    }
+    form{ display:grid; gap:14px; margin-top:12px; }
+    label{ font-weight:700; font-size:13px; }
     input, textarea{
       width:100%;
       padding:14px 14px;
@@ -475,9 +441,7 @@
     .btn-dark:hover{ transform: translateY(-1px); filter: brightness(1.05); }
 
     /* Contact + Footer */
-    .contact{
-      padding:60px 0 30px;
-    }
+    .contact{ padding:60px 0 30px; }
     .contact-card{
       background: var(--card);
       border-radius: var(--radius-xl);
@@ -504,7 +468,11 @@
       color: var(--electric-indigo);
       font-size:18px;
     }
-    .social a:hover{ transform: translateY(-1px); background: rgba(215,38,56,0.10); color: var(--power-red); }
+    .social a:hover{
+      transform: translateY(-1px);
+      background: rgba(215,38,56,0.10);
+      color: var(--power-red);
+    }
 
     footer{
       margin-top:18px;
@@ -533,7 +501,6 @@
     }
     .whatsapp-btn:hover{ transform: translateY(-1px); filter: brightness(1.03); }
 
-    /* Responsive */
     @media (max-width: 920px){
       .hero-grid{ grid-template-columns: 1fr; }
       .about-grid{ grid-template-columns: 1fr; }
@@ -541,7 +508,6 @@
       .projects-grid{ grid-template-columns: 1fr; }
       .nav-links{ display:none; }
       .hamburger{ display:inline-flex; }
-      .mobile-menu.show{ display:block; }
       .radio-grid{ grid-template-columns: 1fr; }
       .hero h1{ font-size:44px; }
     }
@@ -554,11 +520,10 @@
     <div class="container">
       <div class="nav-wrap">
         <div class="brand">
-          <!-- Make sure this path exists in your repo -->
-          <img src="images/chassis-logo.png" alt="Chassis Logo">
+          <img src="images/chassis-logo.png" alt="Chassis logo">
         </div>
 
-        <nav class="nav-links" aria-label="Primary Navigation">
+        <nav class="nav-links" aria-label="Primary navigation">
           <a href="#about">About</a>
           <a href="#services">Services</a>
           <a href="#projects">Projects</a>
@@ -566,8 +531,9 @@
           <a href="#contact">Contact</a>
         </nav>
 
-        <div class="lang-toggle">
-          <a href="index-en.html">EN</a>
+        <!-- ✅ FIXED LANGUAGE LINKS -->
+        <div class="lang-toggle" aria-label="Language toggle">
+          <a href="index.html" class="active">EN</a>
           <span>|</span>
           <a href="index-ar.html">AR</a>
         </div>
@@ -577,7 +543,7 @@
         </button>
       </div>
 
-      <div id="mobileMenu" class="mobile-menu" aria-label="Mobile Navigation">
+      <div id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation">
         <a href="#about" onclick="toggleMenu(true)">About</a>
         <a href="#services" onclick="toggleMenu(true)">Services</a>
         <a href="#projects" onclick="toggleMenu(true)">Projects</a>
@@ -591,16 +557,17 @@
 
     <section class="hero">
       <div class="container">
-        <span class="pill"><i class="fa-solid fa-screwdriver-wrench"></i> Project Management + Operations, but make it calm.</span>
+        <span class="pill"><i class="fa-solid fa-screwdriver-wrench"></i> Project & operations management with a clear methodology.</span>
 
         <div class="hero-grid">
           <div>
             <h1><span class="grad">Chassis</span></h1>
-            <h2>Business Structuring • Operations • Project Execution</h2>
+            <h2>Business Structuring • Operations Design • Project Management</h2>
             <p>
-              If your business feels messy, it’s not “you being lazy.”
-              It’s missing structure. I help founders build systems, workflows, and reporting
-              that make execution easier — and growth safer.
+              When a business feels chaotic, the issue is rarely effort — it is usually structure.
+              Chassis supports founders and small businesses by designing practical operating systems,
+              defining roles and responsibilities, and establishing consistent follow-up so execution stays controlled,
+              measurable, and ready for growth.
             </p>
 
             <div class="hero-actions">
@@ -608,25 +575,25 @@
                 <i class="fa-brands fa-whatsapp"></i> Request a Consultation
               </a>
               <a class="btn btn-secondary" href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener">
-                <i class="fa-brands fa-instagram"></i> View Work (Highlights)
+                <i class="fa-brands fa-instagram"></i> View Work
               </a>
             </div>
 
             <div class="hero-badges">
-              <span class="pill"><i class="fa-solid fa-list-check"></i> SOPs + Task Systems</span>
-              <span class="pill"><i class="fa-solid fa-chart-line"></i> Reporting + Follow-up</span>
-              <span class="pill"><i class="fa-solid fa-utensils"></i> Hospitality + Events</span>
+              <span class="pill"><i class="fa-solid fa-list-check"></i> SOPs</span>
+              <span class="pill"><i class="fa-solid fa-chart-line"></i> Reporting</span>
+              <span class="pill"><i class="fa-solid fa-utensils"></i> Hospitality & Events</span>
               <span class="pill"><i class="fa-solid fa-rocket"></i> Startups</span>
             </div>
           </div>
 
           <div class="hero-card">
-            <h3>What you get when you work with me</h3>
+            <h3>What to expect when you work with us</h3>
             <ul>
-              <li><i class="fa-solid fa-bullseye"></i><span>Clear scope + milestones (so work actually moves)</span></li>
-              <li><i class="fa-solid fa-diagram-project"></i><span>Workflows + roles (who does what, by when)</span></li>
-              <li><i class="fa-solid fa-clipboard-check"></i><span>Weekly follow-up + reporting (no chaos, no guessing)</span></li>
-              <li><i class="fa-solid fa-shield-heart"></i><span>Execution that doesn’t burn everyone out</span></li>
+              <li><i class="fa-solid fa-bullseye"></i><span>Clear scope, deliverables, and decision points</span></li>
+              <li><i class="fa-solid fa-diagram-project"></i><span>Executable workflows and role clarity</span></li>
+              <li><i class="fa-solid fa-clipboard-check"></i><span>Structured follow-up and deadline discipline</span></li>
+              <li><i class="fa-solid fa-shield-heart"></i><span>Less pressure on the team through organized execution</span></li>
             </ul>
           </div>
 
@@ -636,10 +603,10 @@
 
     <section id="about" class="about">
       <div class="container">
-        <h2 class="section-title">Structured execution, not vibes.</h2>
+        <h2 class="section-title">Structured execution. Measurable outcomes.</h2>
         <p class="section-sub">
-          Chassis is the project management + operations identity of Sophia Ayoubi —
-          focused on planning, milestone tracking, workflow optimization, and practical execution.
+          Chassis is a consulting brand founded by Sophia Ayoubi, focused on business structuring, operations design, and project management —
+          turning ideas into clear, sustainable execution.
         </p>
 
         <div class="about-grid">
@@ -648,32 +615,32 @@
               <img src="images/sophia-profile.jpg" alt="Sophia Ayoubi">
               <div>
                 <div class="name">Sophia Ayoubi</div>
-                <div class="role">Operations & Project Management • Hospitality • Startups</div>
+                <div class="role">Business & Operations Structuring • Project Management • Hospitality & Events</div>
               </div>
             </div>
             <p>
-              I work with founders and small businesses at the “we’re doing things but it’s chaos” stage.
-              My job is to translate ideas into clear operations: what to do, who does it, by when,
-              and how we track it — without burning everyone out.
+              Chassis supports founders and small teams during critical stages — when momentum exists, but operational clarity does not.
+              The approach is practical: systems that can be implemented, responsibilities that are clearly assigned,
+              and follow-up mechanisms that keep execution consistent.
             </p>
             <p>
-              What I’m known for: tight follow-up, reminders, reporting, and making sure deadlines actually happen.
+              The focus is calm decision-making, cleaner operations, and less chaos — without unnecessary complexity.
             </p>
           </div>
 
           <div class="about-card">
-            <h3 style="font-size:18px; letter-spacing:-0.1px;">How I work (in real life)</h3>
+            <h3 style="font-size:18px; letter-spacing:-0.1px;">How we work</h3>
             <p style="margin-top:10px;">
-              Direct collaboration with the founder. Defined scope, clear outcomes, and structured thinking.
-              I work selectively and intentionally — because good systems require focus.
+              Direct collaboration with the founder, defined scope, and clear deliverables —
+              with strong commitment to documentation, follow-up, and delivery within agreed timelines.
+              Chassis works selectively to maintain execution quality and clarity of results.
             </p>
             <p style="margin-top:10px;" class="small">
-              If you’re not sure what you need yet, message me on WhatsApp with what feels messy —
-              and I’ll tell you the cleanest starting point.
+              If you are not yet sure what you need, describe the situation on WhatsApp and a suitable starting point will be suggested.
             </p>
             <div style="margin-top:14px;">
               <a class="btn btn-primary" href="https://wa.me/96171085824" target="_blank" rel="noopener">
-                <i class="fa-brands fa-whatsapp"></i> Message on WhatsApp
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp Message
               </a>
             </div>
           </div>
@@ -683,29 +650,35 @@
 
     <section id="services" class="services">
       <div class="container">
-        <h2 class="section-title">How Chassis helps</h2>
-        <p class="section-sub">Pick what you need — clarity, systems, or ongoing execution support.</p>
+        <h2 class="section-title">Services</h2>
+        <p class="section-sub">Choose the path that matches your stage and the real bottleneck.</p>
 
         <div class="cards">
           <div class="card">
-            <div class="tag"><i class="fa-solid fa-compass"></i> Direction + decision-making</div>
-            <h3>Business Structuring & Clarity</h3>
-            <p class="small">Diagnose what the business really is, clarify priorities, and define a clean operational direction.</p>
-            <p class="price">3–5 weeks • USD $1,500 – $2,500</p>
+            <div class="tag"><i class="fa-solid fa-compass"></i> Clarity & direction</div>
+            <h3>Business Structuring & Priority Setting</h3>
+            <p class="small">
+              Diagnose the business, clarify priorities, and define an operational direction that reduces distraction and supports execution.
+            </p>
+            <p class="price">3–5 weeks • USD 1,500 – 2,500</p>
           </div>
 
           <div class="card">
-            <div class="tag"><i class="fa-solid fa-gears"></i> Systems that run</div>
+            <div class="tag"><i class="fa-solid fa-gears"></i> Operations & systems</div>
             <h3>Operations & Systems Design</h3>
-            <p class="small">Workflows, roles, tools, SOPs, reporting — the structure that reduces chaos and increases speed.</p>
-            <p class="price">4–8 weeks • USD $2,000 – $4,000</p>
+            <p class="small">
+              Build workflows, define roles, select tools, document SOPs, and establish reporting for consistent follow-through.
+            </p>
+            <p class="price">4–8 weeks • USD 2,000 – 4,000</p>
           </div>
 
           <div class="card">
-            <div class="tag"><i class="fa-solid fa-chart-line"></i> Growth with stability</div>
-            <h3>Growth & Execution Support</h3>
-            <p class="small">Structured support for businesses expanding without breaking what already works.</p>
-            <p class="price">Monthly • USD $800 – $1,500 / month</p>
+            <div class="tag"><i class="fa-solid fa-chart-line"></i> Growth & continuity</div>
+            <h3>Growth & Business Development Support</h3>
+            <p class="small">
+              Structured growth support for teams that want to scale without breaking the operating system that already works.
+            </p>
+            <p class="price">Monthly • USD 800 – 1,500 / month</p>
           </div>
         </div>
       </div>
@@ -713,9 +686,9 @@
 
     <section id="projects" class="projects">
       <div class="container">
-        <h2 class="section-title">Real work. Real execution.</h2>
+        <h2 class="section-title">Projects</h2>
         <p class="section-sub">
-          These are examples of roles and outcomes — the detailed breakdown is documented in my Instagram highlights.
+          Selected examples of scope and outcomes. Visual details are available in the Projects highlight section on Instagram.
         </p>
 
         <div class="projects-grid">
@@ -723,67 +696,67 @@
           <div class="project">
             <div class="project-head">
               <h3>The Ark Networks</h3>
-              <span class="label"><i class="fa-solid fa-building"></i> Operations / Launch</span>
+              <span class="label"><i class="fa-solid fa-building"></i> Launch & operations</span>
             </div>
-            <div class="meta"><strong>Goal:</strong> Launch a co-working hub for freelancers in Beirut.</div>
+            <div class="meta"><strong>Goal:</strong> Coordinate and manage the launch of a co-working space within a defined timeline.</div>
             <ul class="bullets">
-              <li><i class="fa-solid fa-check"></i><span>Supplier management, setup, furniture, recruitment</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Social media campaigns + community events</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Follow-up structure to keep timelines moving</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Task coordination and follow-up with teams and stakeholders</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Execution planning and deadline control</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Operational coordination to support a smooth launch</span></li>
             </ul>
-            <div class="meta"><strong>Result:</strong> Hub opened successfully + brand presence established.</div>
+            <div class="meta"><strong>Result:</strong> Successful launch delivered with clear timelines and structured communication.</div>
           </div>
 
           <div class="project">
             <div class="project-head">
               <h3>Le Pavé Bar</h3>
-              <span class="label"><i class="fa-solid fa-martini-glass"></i> Hospitality Ops</span>
+              <span class="label"><i class="fa-solid fa-martini-glass"></i> Hospitality operations</span>
             </div>
-            <div class="meta"><strong>Goal:</strong> Improve operations and solve urgent issues (including debt pressure).</div>
+            <div class="meta"><strong>Goal:</strong> Improve operations, strengthen follow-up, and raise operational discipline.</div>
             <ul class="bullets">
-              <li><i class="fa-solid fa-check"></i><span>Streamlined operations + introduced clearer tracking</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Supported event planning to increase engagement</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Improved execution flow for team + service</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Improved execution flow and reduced bottlenecks</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Support for event coordination with a clear plan</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Smoother operations that reflect positively on customer experience</span></li>
             </ul>
-            <div class="meta"><strong>Result:</strong> Better structure + improved customer experience.</div>
+            <div class="meta"><strong>Result:</strong> Clearer operations with tighter follow-up and improved day-to-day flow.</div>
           </div>
 
           <div class="project">
             <div class="project-head">
               <h3>Vartavar Festival</h3>
-              <span class="label"><i class="fa-solid fa-calendar-check"></i> Events / PM</span>
+              <span class="label"><i class="fa-solid fa-calendar-check"></i> Event management</span>
             </div>
-            <div class="meta"><strong>Goal:</strong> Coordinate a large-scale summer festival <em>(one-time project)</em>.</div>
+            <div class="meta"><strong>Goal:</strong> Coordinate and manage a large-scale summer festival with multiple stakeholders (one-time event).</div>
             <ul class="bullets">
-              <li><i class="fa-solid fa-check"></i><span>Assigned tasks + sent reminders to keep stakeholders aligned</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Wrote weekly reports + tracked delivery</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Collaborated with venue and stakeholders for execution</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Task assignment and reminders to maintain accountability</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Weekly reporting and progress tracking</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Coordination with venue and stakeholders to secure readiness</span></li>
             </ul>
-            <div class="meta"><strong>Result:</strong> On-time delivery + clear communication across stakeholders.</div>
+            <div class="meta"><strong>Result:</strong> Festival executed successfully with clear communication and on-time delivery.</div>
           </div>
 
           <div class="project">
             <div class="project-head">
               <h3>Bookspot Café — Events</h3>
-              <span class="label"><i class="fa-solid fa-mug-hot"></i> Event Ops</span>
+              <span class="label"><i class="fa-solid fa-mug-hot"></i> Event coordination</span>
             </div>
-            <div class="meta"><strong>Scope:</strong> Seasonal gatherings + small café events <em>(multi-event support)</em>.</div>
+            <div class="meta"><strong>Scope:</strong> Coordinate and deliver seasonal events and special sessions within a café environment.</div>
             <ul class="bullets">
-              <li><i class="fa-solid fa-check"></i><span>Event planning support + coordination</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Timing, setup, communication, and execution flow</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Run-of-show clarity so the team can breathe</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Prepared a clear run-of-show and execution plan</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Coordinated timing, setup, and communication</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Supported the team during delivery to keep execution smooth</span></li>
             </ul>
-            <div class="meta"><strong>Result:</strong> Smooth event delivery with clear coordination.</div>
+            <div class="meta"><strong>Result:</strong> Well-organized events delivered with a consistent flow and cohesive experience.</div>
           </div>
 
         </div>
 
         <div class="projects-cta">
           <a class="btn btn-primary" href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener">
-            <i class="fa-brands fa-instagram"></i> Open Instagram → Highlights → Projects
+            <i class="fa-brands fa-instagram"></i> View Projects on Instagram Highlights
           </a>
           <a class="btn" style="background: rgba(79,70,229,0.12); color: var(--electric-indigo);" href="#consultation">
-            <i class="fa-solid fa-paper-plane"></i> Ask for a scope check
+            <i class="fa-solid fa-paper-plane"></i> Request an Initial Scope Review
           </a>
         </div>
 
@@ -792,14 +765,13 @@
 
     <section id="consultation" class="consult">
       <div class="container">
-        <h2 class="section-title">Request a consultation</h2>
-        <p class="section-sub">Quick form so I can understand scope and tell you if we’re a fit.</p>
+        <h2 class="section-title">Request a Consultation</h2>
+        <p class="section-sub">This form helps assess fit and estimate scope at a high level.</p>
 
         <div class="form-wrap">
           <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
-            <!-- Optional: prevent spam -->
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="New Chassis inquiry (Website)">
+            <input type="hidden" name="_subject" value="New Website Inquiry">
             <input type="hidden" name="_template" value="table">
 
             <div>
@@ -813,13 +785,13 @@
             </div>
 
             <div>
-              <label>What do you need most?</label>
+              <label>Type of Support</label>
               <div class="radio-grid">
                 <label class="radio">
-                  <input type="radio" name="need" value="Business Structuring & Clarity" required>
+                  <input type="radio" name="need" value="Business Structuring & Priority Setting" required>
                   <div>
-                    <strong>Business Structuring & Clarity</strong>
-                    <span>Direction, priorities, clean scope</span>
+                    <strong>Business Structuring & Priority Setting</strong>
+                    <span>Direction, priorities, and an executable scope</span>
                   </div>
                 </label>
 
@@ -827,15 +799,15 @@
                   <input type="radio" name="need" value="Operations & Systems Design">
                   <div>
                     <strong>Operations & Systems Design</strong>
-                    <span>Workflows, SOPs, reporting, tools</span>
+                    <span>Workflows, SOPs, tools, and reporting</span>
                   </div>
                 </label>
 
                 <label class="radio">
-                  <input type="radio" name="need" value="Growth & Execution Support">
+                  <input type="radio" name="need" value="Growth & Business Development Support">
                   <div>
-                    <strong>Growth & Execution Support</strong>
-                    <span>Ongoing structure + delivery</span>
+                    <strong>Growth & Business Development Support</strong>
+                    <span>Ongoing support without operational disruption</span>
                   </div>
                 </label>
 
@@ -843,14 +815,14 @@
                   <input type="radio" name="need" value="Not sure yet">
                   <div>
                     <strong>Not sure yet</strong>
-                    <span>Tell me what’s messy and I’ll guide you</span>
+                    <span>A starting point will be suggested based on your description</span>
                   </div>
                 </label>
               </div>
             </div>
 
             <div>
-              <label for="business">Tell me briefly about your business</label>
+              <label for="business">Short description of your business</label>
               <textarea id="business" name="business" rows="4" required></textarea>
             </div>
 
@@ -863,10 +835,12 @@
               <button class="btn btn-dark" type="submit">
                 <i class="fa-solid fa-envelope"></i> Submit
               </button>
+
               <a class="btn" style="background: rgba(215,38,56,0.12); color: var(--power-red);" href="https://wa.me/96171085824" target="_blank" rel="noopener">
-                <i class="fa-brands fa-whatsapp"></i> Or WhatsApp instead
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
               </a>
-              <span class="small">No spam. No mailing list. I only use this to reply.</span>
+
+              <span class="small">This form is used only to respond to your inquiry.</span>
             </div>
           </form>
         </div>
@@ -876,12 +850,12 @@
     <section id="contact" class="contact">
       <div class="container">
         <h2 class="section-title">Contact</h2>
-        <p class="section-sub">Fastest response = WhatsApp.</p>
+        <p class="section-sub">For the fastest response, WhatsApp is preferred.</p>
 
         <div class="contact-card">
           <div>Email: <a href="mailto:chassis.lb@gmail.com">chassis.lb@gmail.com</a></div>
           <div>Phone: <a href="tel:+96171085824">+961 71 085 824</a></div>
-          <div>WhatsApp: <a href="https://wa.me/96171085824" target="_blank" rel="noopener">Chat now</a></div>
+          <div>WhatsApp: <a href="https://wa.me/96171085824" target="_blank" rel="noopener">Click here to message</a></div>
 
           <div class="social" aria-label="Social links">
             <a href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
