@@ -1,230 +1,885 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chassis – استشارات هيكلة الأعمال والعمليات وإدارة المشاريع</title>
 
-<title>Chassis – استشارات هيكلة الأعمال والعمليات</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{
+      --power-red:#D72638;
+      --electric-indigo:#4F46E5;
+      --cyber-yellow:#FFD100;
+      --jet-black:#1A1A1A;
+      --off-white:#F7F7F7;
+      --cool-grey:#A0A0A0;
 
-<style>
-:root {
-  --power-red: #D72638;
-  --electric-indigo: #4F46E5;
-  --cyber-yellow: #FFD100;
-  --nav-bg: linear-gradient(90deg, #4F46E5, #D72638);
-  --off-white: #F7F7F7;
-  --light-bg: #F2F0FF;
-  --light-pastel: #FFF2F2;
-  --text-grey: #555555;
-  --footer-bg: linear-gradient(90deg, #1A1A1A, #4F46E5);
-}
+      --card:#ffffff;
+      --soft:#f1f2ff;
+      --soft2:#fff1f2;
 
-/* GLOBAL */
-* { box-sizing:border-box; margin:0; padding:0; }
-body { font-family:'Poppins', sans-serif; background:var(--off-white); color:#1A1A1A; line-height:1.6; }
-a { text-decoration:none; transition:0.3s; }
-img { max-width:100%; display:block; }
+      --shadow: 0 18px 45px rgba(0,0,0,0.10);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+    }
 
-/* HEADER */
-header {
-  display:flex; justify-content:space-between; align-items:center;
-  padding:15px 50px; background:var(--nav-bg);
-  position:sticky; top:0; z-index:100; border-radius:0 0 30px 30px;
-}
-header img { height:55px; }
-nav { display:flex; gap:40px; }
-nav a { color:white; font-weight:600; }
-nav a:hover { color:var(--cyber-yellow); }
-.lang-toggle a { color:white; margin:0 8px; font-weight:600; }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html{ scroll-behavior:smooth; }
+    body{
+      font-family:'Poppins', sans-serif;
+      background:var(--off-white);
+      color:var(--jet-black);
+      line-height:1.75;
+    }
+    a{ text-decoration:none; transition: .2s ease; }
+    img{ max-width:100%; display:block; }
 
-/* HERO */
-.hero { height:95vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; color:white; padding:0 20px; background: linear-gradient(135deg, rgba(79,70,229,0.6), rgba(215,38,56,0.6)), url('images/hero-texture.png') center/cover no-repeat; }
-.hero h1 { font-size:68px; font-weight:700; background:linear-gradient(90deg, var(--cyber-yellow), var(--power-red)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-.hero h2 { font-size:32px; font-weight:600; margin:20px 0; }
-.hero p { font-size:20px; max-width:620px; margin-bottom:35px; }
-.hero a { background:var(--cyber-yellow); color:#1A1A1A; padding:18px 50px; border-radius:50px; font-weight:600; }
-.hero a:hover { background:var(--power-red); color:white; }
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 18px;
+    }
 
-/* ABOUT */
-.about-section { padding:120px 20px; text-align:center; background:var(--light-bg); border-radius:50px 50px 0 0; }
-.about-section h2 { font-size:42px; color:var(--power-red); margin-bottom:40px; }
-.about-content { display:flex; flex-wrap:wrap; justify-content:center; gap:50px; }
-.about-content img { width:220px; border-radius:50%; }
-.about-content p { max-width:680px; font-size:18px; color:var(--text-grey); }
+    .pill{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.16);
+      border:1px solid rgba(255,255,255,0.22);
+      color:#fff;
+      font-weight:600;
+      font-size:14px;
+    }
 
-/* SERVICES */
-.services-section { padding:100px 20px; background:var(--light-pastel); }
-.services-section h2 { text-align:center; font-size:40px; color:var(--electric-indigo); margin-bottom:60px; }
-.services-cards { display:flex; flex-wrap:wrap; justify-content:center; gap:40px; }
-.service-card { background:white; border-radius:40px; padding:40px 30px; max-width:360px; box-shadow:0 25px 50px rgba(0,0,0,0.08); }
-.service-card h3 { color:var(--power-red); font-size:26px; margin-bottom:20px; }
-.service-card p { font-size:16px; margin-bottom:15px; }
-.service-card span { font-weight:700; color:var(--electric-indigo); font-size:18px; }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 22px;
+      border-radius:999px;
+      font-weight:700;
+      border:0;
+      cursor:pointer;
+      transition:.2s ease;
+      white-space:nowrap;
+      font-family:inherit;
+    }
+    .btn-primary{
+      background:var(--cyber-yellow);
+      color:var(--jet-black);
+    }
+    .btn-primary:hover{ transform: translateY(-1px); background:#ffdf39; }
+    .btn-secondary{
+      background: rgba(255,255,255,0.14);
+      color:#fff;
+      border:1px solid rgba(255,255,255,0.28);
+    }
+    .btn-secondary:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.18); }
 
-/* HOW I WORK */
-.how-i-work { max-width:1000px; margin:80px auto; background:white; border-radius:40px; padding:80px 30px; text-align:center; }
-.how-i-work h3 { font-size:32px; margin-bottom:25px; }
-.how-i-work p { font-size:18px; color:var(--text-grey); }
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background: linear-gradient(90deg, var(--electric-indigo), var(--power-red));
+      border-radius:0 0 26px 26px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+    }
+    .nav-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 180px;
+    }
+    .brand img{ height:44px; width:auto; }
 
-/* FORM */
-.form-section { max-width:800px; margin:80px auto; padding:50px 20px; text-align:center; background:var(--light-bg); border-radius:40px; }
-.form-section h2 { font-size:36px; color:var(--power-red); margin-bottom:20px; }
-form label { display:block; margin-top:15px; font-weight:500; }
-form input, form textarea { width:100%; padding:15px; margin-top:8px; border-radius:20px; border:1px solid #ccc; }
-form button { margin-top:25px; padding:16px 50px; background:var(--electric-indigo); color:white; border:none; border-radius:50px; font-weight:600; }
-form button:hover { background:var(--cyber-yellow); color:#1A1A1A; }
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:26px;
+    }
+    .nav-links a{
+      color:#fff;
+      font-weight:700;
+      font-size:14px;
+      opacity:0.95;
+    }
+    .nav-links a:hover{ color:var(--cyber-yellow); opacity:1; }
 
-/* CONTACT */
-.contact-section { padding:100px 20px; text-align:center; }
-.contact-section h2 { font-size:40px; color:var(--power-red); margin-bottom:40px; }
-.social-links a { font-size:28px; margin:0 15px; color:var(--electric-indigo); }
+    .lang-toggle{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#fff;
+      font-weight:700;
+      font-size:13px;
+      opacity:0.95;
+    }
+    .lang-toggle a{ color:#fff; }
+    .lang-toggle a:hover{ color:var(--cyber-yellow); }
 
-/* FOOTER */
-footer { padding:40px 20px; text-align:center; background:var(--footer-bg); color:white; border-radius:30px 30px 0 0; }
+    .hamburger{
+      display:none;
+      background:transparent;
+      border:0;
+      color:#fff;
+      font-size:20px;
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+    }
+    .hamburger:hover{ background: rgba(255,255,255,0.12); }
 
-/* WHATSAPP FLOAT */
-.whatsapp-btn { position:fixed; bottom:30px; right:30px; background:#25D366; color:white; padding:15px 20px; border-radius:50px; font-weight:600; }
-</style>
+    .mobile-menu{
+      display:none;
+      padding: 0 0 14px 0;
+    }
+    .mobile-menu a{
+      display:block;
+      padding:12px 14px;
+      border-radius:14px;
+      margin:8px 0;
+      color:#fff;
+      font-weight:700;
+      background: rgba(255,255,255,0.10);
+      border:1px solid rgba(255,255,255,0.16);
+    }
+    .mobile-menu a:hover{ color:var(--cyber-yellow); }
+    .mobile-menu.show{ display:block; }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:72px 0 58px;
+      color:#fff;
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(255,209,0,0.22), transparent 60%),
+        radial-gradient(900px 500px at 85% 10%, rgba(255,255,255,0.10), transparent 55%),
+        linear-gradient(135deg, rgba(79,70,229,0.92), rgba(215,38,56,0.92));
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap:28px;
+      align-items:center;
+      margin-top:14px;
+    }
+    .hero h1{
+      font-size:56px;
+      line-height:1.05;
+      margin:10px 0 10px;
+      letter-spacing:-0.6px;
+    }
+    .hero h1 .grad{
+      background: linear-gradient(90deg, var(--cyber-yellow), #ffffff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .hero h2{
+      font-size:18px;
+      font-weight:600;
+      opacity:0.95;
+      margin-bottom:14px;
+    }
+    .hero p{
+      max-width: 640px;
+      font-size:16px;
+      opacity:0.96;
+      margin-bottom:18px;
+    }
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .hero-badges{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
+      opacity:0.95;
+    }
+    .hero-card{
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: var(--radius-xl);
+      padding:18px;
+    }
+    .hero-card h3{
+      font-size:14px;
+      opacity:0.95;
+      margin-bottom:8px;
+    }
+    .hero-card ul{
+      list-style:none;
+      display:grid;
+      gap:10px;
+      font-size:14px;
+      opacity:0.95;
+    }
+    .hero-card li{ display:flex; gap:10px; align-items:flex-start; }
+    .hero-card i{ color: var(--cyber-yellow); margin-top:2px; }
+
+    /* Sections */
+    section{ padding:70px 0; }
+    .section-title{
+      font-size:34px;
+      letter-spacing:-0.2px;
+      margin-bottom:12px;
+    }
+    .section-sub{
+      color:#3b3b3b;
+      opacity:0.88;
+      max-width:780px;
+      margin-bottom:28px;
+      font-size:15px;
+    }
+
+    /* About */
+    .about{
+      background: var(--soft);
+      border-radius: 40px 40px 0 0;
+    }
+    .about-grid{
+      display:grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap:26px;
+      align-items:center;
+    }
+    .about-card{
+      background:var(--card);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding:22px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .profile{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .profile img{
+      width:86px; height:86px;
+      object-fit:cover;
+      border-radius: 22px;
+      border: 3px solid rgba(79,70,229,0.18);
+    }
+    .profile .name{ font-weight:800; font-size:16px; }
+    .profile .role{
+      color: var(--cool-grey);
+      font-weight:600;
+      font-size:13px;
+      margin-top:2px;
+    }
+    .about p{ margin-top:14px; color:#2f2f2f; font-size:15px; }
+
+    /* Services */
+    .services{ background: var(--soft2); }
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+    }
+    .card{
+      background: var(--card);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding:22px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .card h3{ font-size:18px; margin-bottom:10px; letter-spacing:-0.1px; }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius: 999px;
+      font-weight:700;
+      font-size:12px;
+      margin-bottom:10px;
+      background: rgba(79,70,229,0.10);
+      color: var(--electric-indigo);
+    }
+    .price{ margin-top:14px; font-weight:800; color: var(--power-red); }
+    .small{ font-size:13px; color:#555; opacity:0.92; }
+
+    /* Projects */
+    .projects{ background: var(--off-white); }
+    .projects-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:18px;
+    }
+    .project{
+      background: var(--card);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding:22px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .project-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .project h3{ font-size:18px; letter-spacing:-0.1px; }
+    .label{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:12px;
+      background: rgba(215,38,56,0.10);
+      color: var(--power-red);
+    }
+    .project .meta{ color:#555; font-size:13px; margin:10px 0 12px; }
+    .bullets{
+      list-style:none;
+      display:grid;
+      gap:10px;
+      font-size:14px;
+      color:#2f2f2f;
+    }
+    .bullets li{ display:flex; gap:10px; align-items:flex-start; }
+    .bullets i{ color: var(--electric-indigo); margin-top:3px; }
+
+    .projects-cta{
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    /* Consultation */
+    .consult{
+      background: var(--soft);
+      border-radius: 0 0 40px 40px;
+    }
+    .form-wrap{
+      background: var(--card);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding:22px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    form{ display:grid; gap:14px; margin-top:12px; }
+    label{ font-weight:700; font-size:13px; }
+    input, textarea{
+      width:100%;
+      padding:14px 14px;
+      border-radius:16px;
+      border: 1px solid rgba(0,0,0,0.14);
+      font-family: inherit;
+      font-size:14px;
+      outline:none;
+      background:#fff;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(79,70,229,0.55);
+      box-shadow: 0 0 0 4px rgba(79,70,229,0.12);
+    }
+
+    .radio-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:6px;
+    }
+    .radio{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:12px 12px;
+      border-radius:16px;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: #fff;
+    }
+    .radio input{ width:auto; margin-top:3px; }
+    .radio strong{ display:block; font-size:13px; }
+    .radio span{ display:block; font-size:12px; color:#555; }
+
+    .submit-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:8px;
+    }
+    .btn-dark{
+      background: var(--electric-indigo);
+      color:#fff;
+    }
+    .btn-dark:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+
+    /* Contact + Footer */
+    .contact{ padding:60px 0 30px; }
+    .contact-card{
+      background: var(--card);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding:22px;
+      border: 1px solid rgba(0,0,0,0.05);
+      display:grid;
+      gap:10px;
+    }
+    .contact a{ color: var(--electric-indigo); font-weight:700; }
+    .social{
+      display:flex;
+      gap:14px;
+      margin-top:8px;
+    }
+    .social a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      background: rgba(79,70,229,0.10);
+      color: var(--electric-indigo);
+      font-size:18px;
+    }
+    .social a:hover{
+      transform: translateY(-1px);
+      background: rgba(215,38,56,0.10);
+      color: var(--power-red);
+    }
+
+    footer{
+      margin-top:18px;
+      padding:22px 0 40px;
+      color:#6b6b6b;
+      text-align:center;
+      font-size:13px;
+    }
+
+    /* WhatsApp floating */
+    .whatsapp-btn{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:2000;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 16px;
+      border-radius:999px;
+      background:#25D366;
+      color:#fff;
+      font-weight:800;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.22);
+    }
+    .whatsapp-btn:hover{ transform: translateY(-1px); filter: brightness(1.03); }
+
+    @media (max-width: 920px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .about-grid{ grid-template-columns: 1fr; }
+      .cards{ grid-template-columns: 1fr; }
+      .projects-grid{ grid-template-columns: 1fr; }
+      .nav-links{ display:none; }
+      .hamburger{ display:inline-flex; }
+      .radio-grid{ grid-template-columns: 1fr; }
+      .hero h1{ font-size:44px; }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <img src="images/chassis-logo.png" alt="شاسي شعار">
-  <nav>
-    <a href="#about">عن شاسي</a>
-    <a href="#services">الخدمات</a>
-    <a href="#consultation">طلب استشارة</a>
-    <a href="#contact">تواصل معنا</a>
-  </nav>
+  <header>
+    <div class="container">
+      <div class="nav-wrap">
+        <div class="brand">
+          <img src="images/chassis-logo.png" alt="شعار شاسي">
+        </div>
 
-  <!-- Language toggle -->
-  <div class="lang-toggle">
-    <a href="index.html" target="_self">EN</a> | 
-    <a href="index-ar.html" target="_self">AR</a>
-  </div>
-</header>
+        <nav class="nav-links" aria-label="التنقّل الرئيسي">
+          <a href="#about">عن شاسي</a>
+          <a href="#services">الخدمات</a>
+          <a href="#projects">المشاريع</a>
+          <a href="#consultation">طلب استشارة</a>
+          <a href="#contact">التواصل</a>
+        </nav>
 
-<section class="hero">
-  <h1>شاسي</h1>
-  <h2>استشارات هيكلة الأعمال والعمليات</h2>
-  <p>مساعدة الشركات الصغيرة والمبتدئة على تحويل أفكارها إلى عمليات واضحة وعملية.</p>
-  <a href="https://wa.me/96171085824" target="_blank">طلب استشارة</a>
-</section>
+        <div class="lang-toggle">
+          <a href="index-en.html" target="_self">EN</a>
+          <span>|</span>
+          <a href="index-ar.html" target="_self">AR</a>
+        </div>
 
-<section class="about-section" id="about">
-  <h2>نبذة عن شاسي</h2>
-  <div class="about-content">
-    <img src="images/sophia-profile.jpg" alt="صوفيا أيوبي">
-    <p>
-      تأسست شاسي بواسطة صوفيا أيوبي، مستشارة في هيكلة الأعمال والعمليات.
-      تعمل مع المؤسسين والشركات الصغيرة في مراحلها الأولى الحرجة — عندما توجد الأفكار،
-      وقد بدأ الزخم، ولكن الوضوح والهيكلة مفقودة.
-      <br><br>
-      تركز شاسي على اتخاذ القرارات بهدوء، وأنظمة عملية،
-      وبناء شركات سهلة الإدارة ومستعدة للنمو.
-    </p>
-  </div>
-</section>
+        <button class="hamburger" aria-label="فتح القائمة" onclick="toggleMenu()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
 
-<section class="services-section" id="services">
-  <h2>كيف تساعد شاسي</h2>
-
-  <div class="services-cards">
-
-    <div class="service-card">
-      <h3>هيكلة الأعمال والوضوح</h3>
-      <p><strong>تفكير عميق وتحديد الاتجاه.</strong></p>
-      <p>
-        نقوم بتشخيص ماهية العمل حقًا، وتوضيح الأولويات،
-        وتحديد اتجاه تشغيلي واضح.
-      </p>
-      <p><strong>المدة:</strong> 3–5 أسابيع</p>
-      <span>1,500 – 2,500 دولار أمريكي</span>
+      <div id="mobileMenu" class="mobile-menu" aria-label="قائمة الجوال">
+        <a href="#about" onclick="toggleMenu(true)">عن شاسي</a>
+        <a href="#services" onclick="toggleMenu(true)">الخدمات</a>
+        <a href="#projects" onclick="toggleMenu(true)">المشاريع</a>
+        <a href="#consultation" onclick="toggleMenu(true)">طلب استشارة</a>
+        <a href="#contact" onclick="toggleMenu(true)">التواصل</a>
+      </div>
     </div>
+  </header>
 
-    <div class="service-card">
-      <h3>تصميم العمليات والأنظمة</h3>
-      <p><strong>تحويل الوضوح إلى واقع.</strong></p>
-      <p>
-        نصمم كيفية تشغيل الأعمال — سير العمل، الأدوار،
-        الأدوات، والأنظمة التي تقلل الفوضى.
-      </p>
-      <p><strong>المدة:</strong> 4–8 أسابيع</p>
-      <span>2,000 – 4,000 دولار أمريكي</span>
-    </div>
+  <main>
 
-    <div class="service-card">
-      <h3>الدعم في النمو وتطوير الأعمال</h3>
-      <p><strong>دعم استراتيجي مستمر.</strong></p>
-      <p>
-        دعم نمو منظم للشركات المستعدة للتوسع
-        دون الإضرار بما يعمل.
-      </p>
-      <p><strong>الاشتراك:</strong> شهري (2–3 أشهر على الأقل)</p>
-      <span>800 – 1,500 دولار أمريكي / شهريًا</span>
-    </div>
+    <section class="hero">
+      <div class="container">
+        <span class="pill"><i class="fa-solid fa-screwdriver-wrench"></i> إدارة المشاريع والعمليات بمنهجية واضحة.</span>
 
-  </div>
+        <div class="hero-grid">
+          <div>
+            <h1><span class="grad">Chassis</span></h1>
+            <h2>استشارات هيكلة الأعمال • تطوير العمليات • إدارة المشاريع</h2>
+            <p>
+              إذا كانت إدارة عملك تبدو غير منضبطة، فغالبًا ما يكون السبب غياب الهيكلة.
+              تساعد شاسي أصحاب المشاريع والشركات الصغيرة على بناء أنظمة تشغيل عملية،
+              وتحديد الأدوار والمسؤوليات، واعتماد متابعة منتظمة تضمن تنفيذًا أكثر اتزانًا واستعدادًا للنمو.
+            </p>
 
-  <div class="how-i-work">
-    <h3>كيف نعمل</h3>
-    <p>
-      التعاون المباشر مع المؤسس.
-      نطاق محدد، نتائج واضحة، وتفكير منظم.
-      تعمل شاسي بشكل انتقائي ومقصود.
-    </p>
-  </div>
-</section>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> طلب استشارة
+              </a>
+              <a class="btn btn-secondary" href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener">
+                <i class="fa-brands fa-instagram"></i> الاطّلاع على الأعمال
+              </a>
+            </div>
 
-<section class="form-section" id="consultation">
-  <h2>طلب استشارة</h2>
-  <p>يساعد هذا النموذج القصير على تحديد مدى ملاءمة الخدمة والنطاق.</p>
+            <div class="hero-badges">
+              <span class="pill"><i class="fa-solid fa-list-check"></i> إجراءات تشغيل قياسية</span>
+              <span class="pill"><i class="fa-solid fa-chart-line"></i> تقارير متابعة</span>
+              <span class="pill"><i class="fa-solid fa-utensils"></i> الضيافة والفعاليات</span>
+              <span class="pill"><i class="fa-solid fa-rocket"></i> الشركات الناشئة</span>
+            </div>
+          </div>
 
-  <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
-    <label>الاسم</label>
-    <input type="text" name="name" required>
+          <div class="hero-card">
+            <h3>ماذا تتوقع عند التعاون معنا</h3>
+            <ul>
+              <li><i class="fa-solid fa-bullseye"></i><span>تحديد نطاق العمل ومخرجاته بشكل واضح</span></li>
+              <li><i class="fa-solid fa-diagram-project"></i><span>تخطيط الأدوار وسير العمل بصورة قابلة للتنفيذ</span></li>
+              <li><i class="fa-solid fa-clipboard-check"></i><span>متابعة منتظمة وتقارير تضمن الالتزام بالمواعيد</span></li>
+              <li><i class="fa-solid fa-shield-heart"></i><span>تنفيذ منظم يقلل الضغط على الفريق</span></li>
+            </ul>
+          </div>
 
-    <label>البريد الإلكتروني</label>
-    <input type="email" name="email" required>
+        </div>
+      </div>
+    </section>
 
-    <label>أخبرنا باختصار عن عملك</label>
-    <textarea name="business" rows="4" required></textarea>
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title">تنفيذ منظم، ونتائج قابلة للقياس.</h2>
+        <p class="section-sub">
+          شاسي هي علامة استشارية أسستها صوفيا أيوبي، وتركز على هيكلة الأعمال وتطوير العمليات وإدارة المشاريع،
+          بهدف تحويل الأفكار إلى تشغيل واضح ومستدام.
+        </p>
 
-    <label>التحدي الرئيسي حاليًا</label>
-    <textarea name="challenge" rows="3"></textarea>
+        <div class="about-grid">
+          <div class="about-card">
+            <div class="profile">
+              <img src="images/sophia-profile.jpg" alt="صوفيا أيوبي">
+              <div>
+                <div class="name">صوفيا أيوبي</div>
+                <div class="role">هيكلة الأعمال والعمليات • إدارة المشاريع • الضيافة والفعاليات</div>
+              </div>
+            </div>
+            <p>
+              تعمل شاسي مع أصحاب المشاريع والشركات الصغيرة في مراحلها الحرجة،
+              عندما تكون الفكرة موجودة والزخم بدأ، لكن الوضوح والهيكلة التشغيلية غير مكتملين.
+              تتمحور المنهجية حول بناء أنظمة عملية، وتحديد المسؤوليات، واعتماد آليات متابعة تضمن التنفيذ.
+            </p>
+            <p>
+              تركيز شاسي: قرارات أكثر هدوءًا، تشغيل أوضح، وتقليل الفوضى دون تعقيد غير ضروري.
+            </p>
+          </div>
 
-    <button type="submit">إرسال</button>
-  </form>
-</section>
+          <div class="about-card">
+            <h3 style="font-size:18px; letter-spacing:-0.1px;">آلية العمل</h3>
+            <p style="margin-top:10px;">
+              تعاون مباشر مع صاحب المشروع، ونطاق عمل محدد، ومخرجات واضحة،
+              مع التزام بالمتابعة والتوثيق والتسليم ضمن المهل المتفق عليها.
+              تعمل شاسي بصورة انتقائية لضمان جودة التنفيذ ووضوح النتائج.
+            </p>
+            <p style="margin-top:10px;" class="small">
+              إذا لم يكن نطاق احتياجك واضحًا بعد، يمكنك شرح التحدي عبر واتساب،
+              وسيتم اقتراح نقطة بداية مناسبة.
+            </p>
+            <div style="margin-top:14px;">
+              <a class="btn btn-primary" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="contact-section" id="contact">
-  <h2>تواصل</h2>
-  <p>البريد الإلكتروني: <a href="mailto:chassis.lb@gmail.com">chassis.lb@gmail.com</a></p>
-  <p>الهاتف: <span dir="ltr"><a href="tel:+96171085824">+961 71 085824</a></span></p>
-  <p><a href="https://wa.me/96171085824" class="whatsapp-inline" target="_blank"><i class="fab fa-whatsapp"></i> تواصل الآن</a></p>
-  <div class="social-links">
-    <a href="https://www.instagram.com/chassis.lb/" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.linkedin.com/company/109408069/admin/dashboard/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-  </div>
-</section>
+    <section id="services" class="services">
+      <div class="container">
+        <h2 class="section-title">الخدمات</h2>
+        <p class="section-sub">اختر المسار الأنسب بحسب مرحلة عملك واحتياجك الفعلي.</p>
 
-<footer>
-  © 2026 شاسي بواسطة صوفيا أيوبي. جميع الحقوق محفوظة.
-</footer>
+        <div class="cards">
+          <div class="card">
+            <div class="tag"><i class="fa-solid fa-compass"></i> وضوح واتجاه</div>
+            <h3>هيكلة الأعمال وتحديد الأولويات</h3>
+            <p class="small">
+              تشخيص واقع العمل، توضيح الأولويات، وتحديد اتجاه تشغيلي واضح يسهل التنفيذ ويمنع التشتت.
+            </p>
+            <p class="price">3–5 أسابيع • 1,500 – 2,500 دولار أمريكي</p>
+          </div>
 
-<a href="https://wa.me/96171085824" class="whatsapp-btn" target="_blank">
-  <i class="fab fa-whatsapp"></i>
-</a>
+          <div class="card">
+            <div class="tag"><i class="fa-solid fa-gears"></i> تشغيل وأنظمة</div>
+            <h3>تصميم العمليات والأنظمة</h3>
+            <p class="small">
+              تصميم سير العمل، توزيع الأدوار، اختيار الأدوات، إعداد إجراءات تشغيل قياسية، وبناء تقارير متابعة.
+            </p>
+            <p class="price">4–8 أسابيع • 2,000 – 4,000 دولار أمريكي</p>
+          </div>
 
+          <div class="card">
+            <div class="tag"><i class="fa-solid fa-chart-line"></i> نمو واستمرارية</div>
+            <h3>دعم النمو وتطوير الأعمال</h3>
+            <p class="small">
+              دعم منظم للشركات المستعدة للتوسع، مع الحفاظ على التشغيل واستقرار الأنظمة القائمة.
+            </p>
+            <p class="price">شهريًا • 800 – 1,500 دولار أمريكي / شهر</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2 class="section-title">المشاريع</h2>
+        <p class="section-sub">
+          أمثلة مختصرة على نطاقات العمل والنتائج. يمكن الاطلاع على التفاصيل المرئية عبر قسم Projects في Highlights على إنستغرام.
+        </p>
+
+        <div class="projects-grid">
+
+          <div class="project">
+            <div class="project-head">
+              <h3>The Ark Networks</h3>
+              <span class="label"><i class="fa-solid fa-building"></i> إطلاق وتشغيل</span>
+            </div>
+            <div class="meta"><strong>الهدف:</strong> تنسيق وإدارة إطلاق مساحة عمل مشتركة ضمن إطار زمني محدد.</div>
+            <ul class="bullets">
+              <li><i class="fa-solid fa-check"></i><span>تنسيق المهام والمتابعة مع الفرق والجهات المعنية</span></li>
+              <li><i class="fa-solid fa-check"></i><span>تخطيط التنفيذ وضمان الالتزام بالمواعيد</span></li>
+              <li><i class="fa-solid fa-check"></i><span>دعم حضور العلامة والتواصل التشغيلي</span></li>
+            </ul>
+            <div class="meta"><strong>النتيجة:</strong> تنفيذ الإطلاق بنجاح ضمن وقت واضح وتواصل منظم.</div>
+          </div>
+
+          <div class="project">
+            <div class="project-head">
+              <h3>Le Pavé Bar</h3>
+              <span class="label"><i class="fa-solid fa-martini-glass"></i> عمليات ضيافة</span>
+            </div>
+            <div class="meta"><strong>الهدف:</strong> تحسين التشغيل، رفع كفاءة المتابعة، وتعزيز الانضباط التشغيلي.</div>
+            <ul class="bullets">
+              <li><i class="fa-solid fa-check"></i><span>تنظيم آليات التنفيذ وتقليل نقاط التعطيل</span></li>
+              <li><i class="fa-solid fa-check"></i><span>دعم تنسيق فعاليات وفق خطة واضحة</span></li>
+              <li><i class="fa-solid fa-check"></i><span>تحسين انسيابية العمل بما ينعكس على تجربة العميل</span></li>
+            </ul>
+            <div class="meta"><strong>النتيجة:</strong> تشغيل أكثر وضوحًا مع متابعة أدق وتحسين عام في الانسيابية.</div>
+          </div>
+
+          <div class="project">
+            <div class="project-head">
+              <h3>Vartavar Festival</h3>
+              <span class="label"><i class="fa-solid fa-calendar-check"></i> إدارة فعالية</span>
+            </div>
+            <div class="meta"><strong>الهدف:</strong> تنسيق وإدارة مهرجان صيفي واسع النطاق بمشاركة جهات متعددة (فعالية لمرة واحدة).</div>
+            <ul class="bullets">
+              <li><i class="fa-solid fa-check"></i><span>توزيع المهام وإرسال التذكيرات لضمان الالتزام</span></li>
+              <li><i class="fa-solid fa-check"></i><span>كتابة تقارير أسبوعية ومتابعة تقدم التنفيذ</span></li>
+              <li><i class="fa-solid fa-check"></i><span>التنسيق مع المكان وأصحاب العلاقة لتأمين الجاهزية</span></li>
+            </ul>
+            <div class="meta"><strong>النتيجة:</strong> تنفيذ ناجح ضمن المهل مع تواصل واضح وتسليم منظم.</div>
+          </div>
+
+          <div class="project">
+            <div class="project-head">
+              <h3>Bookspot Café — فعاليات</h3>
+              <span class="label"><i class="fa-solid fa-mug-hot"></i> تنسيق فعاليات</span>
+            </div>
+            <div class="meta"><strong>النطاق:</strong> تنسيق وتنفيذ فعاليات موسمية وجلسات خاصة ضمن بيئة مقهى.</div>
+            <ul class="bullets">
+              <li><i class="fa-solid fa-check"></i><span>تجهيز خطة تنفيذ (Run of Show) واضحة</span></li>
+              <li><i class="fa-solid fa-check"></i><span>تنسيق التوقيت والتجهيزات والتواصل</span></li>
+              <li><i class="fa-solid fa-check"></i><span>دعم الفريق لضمان تنفيذ سلس أثناء الفعالية</span></li>
+            </ul>
+            <div class="meta"><strong>النتيجة:</strong> فعاليات منظمة ضمن سير تنفيذ واضح وتجربة متماسكة.</div>
+          </div>
+
+        </div>
+
+        <div class="projects-cta">
+          <a class="btn btn-primary" href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener">
+            <i class="fa-brands fa-instagram"></i> الاطّلاع على Projects في Highlights
+          </a>
+          <a class="btn" style="background: rgba(79,70,229,0.12); color: var(--electric-indigo);" href="#consultation">
+            <i class="fa-solid fa-paper-plane"></i> طلب تقييم نطاق مبدئي
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="consultation" class="consult">
+      <div class="container">
+        <h2 class="section-title">طلب استشارة</h2>
+        <p class="section-sub">يساعد هذا النموذج على تحديد مدى الملاءمة وتقدير نطاق العمل بصورة أولية.</p>
+
+        <div class="form-wrap">
+          <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="استفسار جديد عبر الموقع">
+            <input type="hidden" name="_template" value="table">
+
+            <div>
+              <label for="name">الاسم</label>
+              <input id="name" type="text" name="name" required>
+            </div>
+
+            <div>
+              <label for="email">البريد الإلكتروني</label>
+              <input id="email" type="email" name="email" required>
+            </div>
+
+            <div>
+              <label>نوع الدعم المطلوب</label>
+              <div class="radio-grid">
+                <label class="radio">
+                  <input type="radio" name="need" value="هيكلة الأعمال وتحديد الأولويات" required>
+                  <div>
+                    <strong>هيكلة الأعمال وتحديد الأولويات</strong>
+                    <span>اتجاه واضح، أولويات، ونطاق قابل للتنفيذ</span>
+                  </div>
+                </label>
+
+                <label class="radio">
+                  <input type="radio" name="need" value="تصميم العمليات والأنظمة">
+                  <div>
+                    <strong>تصميم العمليات والأنظمة</strong>
+                    <span>سير عمل، إجراءات تشغيل، أدوات، وتقارير</span>
+                  </div>
+                </label>
+
+                <label class="radio">
+                  <input type="radio" name="need" value="دعم النمو وتطوير الأعمال">
+                  <div>
+                    <strong>دعم النمو وتطوير الأعمال</strong>
+                    <span>دعم مستمر للتوسع دون إرباك التشغيل</span>
+                  </div>
+                </label>
+
+                <label class="radio">
+                  <input type="radio" name="need" value="غير محدد بعد">
+                  <div>
+                    <strong>غير محدد بعد</strong>
+                    <span>سيتم اقتراح نقطة البداية بناءً على وصف التحدي</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label for="business">نبذة مختصرة عن المشروع/الشركة</label>
+              <textarea id="business" name="business" rows="4" required></textarea>
+            </div>
+
+            <div>
+              <label for="challenge">التحدي الرئيسي حاليًا</label>
+              <textarea id="challenge" name="challenge" rows="3"></textarea>
+            </div>
+
+            <div class="submit-row">
+              <button class="btn btn-dark" type="submit">
+                <i class="fa-solid fa-envelope"></i> إرسال الطلب
+              </button>
+
+              <a class="btn" style="background: rgba(215,38,56,0.12); color: var(--power-red);" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> التواصل عبر واتساب
+              </a>
+
+              <span class="small">يُستخدم هذا النموذج للرد على الاستفسار فقط.</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">التواصل</h2>
+        <p class="section-sub">للاستجابة الأسرع، يُفضّل التواصل عبر واتساب.</p>
+
+        <div class="contact-card">
+          <div>البريد الإلكتروني: <a href="mailto:chassis.lb@gmail.com">chassis.lb@gmail.com</a></div>
+          <div>الهاتف: <span dir="ltr"><a href="tel:+96171085824">+961 71 085 824</a></span></div>
+          <div>واتساب: <a href="https://wa.me/96171085824" target="_blank" rel="noopener">اضغط هنا للتواصل</a></div>
+
+          <div class="social" aria-label="روابط التواصل الاجتماعي">
+            <a href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/company/109408069/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <footer>
+          © 2026 شاسي. جميع الحقوق محفوظة.
+        </footer>
+      </div>
+    </section>
+
+  </main>
+
+  <a class="whatsapp-btn" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i> واتساب
+  </a>
+
+  <script>
+    function toggleMenu(forceClose=false){
+      const menu = document.getElementById('mobileMenu');
+      if(forceClose){
+        menu.classList.remove('show');
+        return;
+      }
+      menu.classList.toggle('show');
+    }
+  </script>
 </body>
 </html>
-
-
