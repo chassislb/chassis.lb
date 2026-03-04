@@ -19,14 +19,12 @@
 
   if (burger) burger.addEventListener("click", toggleMenu);
 
-  // Close menu when clicking a mobile link
   if (menu) {
     menu.querySelectorAll("a").forEach((a) => {
       a.addEventListener("click", closeMenu);
     });
   }
 
-  // Close menu on escape
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeMenu();
   });
