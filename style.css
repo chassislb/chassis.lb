@@ -50,7 +50,6 @@ strong{ font-weight: 700; }
   white-space: nowrap;
 }
 .btn:hover{ transform: translateY(-1px); }
-.btn-sm{ padding: 10px 14px; font-size: 14px; }
 .btn-primary{
   background: var(--yellow);
   color: var(--black);
@@ -268,7 +267,6 @@ strong{ font-weight: 700; }
   letter-spacing: -0.02em;
 }
 .muted{ color: rgba(0,0,0,0.70); }
-.small{ font-size: 13px; }
 
 .split{
   display:grid;
@@ -504,10 +502,6 @@ input:focus, textarea:focus{
 
 /* Contact */
 .contact-card{
-  display:flex;
-  justify-content:space-between;
-  gap: 18px;
-  flex-wrap: wrap;
   padding: 22px;
   border-radius: var(--radius-xl);
   border: 1px solid var(--border);
@@ -537,6 +531,16 @@ input:focus, textarea:focus{
 .social a:hover{
   transform: translateY(-1px);
   background: rgba(0,0,0,0.03);
+}
+
+/* Bottom Footer */
+.site-footer{
+  padding: 26px 0 34px;
+  color: rgba(0,0,0,0.55);
+  font-size: 13px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: #fff;
 }
 
 /* WhatsApp floating */
