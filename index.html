@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Prevent weird relative-path behavior on GitHub Pages -->
+  <base href="./">
+
   <title>Chassis – Business Structuring, Operations & Project Management</title>
   <meta name="description" content="Chassis is a consulting brand founded by Sophia Ayoubi, focused on business structuring, operations design, and project management — turning ideas into clear, sustainable execution." />
 
@@ -26,7 +30,7 @@
         <img src="images/chassis-logo.png" alt="Chassis logo">
       </a>
 
-      <!-- UPDATED NAV: now real pages -->
+      <!-- NAV: real pages -->
       <nav class="nav" aria-label="Primary navigation">
         <a href="about.html">About</a>
         <a href="services.html">Services</a>
@@ -48,7 +52,7 @@
       </div>
     </div>
 
-    <!-- UPDATED MOBILE MENU: now real pages -->
+    <!-- MOBILE MENU: real pages -->
     <div id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation">
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
@@ -112,7 +116,7 @@
       </div>
     </section>
 
-    <!-- About (kept on homepage for now) -->
+    <!-- About -->
     <section id="about" class="section">
       <div class="container split">
         <div>
@@ -169,7 +173,7 @@
       </div>
     </section>
 
-    <!-- How I work (kept on homepage for now) -->
+    <!-- How I work -->
     <section id="how" class="section section-soft">
       <div class="container split">
         <div>
@@ -241,7 +245,7 @@
       </div>
     </section>
 
-    <!-- Services (kept on homepage for now) -->
+    <!-- Services -->
     <section id="services" class="section">
       <div class="container">
         <div class="section-head">
@@ -291,7 +295,7 @@
       </div>
     </section>
 
-    <!-- Projects (kept on homepage for now) -->
+    <!-- Projects -->
     <section id="projects" class="section section-soft">
       <div class="container">
         <div class="section-head">
@@ -346,14 +350,12 @@
       </div>
     </section>
 
-    <!-- Consultation (kept on homepage for now, CTA goes to contact page too) -->
+    <!-- Consultation -->
     <section id="consultation" class="section">
       <div class="container split">
         <div>
           <h2 class="h2">Request a Consultation</h2>
-          <p class="muted">
-            This form helps assess fit and estimate scope at a high level.
-          </p>
+          <p class="muted">This form helps assess fit and estimate scope at a high level.</p>
 
           <div class="contact-inline">
             <a class="link" href="mailto:chassis.lb@gmail.com"><i class="fa-solid fa-envelope"></i> chassis.lb@gmail.com</a>
@@ -425,7 +427,7 @@
       </div>
     </section>
 
-    <!-- Contact (kept on homepage for now) -->
+    <!-- Contact -->
     <section id="contact" class="section section-soft">
       <div class="container">
         <div class="contact-center card">
@@ -445,7 +447,7 @@
       </div>
     </section>
 
-    <!-- UPDATED FOOTER: now with navigation -->
+    <!-- Footer -->
     <footer class="site-footer">
       <div class="container footer-grid">
         <div class="footer-brand">
@@ -474,7 +476,6 @@
         </div>
       </div>
     </footer>
-
   </main>
 
   <!-- WhatsApp floating button -->
