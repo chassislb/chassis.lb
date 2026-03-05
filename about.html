@@ -1,171 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>About – Chassis</title>
-<meta name="description" content="Chassis is a consulting practice founded by Sophia Ayoubi focusing on business structuring, operations design, and project execution.">
+  <title>About – Chassis</title>
+  <meta name="description" content="Chassis is a consulting practice founded by Sophia Ayoubi focusing on business structuring, operations design, and project execution." />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="site-header">
-<div class="container header-inner">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
 
-<a class="brand" href="index.html">
-<img src="images/chassis-logo.png" alt="Chassis logo">
-</a>
+      <a class="brand" href="index.html" aria-label="Chassis home">
+        <img src="images/chassis-logo.png" alt="Chassis logo">
+      </a>
 
-<nav class="nav">
-<a href="about.html">About</a>
-<a href="services.html">Services</a>
-<a href="projects.html">Projects</a>
-<a href="collaboration.html">Collaboration</a>
-<a href="contact.html">Contact</a>
-</nav>
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="active" href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="collaboration.html">Collaboration</a>
+        <a href="contact.html">Contact</a>
+      </nav>
 
-<div class="header-actions">
-<div class="lang-toggle">
-<a class="active" href="about.html">EN</a>
-<span>|</span>
-<a href="about-ar.html">AR</a>
-</div>
+      <div class="header-actions">
+        <div class="lang-toggle" aria-label="Language toggle">
+          <a class="active" href="about.html">EN</a>
+          <span aria-hidden="true">|</span>
+          <a href="about-ar.html">AR</a>
+        </div>
 
-<button class="hamburger">
-☰
-</button>
-</div>
+        <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
 
-</div>
-</header>
+    </div>
 
+    <!-- Mobile menu (THIS was missing) -->
+    <div id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation">
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="collaboration.html">Collaboration</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </header>
 
-<section class="section">
-<div class="container split">
+  <main id="top">
 
-<div>
+    <section class="section">
+      <div class="container split">
 
-<h1 class="h2">About Chassis</h1>
+        <div>
+          <h1 class="h2">About Chassis</h1>
 
-<p class="muted">
-Chassis is a consulting practice founded by Sophia Ayoubi, focused on
-structuring businesses, designing operations, and managing projects
-with clarity and discipline.
-</p>
+          <p class="muted">
+            Chassis is a consulting practice founded by <strong>Sophia Ayoubi</strong>, focused on
+            structuring businesses, designing operations, and managing projects
+            with clarity and discipline.
+          </p>
 
-<p class="muted">
-Many businesses struggle not because of lack of effort, but because
-their work is not structured. Chassis helps founders and small teams
-organize execution, define responsibilities, and implement operational
-systems that make work predictable and scalable.
-</p>
+          <p class="muted">
+            Many businesses struggle not because of lack of effort, but because
+            their work is not structured. Chassis helps founders and small teams
+            organize execution, define responsibilities, and implement operational
+            systems that make work predictable and scalable.
+          </p>
 
-<p class="muted">
-The objective is simple: turn ideas into structured execution.
-</p>
+          <p class="muted">
+            The objective is simple: turn ideas into structured execution.
+          </p>
+        </div>
 
-</div>
+        <aside class="card profile-card">
+          <div class="profile-head">
+            <img src="images/sophia-profile.jpg" alt="Sophia Ayoubi">
+            <div>
+              <div class="name">Sophia Ayoubi</div>
+              <div class="role">Founder & Consultant</div>
+            </div>
+          </div>
 
+          <p class="quote">
+            “I build structure that makes execution calm, predictable, and scalable.”
+          </p>
 
-<aside class="card">
+          <a class="btn btn-primary full" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i>
+            WhatsApp Message
+          </a>
+        </aside>
 
-<div class="profile-head">
-<img src="images/sophia-profile.jpg" alt="Sophia Ayoubi">
+      </div>
+    </section>
 
-<div>
-<div class="name">Sophia Ayoubi</div>
-<div class="role">Founder & Consultant</div>
-</div>
-</div>
+    <section class="section section-soft">
+      <div class="container">
+        <h2 class="h2">What Chassis Focuses On</h2>
 
-<p class="quote">
-"I build structure that makes execution calm, predictable, and scalable."
-</p>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Business Structuring</h3>
+            <p class="muted">
+              Clarifying priorities, defining responsibilities, and creating a clear
+              framework for decision-making.
+            </p>
+          </div>
 
-</aside>
+          <div class="card">
+            <h3>Operations Design</h3>
+            <p class="muted">
+              Building workflows, SOPs, reporting structures, and operational tools
+              that allow teams to execute efficiently.
+            </p>
+          </div>
 
-</div>
-</section>
+          <div class="card">
+            <h3>Project Execution</h3>
+            <p class="muted">
+              Coordinating projects with clear timelines, accountability, and
+              structured delivery.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <footer class="site-footer">
+      <div class="container footer-grid">
 
+        <div class="footer-brand">
+          <img src="images/chassis-logo.png" alt="Chassis logo" class="footer-logo">
+          <p class="muted">Business structuring, operations design, and project management.</p>
+        </div>
 
-<section class="section section-soft">
+        <div class="footer-nav" aria-label="Footer navigation">
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="projects.html">Projects</a>
+          <a href="collaboration.html">Collaboration</a>
+          <a href="contact.html">Contact</a>
+        </div>
 
-<div class="container">
+        <div class="footer-contact">
+          <a class="link" href="mailto:chassis.lb@gmail.com"><i class="fa-solid fa-envelope"></i> chassis.lb@gmail.com</a>
+          <a class="link" href="tel:+96171085824"><i class="fa-solid fa-phone"></i> +961 71 085 824</a>
+          <a class="link" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
 
-<h2 class="h2">What Chassis Focuses On</h2>
+        <div class="footer-bottom">
+          © <span id="year"></span> Chassis. All rights reserved.
+        </div>
 
-<div class="grid-3">
+      </div>
+    </footer>
 
-<div class="card">
-<h3>Business Structuring</h3>
-<p class="muted">
-Clarifying priorities, defining responsibilities, and creating a clear
-framework for decision-making.
-</p>
-</div>
+  </main>
 
-<div class="card">
-<h3>Operations Design</h3>
-<p class="muted">
-Building workflows, SOPs, reporting structures, and operational tools
-that allow teams to execute efficiently.
-</p>
-</div>
+  <!-- WhatsApp floating button -->
+  <a class="whatsapp-float" href="https://wa.me/96171085824" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span>WhatsApp</span>
+  </a>
 
-<div class="card">
-<h3>Project Execution</h3>
-<p class="muted">
-Coordinating projects with clear timelines, accountability, and
-structured delivery.
-</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<footer class="site-footer">
-
-<div class="container footer-grid">
-
-<div class="footer-brand">
-<img src="images/chassis-logo.png" class="footer-logo">
-<p>Business structuring, operations design, and project management.</p>
-</div>
-
-<div class="footer-nav">
-<a href="about.html">About</a>
-<a href="services.html">Services</a>
-<a href="projects.html">Projects</a>
-<a href="collaboration.html">Collaboration</a>
-<a href="contact.html">Contact</a>
-</div>
-
-<div class="footer-contact">
-<a href="mailto:chassis.lb@gmail.com">chassis.lb@gmail.com</a>
-<a href="tel:+96171085824">+961 71 085 824</a>
-</div>
-
-<div class="footer-bottom">
-© <span id="year"></span> Chassis
-</div>
-
-</div>
-
-</footer>
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
