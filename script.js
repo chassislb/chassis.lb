@@ -19,13 +19,25 @@
 
   if (burger) burger.addEventListener("click", toggleMenu);
 
+  // Close menu when clicking a menu link
   if (menu) {
     menu.querySelectorAll("a").forEach((a) => {
       a.addEventListener("click", closeMenu);
     });
   }
 
+  // Close on escape
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeMenu();
+  });
+
+  // NEW: close menu if user clicks outside of it
+  document.addEventListener("click", (e) => {
+    if (!menu || !burger) return;
+    const clickedInsideMenu = menu.contains(e.target);
+    const clickedBurger = burger.contains(e.target);
+    const isOpen = menu.classList.contains("show");
+
+    if (isOpen && !clickedInsideMenu && !clickedBurger) closeMenu();
   });
 })();
