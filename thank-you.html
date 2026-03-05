@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Thank You – Chassis</title>
+  <meta name="description" content="Thanks for reaching out to Chassis. Your message has been sent." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Chassis home">
+        <img src="images/chassis-logo.png" alt="Chassis logo">
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="collaboration.html">Collaboration</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-toggle" aria-label="Language toggle">
+          <a class="active" href="thank-you.html">EN</a>
+          <span aria-hidden="true">|</span>
+          <a href="thank-you-ar.html">AR</a>
+        </div>
+
+        <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation">
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="collaboration.html">Collaboration</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section class="section">
+      <div class="container" style="max-width: 860px;">
+
+        <div class="card" style="text-align:center; padding: 28px;">
+          <div style="font-size:44px; margin-bottom: 10px;">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+
+          <h1 class="h2" style="margin-bottom:10px;">Message sent.</h1>
+          <p class="muted" style="max-width: 60ch; margin: 0 auto;">
+            Thanks for reaching out. I received your message and will reply as soon as possible.
+            If your request is urgent, WhatsApp is the fastest way.
+          </p>
+
+          <div class="row-actions" style="justify-content:center; margin-top: 18px;">
+            <a class="btn btn-dark" href="index.html">
+              <i class="fa-solid fa-house"></i>
+              Back to Home
+            </a>
+
+            <a class="btn btn-primary" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp"></i>
+              WhatsApp
+            </a>
+
+            <a class="btn btn-ghost" href="services.html">
+              <i class="fa-solid fa-briefcase"></i>
+              View Services
+            </a>
+          </div>
+
+          <p class="fineprint" style="margin-top: 14px;">
+            If you don’t see a reply within 24–48 hours, check your spam folder (because email loves chaos).
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+
+        <div class="footer-brand">
+          <img src="images/chassis-logo.png" alt="Chassis logo" class="footer-logo">
+          <p class="muted">Business structuring, operations design, and project management.</p>
+        </div>
+
+        <div class="footer-nav" aria-label="Footer navigation">
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="projects.html">Projects</a>
+          <a href="collaboration.html">Collaboration</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="footer-contact">
+          <a class="link" href="mailto:chassis.lb@gmail.com"><i class="fa-solid fa-envelope"></i> chassis.lb@gmail.com</a>
+          <a class="link" href="tel:+96171085824"><i class="fa-solid fa-phone"></i> +961 71 085 824</a>
+          <a class="link" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+
+        <div class="footer-bottom">
+          © <span id="year"></span> Chassis. All rights reserved.
+        </div>
+
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- WhatsApp floating button -->
+  <a class="whatsapp-float" href="https://wa.me/96171085824" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span>WhatsApp</span>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
