@@ -1,0 +1,34 @@
+/* rtl-ar.css (Arabic overrides) */
+
+/* Use Zain for Arabic */
+body{
+  font-family: "Zain", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Better Arabic spacing */
+h1, h2, h3, .h2{
+  letter-spacing: 0 !important;
+}
+
+/* Ensure RTL feels natural */
+.nav a{
+  font-weight: 700;
+}
+
+/* The steps connector line should appear on the right in RTL */
+.step:not(:last-child)::after{
+  left: auto;
+  right: 32px;
+}
+
+/* Inline contact links look nicer centered in Arabic too */
+.contact-inline{
+  justify-content: flex-start;
+}
+
+/* Phone numbers should stay LTR inside RTL page */
+.ltr{
+  direction: ltr;
+  unicode-bidi: embed;
+  display: inline-block;
+}
