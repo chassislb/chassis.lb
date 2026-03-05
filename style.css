@@ -8,6 +8,7 @@
   --bg:#ffffff;
   --bg-soft:#f7f7f7;
   --text:#0b0b0b;
+  --muted:#3b3b3b;
 
   --border: rgba(0,0,0,0.10);
   --shadow: 0 18px 50px rgba(0,0,0,0.08);
@@ -246,11 +247,16 @@ strong{ font-weight: 700; }
 .hero-panel li{ display:flex; gap: 10px; align-items:flex-start; }
 .hero-panel i{ color: var(--blue); margin-top: 3px; }
 .panel-cta{ margin-top: 14px; }
+
 .link{
   font-weight: 700;
   color: rgba(0,0,0,0.82);
 }
-.link:hover{ color: rgba(0,0,0,1); text-decoration: underline; text-underline-offset: 3px; }
+.link:hover{
+  color: rgba(0,0,0,1);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 /* Sections */
 .section{ padding: 64px 0; }
@@ -283,6 +289,7 @@ strong{ font-weight: 700; }
   padding: 18px;
 }
 .card-title{ font-size: 16px; letter-spacing: -0.01em; }
+
 .note{
   margin-top: 12px;
   border-left: 4px solid var(--yellow);
@@ -317,7 +324,11 @@ strong{ font-weight: 700; }
   color: rgba(0,0,0,0.85);
 }
 .mini h3{ font-size: 15px; }
-.mini p{ font-size: 13px; color: rgba(0,0,0,0.65); margin-top: 2px; }
+.mini p{
+  font-size: 13px;
+  color: rgba(0,0,0,0.65);
+  margin-top: 2px;
+}
 
 /* Profile card */
 .profile-head{
@@ -332,7 +343,11 @@ strong{ font-weight: 700; }
   border: 2px solid rgba(54,198,244,0.30);
 }
 .name{ font-weight: 800; }
-.role{ font-size: 13px; color: rgba(0,0,0,0.60); margin-top: 2px; }
+.role{
+  font-size: 13px;
+  color: rgba(0,0,0,0.60);
+  margin-top: 2px;
+}
 .quote{
   margin-top: 12px;
   padding-top: 12px;
@@ -378,8 +393,15 @@ strong{ font-weight: 700; }
 .step-icon.yellow{ background: rgba(243,204,49,0.25); }
 .step-icon.blue{ background: rgba(54,198,244,0.20); }
 .step-icon.gray{ background: rgba(180,180,181,0.25); }
-.step h3{ font-size: 16px; letter-spacing: -0.01em; }
-.step p{ margin-top: 2px; font-size: 13px; color: rgba(0,0,0,0.66); }
+.step h3{
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+.step p{
+  margin-top: 2px;
+  font-size: 13px;
+  color: rgba(0,0,0,0.66);
+}
 
 /* Grids */
 .grid-3{
@@ -395,6 +417,7 @@ strong{ font-weight: 700; }
   margin-top: 16px;
 }
 
+/* Services */
 .badge{
   display:inline-flex;
   gap: 8px;
@@ -418,6 +441,7 @@ strong{ font-weight: 700; }
   color: rgba(0,0,0,0.72);
 }
 
+/* Projects */
 .project-top{
   display:flex;
   justify-content:space-between;
@@ -425,12 +449,6 @@ strong{ font-weight: 700; }
   gap: 10px;
   flex-wrap: wrap;
 }
-
-/* Compact project cards */
-.project-compact p{
-  margin-top: 10px;
-}
-
 .pill{
   display:inline-flex;
   gap: 8px;
@@ -443,6 +461,32 @@ strong{ font-weight: 700; }
 }
 .pill.red{ background: rgba(0,0,0,0.05); }
 
+/* Compact project cards (short version) */
+.project-compact .project-top{
+  margin-bottom: 4px;
+}
+.project-compact p{
+  margin-top: 10px;
+}
+
+.list{
+  list-style:none;
+  margin-top: 12px;
+  display:grid;
+  gap: 8px;
+  color: rgba(0,0,0,0.70);
+  font-size: 14px;
+}
+.list li{
+  display:flex;
+  gap: 10px;
+  align-items:flex-start;
+}
+.list i{
+  color: var(--blue);
+  margin-top: 3px;
+}
+
 .row-actions{
   margin-top: 16px;
   display:flex;
@@ -452,8 +496,16 @@ strong{ font-weight: 700; }
 
 /* Form */
 .form-card{ padding: 18px; }
-.field{ display:grid; gap: 8px; margin-bottom: 12px; }
-label{ font-weight: 700; font-size: 13px; }
+
+.field{
+  display:grid;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+label{
+  font-weight: 700;
+  font-size: 13px;
+}
 input, textarea{
   border: 1px solid rgba(0,0,0,0.14);
   border-radius: 14px;
@@ -482,6 +534,7 @@ input:focus, textarea:focus{
   background: rgba(255,255,255,0.85);
 }
 .radio input{ width:auto; }
+
 .form-actions{
   display:flex;
   flex-wrap:wrap;
@@ -494,34 +547,36 @@ input:focus, textarea:focus{
   color: rgba(0,0,0,0.55);
 }
 
-/* Contact (centered card) */
+/* Contact (centered) */
 .contact-center{
   max-width: 720px;
   margin: 0 auto;
   text-align: center;
 }
+
 .contact-center .contact-lines{
   margin-top: 12px;
   display: grid;
   gap: 10px;
   justify-items: center;
 }
-.contact-center .social{
-  justify-content: center;
-}
 
-.contact-lines{ margin-top: 10px; display:grid; gap: 8px; }
 .contact-inline{
   margin-top: 14px;
   display:flex;
   flex-wrap:wrap;
   gap: 12px;
 }
+
 .social{
   display:flex;
   gap: 12px;
   margin-top: 14px;
 }
+.contact-center .social{
+  justify-content: center;
+}
+
 .social a{
   width: 44px; height: 44px;
   display:flex;
@@ -569,9 +624,20 @@ input:focus, textarea:focus{
 @media (max-width: 980px){
   .nav{ display:none; }
   .hamburger{ display:inline-flex; }
+
   .hero-grid{ grid-template-columns: 1fr; }
   .split{ grid-template-columns: 1fr; }
   .grid-3{ grid-template-columns: 1fr; }
   .grid-2{ grid-template-columns: 1fr; }
   .radio-grid{ grid-template-columns: 1fr; }
+
+  .contact-inline{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .whatsapp-float span{
+    display:none;
+  }
 }
