@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>الخدمات – شاسي</title>
-  <meta name="description" content="خدمات شاسي: هيكلة الأعمال، تصميم العمليات والأنظمة، ودعم مستمر لضمان تنفيذ منظم وقابل للتوسع." />
 
-  <!-- Fonts -->
+  <title>الخدمات – شاسي</title>
+  <meta name="description" content="خدمات شاسي تشمل هيكلة الأعمال، تصميم العمليات والأنظمة، ودعم مستمر لضمان تنفيذ منظم وقابل للتوسع." />
+
+  <!-- Fonts (Arabic) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zain:wght@400;700;800&display=swap" rel="stylesheet">
@@ -20,6 +21,7 @@
 </head>
 
 <body>
+
   <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
@@ -29,7 +31,7 @@
 
       <nav class="nav" aria-label="التنقل الرئيسي">
         <a href="about-ar.html">عن شاسي</a>
-        <a href="services-ar.html" aria-current="page">الخدمات</a>
+        <a class="active" href="services-ar.html">الخدمات</a>
         <a href="projects-ar.html">المشاريع</a>
         <a href="collaboration-ar.html">التعاون</a>
         <a href="contact-ar.html">التواصل</a>
@@ -48,6 +50,7 @@
       </div>
     </div>
 
+    <!-- Mobile menu -->
     <div id="mobileMenu" class="mobile-menu" aria-label="قائمة الجوال">
       <a href="about-ar.html">عن شاسي</a>
       <a href="services-ar.html">الخدمات</a>
@@ -58,22 +61,21 @@
   </header>
 
   <main id="top">
-    <!-- Page Intro -->
+
+    <!-- Hero -->
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">
             <span class="dot"></span>
-            هيكلة الأعمال • تطوير العمليات • إدارة المشاريع
+            خدمات تشغيلية عملية وليست “نصائح عامة”
           </p>
 
-          <h1>
-            خدمات تساعد على <span class="accent">تنفيذ هادئ</span>.
-          </h1>
+          <h1>الخدمات</h1>
 
           <p class="lead">
-            اختر الخدمة الأنسب لمرحلة مشروعك وللعائق الحقيقي أمام التنفيذ. الهدف واحد:
-            هيكلة تجعل التسليم واضحًا وقابلًا للتنبؤ.
+            يتم اختيار الخدمة وفق مرحلة العمل وطبيعة التحديات التشغيلية. الهدف دائمًا واحد:
+            <strong>تنفيذ منظم، مسؤوليات واضحة، ونتائج قابلة للقياس.</strong>
           </p>
 
           <div class="hero-actions">
@@ -81,116 +83,81 @@
               <i class="fa-solid fa-calendar-check"></i>
               طلب استشارة
             </a>
+
             <a class="btn btn-ghost" href="https://wa.me/96171085824" target="_blank" rel="noopener">
               <i class="fa-brands fa-whatsapp"></i>
-              تواصل عبر واتساب
+              واتساب
             </a>
+          </div>
+
+          <div class="trust-row" aria-label="مخرجات شائعة">
+            <span class="chip"><i class="fa-solid fa-list-check"></i> SOPs</span>
+            <span class="chip"><i class="fa-solid fa-diagram-project"></i> سير عمل</span>
+            <span class="chip"><i class="fa-solid fa-chart-line"></i> تقارير</span>
+            <span class="chip"><i class="fa-solid fa-clipboard-check"></i> متابعة</span>
           </div>
         </div>
 
-        <div class="hero-panel" aria-label="الفائدة">
-          <h3>ماذا ستحصل</h3>
+        <!-- Panel -->
+        <div class="hero-panel" aria-label="مناسب لك إذا">
+          <h3>مناسب لك إذا</h3>
           <ul>
-            <li><i class="fa-solid fa-bullseye"></i> نطاق واضح ومخرجات محددة</li>
-            <li><i class="fa-solid fa-diagram-project"></i> سير عمل قابل للتطبيق داخل الفريق</li>
-            <li><i class="fa-solid fa-clipboard-check"></i> متابعة وانضباط ومسؤوليات واضحة</li>
-            <li><i class="fa-solid fa-shield-heart"></i> ضغط أقل بفضل التنظيم</li>
+            <li><i class="fa-solid fa-circle-check"></i> تشعر أن التنفيذ “يمشي بالعافية” بدون نظام</li>
+            <li><i class="fa-solid fa-circle-check"></i> المسؤوليات غير واضحة أو تتداخل بين الفريق</li>
+            <li><i class="fa-solid fa-circle-check"></i> الاجتماعات كثيرة والنتائج قليلة</li>
+            <li><i class="fa-solid fa-circle-check"></i> تحتاج نظام متابعة وتقارير يحافظ على الانضباط</li>
           </ul>
 
           <div class="panel-cta">
-            <a class="link" href="projects-ar.html">عرض المشاريع →</a>
+            <a class="link" href="#packages">عرض الخدمات →</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Services -->
-    <section class="section">
+    <!-- Packages -->
+    <section id="packages" class="section">
       <div class="container">
         <div class="section-head">
-          <h2 class="h2">الخدمات</h2>
-          <p class="muted">يتم اختيار الخدمة وفق المرحلة وطبيعة العائق التشغيلي الحقيقي.</p>
+          <h2 class="h2">باقات الخدمات</h2>
+          <p class="muted">ثلاث مسارات واضحة. نختار المناسب حسب المرحلة، ثم ننفّذه بنظام.</p>
         </div>
 
         <div class="grid-3">
+          <!-- 1 -->
           <article class="card service">
             <div class="badge yellow"><i class="fa-solid fa-compass"></i> وضوح واتجاه</div>
             <h3>هيكلة الأعمال وتحديد الأولويات</h3>
             <p class="muted">
-              تحليل الوضع الحالي، تحديد الأولويات، وبناء اتجاه تنفيذي واضح يقلّل التشتت ويرفع جودة التسليم.
+              تشخيص سريع وعملي للوضع، ثم تحديد الأولويات وبناء اتجاه تنفيذي يقلّل التشتت ويزيد الانضباط.
             </p>
+
+            <ul class="list">
+              <li><i class="fa-solid fa-check"></i> جلسة/جلسات تشخيص + تحديد الهدف</li>
+              <li><i class="fa-solid fa-check"></i> خريطة أولويات تشغيلية (30-60-90 يوم)</li>
+              <li><i class="fa-solid fa-check"></i> توزيع مسؤوليات مبدئي (Ownership)</li>
+              <li><i class="fa-solid fa-check"></i> نقاط قرار واضحة لتجنب “اللف والدوران”</li>
+            </ul>
+
             <p class="starting">يبدأ من <strong>$1,500</strong></p>
+
+            <div class="row-actions">
+              <a class="btn btn-dark full" href="contact-ar.html">
+                <i class="fa-solid fa-paper-plane"></i> طلب نطاق مبدئي
+              </a>
+            </div>
           </article>
 
+          <!-- 2 -->
           <article class="card service">
             <div class="badge blue"><i class="fa-solid fa-gears"></i> تشغيل وأنظمة</div>
             <h3>تصميم العمليات والأنظمة</h3>
             <p class="muted">
-              بناء سير العمل، توزيع الأدوار، توثيق إجراءات التشغيل القياسية (SOPs)، اختيار الأدوات، وإنشاء نظام تقارير ثابت.
+              تحويل العمل اليومي إلى نظام: سير عمل، SOPs، أدوات، وتقارير. الهدف: تنفيذ ثابت لا يعتمد على المزاج.
             </p>
-            <p class="starting">يبدأ من <strong>$2,000</strong></p>
-          </article>
 
-          <article class="card service">
-            <div class="badge gray"><i class="fa-solid fa-chart-line"></i> نمو واستمرارية</div>
-            <h3>دعم مستمر</h3>
-            <p class="muted">
-              دعم شهري للفرق التي تريد توسيع التنفيذ دون كسر ما يعمل بالفعل.
-            </p>
-            <p class="starting">يبدأ من <strong>$800 / شهر</strong></p>
-          </article>
-        </div>
-
-        <div class="row-actions">
-          <a class="btn btn-primary" href="contact-ar.html">
-            <i class="fa-solid fa-paper-plane"></i>
-            طلب تقييم نطاق مبدئي
-          </a>
-          <a class="btn btn-ghost" href="projects-ar.html">
-            <i class="fa-solid fa-folder-open"></i>
-            عرض المشاريع
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <div class="footer-brand">
-          <img src="images/chassis-logo.png" alt="شعار شاسي" class="footer-logo">
-          <p class="muted">هيكلة الأعمال، تطوير العمليات، وإدارة المشاريع.</p>
-        </div>
-
-        <div class="footer-nav" aria-label="روابط الموقع">
-          <a href="about-ar.html">عن شاسي</a>
-          <a href="services-ar.html">الخدمات</a>
-          <a href="projects-ar.html">المشاريع</a>
-          <a href="collaboration-ar.html">التعاون</a>
-          <a href="contact-ar.html">التواصل</a>
-        </div>
-
-        <div class="footer-contact">
-          <a class="link" href="mailto:chassis.lb@gmail.com"><i class="fa-solid fa-envelope"></i> chassis.lb@gmail.com</a>
-          <a class="link ltr" href="tel:+96171085824"><i class="fa-solid fa-phone"></i> +961 71 085 824</a>
-          <a class="link" href="https://wa.me/96171085824" target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp"></i> واتساب
-          </a>
-        </div>
-
-        <div class="footer-bottom">
-          © <span id="year"></span> شاسي. جميع الحقوق محفوظة.
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <!-- WhatsApp floating button -->
-  <a class="whatsapp-float" href="https://wa.me/96171085824" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <i class="fa-brands fa-whatsapp"></i>
-    <span>واتساب</span>
-  </a>
-
-  <script src="script.js"></script>
-</body>
-</html>
+            <ul class="list">
+              <li><i class="fa-solid fa-check"></i> تصميم سير العمل (Workflow)</li>
+              <li><i class="fa-solid fa-check"></i> كتابة SOPs الأساسية</li>
+              <li><i class="fa-solid fa-check"></i> اختيار أدوات (Notion/Sheets/ClickUp… حسب الحاجة)</li>
+              <li><i class="fa-solid fa-check"></i> هيكلة تقارير ومتابعة أسبوع
