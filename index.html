@@ -22,17 +22,17 @@
   <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="Chassis home">
+      <a class="brand" href="index.html" aria-label="Chassis home">
         <img src="images/chassis-logo.png" alt="Chassis logo">
       </a>
 
+      <!-- UPDATED NAV: now real pages -->
       <nav class="nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#how">How I work</a>
-        <a href="#services">Services</a>
-        <a href="#projects">Projects</a>
-        <a href="#consultation">Consultation</a>
-        <a href="#contact">Contact</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="collaboration.html">Collaboration</a>
+        <a href="contact.html">Contact</a>
       </nav>
 
       <div class="header-actions">
@@ -48,13 +48,13 @@
       </div>
     </div>
 
+    <!-- UPDATED MOBILE MENU: now real pages -->
     <div id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation">
-      <a href="#about">About</a>
-      <a href="#how">How I work</a>
-      <a href="#services">Services</a>
-      <a href="#projects">Projects</a>
-      <a href="#consultation">Consultation</a>
-      <a href="#contact">Contact</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="collaboration.html">Collaboration</a>
+      <a href="contact.html">Contact</a>
     </div>
   </header>
 
@@ -78,7 +78,7 @@
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-dark" href="#consultation">
+            <a class="btn btn-dark" href="contact.html">
               <i class="fa-solid fa-calendar-check"></i>
               Schedule a Consultation
             </a>
@@ -106,13 +106,13 @@
           </ul>
 
           <div class="panel-cta">
-            <a class="link" href="#how">See how I work →</a>
+            <a class="link" href="services.html">See services →</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- About -->
+    <!-- About (kept on homepage for now) -->
     <section id="about" class="section">
       <div class="container split">
         <div>
@@ -169,7 +169,7 @@
       </div>
     </section>
 
-    <!-- How I work -->
+    <!-- How I work (kept on homepage for now) -->
     <section id="how" class="section section-soft">
       <div class="container split">
         <div>
@@ -241,7 +241,7 @@
       </div>
     </section>
 
-    <!-- Services -->
+    <!-- Services (kept on homepage for now) -->
     <section id="services" class="section">
       <div class="container">
         <div class="section-head">
@@ -277,10 +277,21 @@
             <p class="starting">Starting from <strong>$800 / month</strong></p>
           </article>
         </div>
+
+        <div class="row-actions">
+          <a class="btn btn-primary" href="projects.html">
+            <i class="fa-solid fa-folder-open"></i>
+            View Projects
+          </a>
+          <a class="btn btn-ghost" href="contact.html">
+            <i class="fa-solid fa-paper-plane"></i>
+            Request an Initial Scope Review
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- Projects (short version) -->
+    <!-- Projects (kept on homepage for now) -->
     <section id="projects" class="section section-soft">
       <div class="container">
         <div class="section-head">
@@ -327,15 +338,15 @@
             <i class="fa-brands fa-instagram"></i>
             View Projects Highlights
           </a>
-          <a class="btn btn-ghost" href="#consultation">
-            <i class="fa-solid fa-paper-plane"></i>
-            Request an Initial Scope Review
+          <a class="btn btn-ghost" href="projects.html">
+            <i class="fa-solid fa-folder-open"></i>
+            View Full Projects Page
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Consultation -->
+    <!-- Consultation (kept on homepage for now, CTA goes to contact page too) -->
     <section id="consultation" class="section">
       <div class="container split">
         <div>
@@ -414,7 +425,7 @@
       </div>
     </section>
 
-    <!-- Contact (centered) -->
+    <!-- Contact (kept on homepage for now) -->
     <section id="contact" class="section section-soft">
       <div class="container">
         <div class="contact-center card">
@@ -434,10 +445,33 @@
       </div>
     </section>
 
-    <!-- Bottom Footer -->
+    <!-- UPDATED FOOTER: now with navigation -->
     <footer class="site-footer">
-      <div class="container">
-        © <span id="year"></span> Chassis. All rights reserved.
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <img src="images/chassis-logo.png" alt="Chassis logo" class="footer-logo">
+          <p class="muted">Business structuring, operations design, and project management.</p>
+        </div>
+
+        <div class="footer-nav" aria-label="Footer navigation">
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="projects.html">Projects</a>
+          <a href="collaboration.html">Collaboration</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="footer-contact">
+          <a class="link" href="mailto:chassis.lb@gmail.com"><i class="fa-solid fa-envelope"></i> chassis.lb@gmail.com</a>
+          <a class="link" href="tel:+96171085824"><i class="fa-solid fa-phone"></i> +961 71 085 824</a>
+          <a class="link" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+
+        <div class="footer-bottom">
+          © <span id="year"></span> Chassis. All rights reserved.
+        </div>
       </div>
     </footer>
 
