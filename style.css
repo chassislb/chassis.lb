@@ -461,13 +461,9 @@ strong{ font-weight: 700; }
 }
 .pill.red{ background: rgba(0,0,0,0.05); }
 
-/* Compact project cards (short version) */
-.project-compact .project-top{
-  margin-bottom: 4px;
-}
-.project-compact p{
-  margin-top: 10px;
-}
+/* Compact project cards */
+.project-compact .project-top{ margin-bottom: 4px; }
+.project-compact p{ margin-top: 10px; }
 
 .list{
   list-style:none;
@@ -553,14 +549,12 @@ input:focus, textarea:focus{
   margin: 0 auto;
   text-align: center;
 }
-
 .contact-center .contact-lines{
   margin-top: 12px;
   display: grid;
   gap: 10px;
   justify-items: center;
 }
-
 .contact-inline{
   margin-top: 14px;
   display:flex;
@@ -573,9 +567,7 @@ input:focus, textarea:focus{
   gap: 12px;
   margin-top: 14px;
 }
-.contact-center .social{
-  justify-content: center;
-}
+.contact-center .social{ justify-content: center; }
 
 .social a{
   width: 44px; height: 44px;
@@ -591,56 +583,59 @@ input:focus, textarea:focus{
   background: rgba(0,0,0,0.03);
 }
 
-/* Bottom Footer */
+/* Footer (simple + structured grid support) */
 .site-footer{
   padding: 26px 0 34px;
   color: rgba(0,0,0,0.55);
   font-size: 13px;
-  text-align: center;
   border-top: 1px solid var(--border);
   background: #fff;
 }
 
-/* NEW: Footer grid + links (for multi-page site) */
+/* New footer layout */
 .footer-grid{
   display:grid;
   grid-template-columns: 1.2fr 0.8fr 1fr;
   gap: 18px;
   align-items:start;
-  text-align: left;
 }
 .footer-logo{
-  height: 32px;
-  width: auto;
+  height: 34px;
+  width:auto;
   margin-bottom: 10px;
 }
+.footer-brand p{ margin-top: 6px; }
+
 .footer-nav{
   display:grid;
   gap: 10px;
-  font-weight: 700;
-  font-size: 14px;
 }
 .footer-nav a{
-  color: rgba(0,0,0,0.75);
+  font-weight: 700;
+  color: rgba(0,0,0,0.72);
 }
 .footer-nav a:hover{
+  color: rgba(0,0,0,0.92);
   text-decoration: underline;
   text-underline-offset: 3px;
-  color: rgba(0,0,0,1);
 }
+
 .footer-contact{
   display:grid;
   gap: 10px;
-  font-size: 14px;
 }
+.footer-contact .link{
+  font-weight: 700;
+  color: rgba(0,0,0,0.72);
+}
+
 .footer-bottom{
   grid-column: 1 / -1;
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
-  font-size: 13px;
-  color: rgba(0,0,0,0.55);
+  padding-top: 14px;
+  margin-top: 6px;
+  border-top: 1px solid rgba(0,0,0,0.10);
   text-align: center;
+  color: rgba(0,0,0,0.55);
 }
 
 /* WhatsApp floating */
@@ -679,17 +674,12 @@ input:focus, textarea:focus{
     gap: 8px;
   }
 
-  .whatsapp-float span{
-    display:none;
-  }
-
-  /* Footer responsive */
   .footer-grid{
     grid-template-columns: 1fr;
+  }
+  .footer-bottom{
     text-align: center;
   }
-  .footer-contact,
-  .footer-nav{
-    justify-items: center;
-  }
+
+  .whatsapp-float span{ display:none; }
 }
