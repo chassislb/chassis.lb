@@ -32,3 +32,27 @@ h1, h2, h3, .h2{
   unicode-bidi: embed;
   display: inline-block;
 }
+/* RTL footer contact alignment fix */
+html[dir="rtl"] .footer-contact{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;   /* keeps icons + text aligned */
+  text-align: right;
+}
+
+html[dir="rtl"] .footer-contact .link,
+html[dir="rtl"] .footer-contact a{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+}
+
+/* Keep phone/email readable in RTL */
+html[dir="rtl"] .footer-contact .ltr,
+html[dir="rtl"] .footer-contact a[href^="tel:"],
+html[dir="rtl"] .footer-contact a[href^="mailto:"]{
+  direction: ltr;
+  unicode-bidi: plaintext;
+}
