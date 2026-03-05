@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>التواصل – شاسي</title>
+  <meta name="description" content="تواصل مع شاسي لطلب استشارة أو مشاركة احتياجك التشغيلي. نموذج مختصر يساعد على فهم الوضع وتقدير النطاق بشكل أولي." />
+
+  <!-- Fonts (Arabic) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zain:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Shared styles + Arabic overrides -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="rtl-ar.css">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index-ar.html" aria-label="العودة إلى الصفحة الرئيسية">
+        <img src="images/chassis-logo.png" alt="شعار شاسي">
+      </a>
+
+      <nav class="nav" aria-label="التنقل الرئيسي">
+        <a href="about-ar.html">عن شاسي</a>
+        <a href="services-ar.html">الخدمات</a>
+        <a href="projects-ar.html">المشاريع</a>
+        <a href="collaboration-ar.html">التعاون</a>
+        <a class="active" href="contact-ar.html">التواصل</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-toggle" aria-label="تبديل اللغة">
+          <a href="contact.html">EN</a>
+          <span aria-hidden="true">|</span>
+          <a class="active" href="contact-ar.html">AR</a>
+        </div>
+
+        <button class="hamburger" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="mobile-menu" aria-label="قائمة الجوال">
+      <a href="about-ar.html">عن شاسي</a>
+      <a href="services-ar.html">الخدمات</a>
+      <a href="projects-ar.html">المشاريع</a>
+      <a href="collaboration-ar.html">التعاون</a>
+      <a href="contact-ar.html">التواصل</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- Contact -->
+    <section class="section">
+      <div class="container split">
+
+        <div>
+          <h1 class="h2">التواصل</h1>
+          <p class="muted">
+            استخدم النموذج لطلب استشارة أو توضيح احتياجك. وإذا أردت طريقًا أسرع وأبسط: واتساب.
+          </p>
+
+          <div class="contact-inline">
+            <a class="link" href="mailto:chassis.lb@gmail.com"><i class="fa-solid fa-envelope"></i> chassis.lb@gmail.com</a>
+            <a class="link ltr" href="tel:+96171085824"><i class="fa-solid fa-phone"></i> +961 71 085 824</a>
+            <a class="link" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+          </div>
+
+          <div class="note" style="margin-top:16px;">
+            <strong>ملاحظة:</strong>
+            <p>إذا لم تكن متأكدًا من نوع الخدمة، فقط اشرح وضعك وسيتم اقتراح نقطة البداية الأنسب.</p>
+          </div>
+        </div>
+
+        <div class="card form-card">
+          <h2 class="card-title">طلب استشارة</h2>
+          <p class="muted" style="margin-top:6px;">
+            نموذج مختصر يساعد على فهم الوضع وتقدير النطاق بشكل أولي.
+          </p>
+
+          <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="استفسار جديد عبر الموقع (صفحة التواصل)">
+            <input type="hidden" name="_template" value="table">
+
+            <div class="field">
+              <label for="name">الاسم</label>
+              <input id="name" type="text" name="name" required>
+            </div>
+
+            <div class="field">
+              <label for="email">البريد الإلكتروني</label>
+              <input id="email" type="email" name="email" required>
+            </div>
+
+            <div class="field">
+              <label for="phone">رقم هاتف / واتساب (اختياري)</label>
+              <input id="phone" type="text" name="phone" placeholder="+961 ...">
+            </div>
+
+            <div class="field">
+              <label>نوع الدعم المطلوب</label>
+              <div class="radio-grid">
+                <label class="radio">
+                  <input type="radio" name="need" value="هيكلة الأعمال وتحديد الأولويات" required>
+                  <span>هيكلة الأعمال وتحديد الأولويات</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="need" value="تصميم العمليات والأنظمة">
+                  <span>تصميم العمليات والأنظمة</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="need" value="دعم مستمر">
+                  <span>دعم مستمر</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="need" value="غير متأكد بعد">
+                  <span>غير متأكد بعد</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="business">نبذة مختصرة عن المشروع/الشركة</label>
+              <textarea id="business" name="business" rows="4" required></textarea>
+            </div>
+
+            <div class="field">
+              <label for="challenge">ما هو التحدي الرئيسي الآن؟</label>
+              <textarea id="challenge" name="challenge" rows="3"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="timeline">الجدول الزمني (اختياري)</label>
+              <input id="timeline" type="text" name="timeline" placeholder="مثلًا: عاجل / هذا الشهر / الربع القادم">
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-dark" type="submit">
+                <i class="fa-solid fa-envelope"></i> إرسال
+              </button>
+
+              <a class="btn btn-primary" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> واتساب
+              </a>
+            </div>
+
+            <p class="fineprint">يُستخدم هذا النموذج فقط للرد على الاستفسار.</p>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+
+        <div class="footer-brand">
+          <img src="images/chassis-logo.png" alt="شعار شاسي" class="footer-logo">
+          <p class="muted">هيكلة الأعمال، تطوير العمليات، وإدارة المشاريع.</p>
+        </div>
+
+        <div class="footer-nav" aria-label="روابط الموقع">
+          <a href="about-ar.html">عن شاسي</a>
+          <a href="services-ar.html">الخدمات</a>
+          <a href="projects-ar.html">المشاريع</a>
+          <a href="collaboration-ar.html">التعاون</a>
+          <a href="contact-ar.html">التواصل</a>
+        </div>
+
+        <div class="footer-contact">
+          <a class="link" href="mailto:chassis.lb@gmail.com"><i class="fa-solid fa-envelope"></i> chassis.lb@gmail.com</a>
+          <a class="link ltr" href="tel:+96171085824"><i class="fa-solid fa-phone"></i> +961 71 085 824</a>
+          <a class="link" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> واتساب
+          </a>
+        </div>
+
+        <div class="footer-bottom">
+          © <span id="year"></span> شاسي. جميع الحقوق محفوظة.
+        </div>
+
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- WhatsApp floating button -->
+  <a class="whatsapp-float" href="https://wa.me/96171085824" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span>واتساب</span>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
