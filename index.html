@@ -3,10 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Prevent weird relative-path behavior on GitHub Pages -->
-  <base href="./">
-
   <title>Chassis – Business Structuring, Operations & Project Management</title>
   <meta name="description" content="Chassis is a consulting brand founded by Sophia Ayoubi, focused on business structuring, operations design, and project management — turning ideas into clear, sustainable execution." />
 
@@ -30,7 +26,6 @@
         <img src="images/chassis-logo.png" alt="Chassis logo">
       </a>
 
-      <!-- NAV: real pages -->
       <nav class="nav" aria-label="Primary navigation">
         <a href="about.html">About</a>
         <a href="services.html">Services</a>
@@ -52,7 +47,6 @@
       </div>
     </div>
 
-    <!-- MOBILE MENU: real pages -->
     <div id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation">
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
@@ -116,60 +110,43 @@
       </div>
     </section>
 
-    <!-- About -->
+    <!-- About (homepage summary ONLY, no Sophia card) -->
     <section id="about" class="section">
-      <div class="container split">
-        <div>
+      <div class="container">
+        <div class="section-head">
           <h2 class="h2">Structured execution. Measurable outcomes.</h2>
           <p class="muted">
             When a business feels chaotic, the issue is rarely effort. It is usually structure.
             Chassis supports founders and small teams by designing practical operating systems, defining roles and responsibilities,
             and establishing consistent follow-up so execution stays controlled and measurable.
           </p>
+        </div>
 
-          <div class="mini-list">
-            <div class="mini">
-              <div class="mini-icon"><i class="fa-solid fa-sitemap"></i></div>
-              <div>
-                <h3>Business structure</h3>
-                <p>Clear priorities, roles, and decision flow.</p>
-              </div>
-            </div>
-            <div class="mini">
-              <div class="mini-icon"><i class="fa-solid fa-gears"></i></div>
-              <div>
-                <h3>Operations design</h3>
-                <p>Workflows, SOPs, tools, and reporting.</p>
-              </div>
-            </div>
-            <div class="mini">
-              <div class="mini-icon"><i class="fa-solid fa-clipboard-list"></i></div>
-              <div>
-                <h3>Project execution</h3>
-                <p>Timelines, follow-up, accountability, delivery.</p>
-              </div>
-            </div>
+        <div class="grid-3">
+          <div class="card">
+            <h3 class="card-title">Business structure</h3>
+            <p class="muted">Clear priorities, roles, and decision flow.</p>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Operations design</h3>
+            <p class="muted">Workflows, SOPs, tools, and reporting.</p>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Project execution</h3>
+            <p class="muted">Timelines, follow-up, accountability, delivery.</p>
           </div>
         </div>
 
-        <aside class="card profile-card">
-          <div class="profile-head">
-            <img src="images/sophia-profile.jpg" alt="Sophia Ayoubi">
-            <div>
-              <div class="name">Sophia Ayoubi</div>
-              <div class="role">Founder & Consultant</div>
-            </div>
-          </div>
-
-          <p class="quote">
-            “I build structure that makes execution calm, predictable, and scalable.”
-          </p>
-
-          <a class="btn btn-primary full" href="https://wa.me/96171085824" target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp"></i>
-            WhatsApp Message
+        <div class="row-actions">
+          <a class="btn btn-ghost" href="about.html">
+            <i class="fa-solid fa-user"></i>
+            Meet the consultant
           </a>
-        </aside>
+          <a class="btn btn-primary" href="services.html">
+            <i class="fa-solid fa-compass"></i>
+            Explore services
+          </a>
+        </div>
       </div>
     </section>
 
@@ -226,233 +203,72 @@
         </div>
 
         <aside class="card">
-          <h3 class="card-title">Transforming Business Operations</h3>
+          <h3 class="card-title">Want the fastest starting point?</h3>
           <p class="muted">
-            Chassis provides expert guidance in business structuring, operations design, and project management.
-            The focus is practical systems that can be implemented, responsibilities clearly assigned, and follow-up mechanisms that keep execution consistent.
+            Describe your situation in 3–5 lines and I’ll tell you the best starting scope.
           </p>
 
-          <div class="note">
-            <strong>Not sure where to start?</strong>
-            <p>Describe your situation and I’ll suggest the best starting point.</p>
+          <div class="row-actions">
+            <a class="btn btn-dark full" href="contact.html">
+              <i class="fa-solid fa-calendar-check"></i>
+              Request a Consultation
+            </a>
+            <a class="btn btn-ghost full" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp"></i>
+              Start on WhatsApp
+            </a>
           </div>
-
-          <a class="btn btn-dark full" href="https://wa.me/96171085824" target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp"></i>
-            Start on WhatsApp
-          </a>
         </aside>
       </div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="section">
+    <!-- Clean CTAs instead of duplicating full Services/Projects sections -->
+    <section class="section">
       <div class="container">
-        <div class="section-head">
-          <h2 class="h2">Services</h2>
-          <p class="muted">Pick the path that matches your stage and the real bottleneck.</p>
-        </div>
-
-        <div class="grid-3">
-          <article class="card service">
-            <div class="badge yellow"><i class="fa-solid fa-compass"></i> Clarity & direction</div>
-            <h3>Business Structuring & Priority Setting</h3>
-            <p class="muted">
-              Diagnose the business, clarify priorities, and define an executable direction that reduces distraction and supports delivery.
-            </p>
-            <p class="starting">Starting from <strong>$1,500</strong></p>
-          </article>
-
-          <article class="card service">
-            <div class="badge blue"><i class="fa-solid fa-gears"></i> Operations & systems</div>
-            <h3>Operations & Systems Design</h3>
-            <p class="muted">
-              Build workflows, define roles, document SOPs, select tools, and establish reporting for consistent follow-through.
-            </p>
-            <p class="starting">Starting from <strong>$2,000</strong></p>
-          </article>
-
-          <article class="card service">
-            <div class="badge gray"><i class="fa-solid fa-chart-line"></i> Growth & continuity</div>
-            <h3>Ongoing Support</h3>
-            <p class="muted">
-              Monthly support for teams scaling execution without breaking what already works.
-            </p>
-            <p class="starting">Starting from <strong>$800 / month</strong></p>
-          </article>
-        </div>
-
-        <div class="row-actions">
-          <a class="btn btn-primary" href="projects.html">
-            <i class="fa-solid fa-folder-open"></i>
-            View Projects
-          </a>
-          <a class="btn btn-ghost" href="contact.html">
-            <i class="fa-solid fa-paper-plane"></i>
-            Request an Initial Scope Review
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="section section-soft">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="h2">Projects</h2>
-          <p class="muted">Selected work across launches, operations, hospitality, events, and brand execution.</p>
-        </div>
-
         <div class="grid-2">
-          <article class="card project-compact">
-            <div class="project-top">
-              <h3>The Ark Networks</h3>
-              <span class="pill red"><i class="fa-solid fa-building"></i> Launch & operations</span>
-            </div>
-            <p class="muted">Coordinated launch execution with structured timelines and stakeholder follow-up.</p>
-          </article>
-
-          <article class="card project-compact">
-            <div class="project-top">
-              <h3>Le Pavé Bar</h3>
-              <span class="pill red"><i class="fa-solid fa-martini-glass"></i> Hospitality operations</span>
-            </div>
-            <p class="muted">Improved operational flow and follow-up discipline for smoother day-to-day execution.</p>
-          </article>
-
-          <article class="card project-compact">
-            <div class="project-top">
-              <h3>Vartavar Festival</h3>
-              <span class="pill red"><i class="fa-solid fa-calendar-check"></i> Event management</span>
-            </div>
-            <p class="muted">Managed coordination and reporting to deliver a large-scale event on time.</p>
-          </article>
-
-          <article class="card project-compact">
-            <div class="project-top">
-              <h3>Glow of Hope</h3>
-              <span class="pill red"><i class="fa-solid fa-wand-magic-sparkles"></i> Brand & execution</span>
-            </div>
-            <p class="muted">Built structured content execution and collaboration workflow for a growing brand.</p>
-          </article>
-        </div>
-
-        <div class="row-actions">
-          <a class="btn btn-primary" href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener">
-            <i class="fa-brands fa-instagram"></i>
-            View Projects Highlights
-          </a>
-          <a class="btn btn-ghost" href="projects.html">
-            <i class="fa-solid fa-folder-open"></i>
-            View Full Projects Page
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Consultation -->
-    <section id="consultation" class="section">
-      <div class="container split">
-        <div>
-          <h2 class="h2">Request a Consultation</h2>
-          <p class="muted">This form helps assess fit and estimate scope at a high level.</p>
-
-          <div class="contact-inline">
-            <a class="link" href="mailto:chassis.lb@gmail.com"><i class="fa-solid fa-envelope"></i> chassis.lb@gmail.com</a>
-            <a class="link" href="tel:+96171085824"><i class="fa-solid fa-phone"></i> +961 71 085 824</a>
-          </div>
-        </div>
-
-        <div class="card form-card">
-          <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="New Website Inquiry">
-            <input type="hidden" name="_template" value="table">
-
-            <div class="field">
-              <label for="name">Name</label>
-              <input id="name" type="text" name="name" required>
-            </div>
-
-            <div class="field">
-              <label for="email">Email</label>
-              <input id="email" type="email" name="email" required>
-            </div>
-
-            <div class="field">
-              <label>Type of Support</label>
-              <div class="radio-grid">
-                <label class="radio">
-                  <input type="radio" name="need" value="Business Structuring & Priority Setting" required>
-                  <span>Business Structuring & Priority Setting</span>
-                </label>
-                <label class="radio">
-                  <input type="radio" name="need" value="Operations & Systems Design">
-                  <span>Operations & Systems Design</span>
-                </label>
-                <label class="radio">
-                  <input type="radio" name="need" value="Ongoing Support">
-                  <span>Ongoing Support</span>
-                </label>
-                <label class="radio">
-                  <input type="radio" name="need" value="Not sure yet">
-                  <span>Not sure yet</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="business">Short description of your business</label>
-              <textarea id="business" name="business" rows="4" required></textarea>
-            </div>
-
-            <div class="field">
-              <label for="challenge">Main challenge right now</label>
-              <textarea id="challenge" name="challenge" rows="3"></textarea>
-            </div>
-
-            <div class="form-actions">
-              <button class="btn btn-dark" type="submit">
-                <i class="fa-solid fa-envelope"></i> Submit
-              </button>
-
-              <a class="btn btn-primary" href="https://wa.me/96171085824" target="_blank" rel="noopener">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          <article class="card">
+            <h2 class="card-title">Services</h2>
+            <p class="muted">Clear scopes. Practical systems. Execution discipline.</p>
+            <div class="row-actions">
+              <a class="btn btn-primary" href="services.html">
+                <i class="fa-solid fa-compass"></i>
+                View services
               </a>
             </div>
+          </article>
 
-            <p class="fineprint">This form is used only to respond to your inquiry.</p>
-          </form>
+          <article class="card">
+            <h2 class="card-title">Projects</h2>
+            <p class="muted">Selected work across launches, hospitality, events, and brand execution.</p>
+            <div class="row-actions">
+              <a class="btn btn-primary" href="projects.html">
+                <i class="fa-solid fa-folder-open"></i>
+                View projects
+              </a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section section-soft">
-      <div class="container">
-        <div class="contact-center card">
-          <h2 class="h2">Contact</h2>
-
-          <div class="contact-lines">
-            <div><strong>Email:</strong> <a class="link" href="mailto:chassis.lb@gmail.com">chassis.lb@gmail.com</a></div>
-            <div><strong>Phone:</strong> <a class="link" href="tel:+96171085824">+961 71 085 824</a></div>
-          </div>
-
-          <div class="social" aria-label="Social links">
-            <a href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://www.linkedin.com/company/109408069/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- Footer (with social icons added) -->
     <footer class="site-footer">
       <div class="container footer-grid">
         <div class="footer-brand">
           <img src="images/chassis-logo.png" alt="Chassis logo" class="footer-logo">
           <p class="muted">Business structuring, operations design, and project management.</p>
+
+          <div class="social" aria-label="Social links">
+            <a href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank" rel="noopener" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/109408069/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
         </div>
 
         <div class="footer-nav" aria-label="Footer navigation">
@@ -478,7 +294,6 @@
     </footer>
   </main>
 
-  <!-- WhatsApp floating button -->
   <a class="whatsapp-float" href="https://wa.me/96171085824" target="_blank" rel="noopener" aria-label="WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
     <span>WhatsApp</span>
