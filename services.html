@@ -1,487 +1,193 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>شاسي – هيكلة الأعمال وتطوير العمليات وإدارة المشاريع</title>
-  <meta name="description" content="شاسي علامة استشارية أسستها صوفيا أيوبي، تركّز على هيكلة الأعمال وتطوير العمليات وإدارة المشاريع لتحويل الأفكار إلى تنفيذ منظم ومستدام." />
+  <title>Services – Chassis</title>
+  <meta name="description" content="Chassis services: business structuring, operations & systems design, and ongoing support." />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Zain:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- Shared styles + Arabic overrides -->
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="rtl-ar.css">
 </head>
 
 <body>
   <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index-ar.html" aria-label="العودة إلى الصفحة الرئيسية">
-        <img src="images/chassis-logo.png" alt="شعار شاسي">
+      <a class="brand" href="index.html" aria-label="Chassis home">
+        <img src="images/chassis-logo.png" alt="Chassis logo">
       </a>
 
-      <!-- UPDATED NAV: real Arabic pages -->
-      <nav class="nav" aria-label="التنقل الرئيسي">
-        <a href="about-ar.html">عن شاسي</a>
-        <a href="services-ar.html">الخدمات</a>
-        <a href="projects-ar.html">المشاريع</a>
-        <a href="collaboration-ar.html">التعاون</a>
-        <a href="contact-ar.html">التواصل</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="about.html">About</a>
+        <a href="services.html" aria-current="page">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="collaboration.html">Collaboration</a>
+        <a href="contact.html">Contact</a>
       </nav>
 
       <div class="header-actions">
-        <div class="lang-toggle" aria-label="تبديل اللغة">
-          <a href="index.html">EN</a>
+        <div class="lang-toggle" aria-label="Language toggle">
+          <a class="active" href="services.html">EN</a>
           <span aria-hidden="true">|</span>
-          <a class="active" href="index-ar.html">AR</a>
+          <a href="services-ar.html">AR</a>
         </div>
 
-        <button class="hamburger" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu">
+        <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
     </div>
 
-    <!-- UPDATED MOBILE MENU: real Arabic pages -->
-    <div id="mobileMenu" class="mobile-menu" aria-label="قائمة الجوال">
-      <a href="about-ar.html">عن شاسي</a>
-      <a href="services-ar.html">الخدمات</a>
-      <a href="projects-ar.html">المشاريع</a>
-      <a href="collaboration-ar.html">التعاون</a>
-      <a href="contact-ar.html">التواصل</a>
+    <div id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation">
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="collaboration.html">Collaboration</a>
+      <a href="contact.html">Contact</a>
     </div>
   </header>
 
   <main id="top">
-    <!-- Hero -->
+    <!-- Page Intro -->
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">
             <span class="dot"></span>
-            هيكلة الأعمال • تطوير العمليات • إدارة المشاريع
+            Business structuring • operations design • project management
           </p>
 
           <h1>
-            تحويل الأفكار إلى <span class="accent">تنفيذ منظم</span>.
+            Services built for <span class="accent">calm execution</span>.
           </h1>
 
           <p class="lead">
-            شاسي علامة استشارية أسستها <strong>صوفيا أيوبي</strong>، وتركّز على هيكلة الأعمال وتطوير العمليات وإدارة المشاريع
-            بهدف تحويل الأفكار إلى تشغيل واضح ومنظم وقابل للاستمرار.
+            Choose what matches your stage and your real bottleneck. The goal is always the same:
+            structure that makes delivery predictable.
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-dark" href="contact-ar.html">
+            <a class="btn btn-dark" href="contact.html">
               <i class="fa-solid fa-calendar-check"></i>
-              طلب استشارة
+              Request a Consultation
             </a>
             <a class="btn btn-ghost" href="https://wa.me/96171085824" target="_blank" rel="noopener">
               <i class="fa-brands fa-whatsapp"></i>
-              تواصل عبر واتساب
+              Message on WhatsApp
             </a>
-          </div>
-
-          <div class="trust-row" aria-label="مجالات التركيز">
-            <span class="chip"><i class="fa-solid fa-list-check"></i> SOPs</span>
-            <span class="chip"><i class="fa-solid fa-chart-line"></i> التقارير</span>
-            <span class="chip"><i class="fa-solid fa-utensils"></i> الضيافة والفعاليات</span>
-            <span class="chip"><i class="fa-solid fa-rocket"></i> الشركات الناشئة</span>
           </div>
         </div>
 
-        <!-- Hero Panel -->
-        <div class="hero-panel" aria-label="ماذا ستحصل">
-          <h3>ماذا تتوقع عند التعاون</h3>
+        <div class="hero-panel" aria-label="How this helps">
+          <h3>What you get</h3>
           <ul>
-            <li><i class="fa-solid fa-bullseye"></i> نطاق واضح ومخرجات ونقاط قرار محددة</li>
-            <li><i class="fa-solid fa-diagram-project"></i> سير عمل قابل للتنفيذ وتوزيع مسؤوليات واضح</li>
-            <li><i class="fa-solid fa-clipboard-check"></i> متابعة منظمة وانضباط في المهل</li>
-            <li><i class="fa-solid fa-shield-heart"></i> ضغط أقل على الفريق نتيجة وضوح التنفيذ</li>
+            <li><i class="fa-solid fa-bullseye"></i> Clear deliverables and scope</li>
+            <li><i class="fa-solid fa-diagram-project"></i> Workflows that teams actually follow</li>
+            <li><i class="fa-solid fa-clipboard-check"></i> Follow-up discipline and accountability</li>
+            <li><i class="fa-solid fa-shield-heart"></i> Less pressure through structure</li>
           </ul>
 
           <div class="panel-cta">
-            <a class="link" href="services-ar.html">الاطلاع على الخدمات →</a>
+            <a class="link" href="projects.html">See projects →</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- About (kept on homepage for now) -->
-    <section id="about" class="section">
-      <div class="container split">
-        <div>
-          <h2 class="h2">تنفيذ منظم ونتائج قابلة للقياس</h2>
-          <p class="muted">
-            في كثير من الأحيان لا تكمن المشكلة في الجهد المبذول داخل العمل، بل في غياب الهيكلة الواضحة.
-            تعمل شاسي مع أصحاب المشاريع والفرق الصغيرة لتنظيم طريقة العمل، تحديد المسؤوليات،
-            وبناء أنظمة تشغيل عملية تضمن وضوح التنفيذ واستمراريته.
-          </p>
-
-          <div class="mini-list">
-            <div class="mini">
-              <div class="mini-icon"><i class="fa-solid fa-sitemap"></i></div>
-              <div>
-                <h3>هيكلة الأعمال</h3>
-                <p>تحديد الأولويات، توزيع الأدوار، وتوضيح آلية اتخاذ القرار.</p>
-              </div>
-            </div>
-
-            <div class="mini">
-              <div class="mini-icon"><i class="fa-solid fa-gears"></i></div>
-              <div>
-                <h3>تصميم العمليات</h3>
-                <p>سير عمل واضح، SOPs، أدوات مناسبة، ونظام تقارير.</p>
-              </div>
-            </div>
-
-            <div class="mini">
-              <div class="mini-icon"><i class="fa-solid fa-clipboard-list"></i></div>
-              <div>
-                <h3>تنفيذ المشاريع</h3>
-                <p>خطط زمنية، متابعة، مساءلة، وتسليم وفق معايير واضحة.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <aside class="card profile-card">
-          <div class="profile-head">
-            <img src="images/sophia-profile.jpg" alt="صوفيا أيوبي">
-            <div>
-              <div class="name">صوفيا أيوبي</div>
-              <div class="role">المؤسسة والاستشارية</div>
-            </div>
-          </div>
-
-          <p class="quote">
-            “أبني هيكلة تجعل التنفيذ هادئًا، قابلًا للتنبؤ، وقابلًا للتوسع.”
-          </p>
-
-          <a class="btn btn-primary full" href="https://wa.me/96171085824" target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp"></i>
-            رسالة واتساب
-          </a>
-        </aside>
-      </div>
-    </section>
-
-    <!-- How I work (kept on homepage for now) -->
-    <section id="how" class="section section-soft">
-      <div class="container split">
-        <div>
-          <h2 class="h2">كيف يتم العمل</h2>
-          <p class="muted">
-            إطار عمل واضح يهدف إلى تحويل الفكرة إلى تنفيذ منظم وقابل للقياس.
-          </p>
-
-          <ol class="steps">
-            <li class="step">
-              <div class="step-icon yellow"><i class="fa-solid fa-lightbulb"></i></div>
-              <div>
-                <h3>فهم الفكرة والهدف</h3>
-                <p>تحديد الهدف، توضيح الأولويات، وتحديد النتائج المتوقعة.</p>
-              </div>
-            </li>
-
-            <li class="step">
-              <div class="step-icon blue"><i class="fa-solid fa-briefcase"></i></div>
-              <div>
-                <h3>هيكلة العمل</h3>
-                <p>توزيع الأدوار والمسؤوليات وبناء إطار واضح لاتخاذ القرارات.</p>
-              </div>
-            </li>
-
-            <li class="step">
-              <div class="step-icon gray"><i class="fa-solid fa-gears"></i></div>
-              <div>
-                <h3>تصميم العمليات</h3>
-                <p>تنظيم سير العمل، إعداد SOPs، واختيار الأدوات المناسبة للتنفيذ.</p>
-              </div>
-            </li>
-
-            <li class="step">
-              <div class="step-icon yellow"><i class="fa-solid fa-check"></i></div>
-              <div>
-                <h3>تنفيذ المشروع</h3>
-                <p>إدارة التنفيذ وفق جدول زمني واضح مع متابعة مستمرة لضمان الالتزام.</p>
-              </div>
-            </li>
-
-            <li class="step">
-              <div class="step-icon blue"><i class="fa-solid fa-chart-column"></i></div>
-              <div>
-                <h3>قياس النتائج</h3>
-                <p>متابعة مؤشرات الأداء وتقييم التقدم لإبقاء التنفيذ على المسار الصحيح.</p>
-              </div>
-            </li>
-          </ol>
-        </div>
-
-        <aside class="card">
-          <h3 class="card-title">تحويل التشغيل إلى نظام</h3>
-          <p class="muted">
-            تركيز عملي على أنظمة قابلة للتطبيق، مسؤوليات واضحة، وآلية متابعة تحافظ على استقرار التنفيذ.
-          </p>
-
-          <div class="note">
-            <strong>غير متأكد من نقطة البداية؟</strong>
-            <p>صف الوضع الحالي وسيتم اقتراح نقطة بدء مناسبة.</p>
-          </div>
-
-          <a class="btn btn-dark full" href="https://wa.me/96171085824" target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp"></i>
-            ابدأ عبر واتساب
-          </a>
-        </aside>
-      </div>
-    </section>
-
-    <!-- Services (kept on homepage for now) -->
-    <section id="services" class="section">
+    <!-- Services -->
+    <section class="section">
       <div class="container">
         <div class="section-head">
-          <h2 class="h2">الخدمات</h2>
-          <p class="muted">يتم اختيار الخدمة وفق مرحلة العمل وطبيعة التحديات التشغيلية.</p>
+          <h2 class="h2">Services</h2>
+          <p class="muted">Pick the path that matches your stage and the real bottleneck.</p>
         </div>
 
         <div class="grid-3">
           <article class="card service">
-            <div class="badge yellow"><i class="fa-solid fa-compass"></i> وضوح واتجاه</div>
-            <h3>هيكلة الأعمال وتحديد الأولويات</h3>
+            <div class="badge yellow"><i class="fa-solid fa-compass"></i> Clarity & direction</div>
+            <h3>Business Structuring & Priority Setting</h3>
             <p class="muted">
-              تحليل الوضع الحالي، تحديد الأولويات التشغيلية، وبناء اتجاه واضح يساعد على تنظيم التنفيذ.
+              Diagnose the business, clarify priorities, and define an executable direction that reduces distraction and supports delivery.
             </p>
-            <p class="starting">يبدأ من <strong>$1,500</strong></p>
+            <p class="starting">Starting from <strong>$1,500</strong></p>
           </article>
 
           <article class="card service">
-            <div class="badge blue"><i class="fa-solid fa-gears"></i> تشغيل وأنظمة</div>
-            <h3>تصميم العمليات والأنظمة</h3>
+            <div class="badge blue"><i class="fa-solid fa-gears"></i> Operations & systems</div>
+            <h3>Operations & Systems Design</h3>
             <p class="muted">
-              تنظيم سير العمل، إعداد إجراءات التشغيل القياسية (SOPs)، توزيع الأدوار، واختيار الأدوات المناسبة.
+              Build workflows, define roles, document SOPs, select tools, and establish reporting for consistent follow-through.
             </p>
-            <p class="starting">يبدأ من <strong>$2,000</strong></p>
+            <p class="starting">Starting from <strong>$2,000</strong></p>
           </article>
 
           <article class="card service">
-            <div class="badge gray"><i class="fa-solid fa-chart-line"></i> نمو واستمرارية</div>
-            <h3>دعم مستمر</h3>
+            <div class="badge gray"><i class="fa-solid fa-chart-line"></i> Growth & continuity</div>
+            <h3>Ongoing Support</h3>
             <p class="muted">
-              دعم شهري للفرق التي تحتاج إلى متابعة تشغيلية منتظمة أثناء النمو.
+              Monthly support for teams scaling execution without breaking what already works.
             </p>
-            <p class="starting">يبدأ من <strong>$800 / شهر</strong></p>
+            <p class="starting">Starting from <strong>$800 / month</strong></p>
           </article>
         </div>
 
         <div class="row-actions">
-          <a class="btn btn-primary" href="projects-ar.html">
-            <i class="fa-solid fa-folder-open"></i>
-            عرض المشاريع
-          </a>
-          <a class="btn btn-ghost" href="contact-ar.html">
+          <a class="btn btn-primary" href="contact.html">
             <i class="fa-solid fa-paper-plane"></i>
-            طلب تقييم نطاق مبدئي
+            Request an Initial Scope Review
           </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects (kept on homepage for now) -->
-    <section id="projects" class="section section-soft">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="h2">المشاريع</h2>
-          <p class="muted">أمثلة مختارة تشمل الإطلاق، التشغيل، الضيافة، الفعاليات، وتنفيذ العلامات.</p>
-        </div>
-
-        <div class="grid-2">
-          <article class="card project-compact">
-            <div class="project-top">
-              <h3>The Ark Networks</h3>
-              <span class="pill red"><i class="fa-solid fa-building"></i> إطلاق وتشغيل</span>
-            </div>
-            <p class="muted">تنسيق عملية الإطلاق وفق إطار زمني واضح ومتابعة منظمة مع الأطراف المعنية.</p>
-          </article>
-
-          <article class="card project-compact">
-            <div class="project-top">
-              <h3>Le Pavé Bar</h3>
-              <span class="pill red"><i class="fa-solid fa-martini-glass"></i> عمليات الضيافة</span>
-            </div>
-            <p class="muted">تنظيم العمليات وتحسين آليات المتابعة لتعزيز الانضباط التشغيلي.</p>
-          </article>
-
-          <article class="card project-compact">
-            <div class="project-top">
-              <h3>Vartavar Festival</h3>
-              <span class="pill red"><i class="fa-solid fa-calendar-check"></i> إدارة فعالية</span>
-            </div>
-            <p class="muted">تنسيق وتنظيم تنفيذ فعالية واسعة النطاق بالتعاون مع عدة جهات.</p>
-          </article>
-
-          <article class="card project-compact">
-            <div class="project-top">
-              <h3>Glow of Hope</h3>
-              <span class="pill red"><i class="fa-solid fa-wand-magic-sparkles"></i> تنفيذ علامة</span>
-            </div>
-            <p class="muted">تنظيم تنفيذ المحتوى والتعاون وبناء تدفق عمل يدعم نمو العلامة.</p>
-          </article>
-        </div>
-
-        <div class="row-actions">
-          <a class="btn btn-primary" href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener">
-            <i class="fa-brands fa-instagram"></i>
-            مشاهدة الأعمال على Highlights
-          </a>
-          <a class="btn btn-ghost" href="projects-ar.html">
+          <a class="btn btn-ghost" href="projects.html">
             <i class="fa-solid fa-folder-open"></i>
-            عرض صفحة المشاريع كاملة
+            View Projects
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Consultation (kept on homepage for now) -->
-    <section id="consultation" class="section">
-      <div class="container split">
-        <div>
-          <h2 class="h2">طلب استشارة</h2>
-          <p class="muted">يساعد هذا النموذج على فهم طبيعة المشروع وتحديد نطاق العمل المناسب بشكل أولي.</p>
-
-          <div class="contact-inline">
-            <a class="link" href="mailto:chassis.lb@gmail.com"><i class="fa-solid fa-envelope"></i> chassis.lb@gmail.com</a>
-            <a class="link ltr" href="tel:+96171085824"><i class="fa-solid fa-phone"></i> +961 71 085 824</a>
-          </div>
-        </div>
-
-        <div class="card form-card">
-          <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="استفسار جديد عبر الموقع">
-            <input type="hidden" name="_template" value="table">
-
-            <div class="field">
-              <label for="name">الاسم</label>
-              <input id="name" type="text" name="name" required>
-            </div>
-
-            <div class="field">
-              <label for="email">البريد الإلكتروني</label>
-              <input id="email" type="email" name="email" required>
-            </div>
-
-            <div class="field">
-              <label>نوع الدعم المطلوب</label>
-              <div class="radio-grid">
-                <label class="radio">
-                  <input type="radio" name="need" value="هيكلة الأعمال وتحديد الأولويات" required>
-                  <span>هيكلة الأعمال وتحديد الأولويات</span>
-                </label>
-                <label class="radio">
-                  <input type="radio" name="need" value="تصميم العمليات والأنظمة">
-                  <span>تصميم العمليات والأنظمة</span>
-                </label>
-                <label class="radio">
-                  <input type="radio" name="need" value="دعم مستمر">
-                  <span>دعم مستمر</span>
-                </label>
-                <label class="radio">
-                  <input type="radio" name="need" value="غير متأكد بعد">
-                  <span>غير متأكد بعد</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="business">نبذة مختصرة عن المشروع/الشركة</label>
-              <textarea id="business" name="business" rows="4" required></textarea>
-            </div>
-
-            <div class="field">
-              <label for="challenge">ما هو التحدي الرئيسي الآن؟</label>
-              <textarea id="challenge" name="challenge" rows="3"></textarea>
-            </div>
-
-            <div class="form-actions">
-              <button class="btn btn-dark" type="submit">
-                <i class="fa-solid fa-envelope"></i> إرسال
-              </button>
-
-              <a class="btn btn-primary" href="https://wa.me/96171085824" target="_blank" rel="noopener">
-                <i class="fa-brands fa-whatsapp"></i> واتساب
-              </a>
-            </div>
-
-            <p class="fineprint">يُستخدم هذا النموذج فقط للرد على الاستفسار.</p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact (kept on homepage for now) -->
-    <section id="contact" class="section section-soft">
-      <div class="container">
-        <div class="contact-center card">
-          <h2 class="h2">التواصل</h2>
-
-          <div class="contact-lines">
-            <div><strong>البريد الإلكتروني:</strong> <a class="link" href="mailto:chassis.lb@gmail.com">chassis.lb@gmail.com</a></div>
-            <div><strong>الهاتف:</strong> <a class="link ltr" href="tel:+96171085824">+961 71 085 824</a></div>
-          </div>
-
-          <div class="social" aria-label="روابط التواصل الاجتماعي">
-            <a href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://www.linkedin.com/company/109408069/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- UPDATED FOOTER: structured + navigation -->
+    <!-- Footer -->
     <footer class="site-footer">
       <div class="container footer-grid">
         <div class="footer-brand">
-          <img src="images/chassis-logo.png" alt="شعار شاسي" class="footer-logo">
-          <p class="muted">هيكلة الأعمال، تطوير العمليات، وإدارة المشاريع.</p>
+          <img src="images/chassis-logo.png" alt="Chassis logo" class="footer-logo">
+          <p class="muted">Business structuring, operations design, and project management.</p>
         </div>
 
-        <div class="footer-nav" aria-label="روابط الموقع">
-          <a href="about-ar.html">عن شاسي</a>
-          <a href="services-ar.html">الخدمات</a>
-          <a href="projects-ar.html">المشاريع</a>
-          <a href="collaboration-ar.html">التعاون</a>
-          <a href="contact-ar.html">التواصل</a>
+        <div class="footer-nav" aria-label="Site links">
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="projects.html">Projects</a>
+          <a href="collaboration.html">Collaboration</a>
+          <a href="contact.html">Contact</a>
         </div>
 
         <div class="footer-contact">
           <a class="link" href="mailto:chassis.lb@gmail.com"><i class="fa-solid fa-envelope"></i> chassis.lb@gmail.com</a>
-          <a class="link ltr" href="tel:+96171085824"><i class="fa-solid fa-phone"></i> +961 71 085 824</a>
+          <a class="link" href="tel:+96171085824"><i class="fa-solid fa-phone"></i> +961 71 085 824</a>
           <a class="link" href="https://wa.me/96171085824" target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp"></i> واتساب
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
           </a>
         </div>
 
         <div class="footer-bottom">
-          © <span id="year"></span> شاسي. جميع الحقوق محفوظة.
+          © <span id="year"></span> Chassis. All rights reserved.
         </div>
       </div>
     </footer>
-
   </main>
 
   <!-- WhatsApp floating button -->
   <a class="whatsapp-float" href="https://wa.me/96171085824" target="_blank" rel="noopener" aria-label="WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
-    <span>واتساب</span>
+    <span>WhatsApp</span>
   </a>
 
   <script src="script.js"></script>
