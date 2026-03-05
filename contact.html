@@ -81,7 +81,7 @@
 
           <div class="note" style="margin-top:16px;">
             <strong>Tip:</strong>
-            <p>If you’re not sure what service you need, just describe your situation and I’ll suggest the best starting point.</p>
+            <p>If you’re not sure what service you need, describe your situation and I’ll suggest the best starting point.</p>
           </div>
         </div>
 
@@ -92,9 +92,17 @@
           </p>
 
           <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
+
+            <!-- FormSubmit settings -->
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_subject" value="New Website Inquiry (Contact Page)">
             <input type="hidden" name="_template" value="table">
+
+            <!-- Anti-spam honeypot (bots will fill this, humans won't) -->
+            <input type="text" name="_honey" style="display:none">
+
+            <!-- Redirect after submit (CHANGE THIS URL to your real thank-you page) -->
+            <input type="hidden" name="_next" value="https://chassislb.github.io/chassis.lb/thank-you.html">
 
             <div class="field">
               <label for="name">Name</label>
