@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>التعاون – كولارت × شاسي</title>
-  <meta name="description" content="تتعاون شاسي مع كولارت لدمج التنفيذ المنظم مع الإبداع التسويقي — لدعم نمو العلامات التجارية بشكل قابل للتوسع دون فوضى تشغيلية." />
+  <meta name="description" content="تتعاون شاسي مع كولارت لدمج الإبداع التسويقي مع الهيكلة التشغيلية، بما يدعم نمو العلامات التجارية بصورة منظمة وقابلة للتوسع." />
 
   <!-- Fonts (Arabic) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +18,49 @@
   <!-- Shared styles + Arabic overrides -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="rtl-ar.css">
+
+  <!-- Page-specific small fixes (logos size) -->
+  <style>
+    /* Bigger, presentable logos on all screens */
+    .collab-logos{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .collab-logos .logo-box{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 14px;
+      border-radius:14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .collab-logos img{
+      height:56px;          /* default */
+      width:auto;
+      max-width:220px;
+      object-fit:contain;
+      display:block;
+    }
+    .collab-logos .x{
+      font-weight:800;
+      opacity:.75;
+      font-size:22px;
+      padding:0 4px;
+    }
+
+    /* On small phones make them even larger */
+    @media (max-width: 420px){
+      .collab-logos img{
+        height:64px;
+        max-width:240px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -70,22 +113,24 @@
           </p>
 
           <h1>
-            إبداع + هيكلة، بهدف <span class="accent">نمو حقيقي</span>.
+            الإبداع التسويقي والهيكلة التشغيلية من أجل <span class="accent">نمو مستدام</span>.
           </h1>
 
           <p class="lead">
-            هذا التعاون موجود لسبب واحد: كثير من الأعمال تبدو ممتازة خارجيًا بينما تشغيلها الداخلي مرهق ومشتّت.
-            <strong>كولارت</strong> تبني حضور العلامة والإبداع التسويقي.
-            <strong>شاسي</strong> تبني الهيكلة التشغيلية التي تجعل التنفيذ هادئًا، قابلًا للتنبؤ، وقابلًا للتوسع.
+            يهدف هذا التعاون إلى معالجة فجوة شائعة لدى العديد من الشركات: حضور تسويقي قوي يقابله أحيانًا تشغيل داخلي غير منظم.
+            تتولى <strong>كولارت</strong> تطوير الهوية التسويقية وتعزيز حضور العلامة التجارية،
+            بينما تركّز <strong>شاسي</strong> على بناء الهيكلة التشغيلية التي تضمن تنفيذًا منظمًا، قابلًا للقياس، وقابلًا للتوسع.
           </p>
 
-          <!-- Logos row -->
-          <div class="trust-row" aria-label="شعارات التعاون" style="align-items:center;">
-            <span class="chip" style="gap:12px;">
-              <img src="images/chassis-logo.png" alt="شاسي" style="height:28px;width:auto;">
-              <strong style="opacity:.8;">×</strong>
-              <img src="images/colartlogo.png" alt="كولارت" style="height:28px;width:auto;">
-            </span>
+          <!-- BIG Logos row -->
+          <div class="collab-logos" aria-label="شعارات التعاون">
+            <div class="logo-box" aria-label="Chassis logo">
+              <img src="images/chassis-logo.png" alt="شاسي">
+            </div>
+            <span class="x" aria-hidden="true">×</span>
+            <div class="logo-box" aria-label="Colart logo">
+              <img src="images/colartlogo.png" alt="كولارت">
+            </div>
           </div>
 
           <div class="hero-actions">
@@ -99,22 +144,22 @@
             </a>
           </div>
 
-          <div class="trust-row" aria-label="ماذا ستحصل">
-            <span class="chip"><i class="fa-solid fa-bullseye"></i> اتجاه واضح</span>
-            <span class="chip"><i class="fa-solid fa-wand-magic-sparkles"></i> حضور أقوى</span>
-            <span class="chip"><i class="fa-solid fa-gears"></i> استقرار تشغيلي</span>
+          <div class="trust-row" aria-label="محاور التعاون">
+            <span class="chip"><i class="fa-solid fa-bullseye"></i> وضوح في التوجه</span>
+            <span class="chip"><i class="fa-solid fa-wand-magic-sparkles"></i> تعزيز الحضور</span>
+            <span class="chip"><i class="fa-solid fa-gears"></i> استقرار في التشغيل</span>
             <span class="chip"><i class="fa-solid fa-chart-line"></i> نمو قابل للتوسع</span>
           </div>
         </div>
 
         <!-- Hero Panel -->
-        <div class="hero-panel" aria-label="ملخص سريع">
-          <h3>ماذا يعني هذا التعاون؟</h3>
+        <div class="hero-panel" aria-label="ملخص">
+          <h3>ماذا يتضمن هذا التعاون؟</h3>
           <ul>
-            <li><i class="fa-solid fa-circle-check"></i> كولارت: هوية، محتوى، تسويق، وتنفيذ بصري</li>
-            <li><i class="fa-solid fa-circle-check"></i> شاسي: هيكلة تشغيل، أدوار، سير عمل، وانضباط متابعة</li>
-            <li><i class="fa-solid fa-circle-check"></i> نمو بدون فوضى داخلية</li>
-            <li><i class="fa-solid fa-circle-check"></i> نطاق واضح + مهل واضحة + تسليم منظم</li>
+            <li><i class="fa-solid fa-circle-check"></i> كولارت: تطوير الهوية، إدارة المحتوى، والاستراتيجية التسويقية والتنفيذ البصري</li>
+            <li><i class="fa-solid fa-circle-check"></i> شاسي: هيكلة التشغيل، تحديد الأدوار والمسؤوليات، وتنظيم سير العمل وآليات المتابعة</li>
+            <li><i class="fa-solid fa-circle-check"></i> دعم النمو دون ضغط تشغيلي داخلي غير منضبط</li>
+            <li><i class="fa-solid fa-circle-check"></i> نطاق عمل واضح، جداول زمنية محددة، وتسليم منظم</li>
           </ul>
 
           <div class="panel-cta">
@@ -130,95 +175,97 @@
         <div>
           <h2 class="h2">عن كولارت</h2>
           <p class="muted">
-            كولارت وكالة تسويق إبداعي تركّز على بناء الهوية، وتوجيه المحتوى، وتعزيز حضور العلامات التجارية بطريقة تعكس تموضعها الحقيقي.
-            عادةً يشمل العمل: أنظمة الهوية، التوجيه البصري، خطة محتوى واضحة، وتنفيذ حملات أو نشاط تسويقي يدعم النمو.
+            كولارت وكالة تسويق إبداعي تركّز على بناء الهوية، وتوجيه المحتوى، وتعزيز حضور العلامات التجارية بما يعكس تموضعها بدقة.
+            عادةً يشمل نطاق العمل: تطوير أنظمة الهوية، التوجيه البصري، إعداد خطة محتوى واضحة، وتنفيذ حملات أو أنشطة تسويقية تدعم النمو.
           </p>
           <p class="muted">
-            ببساطة: كولارت تساعد العلامة أن “تظهر” بشكل مهني ومتسق، بحيث يفهم العميل ما الذي تقدّمه ولماذا يختارك.
+            باختصار، تعمل كولارت على تمكين العلامات التجارية من الظهور بصورة احترافية ومتسقة، بما يوضّح ما تقدّمه ولماذا يتم اختيارها.
           </p>
 
           <ul class="list">
-            <li><i class="fa-solid fa-circle-check"></i> هوية بصرية وتوجيه إبداعي ثابت (مش “مزاج يوم”)</li>
-            <li><i class="fa-solid fa-circle-check"></i> نظام محتوى للسوشال ميديا (تنفيذ بدل ضغط)</li>
-            <li><i class="fa-solid fa-circle-check"></i> تخطيط حملات وتنفيذ داعم للتحويل</li>
+            <li><i class="fa-solid fa-circle-check"></i> هوية بصرية وتوجيه إبداعي بمنهجية ثابتة ومدروسة</li>
+            <li><i class="fa-solid fa-circle-check"></i> نظام محتوى للسوشال ميديا يدعم التنفيذ بصورة منظمة ومستدامة</li>
+            <li><i class="fa-solid fa-circle-check"></i> تخطيط حملات وتنفيذ يدعم تحقيق الأهداف والتحويل</li>
           </ul>
         </div>
 
         <aside class="card">
-          <h3 class="card-title">لماذا هذا مهم؟</h3>
+          <h3 class="card-title">لماذا يُعد ذلك مهمًا؟</h3>
           <p class="muted">
-            البراندينغ ليس “شكل جميل” فقط. هو وضوح وثقة وتموضع. كولارت تركّز على حضور يبدو مقصودًا ومنظمًا ويدعم التحويل.
+            بناء العلامة ليس جانبًا بصريًا فقط، بل هو وضوح وثقة وتموضع. تركّز كولارت على حضور مقصود ومتسق يدعم النتائج.
           </p>
 
           <div class="note">
             <strong>ملاحظة:</strong>
-            <p class="muted">أفضل نتائج التسويق تظهر عندما يكون التشغيل الداخلي قادرًا على مواكبة الطلب. هنا يأتي دور شاسي.</p>
+            <p class="muted">
+              تتحقق أفضل نتائج التسويق عندما يكون التشغيل الداخلي قادرًا على مواكبة الطلب. وهنا يأتي دور شاسي.
+            </p>
           </div>
 
           <a class="btn btn-primary full" href="https://www.colartlb.com" target="_blank" rel="noopener">
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            اكتشف كولارت
+            زيارة موقع كولارت
           </a>
         </aside>
       </div>
     </section>
 
-    <!-- Why Chassis chose Colart -->
+    <!-- Why -->
     <section class="section section-soft" id="why">
       <div class="container split">
         <div>
           <h2 class="h2">لماذا تتعاون شاسي مع كولارت؟</h2>
           <p class="muted">
-            شاسي اختارت التعاون مع كولارت لتقديم منظومة كاملة: حضور قوي + تشغيل قادر على التنفيذ.
-            كثير من الأعمال تبدأ بالتسويق قبل أن تُهيّكل تشغيلها، فيتحول “النمو” إلى ضغط:
-            متابعة ضائعة، مسؤوليات غير واضحة، تسليم غير ثابت، وفريق مرهق.
+            اختارت شاسي التعاون مع كولارت بهدف تقديم منظومة متكاملة تجمع بين حضور تسويقي فعّال وتشغيل داخلي منظم.
+            في كثير من الحالات، يبدأ التركيز على التسويق قبل تهيئة التشغيل، مما قد يؤدي إلى ضغط تشغيلي غير متوقع:
+            تشتت المتابعة، غموض المسؤوليات، تفاوت في التسليم، وإرهاق الفريق.
           </p>
           <p class="muted">
-            كولارت تقدّم الإبداع والتنفيذ التسويقي. شاسي تقدّم الهيكلة والانضباط التشغيلي.
-            والنتيجة: علامة قوية تتوسع دون أن ينهار التنفيذ خلف الكواليس.
+            تقدّم كولارت الجانب الإبداعي والتنفيذ التسويقي، بينما تقدّم شاسي الهيكلة والانضباط التشغيلي.
+            والنتيجة: علامة قوية قادرة على التوسع دون أن يتأثر التنفيذ خلف الكواليس.
           </p>
 
           <div class="mini-list">
             <div class="mini">
               <div class="mini-icon"><i class="fa-solid fa-layer-group"></i></div>
               <div>
-                <h3>استراتيجية واحدة</h3>
-                <p>تموضع وتسويق متناسق مع واقع التشغيل، لا وعود فارغة.</p>
+                <h3>منهج موحّد</h3>
+                <p>تموضع وتسويق متسقان مع واقع التشغيل واحتياجاته.</p>
               </div>
             </div>
 
             <div class="mini">
               <div class="mini-icon"><i class="fa-solid fa-list-check"></i></div>
               <div>
-                <h3>خطة تنفيذ واحدة</h3>
-                <p>نطاق، مخرجات، مهل، ومسؤوليات واضحة.</p>
+                <h3>خطة تنفيذ واضحة</h3>
+                <p>نطاق عمل، مخرجات، جداول زمنية، ومسؤوليات محددة.</p>
               </div>
             </div>
 
             <div class="mini">
               <div class="mini-icon"><i class="fa-solid fa-chart-line"></i></div>
               <div>
-                <h3>نمو يتحمّل</h3>
-                <p>أنظمة تدعم التوسع بدل أن تنهار عند أول ضغط.</p>
+                <h3>نمو مستدام</h3>
+                <p>أنظمة تشغيل قادرة على دعم التوسع دون التأثير على جودة التنفيذ.</p>
               </div>
             </div>
           </div>
         </div>
 
         <aside class="card">
-          <h3 class="card-title">الهدف</h3>
+          <h3 class="card-title">الغاية</h3>
           <p class="muted">
-            بناء علامة تجذب الانتباه، ونظام تشغيل قادر على خدمة هذا الانتباه.
+            بناء علامة تجذب الاهتمام، بالتوازي مع نظام تشغيل قادر على إدارة هذا الاهتمام بكفاءة.
           </p>
 
           <div class="note">
             <strong>النتيجة:</strong>
-            <p class="muted">فوضى أقل. تسليم أسرع. نمو قابل للتوسع.</p>
+            <p class="muted">تقليل الفوضى، تسريع وتيرة التسليم، ودعم نمو قابل للتوسع.</p>
           </div>
 
           <a class="btn btn-dark full" href="contact-ar.html">
             <i class="fa-solid fa-calendar-check"></i>
-            ابدأ باستشارة
+            طلب استشارة
           </a>
         </aside>
       </div>
@@ -228,9 +275,10 @@
     <section class="section" id="deliverables">
       <div class="container">
         <div class="section-head">
-          <h2 class="h2">ماذا ستحصل من تعاون كولارت × شاسي</h2>
+          <h2 class="h2">نطاق المخرجات ضمن تعاون كولارت × شاسي</h2>
           <p class="muted">
-            المخرجات الدقيقة تعتمد على مرحلة عملك، لكن غالبًا يغطي التعاون جانب الظهور والنمو مع جانب الجاهزية التشغيلية.
+            تختلف المخرجات وفق مرحلة عملك واحتياجاتك، إلا أن نطاق التعاون غالبًا يشمل جانب الحضور التسويقي
+            بالتوازي مع جانب الجاهزية التشغيلية.
           </p>
         </div>
 
@@ -238,20 +286,20 @@
           <article class="card">
             <h3>كولارت (الهوية والتسويق)</h3>
             <ul class="list">
-              <li><i class="fa-solid fa-circle-check"></i> دعم تموضع واستراتيجية علامة</li>
+              <li><i class="fa-solid fa-circle-check"></i> دعم التمركز والاستراتيجية العامة للعلامة</li>
               <li><i class="fa-solid fa-circle-check"></i> نظام بصري وتوجيه محتوى</li>
               <li><i class="fa-solid fa-circle-check"></i> هيكلة خطة محتوى (محاور، مواضيع، إيقاع نشر)</li>
-              <li><i class="fa-solid fa-circle-check"></i> تخطيط حملات ودعم تنفيذ</li>
+              <li><i class="fa-solid fa-circle-check"></i> تخطيط حملات ودعم التنفيذ</li>
             </ul>
           </article>
 
           <article class="card">
             <h3>شاسي (التشغيل والتنفيذ)</h3>
             <ul class="list">
-              <li><i class="fa-solid fa-circle-check"></i> وضوح أدوار ومسؤوليات (ومعنى “تم”)</li>
-              <li><i class="fa-solid fa-circle-check"></i> سير عمل + SOPs (تنفيذ قابل للتكرار)</li>
-              <li><i class="fa-solid fa-circle-check"></i> هيكلة تقارير (KPIs + إيقاع متابعة)</li>
-              <li><i class="fa-solid fa-circle-check"></i> جداول زمنية + انضباط تسليم</li>
+              <li><i class="fa-solid fa-circle-check"></i> تحديد الأدوار والمسؤوليات ومعايير الإنجاز</li>
+              <li><i class="fa-solid fa-circle-check"></i> تنظيم سير العمل وإعداد SOPs (تنفيذ قابل للتكرار)</li>
+              <li><i class="fa-solid fa-circle-check"></i> هيكلة التقارير (KPIs + إيقاع متابعة)</li>
+              <li><i class="fa-solid fa-circle-check"></i> جداول زمنية وآليات متابعة وانضباط تسليم</li>
             </ul>
           </article>
         </div>
@@ -259,7 +307,7 @@
         <div class="note" style="margin-top:16px;">
           <strong>الخلاصة:</strong>
           <p class="muted">
-            التسويق يجلب الطلب. التشغيل يلبّي الطلب. هذا التعاون يضمن الاثنين، حتى لا يتحول النمو إلى مشكلة.
+            يساهم التسويق في توليد الطلب، بينما يضمن التشغيل القدرة على تلبية هذا الطلب بكفاءة. يهدف هذا التعاون إلى تحقيق التوازن بين الجانبين.
           </p>
         </div>
 
@@ -275,7 +323,7 @@
         </div>
 
         <p class="fineprint" style="margin-top:10px;">
-          عند تعبئة نموذج الاستشارة، اكتب <strong>“Colart x Chassis”</strong> ليتم توجيه الطلب بشكل صحيح.
+          عند تعبئة نموذج الاستشارة، يرجى كتابة <strong>«Colart x Chassis»</strong> لتوجيه الطلب بالشكل الصحيح.
         </p>
       </div>
     </section>
@@ -286,18 +334,19 @@
         <div class="footer-brand">
           <img src="images/chassis-logo.png" alt="شعار شاسي" class="footer-logo">
           <p class="muted">هيكلة الأعمال، تطوير العمليات، وإدارة المشاريع.</p>
+
+          <div class="social" aria-label="روابط التواصل الاجتماعي">
+            <a href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank" rel="noopener" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/109408069/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
         </div>
-<div class="social" aria-label="روابط التواصل الاجتماعي">
-  <a href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener" aria-label="Instagram">
-    <i class="fa-brands fa-instagram"></i>
-  </a>
-  <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank" rel="noopener" aria-label="Facebook">
-    <i class="fa-brands fa-facebook-f"></i>
-  </a>
-  <a href="https://www.linkedin.com/company/109408069/" target="_blank" rel="noopener" aria-label="LinkedIn">
-    <i class="fa-brands fa-linkedin-in"></i>
-  </a>
-</div>
 
         <div class="footer-nav" aria-label="روابط الموقع">
           <a href="about-ar.html">عن شاسي</a>
