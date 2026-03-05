@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Contact – Chassis</title>
+  <meta name="description" content="Contact Chassis to request a consultation, discuss scope, or ask a question." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Chassis home">
+        <img src="images/chassis-logo.png" alt="Chassis logo">
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="collaboration.html">Collaboration</a>
+        <a class="active" href="contact.html">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-toggle" aria-label="Language toggle">
+          <a class="active" href="contact.html">EN</a>
+          <span aria-hidden="true">|</span>
+          <a href="contact-ar.html">AR</a>
+        </div>
+
+        <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation">
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="collaboration.html">Collaboration</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- Contact -->
+    <section class="section">
+      <div class="container split">
+
+        <div>
+          <h1 class="h2">Contact</h1>
+          <p class="muted">
+            Use the form to request a consultation or share what you need. If you prefer fast and simple, WhatsApp works.
+          </p>
+
+          <div class="contact-inline">
+            <a class="link" href="mailto:chassis.lb@gmail.com"><i class="fa-solid fa-envelope"></i> chassis.lb@gmail.com</a>
+            <a class="link" href="tel:+96171085824"><i class="fa-solid fa-phone"></i> +961 71 085 824</a>
+            <a class="link" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+          </div>
+
+          <div class="note" style="margin-top:16px;">
+            <strong>Tip:</strong>
+            <p>If you’re not sure what service you need, just describe your situation and I’ll suggest the best starting point.</p>
+          </div>
+        </div>
+
+        <div class="card form-card">
+          <h2 class="card-title">Request a Consultation</h2>
+          <p class="muted" style="margin-top:6px;">
+            Short, clear, and enough to assess scope.
+          </p>
+
+          <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New Website Inquiry (Contact Page)">
+            <input type="hidden" name="_template" value="table">
+
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" type="text" name="name" required>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" type="email" name="email" required>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone / WhatsApp (optional)</label>
+              <input id="phone" type="text" name="phone" placeholder="+961 ...">
+            </div>
+
+            <div class="field">
+              <label>Type of Support</label>
+              <div class="radio-grid">
+                <label class="radio">
+                  <input type="radio" name="need" value="Business Structuring & Priority Setting" required>
+                  <span>Business Structuring & Priority Setting</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="need" value="Operations & Systems Design">
+                  <span>Operations & Systems Design</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="need" value="Ongoing Support">
+                  <span>Ongoing Support</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="need" value="Not sure yet">
+                  <span>Not sure yet</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="business">Business / Project (short description)</label>
+              <textarea id="business" name="business" rows="4" required></textarea>
+            </div>
+
+            <div class="field">
+              <label for="challenge">Main challenge right now</label>
+              <textarea id="challenge" name="challenge" rows="3"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="timeline">Timeline (optional)</label>
+              <input id="timeline" type="text" name="timeline" placeholder="e.g., ASAP / this month / next quarter">
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-dark" type="submit">
+                <i class="fa-solid fa-envelope"></i> Submit
+              </button>
+
+              <a class="btn btn-primary" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+              </a>
+            </div>
+
+            <p class="fineprint">This form is used only to respond to your inquiry.</p>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+
+        <div class="footer-brand">
+          <img src="images/chassis-logo.png" alt="Chassis logo" class="footer-logo">
+          <p class="muted">Business structuring, operations design, and project management.</p>
+        </div>
+
+        <div class="footer-nav" aria-label="Footer navigation">
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="projects.html">Projects</a>
+          <a href="collaboration.html">Collaboration</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="footer-contact">
+          <a class="link" href="mailto:chassis.lb@gmail.com"><i class="fa-solid fa-envelope"></i> chassis.lb@gmail.com</a>
+          <a class="link" href="tel:+96171085824"><i class="fa-solid fa-phone"></i> +961 71 085 824</a>
+          <a class="link" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+
+        <div class="footer-bottom">
+          © <span id="year"></span> Chassis. All rights reserved.
+        </div>
+
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- WhatsApp floating button -->
+  <a class="whatsapp-float" href="https://wa.me/96171085824" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span>WhatsApp</span>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
