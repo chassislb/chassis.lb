@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>التواصل – شاسي</title>
-  <meta name="description" content="تواصل مع شاسي لطلب استشارة أو مناقشة مشروعك." />
+  <meta name="description" content="تواصل مع شاسي لطلب استشارة أو مناقشة نطاق العمل أو الاستفسار عن هيكلة الأعمال أو العمليات أو إدارة المشاريع أو تطوير المواقع الإلكترونية." />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,11 +34,10 @@
       <a href="services-ar.html">الخدمات</a>
       <a href="projects-ar.html">المشاريع</a>
       <a href="collaboration-ar.html">التعاون</a>
-      <a class="active" href="contact-ar.html">التواصل</a>
+      <a href="contact-ar.html" aria-current="page">التواصل</a>
     </nav>
 
     <div class="header-actions">
-
       <div class="lang-toggle" aria-label="تبديل اللغة">
         <a href="contact.html">EN</a>
         <span aria-hidden="true">|</span>
@@ -51,7 +50,6 @@
         aria-controls="mobileMenu">
         <i class="fa-solid fa-bars"></i>
       </button>
-
     </div>
   </div>
 
@@ -60,11 +58,10 @@
     <a href="services-ar.html">الخدمات</a>
     <a href="projects-ar.html">المشاريع</a>
     <a href="collaboration-ar.html">التعاون</a>
-    <a href="contact-ar.html">التواصل</a>
+    <a href="contact-ar.html" aria-current="page">التواصل</a>
   </div>
 
 </header>
-
 
 <main id="top">
 
@@ -75,7 +72,8 @@
         <h1 class="h2">التواصل</h1>
 
         <p class="muted">
-          يمكنك استخدام النموذج لطلب استشارة أو توضيح احتياجاتك التشغيلية. وللتواصل الأسرع، يمكنك مراسلتنا عبر واتساب.
+          يمكنك استخدام النموذج لطلب استشارة أو توضيح ما تحتاجه. سواء كان الموضوع متعلقًا بهيكلة الأعمال،
+          العمليات، إدارة المشاريع، أو تطوير المواقع الإلكترونية، سأراجع الطلب وأقترح نقطة البداية الأنسب.
         </p>
 
         <div class="contact-inline">
@@ -98,7 +96,7 @@
         <div class="note" style="margin-top:16px;">
           <strong>ملاحظة:</strong>
           <p>
-            إذا لم تكن متأكدًا من نوع الخدمة المناسبة، يُرجى وصف الوضع الحالي بإيجاز، وسيتم اقتراح نقطة البداية الأنسب.
+            إذا لم تكن متأكدًا من نوع الخدمة المناسبة، صف وضعك الحالي باختصار وسيتم اقتراح أفضل نقطة بداية.
           </p>
         </div>
       </div>
@@ -107,14 +105,14 @@
         <h2 class="card-title">طلب استشارة</h2>
 
         <p class="muted" style="margin-top:6px;">
-          نموذج مختصر يساعد على فهم نطاق المشروع بصورة أولية.
+          نموذج مختصر وواضح يكفي لتقييم نطاق العمل مبدئيًا.
         </p>
 
         <div class="note" style="margin-top:12px;">
           <strong>ماذا يحدث بعد الإرسال؟</strong>
           <p style="margin-top:6px;">
             1) مراجعة الرسالة خلال <strong>24–48 ساعة</strong><br>
-            2) إرسال أسئلة مختصرة لتحديد النطاق (عند الحاجة)<br>
+            2) إرسال أسئلة مختصرة لتحديد النطاق عند الحاجة<br>
             3) تحديد مكالمة قصيرة أو مشاركة تصور أولي للمسار المناسب
           </p>
         </div>
@@ -123,7 +121,7 @@
 
           <!-- FormSubmit settings -->
           <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_subject" value="طلب استشارة جديد – موقع شاسي">
+          <input type="hidden" name="_subject" value="استفسار جديد – موقع شاسي">
           <input type="hidden" name="_template" value="table">
 
           <!-- Anti-spam honeypot -->
@@ -167,6 +165,16 @@
               </label>
 
               <label class="radio">
+                <input type="radio" name="need" value="استراتيجية وتطوير المواقع الإلكترونية">
+                <span>استراتيجية وتطوير المواقع الإلكترونية</span>
+              </label>
+
+              <label class="radio">
+                <input type="radio" name="need" value="مواءمة الأعمال مع الموقع الإلكتروني">
+                <span>مواءمة الأعمال مع الموقع الإلكتروني</span>
+              </label>
+
+              <label class="radio">
                 <input type="radio" name="need" value="غير متأكد بعد">
                 <span>غير متأكد بعد</span>
               </label>
@@ -185,7 +193,7 @@
 
           <div class="field">
             <label for="timeline">الجدول الزمني (اختياري)</label>
-            <input id="timeline" type="text" name="timeline" placeholder="مثلًا: هذا الشهر / قريبًا">
+            <input id="timeline" type="text" name="timeline" placeholder="مثلًا: هذا الشهر / قريبًا / الربع القادم">
           </div>
 
           <div class="form-actions">
@@ -201,7 +209,7 @@
           </div>
 
           <p class="fineprint">
-            يُستخدم هذا النموذج حصريًا للرد على الاستفسار.
+            يُستخدم هذا النموذج فقط للرد على الاستفسار.
           </p>
 
         </form>
@@ -216,9 +224,8 @@
 
       <div class="footer-brand">
         <img src="images/chassis-logo.png" alt="شعار شاسي" class="footer-logo">
-        <p class="muted">هيكلة الأعمال، تطوير العمليات، وإدارة المشاريع.</p>
+        <p class="muted">هيكلة الأعمال، تطوير العمليات، إدارة المشاريع، وتطوير المواقع الإلكترونية.</p>
 
-        <!-- Social icons (added) -->
         <div class="social" aria-label="روابط التواصل الاجتماعي">
           <a href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener" aria-label="إنستغرام">
             <i class="fa-brands fa-instagram"></i>
@@ -257,7 +264,7 @@
 
 </main>
 
-<a class="whatsapp-float" href="https://wa.me/96171085824" target="_blank" rel="noopener" aria-label="WhatsApp">
+<a class="whatsapp-float" href="https://wa.me/96171085824" target="_blank" rel="noopener" aria-label="واتساب">
   <i class="fa-brands fa-whatsapp"></i>
   <span>واتساب</span>
 </a>
