@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Contact – Chassis</title>
-  <meta name="description" content="Contact Chassis to request a consultation, discuss scope, or ask a question." />
+  <meta name="description" content="Contact Chassis to request a consultation, discuss scope, or ask about business structuring, operations, project management, or website development." />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,7 @@
         <a href="services.html">Services</a>
         <a href="projects.html">Projects</a>
         <a href="collaboration.html">Collaboration</a>
-        <a class="active" href="contact.html">Contact</a>
+        <a href="contact.html" aria-current="page">Contact</a>
       </nav>
 
       <div class="header-actions">
@@ -55,7 +55,7 @@
       <a href="services.html">Services</a>
       <a href="projects.html">Projects</a>
       <a href="collaboration.html">Collaboration</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html" aria-current="page">Contact</a>
     </div>
   </header>
 
@@ -68,7 +68,8 @@
         <div>
           <h1 class="h2">Contact</h1>
           <p class="muted">
-            Use the form to request a consultation or share what you need. If you prefer fast and simple, WhatsApp works.
+            Use the form to request a consultation or share what you need. Whether it is business structuring,
+            operations, project management, or website development, I’ll review the inquiry and suggest the best starting point.
           </p>
 
           <div class="contact-inline">
@@ -90,14 +91,15 @@
           <p class="muted" style="margin-top:6px;">
             Short, clear, and enough to assess scope.
           </p>
+
           <div class="note" style="margin-top:12px;">
-  <strong>What happens next?</strong>
-  <p style="margin-top:6px;">
-    1) I review your message within <strong>24–48 hours</strong><br>
-    2) If needed, I send quick questions to clarify scope<br>
-    3) We schedule a short call or I propose a starting plan
-  </p>
-</div>
+            <strong>What happens next?</strong>
+            <p style="margin-top:6px;">
+              1) I review your message within <strong>24–48 hours</strong><br>
+              2) If needed, I send quick questions to clarify scope<br>
+              3) We schedule a short call or I propose a starting plan
+            </p>
+          </div>
 
           <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
 
@@ -106,10 +108,10 @@
             <input type="hidden" name="_subject" value="New Website Inquiry (Contact Page)">
             <input type="hidden" name="_template" value="table">
 
-            <!-- Anti-spam honeypot (bots will fill this, humans won't) -->
+            <!-- Anti-spam honeypot -->
             <input type="text" name="_honey" style="display:none">
 
-            <!-- Redirect after submit (CHANGE THIS URL to your real thank-you page) -->
+            <!-- Redirect after submit -->
             <input type="hidden" name="_next" value="https://chassislb.github.io/chassis.lb/thank-you.html">
 
             <div class="field">
@@ -141,6 +143,14 @@
                 <label class="radio">
                   <input type="radio" name="need" value="Ongoing Support">
                   <span>Ongoing Support</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="need" value="Website Strategy & Development">
+                  <span>Website Strategy & Development</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="need" value="Business + Website Alignment">
+                  <span>Business + Website Alignment</span>
                 </label>
                 <label class="radio">
                   <input type="radio" name="need" value="Not sure yet">
@@ -186,21 +196,22 @@
       <div class="container footer-grid">
 
         <div class="footer-brand">
-  <img src="images/chassis-logo.png" alt="Chassis logo" class="footer-logo">
-  <p class="muted">Business structuring, operations design, and project management.</p>
+          <img src="images/chassis-logo.png" alt="Chassis logo" class="footer-logo">
+          <p class="muted">Business structuring, operations design, project management, and website development.</p>
 
-  <div class="social" aria-label="Social links">
-    <a href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener" aria-label="Instagram">
-      <i class="fa-brands fa-instagram"></i>
-    </a>
-    <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank" rel="noopener" aria-label="Facebook">
-      <i class="fa-brands fa-facebook-f"></i>
-    </a>
-    <a href="https://www.linkedin.com/company/109408069/" target="_blank" rel="noopener" aria-label="LinkedIn">
-      <i class="fa-brands fa-linkedin-in"></i>
-    </a>
-  </div>
-</div>
+          <div class="social" aria-label="Social links">
+            <a href="https://www.instagram.com/chassis.lb/" target="_blank" rel="noopener" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61555891586300" target="_blank" rel="noopener" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/109408069/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
         <div class="footer-nav" aria-label="Footer navigation">
           <a href="about.html">About</a>
           <a href="services.html">Services</a>
