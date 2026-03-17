@@ -110,8 +110,8 @@ strong{ font-weight: 700; }
   background: rgba(0,0,0,0.04);
   color: rgba(0,0,0,0.92);
 }
-/* Active page highlight (you were missing this) */
-.nav a.active{
+.nav a.active,
+.nav a[aria-current="page"]{
   background: rgba(0,0,0,0.05);
   border: 1px solid var(--border);
   color: rgba(0,0,0,0.92);
@@ -165,6 +165,10 @@ strong{ font-weight: 700; }
   background: rgba(0,0,0,0.03);
 }
 .mobile-menu a:hover{ background: rgba(0,0,0,0.05); }
+.mobile-menu a[aria-current="page"]{
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.06);
+}
 .mobile-menu.show{ display:block; }
 
 /* Hero */
@@ -193,7 +197,8 @@ strong{ font-weight: 700; }
   letter-spacing: 0.06em;
 }
 .dot{
-  width: 10px; height:10px;
+  width: 10px;
+  height:10px;
   border-radius: 999px;
   background: var(--yellow);
   box-shadow: 0 0 0 4px rgba(243,204,49,0.24);
@@ -258,8 +263,15 @@ strong{ font-weight: 700; }
   color: rgba(0,0,0,0.72);
   font-size: 14px;
 }
-.hero-panel li{ display:flex; gap: 10px; align-items:flex-start; }
-.hero-panel i{ color: var(--blue); margin-top: 3px; }
+.hero-panel li{
+  display:flex;
+  gap: 10px;
+  align-items:flex-start;
+}
+.hero-panel i{
+  color: var(--blue);
+  margin-top: 3px;
+}
 .panel-cta{ margin-top: 14px; }
 
 .link{
@@ -296,7 +308,10 @@ strong{ font-weight: 700; }
   box-shadow: var(--shadow);
   padding: 18px;
 }
-.card-title{ font-size: 16px; letter-spacing: -0.01em; }
+.card-title{
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
 
 .note{
   margin-top: 12px;
@@ -323,7 +338,8 @@ strong{ font-weight: 700; }
   background: rgba(255,255,255,0.7);
 }
 .mini-icon{
-  width: 40px; height: 40px;
+  width: 40px;
+  height: 40px;
   border-radius: 14px;
   display:flex;
   align-items:center;
@@ -345,7 +361,8 @@ strong{ font-weight: 700; }
   gap: 12px;
 }
 .profile-head img{
-  width: 64px; height: 64px;
+  width: 64px;
+  height: 64px;
   border-radius: 18px;
   object-fit: cover;
   border: 2px solid rgba(54,198,244,0.30);
@@ -390,7 +407,8 @@ strong{ font-weight: 700; }
   background: rgba(0,0,0,0.18);
 }
 .step-icon{
-  width: 44px; height: 44px;
+  width: 44px;
+  height: 44px;
   border-radius: 999px;
   display:flex;
   align-items:center;
@@ -420,7 +438,7 @@ strong{ font-weight: 700; }
 }
 .grid-2{
   display:grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   margin-top: 16px;
 }
@@ -442,6 +460,17 @@ strong{ font-weight: 700; }
 .badge.gray{ background: rgba(180,180,181,0.18); }
 
 .service h3{ margin-top: 10px; }
+
+.service-list{
+  margin-top: 14px;
+  padding-left: 18px;
+  color: rgba(0,0,0,0.68);
+  font-size: 14px;
+}
+.service-list li{
+  margin-bottom: 8px;
+}
+
 .starting{
   margin-top: 14px;
   padding-top: 12px;
@@ -577,7 +606,8 @@ input:focus, textarea:focus{
 .contact-center .social{ justify-content: center; }
 
 .social a{
-  width: 44px; height: 44px;
+  width: 44px;
+  height: 44px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -591,7 +621,7 @@ input:focus, textarea:focus{
   background: rgba(0,0,0,0.03);
 }
 
-/* Footer (NEW: supports footer-grid, footer-logo, etc.) */
+/* Footer */
 .site-footer{
   padding: 26px 0 34px;
   color: rgba(0,0,0,0.55);
