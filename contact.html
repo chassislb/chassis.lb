@@ -101,11 +101,11 @@
             </p>
           </div>
 
-          <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
+          <form id="consultationForm" action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
 
             <!-- FormSubmit settings -->
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="New Website Inquiry (Contact Page)">
+            <input type="hidden" name="_subject" value="New Chassis Inquiry (Contact Page)">
             <input type="hidden" name="_template" value="table">
 
             <!-- Anti-spam honeypot -->
@@ -179,9 +179,9 @@
                 <i class="fa-solid fa-envelope"></i> Submit
               </button>
 
-              <a class="btn btn-primary" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+              <button class="btn btn-primary" type="button" id="whatsappSubmit">
                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
-              </a>
+              </button>
             </div>
 
             <p class="fineprint">This form is used only to respond to your inquiry.</p>
@@ -244,5 +244,42 @@
   </a>
 
   <script src="script.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const whatsappBtn = document.getElementById("whatsappSubmit");
+      const form = document.getElementById("consultationForm");
+
+      if (!whatsappBtn || !form) return;
+
+      whatsappBtn.addEventListener("click", function () {
+        const name = form.querySelector('[name="name"]')?.value.trim() || "";
+        const email = form.querySelector('[name="email"]')?.value.trim() || "";
+        const phone = form.querySelector('[name="phone"]')?.value.trim() || "";
+        const need = form.querySelector('[name="need"]:checked')?.value || "";
+        const business = form.querySelector('[name="business"]')?.value.trim() || "";
+        const challenge = form.querySelector('[name="challenge"]')?.value.trim() || "";
+        const timeline = form.querySelector('[name="timeline"]')?.value.trim() || "";
+
+        if (!name || !email || !need || !business) {
+          alert("Please fill in at least Name, Email, Type of Support, and Business / Project before sending on WhatsApp.");
+          return;
+        }
+
+        const message = `New Chassis Inquiry
+
+Name: ${name}
+Email: ${email}
+Phone / WhatsApp: ${phone}
+Type of Support: ${need}
+Business / Project: ${business}
+Main Challenge: ${challenge}
+Timeline: ${timeline}`;
+
+        const whatsappURL = `https://wa.me/96171085824?text=${encodeURIComponent(message)}`;
+        window.open(whatsappURL, "_blank");
+      });
+    });
+  </script>
 </body>
 </html>
