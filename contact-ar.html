@@ -117,7 +117,7 @@
           </p>
         </div>
 
-        <form action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
+        <form id="consultationForm" action="https://formsubmit.co/chassis.lb@gmail.com" method="POST">
 
           <!-- FormSubmit settings -->
           <input type="hidden" name="_captcha" value="false">
@@ -202,10 +202,10 @@
               إرسال
             </button>
 
-            <a class="btn btn-primary" href="https://wa.me/96171085824" target="_blank" rel="noopener">
+            <button class="btn btn-primary" type="button" id="whatsappSubmit">
               <i class="fa-brands fa-whatsapp"></i>
               واتساب
-            </a>
+            </button>
           </div>
 
           <p class="fineprint">
@@ -270,6 +270,43 @@
 </a>
 
 <script src="script.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const whatsappBtn = document.getElementById("whatsappSubmit");
+    const form = document.getElementById("consultationForm");
+
+    if (!whatsappBtn || !form) return;
+
+    whatsappBtn.addEventListener("click", function () {
+      const name = form.querySelector('[name="name"]')?.value.trim() || "";
+      const email = form.querySelector('[name="email"]')?.value.trim() || "";
+      const phone = form.querySelector('[name="phone"]')?.value.trim() || "";
+      const need = form.querySelector('[name="need"]:checked')?.value || "";
+      const business = form.querySelector('[name="business"]')?.value.trim() || "";
+      const challenge = form.querySelector('[name="challenge"]')?.value.trim() || "";
+      const timeline = form.querySelector('[name="timeline"]')?.value.trim() || "";
+
+      if (!name || !email || !need || !business) {
+        alert("يرجى تعبئة الاسم، البريد الإلكتروني، نوع الدعم المطلوب، ووصف المشروع قبل الإرسال عبر واتساب.");
+        return;
+      }
+
+      const message = `استفسار جديد من موقع شاسي
+
+الاسم: ${name}
+البريد الإلكتروني: ${email}
+رقم الهاتف / واتساب: ${phone}
+نوع الدعم المطلوب: ${need}
+وصف المشروع / الشركة: ${business}
+التحدي الرئيسي حاليًا: ${challenge}
+الجدول الزمني: ${timeline}`;
+
+      const whatsappURL = `https://wa.me/96171085824?text=${encodeURIComponent(message)}`;
+      window.open(whatsappURL, "_blank");
+    });
+  });
+</script>
 
 </body>
 </html>
