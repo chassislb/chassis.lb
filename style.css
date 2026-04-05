@@ -1050,69 +1050,82 @@ main {
 }
 
 /* =========================
-   CASE STUDY — FEATURED
+   FEATURED CASE STUDY — DARK MODE
 ========================= */
 
 .featured-case-study {
   position: relative;
-  background: #ffffff;
-  padding: 40px 0 56px;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  background: #000000;
+  color: #ffffff;
+  padding: 64px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
 }
 
+/* subtle grid (keeps Chassis feel) */
 .featured-case-study::before {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.012) 1px, transparent 1px);
-  background-size: 120px 120px;
-  opacity: 0.22;
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 140px 140px;
+  opacity: 0.2;
   pointer-events: none;
 }
+
+/* layout */
 
 .featured-case-study-grid {
   position: relative;
   z-index: 1;
+
   display: grid;
-  grid-template-columns: minmax(320px, 460px) minmax(0, 1fr);
-  gap: 56px;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 64px;
   align-items: center;
 }
 
+/* TEXT */
+
 .featured-case-study-copy {
-  max-width: 460px;
+  max-width: 520px;
+}
+
+.featured-case-study-copy .eyebrow {
+  color: rgba(255,255,255,0.5);
 }
 
 .featured-case-study-copy h2 {
-  font-size: clamp(2rem, 3vw, 3rem);
-  line-height: 1.04;
-  letter-spacing: -0.045em;
+  font-size: clamp(1.9rem, 2.5vw, 2.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
   margin: 10px 0 16px;
-  color: var(--black);
+  color: #ffffff;
 }
 
 .featured-lead {
   font-size: 1rem;
   font-weight: 500;
-  line-height: 1.55;
-  margin-bottom: 14px;
-  color: rgba(0, 0, 0, 0.78);
+  margin-bottom: 12px;
+  color: rgba(255,255,255,0.75);
 }
 
 .featured-case-study-copy p {
-  font-size: 0.96rem;
-  line-height: 1.75;
-  color: rgba(0, 0, 0, 0.68);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.65);
 }
+
+/* LINK */
 
 .text-link {
   display: inline-block;
-  margin-top: 20px;
-  font-size: 0.92rem;
+  margin-top: 18px;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: var(--black);
+  color: #ffffff;
   position: relative;
 }
 
@@ -1120,46 +1133,77 @@ main {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -5px;
+  bottom: -4px;
   width: 100%;
   height: 1px;
   background: var(--yellow);
+  opacity: 0.9;
 }
 
-/* IMAGE SIDE */
+/* IMAGE */
 
 .featured-case-study-image {
   position: relative;
-  padding-left: 22px;
-  padding-top: 22px;
 }
 
+/* subtle offset frame (lighter for dark mode) */
 .featured-case-study-image::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: calc(100% - 22px);
-  height: calc(100% - 22px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  top: 18px;
+  left: -18px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(255,255,255,0.08);
   z-index: 0;
 }
+
+/* image */
 
 .featured-case-study-image img {
   position: relative;
   z-index: 1;
   width: 100%;
   height: auto;
-  display: block;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  background: #ffffff;
-  transition: transform 0.35s ease;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
+
+/* subtle motion */
 
 .featured-case-study-image:hover img {
-  transform: translateY(-3px);
+  transform: scale(1.015);
+  filter: brightness(1.05);
 }
 
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+  .featured-case-study-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .featured-case-study-copy {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .featured-case-study {
+    padding: 48px 0;
+  }
+
+  .featured-case-study-copy h2 {
+    font-size: 1.8rem;
+  }
+
+  .featured-case-study-copy p {
+    font-size: 0.92rem;
+  }
+}
 /* =========================
    CASE STUDIES — GRID
 ========================= */
@@ -1281,72 +1325,100 @@ main {
   }
 }
 /* =========================
-   COLLABORATION — REFINED
+   COLLABORATION — DARK MODE (DECISION SECTION)
 ========================= */
 
 .collaboration-editorial {
-  background: #ffffff;
-  padding: 48px 0 64px;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  position: relative;
+  background: #000000;
+  color: #ffffff;
+  padding: 64px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
 }
 
+/* subtle grid layer (brand consistency) */
+.collaboration-editorial::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 140px 140px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+/* layout */
+
 .collaboration-editorial-grid {
+  position: relative;
+  z-index: 1;
+
   display: grid;
   grid-template-columns: minmax(0, 720px) auto;
   align-items: center;
-  gap: 40px;
+  gap: 48px;
 }
 
 /* TEXT */
 
 .collaboration-editorial-copy {
-  max-width: 640px;
+  max-width: 620px;
+}
+
+.collaboration-editorial-copy .eyebrow {
+  color: rgba(255,255,255,0.45);
 }
 
 .collaboration-editorial-copy h2 {
-  font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+  font-size: clamp(1.9rem, 2.6vw, 2.6rem);
   line-height: 1.05;
   letter-spacing: -0.04em;
   margin: 10px 0 14px;
-  color: var(--black);
+  color: #ffffff;
 }
 
 .collaboration-editorial-copy p {
   font-size: 0.95rem;
   line-height: 1.7;
-  color: rgba(0, 0, 0, 0.68);
+  color: rgba(255,255,255,0.65);
 }
 
-/* BUTTON */
+/* CTA BUTTON — more intentional */
 
 .collaboration-editorial .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  height: 56px;
-  padding: 0 28px;
+  height: 58px;
+  padding: 0 30px;
 
   background: var(--yellow);
-  color: var(--black);
+  color: #000000;
 
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.01em;
 
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: none;
+
   box-shadow:
-    0 8px 20px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    0 10px 24px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.5);
 
   transition: all 0.25s ease;
 }
 
+/* hover = controlled power */
+
 .collaboration-editorial .btn-primary:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow:
-    0 12px 26px rgba(0, 0, 0, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    0 16px 34px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
 /* =========================
@@ -1356,7 +1428,7 @@ main {
 @media (max-width: 1100px) {
   .collaboration-editorial-grid {
     grid-template-columns: 1fr;
-    gap: 26px;
+    gap: 30px;
   }
 
   .collaboration-editorial-copy {
@@ -1364,13 +1436,13 @@ main {
   }
 }
 
-@media (max-width: 820px) {
+@media (max-width: 640px) {
   .collaboration-editorial {
-    padding: 36px 0 48px;
+    padding: 48px 0;
   }
 
   .collaboration-editorial-copy h2 {
-    font-size: clamp(1.6rem, 6vw, 2.1rem);
+    font-size: 1.8rem;
   }
 
   .collaboration-editorial-copy p {
