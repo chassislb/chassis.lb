@@ -51,14 +51,14 @@ a {
 .site-header {
   position: relative;
   background: var(--white);
-  border-bottom: 1px solid var(--black);
+  border-bottom: 1px solid var(--line);
 }
 
 .site-header::before {
   content: "";
   display: block;
   width: 100%;
-  height: 6px;
+  height: 5px;
   background: var(--black);
 }
 
@@ -100,15 +100,15 @@ a {
 }
 
 .header-center a.active {
-  font-weight: 600;
   color: var(--black);
+  font-weight: 600;
 }
 
 .header-center a.active::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -14px;
+  bottom: -15px;
   width: 100%;
   height: 3px;
   background: var(--yellow);
@@ -122,31 +122,30 @@ a {
 .language-switch {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px;
-  border: 1px solid var(--black);
-  border-radius: 999px;
-  background: var(--white);
+  gap: 10px;
 }
 
 .lang {
-  min-width: 56px;
-  min-height: 38px;
-  padding: 0 14px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
+  position: relative;
   font-size: 13px;
   font-weight: 600;
   color: var(--gray);
   cursor: pointer;
-  transition: all var(--transition);
+  transition: color var(--transition);
+}
+
+.lang:hover {
+  color: var(--black);
 }
 
 .lang.active {
-  background: var(--yellow);
   color: var(--black);
+}
+
+.language-switch .divider {
+  width: 1px;
+  height: 14px;
+  background: var(--line);
 }
 
 /* =========================
@@ -193,12 +192,10 @@ main,
   }
 
   .language-switch {
-    gap: 4px;
+    gap: 8px;
   }
 
   .lang {
-    min-width: 50px;
-    min-height: 34px;
     font-size: 12px;
   }
 }
