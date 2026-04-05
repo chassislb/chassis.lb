@@ -230,11 +230,13 @@ main,
   }
 }
 
-/* HERO — FULL WIDTH */
+/* =========================
+   HERO — PREMIUM AUTHORITY
+========================= */
 
 .hero-full {
   position: relative;
-  min-height: 78vh;
+  min-height: 82vh;
   display: flex;
   align-items: center;
 
@@ -243,50 +245,75 @@ main,
   background-position: center;
 }
 
+/* STRONGER overlay with identity */
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.85) 0%,
-    rgba(0,0,0,0.65) 45%,
-    rgba(0,0,0,0.2) 100%
-  );
+  background:
+    linear-gradient(
+      to right,
+      rgba(0,0,0,0.92) 0%,
+      rgba(0,0,0,0.75) 40%,
+      rgba(0,0,0,0.35) 75%,
+      rgba(0,0,0,0.15) 100%
+    );
 }
 
+/* Add signature vertical line (THIS is key) */
+.hero-full::after {
+  content: "";
+  position: absolute;
+  right: 8%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255,255,255,0.15);
+}
+
+/* Content */
 .hero-content {
   position: relative;
   color: #ffffff;
-  max-width: 720px;
+  max-width: 680px;
 }
 
+/* Kicker */
 .hero-kicker {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--blue);
 }
 
+/* HEADLINE — THIS is where we fix your problem */
 .hero-content h1 {
-  font-size: clamp(2.8rem, 5vw, 5.4rem);
-  line-height: 0.95;
-  letter-spacing: -0.05em;
+  font-size: clamp(2.6rem, 4.5vw, 4.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
   font-weight: 800;
+
+  /* premium depth instead of ugly 3D */
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.05),
+    0 8px 24px rgba(0,0,0,0.35);
 }
 
 .hero-content h1 span {
   display: block;
 }
 
+/* Description */
 .hero-description {
   margin-top: 22px;
   font-size: 1.05rem;
   line-height: 1.75;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255,255,255,0.78);
+  max-width: 520px;
 }
 
+/* Buttons */
 .hero-actions {
   display: flex;
   gap: 16px;
