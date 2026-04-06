@@ -130,9 +130,9 @@
 
 .about-hero-content h1 {
   max-width: 760px;
-  font-size: clamp(2.35rem, 3.7vw, 3.95rem);
-  line-height: 0.98;
-  letter-spacing: -0.05em;
+  font-size: clamp(2.4rem, 4vw, 4.2rem);
+  line-height: 0.96;
+  letter-spacing: -0.055em;
   font-weight: 700;
   color: #ffffff;
   text-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
@@ -147,9 +147,9 @@
 
 .about-hero-description {
   margin-top: 24px;
-  max-width: 760px;
-  font-size: 0.96rem;
-  line-height: 1.8;
+  max-width: 770px;
+  font-size: 0.97rem;
+  line-height: 1.82;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.72);
   text-wrap: pretty;
@@ -189,12 +189,12 @@
 
 .about-diagnosis-grid p {
   position: relative;
-  min-height: 88px;
-  padding: 18px 18px 18px 36px;
+  min-height: 78px;
+  padding: 16px 18px 16px 36px;
   display: flex;
   align-items: center;
   font-size: 0.9rem;
-  line-height: 1.48;
+  line-height: 1.45;
   font-weight: 500;
   letter-spacing: -0.01em;
   color: rgba(255, 255, 255, 0.86);
@@ -225,7 +225,7 @@
 }
 
 /* =========================
-   ABOUT SECTIONS BASE
+   LIGHT SECTION SYSTEM
 ========================= */
 
 .about-problem,
@@ -235,7 +235,7 @@
   position: relative;
   background: #ffffff;
   color: var(--black);
-  padding: 64px 0 72px;
+  padding: 68px 0 76px;
 }
 
 .about-problem::before,
@@ -249,7 +249,7 @@
     linear-gradient(rgba(0, 0, 0, 0.014) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.014) 1px, transparent 1px);
   background-size: 120px 120px;
-  opacity: 0.25;
+  opacity: 0.22;
   pointer-events: none;
 }
 
@@ -280,6 +280,11 @@
   text-wrap: pretty;
 }
 
+.about-problem-copy p:last-child {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.9);
+}
+
 /* =========================
    PATTERNS
 ========================= */
@@ -290,7 +295,7 @@
 
 .about-patterns-intro {
   max-width: 720px;
-  margin-bottom: 26px;
+  margin-bottom: 28px;
   font-size: 0.9rem;
   line-height: 1.65;
   color: rgba(0, 0, 0, 0.58);
@@ -380,8 +385,8 @@
   position: relative;
   background: #000000;
   color: #ffffff;
-  padding: 64px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 68px 0 74px;
+  border-top: 1px solid rgba(255,255,255,0.08);
   overflow: hidden;
 }
 
@@ -390,47 +395,52 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
   background-size: 140px 140px;
   opacity: 0.2;
   pointer-events: none;
 }
 
+.about-model-heading {
+  margin-bottom: 34px;
+}
+
 .about-model-heading .eyebrow,
 .about-closing-copy .eyebrow {
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255,255,255,0.45);
 }
 
 .about-model-heading .section-note {
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255,255,255,0.45);
 }
 
 .about-model-heading .section-heading-main h2 {
   color: #ffffff;
-  max-width: 640px;
+  max-width: 660px;
 }
 
 .about-model-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+  align-items: stretch;
 }
 
 .model-card {
   position: relative;
+  min-height: 260px;
   padding: 24px 24px 26px;
-  min-height: 250px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.02);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.02);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
   transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
 
 .model-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.03);
 }
 
 .model-card::before {
@@ -439,7 +449,7 @@
   left: 0;
   top: 0;
   width: 2px;
-  height: 46px;
+  height: 48px;
   background: var(--yellow);
 }
 
@@ -449,11 +459,11 @@
   font-size: 0.84rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(255,255,255,0.38);
 }
 
 .model-card h3 {
-  font-size: 1.28rem;
+  font-size: 1.24rem;
   line-height: 1.05;
   letter-spacing: -0.03em;
   font-weight: 600;
@@ -464,7 +474,7 @@
 .model-card p {
   font-size: 0.92rem;
   line-height: 1.72;
-  color: rgba(255, 255, 255, 0.66);
+  color: rgba(255,255,255,0.66);
   text-wrap: pretty;
 }
 
@@ -472,10 +482,14 @@
    OUTCOMES
 ========================= */
 
+.about-outcomes {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
 .about-outcomes-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 54px;
+  gap: 56px;
   align-items: start;
 }
 
@@ -525,11 +539,12 @@
 
 .about-fit {
   border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 56px;
 }
 
 .about-fit-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1.05fr 0.95fr;
   gap: 24px;
 }
 
@@ -610,7 +625,7 @@
   background: #000000;
   color: #ffffff;
   padding: 64px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255,255,255,0.08);
   overflow: hidden;
 }
 
@@ -619,8 +634,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
   background-size: 140px 140px;
   opacity: 0.18;
   pointer-events: none;
@@ -649,7 +664,7 @@
 .about-closing-copy p {
   font-size: 0.95rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255,255,255,0.65);
   text-wrap: pretty;
 }
 
@@ -666,8 +681,8 @@
   letter-spacing: 0.01em;
   border: none;
   box-shadow:
-    0 10px 24px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    0 10px 24px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.5);
   transition: all 0.25s ease;
   position: relative;
   overflow: hidden;
@@ -676,8 +691,8 @@
 .about-closing .btn-primary:hover {
   transform: translateY(-3px);
   box-shadow:
-    0 16px 34px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    0 16px 34px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
 .about-closing .btn-primary::before {
@@ -699,7 +714,7 @@
 }
 
 /* =========================
-   ABOUT PAGE REVEAL
+   ABOUT REVEAL
 ========================= */
 
 .about-hero-content,
@@ -757,12 +772,9 @@
   transition-delay: 0.12s;
 }
 
-.pattern-row:nth-child(4) {
-  transition-delay: 0.18s;
-}
-
+.pattern-row:nth-child(4),
 .fit-card:nth-child(2) {
-  transition-delay: 0.06s;
+  transition-delay: 0.18s;
 }
 
 /* =========================
@@ -772,7 +784,7 @@
 @media (max-width: 1200px) {
   .about-hero-content h1 {
     max-width: 660px;
-    font-size: clamp(2.2rem, 4vw, 3.55rem);
+    font-size: clamp(2.2rem, 4vw, 3.65rem);
   }
 
   .about-hero-description {
@@ -855,13 +867,9 @@
   .about-diagnosis-grid,
   .about-model-grid,
   .about-fit-grid,
-  .about-closing-grid {
-    grid-template-columns: 1fr;
-  }
-
+  .about-closing-grid,
   .about-outcomes-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
   }
 
   .pattern-row-content {
