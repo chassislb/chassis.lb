@@ -82,6 +82,12 @@ document.addEventListener("DOMContentLoaded", () => {
     .insights-closing-copy,
     .insights-closing .btn-primary,
 
+    /* CONTACT */
+    .contact-hero-content,
+    .contact-band-grid p,
+    .contact-info-block,
+    .contact-form-shell,
+
     /* GLOBAL */
     .footer-top,
     .footer-bottom
