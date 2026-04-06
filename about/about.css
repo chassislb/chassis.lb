@@ -7,8 +7,8 @@
   overflow: hidden;
   min-height: calc(100vh - 146px);
   background:
-    radial-gradient(circle at 18% 18%, rgba(54, 198, 244, 0.04), transparent 26%),
-    radial-gradient(circle at 86% 74%, rgba(243, 204, 49, 0.04), transparent 24%),
+    radial-gradient(circle at 76% 26%, rgba(54, 198, 244, 0.035), transparent 22%),
+    radial-gradient(circle at 86% 78%, rgba(243, 204, 49, 0.035), transparent 18%),
     linear-gradient(180deg, #040608 0%, #020304 100%);
   border-bottom: 1px solid var(--black);
 }
@@ -23,10 +23,10 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
   background-size: 120px 120px;
-  opacity: 0.09;
+  opacity: 0.08;
 }
 
 .about-grid::after {
@@ -34,17 +34,19 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
   background-size: 24px 24px;
-  opacity: 0.08;
+  opacity: 0.07;
 }
+
+/* DIFFERENT VISUAL SYSTEM FOR ABOUT */
 
 .about-lines {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  animation: lineDrift 10s ease-in-out infinite;
+  animation: lineDrift 11s ease-in-out infinite;
 }
 
 .about-line {
@@ -53,37 +55,86 @@
   will-change: transform, opacity;
 }
 
+/* main vertical structural axis */
 .about-line-v {
-  right: 17%;
-  top: 15%;
+  right: 18%;
+  top: 14%;
   width: 1px;
-  height: 55%;
-  background: rgba(243, 204, 49, 0.42);
+  height: 62%;
+  background: rgba(255, 255, 255, 0.08);
 }
 
+/* lower measurement line */
 .about-line-h {
   right: 8%;
-  top: 56%;
-  width: 29%;
+  top: 62%;
+  width: 24%;
+  height: 1px;
+  background: rgba(243, 204, 49, 0.24);
+}
+
+/* large architectural frame */
+.about-line-box-1 {
+  right: 23%;
+  top: 21%;
+  width: 220px;
+  height: 300px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* smaller offset frame */
+.about-line-box-2 {
+  right: 19.5%;
+  top: 26%;
+  width: 140px;
+  height: 190px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* add markers with pseudo elements so HTML stays untouched */
+.about-line-box-1::before {
+  content: "";
+  position: absolute;
+  right: -7px;
+  top: 36px;
+  width: 14px;
+  height: 14px;
+  background: var(--yellow);
+}
+
+.about-line-box-1::after {
+  content: "";
+  position: absolute;
+  left: 26px;
+  bottom: 34px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 118px -76px 0 rgba(255, 255, 255, 0.14);
+}
+
+.about-line-box-2::before {
+  content: "";
+  position: absolute;
+  left: -38px;
+  bottom: 22px;
+  width: 52px;
   height: 1px;
   background: rgba(255, 255, 255, 0.09);
 }
 
-.about-line-box-1 {
-  right: 27%;
-  top: 26%;
-  width: 108px;
-  height: 108px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+.about-line-box-2::after {
+  content: "";
+  position: absolute;
+  right: -44px;
+  top: 54px;
+  width: 44px;
+  height: 1px;
+  background: rgba(54, 198, 244, 0.22);
 }
 
-.about-line-box-2 {
-  right: 23.5%;
-  top: 29.2%;
-  width: 108px;
-  height: 108px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
+/* restrained atmosphere */
 
 .about-atmosphere {
   position: absolute;
@@ -94,27 +145,27 @@
 .about-glow {
   position: absolute;
   border-radius: 999px;
-  filter: blur(115px);
+  filter: blur(120px);
   mix-blend-mode: screen;
   will-change: transform, opacity;
 }
 
 .about-glow-blue {
-  width: 540px;
-  height: 390px;
-  right: 7%;
-  top: 33%;
-  background: rgba(54, 198, 244, 0.28);
-  animation: driftGlowBlue 8s ease-in-out infinite;
+  width: 340px;
+  height: 250px;
+  right: 10%;
+  top: 39%;
+  background: rgba(54, 198, 244, 0.14);
+  animation: driftGlowBlue 9s ease-in-out infinite;
 }
 
 .about-glow-yellow {
-  width: 360px;
-  height: 280px;
-  right: -1%;
-  bottom: 7%;
-  background: rgba(243, 204, 49, 0.12);
-  animation: driftGlowYellow 10s ease-in-out infinite;
+  width: 200px;
+  height: 150px;
+  right: 7%;
+  bottom: 15%;
+  background: rgba(243, 204, 49, 0.08);
+  animation: driftGlowYellow 11s ease-in-out infinite;
 }
 
 .about-hero-content {
@@ -130,7 +181,7 @@
 
 .about-hero-content h1 {
   max-width: 760px;
-  font-size: clamp(2.4rem, 4vw, 4.2rem);
+  font-size: clamp(2.4rem, 4vw, 4.1rem);
   line-height: 0.96;
   letter-spacing: -0.055em;
   font-weight: 700;
@@ -142,19 +193,18 @@
 .about-hero-content h1 span {
   display: block;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.84);
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .about-hero-description {
   margin-top: 24px;
-  max-width: 770px;
-  font-size: 0.97rem;
+  max-width: 760px;
+  font-size: 0.96rem;
   line-height: 1.82;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.72);
   text-wrap: pretty;
 }
-
 /* =========================
    DIAGNOSIS BAND
 ========================= */
