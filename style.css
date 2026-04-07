@@ -291,10 +291,10 @@ main {
 .line-box-3 {
   right: 30%;
   top: 23.3%;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   background: var(--yellow);
-  box-shadow: 78px 0 0 var(--blue);
+  box-shadow: 90px 0 0 var(--blue);
 }
 
 /* HERO GLOWS */
@@ -577,7 +577,7 @@ main {
 }
 
 .service-row:hover {
-  transform: translateX(3px);
+  transform: translateX(4px);
 }
 
 .service-row::before {
@@ -1246,7 +1246,7 @@ main {
 }
 
 .case-preview-editorial:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
 }
 
 .case-preview-editorial-image {
@@ -1646,6 +1646,14 @@ main {
 .footer-bottom p {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.48);
+}
+
+.footer-credit {
+  margin-top: 10px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
 }
 
 /* =========================
