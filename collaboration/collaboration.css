@@ -266,65 +266,6 @@
 }
 
 /* =========================
-   LIGHT SECTIONS
-========================= */
-
-.collaboration-page-overview,
-.collaboration-fit,
-.collaboration-principles {
-  position: relative;
-  background: #ffffff;
-  color: var(--black);
-  padding: 68px 0 76px;
-}
-
-.collaboration-page-overview::before,
-.collaboration-fit::before,
-.collaboration-principles::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.014) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.014) 1px, transparent 1px);
-  background-size: 120px 120px;
-  opacity: 0.22;
-  pointer-events: none;
-}
-
-.collaboration-page-overview .container,
-.collaboration-process .container,
-.collaboration-partners .container,
-.collaboration-fit .container,
-.collaboration-principles .container,
-.collaboration-page-closing .container {
-  position: relative;
-  z-index: 1;
-}
-
-/* =========================
-   OVERVIEW
-========================= */
-
-.collaboration-page-overview-copy {
-  max-width: 760px;
-  display: grid;
-  gap: 18px;
-}
-
-.collaboration-page-overview-copy p {
-  font-size: 0.94rem;
-  line-height: 1.76;
-  color: rgba(0, 0, 0, 0.72);
-  text-wrap: pretty;
-}
-
-.collaboration-page-overview-copy p:last-child {
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.9);
-}
-
-/* =========================
    PROCESS
 ========================= */
 
@@ -332,11 +273,11 @@
   position: relative;
   background: #ffffff;
   color: var(--black);
-  padding: 10px 0 76px;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 72px 0 82px;
 }
 
-.collaboration-process::before {
+.collaboration-process::before,
+.collaboration-standard::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -344,8 +285,39 @@
     linear-gradient(rgba(0, 0, 0, 0.014) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.014) 1px, transparent 1px);
   background-size: 120px 120px;
-  opacity: 0.18;
+  opacity: 0.2;
   pointer-events: none;
+}
+
+.collaboration-process .container,
+.collaboration-partners .container,
+.collaboration-standard .container,
+.collaboration-page-closing .container {
+  position: relative;
+  z-index: 1;
+}
+
+.collaboration-process-heading {
+  margin-bottom: 34px;
+}
+
+.collaboration-process-intro {
+  max-width: 760px;
+  display: grid;
+  gap: 18px;
+  margin-bottom: 34px;
+}
+
+.collaboration-process-intro p {
+  font-size: 0.94rem;
+  line-height: 1.76;
+  color: rgba(0, 0, 0, 0.72);
+  text-wrap: pretty;
+}
+
+.collaboration-process-intro p:last-child {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .collaboration-process-list {
@@ -355,9 +327,9 @@
 .collaboration-step-row {
   position: relative;
   display: grid;
-  grid-template-columns: 80px minmax(0, 1fr);
-  gap: 16px;
-  padding: 26px 0 30px;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 18px;
+  padding: 34px 0 38px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   transition: transform var(--transition);
 }
@@ -382,7 +354,7 @@
 }
 
 .collaboration-step-index {
-  font-size: 0.96rem;
+  font-size: 0.98rem;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: rgba(0, 0, 0, 0.2);
@@ -396,36 +368,31 @@
 
 .collaboration-step-main {
   display: grid;
-  gap: 22px;
+  gap: 24px;
 }
 
 .collaboration-step-head {
   display: grid;
-  grid-template-columns: 290px minmax(0, 1fr);
-  gap: 28px;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 34px;
   align-items: start;
 }
 
 .collaboration-step-head h2 {
-  font-size: 1.42rem;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
+  font-size: 1.5rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
   font-weight: 600;
   color: var(--black);
 }
 
 .collaboration-step-lead {
   max-width: 540px;
-  font-size: 0.98rem;
-  line-height: 1.62;
+  font-size: 1rem;
+  line-height: 1.64;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.76);
   text-wrap: pretty;
-}
-
-.collaboration-step-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
 }
 
 .collaboration-step-copy {
@@ -448,7 +415,7 @@
   background: #000000;
   color: #ffffff;
   padding: 68px 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
 }
 
@@ -457,8 +424,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 140px 140px;
   opacity: 0.18;
   pointer-events: none;
@@ -472,13 +439,13 @@
 }
 
 .collaboration-partners-copy .eyebrow {
-  color: rgba(255,255,255,0.45);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .collaboration-partners-copy h2 {
   margin: 10px 0 14px;
-  font-size: clamp(1.9rem, 2.5vw, 2.5rem);
-  line-height: 1.05;
+  font-size: clamp(1.95rem, 2.5vw, 2.6rem);
+  line-height: 1.04;
   letter-spacing: -0.04em;
   color: #ffffff;
   text-wrap: balance;
@@ -499,8 +466,8 @@
 .collaboration-partners-note {
   position: relative;
   padding: 22px 22px 24px;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .collaboration-partners-note::before {
@@ -533,7 +500,7 @@
   padding-left: 18px;
   font-size: 0.9rem;
   line-height: 1.62;
-  color: rgba(255,255,255,0.68);
+  color: rgba(255, 255, 255, 0.68);
   text-wrap: pretty;
 }
 
@@ -549,28 +516,36 @@
 }
 
 /* =========================
-   FIT
+   STANDARD
 ========================= */
 
-.collaboration-fit {
+.collaboration-standard {
+  position: relative;
+  background: #ffffff;
+  color: var(--black);
+  padding: 72px 0 80px;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.collaboration-fit-grid {
+.collaboration-standard-heading {
+  margin-bottom: 34px;
+}
+
+.collaboration-standard-grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: 24px;
+  margin-bottom: 34px;
 }
 
-.collaboration-fit-card {
+.collaboration-standard-column {
   position: relative;
-  min-height: 100%;
   padding: 24px 24px 26px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: #ffffff;
 }
 
-.collaboration-fit-card::before {
+.collaboration-standard-column::before {
   content: "";
   position: absolute;
   left: 0;
@@ -579,16 +554,16 @@
   height: 52px;
 }
 
-.collaboration-fit-card-positive::before {
+.collaboration-standard-positive::before {
   background: var(--yellow);
 }
 
-.collaboration-fit-card-negative::before {
+.collaboration-standard-negative::before {
   background: var(--blue);
 }
 
-.collaboration-fit-card h3 {
-  font-size: 1.18rem;
+.collaboration-standard-title {
+  font-size: 1.16rem;
   line-height: 1.08;
   letter-spacing: -0.025em;
   font-weight: 600;
@@ -596,13 +571,13 @@
   margin-bottom: 18px;
 }
 
-.collaboration-fit-card ul {
+.collaboration-standard-list {
   list-style: none;
   display: grid;
   gap: 12px;
 }
 
-.collaboration-fit-card li {
+.collaboration-standard-list li {
   position: relative;
   padding-left: 18px;
   font-size: 0.9rem;
@@ -611,7 +586,8 @@
   text-wrap: pretty;
 }
 
-.collaboration-fit-card li::before {
+.collaboration-standard-positive .collaboration-standard-list li::before,
+.collaboration-standard-negative .collaboration-standard-list li::before {
   content: "";
   position: absolute;
   left: 0;
@@ -621,23 +597,15 @@
   border-radius: 50%;
 }
 
-.collaboration-fit-card-positive li::before {
+.collaboration-standard-positive .collaboration-standard-list li::before {
   background: rgba(243, 204, 49, 0.95);
 }
 
-.collaboration-fit-card-negative li::before {
+.collaboration-standard-negative .collaboration-standard-list li::before {
   background: rgba(54, 198, 244, 0.95);
 }
 
-/* =========================
-   PRINCIPLES
-========================= */
-
-.collaboration-principles {
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.collaboration-principles-list {
+.collaboration-standard-principles {
   display: grid;
   gap: 14px;
   max-width: 760px;
@@ -674,7 +642,7 @@
   background: #000000;
   color: #ffffff;
   padding: 64px 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
 }
 
@@ -683,8 +651,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
   background-size: 140px 140px;
   opacity: 0.18;
   pointer-events: none;
@@ -702,7 +670,7 @@
 }
 
 .collaboration-page-closing-copy .eyebrow {
-  color: rgba(255,255,255,0.45);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .collaboration-page-closing-copy h2 {
@@ -717,7 +685,7 @@
 .collaboration-page-closing-copy p {
   font-size: 0.95rem;
   line-height: 1.7;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255, 255, 255, 0.65);
   text-wrap: pretty;
 }
 
@@ -734,8 +702,8 @@
   letter-spacing: 0.01em;
   border: none;
   box-shadow:
-    0 10px 24px rgba(0,0,0,0.35),
-    inset 0 1px 0 rgba(255,255,255,0.5);
+    0 10px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
   transition: all 0.25s ease;
   position: relative;
   overflow: hidden;
@@ -744,8 +712,8 @@
 .collaboration-page-closing .btn-primary:hover {
   transform: translateY(-3px);
   box-shadow:
-    0 16px 34px rgba(0,0,0,0.45),
-    inset 0 1px 0 rgba(255,255,255,0.6);
+    0 16px 34px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .collaboration-page-closing .btn-primary::before {
@@ -755,7 +723,7 @@
   background: linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,0.18) 48%,
+    rgba(255, 255, 255, 0.18) 48%,
     transparent 100%
   );
   transform: translateX(-120%);
@@ -772,15 +740,14 @@
 
 .collaboration-page-hero-content,
 .collaboration-page-band-grid p,
-.collaboration-page-overview .section-heading,
-.collaboration-page-overview-copy,
+.collaboration-process .section-heading,
+.collaboration-process-intro,
 .collaboration-step-row,
 .collaboration-partners-copy,
 .collaboration-partners-note,
-.collaboration-fit .section-heading,
-.collaboration-fit-card,
-.collaboration-principles .section-heading,
-.collaboration-principles-list,
+.collaboration-standard .section-heading,
+.collaboration-standard-column,
+.collaboration-standard-principles,
 .collaboration-page-closing-copy,
 .collaboration-page-closing .btn-primary {
   opacity: 0;
@@ -792,15 +759,14 @@
 
 .collaboration-page-hero-content.is-visible,
 .collaboration-page-band-grid p.is-visible,
-.collaboration-page-overview .section-heading.is-visible,
-.collaboration-page-overview-copy.is-visible,
+.collaboration-process .section-heading.is-visible,
+.collaboration-process-intro.is-visible,
 .collaboration-step-row.is-visible,
 .collaboration-partners-copy.is-visible,
 .collaboration-partners-note.is-visible,
-.collaboration-fit .section-heading.is-visible,
-.collaboration-fit-card.is-visible,
-.collaboration-principles .section-heading.is-visible,
-.collaboration-principles-list.is-visible,
+.collaboration-standard .section-heading.is-visible,
+.collaboration-standard-column.is-visible,
+.collaboration-standard-principles.is-visible,
 .collaboration-page-closing-copy.is-visible,
 .collaboration-page-closing .btn-primary.is-visible {
   opacity: 1;
@@ -809,7 +775,7 @@
 
 .collaboration-page-band-grid p:nth-child(2),
 .collaboration-step-row:nth-child(2),
-.collaboration-fit-card:nth-child(2) {
+.collaboration-standard-column:nth-child(2) {
   transition-delay: 0.06s;
 }
 
@@ -918,7 +884,7 @@
 
   .collaboration-step-head,
   .collaboration-partners-grid,
-  .collaboration-fit-grid,
+  .collaboration-standard-grid,
   .collaboration-page-closing-grid {
     grid-template-columns: 1fr;
   }
@@ -968,11 +934,9 @@
     bottom: 14%;
   }
 
-  .collaboration-page-overview,
   .collaboration-process,
   .collaboration-partners,
-  .collaboration-fit,
-  .collaboration-principles,
+  .collaboration-standard,
   .collaboration-page-closing {
     padding: 54px 0 60px;
   }
@@ -1005,13 +969,14 @@
   }
 
   .collaboration-step-head h2 {
-    font-size: 1.2rem;
+    font-size: 1.24rem;
   }
 
   .collaboration-step-lead,
   .collaboration-step-copy p,
   .collaboration-partners-copy p,
-  .collaboration-page-closing-copy p {
+  .collaboration-page-closing-copy p,
+  .collaboration-process-intro p {
     font-size: 0.9rem;
     line-height: 1.64;
   }
@@ -1034,20 +999,20 @@
     padding: 13px 0 13px 20px;
   }
 
-  .collaboration-fit-card,
+  .collaboration-standard-column,
   .collaboration-partners-note {
     padding: 20px 20px 22px;
   }
 
-  .collaboration-fit-card h3,
+  .collaboration-standard-title,
   .collaboration-partners-note h3 {
     font-size: 1.05rem;
   }
 
-  .collaboration-fit-card li,
+  .collaboration-standard-list li,
   .collaboration-partners-note li,
   .principle-item p,
-  .collaboration-page-overview-copy p {
+  .collaboration-process-intro p {
     font-size: 0.86rem;
   }
 
@@ -1067,15 +1032,14 @@
 @media (prefers-reduced-motion: reduce) {
   .collaboration-page-hero-content,
   .collaboration-page-band-grid p,
-  .collaboration-page-overview .section-heading,
-  .collaboration-page-overview-copy,
+  .collaboration-process .section-heading,
+  .collaboration-process-intro,
   .collaboration-step-row,
   .collaboration-partners-copy,
   .collaboration-partners-note,
-  .collaboration-fit .section-heading,
-  .collaboration-fit-card,
-  .collaboration-principles .section-heading,
-  .collaboration-principles-list,
+  .collaboration-standard .section-heading,
+  .collaboration-standard-column,
+  .collaboration-standard-principles,
   .collaboration-page-closing-copy,
   .collaboration-page-closing .btn-primary {
     transition: none !important;
