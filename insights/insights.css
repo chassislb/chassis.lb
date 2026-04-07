@@ -274,7 +274,15 @@
   position: relative;
   background: #ffffff;
   color: var(--black);
-  padding: 68px 0 76px;
+}
+
+.insights-intro {
+  padding: 68px 0 54px;
+}
+
+.insights-listing {
+  padding: 10px 0 76px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .insights-intro::before,
@@ -293,7 +301,6 @@
 .insights-intro .container,
 .insights-listing .container,
 .insight-featured .container,
-.insights-note .container,
 .insights-closing .container {
   position: relative;
   z-index: 1;
@@ -303,10 +310,15 @@
    INTRO
 ========================= */
 
+.insights-intro-grid {
+  display: grid;
+  gap: 28px;
+}
+
 .insights-intro-copy {
   max-width: 760px;
   display: grid;
-  gap: 18px;
+  gap: 16px;
 }
 
 .insights-intro-copy p {
@@ -350,7 +362,7 @@
   display: grid;
   grid-template-columns: 1.08fr 0.92fr;
   gap: 52px;
-  align-items: center;
+  align-items: stretch;
 }
 
 .insight-featured-copy {
@@ -384,12 +396,12 @@
 
 .insight-featured-panel {
   position: relative;
-  min-height: 280px;
+  min-height: 100%;
   border: 1px solid rgba(255,255,255,0.1);
   background: rgba(255,255,255,0.02);
-  display: flex;
-  align-items: flex-end;
-  padding: 24px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 26px 24px 24px;
 }
 
 .insight-featured-panel::before {
@@ -402,10 +414,49 @@
   background: var(--yellow);
 }
 
-.insight-featured-panel-inner {
+.insight-featured-panel-top {
+  margin-bottom: 24px;
+}
+
+.insight-panel-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.42);
+}
+
+.insight-featured-panel-body {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.insight-pattern-row {
+  display: grid;
+  gap: 6px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.insight-pattern-key {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.42);
+}
+
+.insight-pattern-value {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.82);
+}
+
+.insight-featured-panel-footer {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-top: 24px;
 }
 
 .insight-tag {
@@ -438,11 +489,6 @@
 /* =========================
    INSIGHTS LIST
 ========================= */
-
-.insights-listing {
-  padding-top: 10px;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-}
 
 .insights-list-grid {
   display: grid;
@@ -499,58 +545,6 @@
 }
 
 /* =========================
-   NOTE
-========================= */
-
-.insights-note {
-  position: relative;
-  background: #000000;
-  color: #ffffff;
-  padding: 68px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-}
-
-.insights-note::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 140px 140px;
-  opacity: 0.18;
-  pointer-events: none;
-}
-
-.insights-note-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 780px);
-}
-
-.insights-note-copy .eyebrow,
-.insights-closing-copy .eyebrow {
-  color: rgba(255,255,255,0.45);
-}
-
-.insights-note-copy h2 {
-  margin: 10px 0 14px;
-  font-size: clamp(1.9rem, 2.5vw, 2.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  color: #ffffff;
-  text-wrap: balance;
-}
-
-.insights-note-copy p {
-  max-width: 680px;
-  font-size: 0.95rem;
-  line-height: 1.72;
-  color: rgba(255, 255, 255, 0.66);
-  text-wrap: pretty;
-}
-
-/* =========================
    CLOSING
 ========================= */
 
@@ -584,6 +578,10 @@
 
 .insights-closing-copy {
   max-width: 620px;
+}
+
+.insights-closing-copy .eyebrow {
+  color: rgba(255,255,255,0.45);
 }
 
 .insights-closing-copy h2 {
@@ -658,7 +656,6 @@
 .insight-featured-copy,
 .insight-featured-panel,
 .insight-card,
-.insights-note-copy,
 .insights-closing-copy,
 .insights-closing .btn-primary {
   opacity: 0;
@@ -675,7 +672,6 @@
 .insight-featured-copy.is-visible,
 .insight-featured-panel.is-visible,
 .insight-card.is-visible,
-.insights-note-copy.is-visible,
 .insights-closing-copy.is-visible,
 .insights-closing .btn-primary.is-visible {
   opacity: 1;
@@ -694,14 +690,6 @@
 
 .insight-card:nth-child(4) {
   transition-delay: 0.18s;
-}
-
-.insight-card:nth-child(5) {
-  transition-delay: 0.24s;
-}
-
-.insight-card:nth-child(6) {
-  transition-delay: 0.3s;
 }
 
 /* =========================
@@ -853,9 +841,8 @@
   }
 
   .insights-intro,
-  .insights-listing,
   .insight-featured,
-  .insights-note,
+  .insights-listing,
   .insights-closing {
     padding: 54px 0 60px;
   }
@@ -888,8 +875,8 @@
 
   .insight-card p,
   .insight-featured-copy p,
-  .insights-note-copy p,
-  .insights-closing-copy p {
+  .insights-closing-copy p,
+  .insight-pattern-value {
     font-size: 0.9rem;
     line-height: 1.64;
   }
@@ -917,10 +904,6 @@
     padding: 20px 20px 22px;
   }
 
-  .insight-featured-panel {
-    min-height: 200px;
-  }
-
   .insight-tag {
     font-size: 0.8rem;
     min-height: 32px;
@@ -933,7 +916,6 @@
   }
 
   .insight-featured-copy h2,
-  .insights-note-copy h2,
   .insights-closing-copy h2 {
     line-height: 1.08;
   }
@@ -954,7 +936,6 @@
   .insight-featured-copy,
   .insight-featured-panel,
   .insight-card,
-  .insights-note-copy,
   .insights-closing-copy,
   .insights-closing .btn-primary {
     transition: none !important;
