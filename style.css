@@ -387,6 +387,14 @@ main {
   color: rgba(255, 255, 255, 0.72);
 }
 
+.hero-micro {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
 .hero-actions {
   display: flex;
   gap: 14px;
@@ -1422,6 +1430,22 @@ main {
 }
 
 /* =========================
+   MINIMAL BREAK
+========================= */
+
+.minimal-break {
+  padding: 48px 0;
+  text-align: center;
+  background: #ffffff;
+}
+
+.minimal-break p {
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  color: rgba(0,0,0,0.5);
+}
+
+/* =========================
    RESPONSIVE
 ========================= */
 
@@ -2211,4 +2235,31 @@ main {
 
 .language-switch {
   display: none;
+}
+
+/* =========================
+   BRUTAL SECTION (IMPACT)
+========================= */
+
+.brutal-section {
+  background: #000000;
+  color: #ffffff;
+  padding: 56px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.brutal-inner {
+  max-width: 820px;
+}
+
+.brutal-line {
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.brutal-line.muted {
+  margin-top: 10px;
+  color: rgba(255,255,255,0.5);
 }
