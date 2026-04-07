@@ -94,6 +94,7 @@
   height: 12px;
   border-radius: 50%;
   background: var(--blue);
+  box-shadow: 0 0 16px rgba(54, 198, 244, 0.24);
 }
 
 .case-studies-line-box-1::after {
@@ -114,6 +115,7 @@
   width: 14px;
   height: 14px;
   background: var(--yellow);
+  box-shadow: 0 0 16px rgba(243, 204, 49, 0.18);
 }
 
 .case-studies-line-box-2::after {
@@ -317,26 +319,32 @@
   letter-spacing: -0.045em;
   margin: 10px 0 16px;
   color: var(--black);
+  text-wrap: balance;
 }
 
 .case-study-featured-lead {
   font-size: 1rem;
   font-weight: 500;
   margin-bottom: 12px;
-  color: rgba(0, 0, 0, 0.78);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .case-study-featured-copy p {
   font-size: 0.95rem;
   line-height: 1.72;
   color: rgba(0, 0, 0, 0.68);
+  text-wrap: pretty;
+}
+
+.case-study-featured-copy p + p {
+  margin-top: 12px;
 }
 
 .case-study-featured-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 22px;
 }
 
 .case-study-featured-tags span {
@@ -349,6 +357,13 @@
   color: rgba(0, 0, 0, 0.78);
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: rgba(0, 0, 0, 0.02);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.case-study-featured-tags span:hover {
+  transform: translateY(-2px);
+  border-color: rgba(243, 204, 49, 0.35);
+  background: rgba(243, 204, 49, 0.06);
 }
 
 .case-study-featured-image {
@@ -373,6 +388,8 @@
   height: auto;
   border: 1px solid rgba(0, 0, 0, 0.08);
   transition: transform 0.4s ease, filter 0.4s ease;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .case-study-featured-image:hover img {
@@ -403,11 +420,12 @@
   gap: 18px;
   padding: 34px 0 38px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  transition: transform var(--transition);
+  transition: transform var(--transition), border-color var(--transition);
 }
 
 .case-study-row:hover {
-  transform: translateX(3px);
+  transform: translateX(4px);
+  border-color: rgba(0, 0, 0, 0.12);
 }
 
 .case-study-row::before {
@@ -463,7 +481,7 @@
   font-size: 1rem;
   line-height: 1.64;
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.76);
+  color: rgba(0, 0, 0, 0.78);
   text-wrap: pretty;
 }
 
