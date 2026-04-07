@@ -40,8 +40,6 @@
   opacity: 0.07;
 }
 
-/* DIFFERENT VISUAL SYSTEM FOR ABOUT */
-
 .about-lines {
   position: absolute;
   inset: 0;
@@ -55,7 +53,6 @@
   will-change: transform, opacity;
 }
 
-/* main vertical structural axis */
 .about-line-v {
   right: 18%;
   top: 14%;
@@ -64,7 +61,6 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* lower measurement line */
 .about-line-h {
   right: 8%;
   top: 62%;
@@ -73,7 +69,6 @@
   background: rgba(243, 204, 49, 0.24);
 }
 
-/* large architectural frame */
 .about-line-box-1 {
   right: 23%;
   top: 21%;
@@ -82,7 +77,6 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-/* smaller offset frame */
 .about-line-box-2 {
   right: 19.5%;
   top: 26%;
@@ -91,7 +85,6 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* add markers with pseudo elements so HTML stays untouched */
 .about-line-box-1::before {
   content: "";
   position: absolute;
@@ -133,8 +126,6 @@
   height: 1px;
   background: rgba(54, 198, 244, 0.22);
 }
-
-/* restrained atmosphere */
 
 .about-atmosphere {
   position: absolute;
@@ -205,6 +196,7 @@
   color: rgba(255, 255, 255, 0.72);
   text-wrap: pretty;
 }
+
 /* =========================
    DIAGNOSIS BAND
 ========================= */
@@ -280,7 +272,6 @@
 
 .about-problem,
 .about-patterns,
-.about-outcomes,
 .about-fit {
   position: relative;
   background: #ffffff;
@@ -290,7 +281,6 @@
 
 .about-problem::before,
 .about-patterns::before,
-.about-outcomes::before,
 .about-fit::before {
   content: "";
   position: absolute;
@@ -436,7 +426,7 @@
   background: #000000;
   color: #ffffff;
   padding: 68px 0 74px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
 }
 
@@ -445,8 +435,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 140px 140px;
   opacity: 0.2;
   pointer-events: none;
@@ -457,15 +447,19 @@
 }
 
 .about-model-heading .eyebrow,
-.about-closing-copy .eyebrow {
-  color: rgba(255,255,255,0.45);
+.about-closing-copy .eyebrow,
+.about-outcomes-heading .eyebrow {
+  color: rgba(255, 255, 255, 0.45);
 }
 
-.about-model-heading .section-note {
-  color: rgba(255,255,255,0.45);
+.about-model-heading .section-note,
+.about-closing-copy .section-note,
+.about-outcomes-heading .section-note {
+  color: rgba(255, 255, 255, 0.45);
 }
 
-.about-model-heading .section-heading-main h2 {
+.about-model-heading .section-heading-main h2,
+.about-outcomes-heading .section-heading-main h2 {
   color: #ffffff;
   max-width: 660px;
 }
@@ -481,16 +475,16 @@
   position: relative;
   min-height: 260px;
   padding: 24px 24px 26px;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.02);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
   transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
 
 .model-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.03);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .model-card::before {
@@ -509,7 +503,7 @@
   font-size: 0.84rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: rgba(255,255,255,0.38);
+  color: rgba(255, 255, 255, 0.38);
 }
 
 .model-card h3 {
@@ -524,7 +518,7 @@
 .model-card p {
   font-size: 0.92rem;
   line-height: 1.72;
-  color: rgba(255,255,255,0.66);
+  color: rgba(255, 255, 255, 0.66);
   text-wrap: pretty;
 }
 
@@ -533,7 +527,27 @@
 ========================= */
 
 .about-outcomes {
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  position: relative;
+  background:
+    radial-gradient(circle at 82% 22%, rgba(54, 198, 244, 0.04), transparent 18%),
+    radial-gradient(circle at 14% 72%, rgba(243, 204, 49, 0.04), transparent 18%),
+    linear-gradient(180deg, #050607 0%, #000000 100%);
+  color: #ffffff;
+  padding: 68px 0 76px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.about-outcomes::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 140px 140px;
+  opacity: 0.18;
+  pointer-events: none;
 }
 
 .about-outcomes-grid {
@@ -551,7 +565,7 @@
 .about-outcomes-copy p {
   font-size: 0.94rem;
   line-height: 1.76;
-  color: rgba(0, 0, 0, 0.72);
+  color: rgba(255, 255, 255, 0.68);
   text-wrap: pretty;
 }
 
@@ -564,7 +578,7 @@
 .outcome-item {
   position: relative;
   padding: 0 0 14px 22px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .outcome-item span {
@@ -575,12 +589,13 @@
   height: 8px;
   border-radius: 50%;
   background: var(--yellow);
+  box-shadow: 0 0 18px rgba(243, 204, 49, 0.22);
 }
 
 .outcome-item p {
-  font-size: 0.91rem;
+  font-size: 0.92rem;
   line-height: 1.56;
-  color: rgba(0, 0, 0, 0.72);
+  color: rgba(255, 255, 255, 0.82);
 }
 
 /* =========================
@@ -674,8 +689,9 @@
   position: relative;
   background: #000000;
   color: #ffffff;
-  padding: 64px 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 56px 0 54px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   overflow: hidden;
 }
 
@@ -684,83 +700,69 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
   background-size: 140px 140px;
-  opacity: 0.18;
+  opacity: 0.16;
   pointer-events: none;
 }
 
-.about-closing-grid {
+.about-closing-inner {
   display: grid;
-  grid-template-columns: minmax(0, 720px) auto;
-  align-items: center;
-  gap: 48px;
+  grid-template-columns: minmax(0, 760px);
+  gap: 20px;
 }
 
 .about-closing-copy {
-  max-width: 620px;
+  max-width: 760px;
 }
 
 .about-closing-copy h2 {
-  font-size: clamp(1.9rem, 2.6vw, 2.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  margin: 10px 0 14px;
+  font-size: clamp(1.9rem, 2.6vw, 2.8rem);
+  line-height: 1.03;
+  letter-spacing: -0.045em;
+  margin: 10px 0 16px;
   color: #ffffff;
   text-wrap: balance;
+  max-width: 760px;
 }
 
-.about-closing-copy p {
+.about-closing-copy p:last-child {
   font-size: 0.95rem;
   line-height: 1.7;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255, 255, 255, 0.65);
   text-wrap: pretty;
+  max-width: 720px;
 }
 
-.about-closing .btn-primary {
+.about-closing-link {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  height: 58px;
-  padding: 0 30px;
-  background: var(--yellow);
-  color: #000000;
-  font-size: 0.95rem;
+  gap: 10px;
+  width: fit-content;
+  font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  border: none;
-  box-shadow:
-    0 10px 24px rgba(0,0,0,0.35),
-    inset 0 1px 0 rgba(255,255,255,0.5);
-  transition: all 0.25s ease;
-  position: relative;
-  overflow: hidden;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+  padding-bottom: 6px;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 
-.about-closing .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow:
-    0 16px 34px rgba(0,0,0,0.45),
-    inset 0 1px 0 rgba(255,255,255,0.6);
+.about-closing-link span {
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.25s ease;
 }
 
-.about-closing .btn-primary::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,0.18) 48%,
-    transparent 100%
-  );
-  transform: translateX(-120%);
-  transition: transform 0.65s ease;
+.about-closing-link:hover {
+  color: var(--yellow);
+  border-color: rgba(243, 204, 49, 0.7);
+  transform: translateX(2px);
 }
 
-.about-closing .btn-primary:hover::before {
-  transform: translateX(120%);
+.about-closing-link:hover span {
+  transform: translate(2px, -1px);
 }
 
 /* =========================
@@ -782,7 +784,7 @@
 .about-fit .section-heading,
 .fit-card,
 .about-closing-copy,
-.about-closing .btn-primary {
+.about-closing-link {
   opacity: 0;
   transform: translateY(18px);
   transition:
@@ -805,7 +807,7 @@
 .about-fit .section-heading.is-visible,
 .fit-card.is-visible,
 .about-closing-copy.is-visible,
-.about-closing .btn-primary.is-visible {
+.about-closing-link.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -917,7 +919,6 @@
   .about-diagnosis-grid,
   .about-model-grid,
   .about-fit-grid,
-  .about-closing-grid,
   .about-outcomes-grid {
     grid-template-columns: 1fr;
   }
@@ -928,7 +929,8 @@
   }
 
   .about-closing-copy,
-  .about-model-heading .section-heading-main h2 {
+  .about-model-heading .section-heading-main h2,
+  .about-outcomes-heading .section-heading-main h2 {
     max-width: 100%;
   }
 }
@@ -1011,7 +1013,7 @@
   .pattern-row-content p,
   .about-problem-copy p,
   .about-outcomes-copy p,
-  .about-closing-copy p {
+  .about-closing-copy p:last-child {
     font-size: 0.9rem;
     line-height: 1.64;
   }
@@ -1051,15 +1053,13 @@
   }
 
   .about-closing-copy h2,
-  .about-model-heading .section-heading-main h2 {
+  .about-model-heading .section-heading-main h2,
+  .about-outcomes-heading .section-heading-main h2 {
     line-height: 1.08;
   }
 
-  .about-closing .btn-primary {
-    width: fit-content;
-    min-height: 50px;
-    font-size: 13px;
-    padding: 0 22px;
+  .about-closing-link {
+    font-size: 0.86rem;
   }
 }
 
@@ -1079,7 +1079,7 @@
   .about-fit .section-heading,
   .fit-card,
   .about-closing-copy,
-  .about-closing .btn-primary {
+  .about-closing-link {
     transition: none !important;
     animation: none !important;
     transform: none !important;
