@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const revealItems = document.querySelectorAll(
-    `
+  const revealItems = document.querySelectorAll(`
     /* HOME */
     .hero-system-content,
     .statement-band-grid p,
@@ -16,30 +15,25 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ABOUT */
     .about-hero-content,
     .about-diagnosis-grid p,
-    .about-problem .section-heading,
-    .about-problem-copy,
-    .about-patterns .section-heading,
-    .about-patterns-intro,
-    .pattern-row,
+    .about-belief .section-heading,
+    .about-belief-copy,
+    .about-patterns-panel,
+    .about-pattern-item,
     .about-model .section-heading,
     .model-card,
-    .about-outcomes .section-heading,
-    .about-outcomes-copy,
-    .about-outcomes-list,
-    .about-fit .section-heading,
-    .fit-card,
+    .about-model-outcomes,
+    .about-readiness .section-heading,
+    .readiness-column,
     .about-closing-copy,
-    .about-closing .btn-primary,
 
     /* SERVICES */
     .services-hero-content,
     .services-scope-grid p,
-    .services-overview .section-heading,
-    .services-overview-copy,
+    .services-architecture .section-heading,
+    .services-architecture-intro,
     .service-detail-row,
     .services-fit .section-heading,
-    .services-fit-card,
-    .services-note-copy,
+    .services-fit-row,
     .services-closing-copy,
     .services-closing .btn-primary,
 
@@ -91,14 +85,14 @@ document.addEventListener("DOMContentLoaded", () => {
     /* GLOBAL */
     .footer-top,
     .footer-bottom
-    `
-  );
+  `);
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
         }
       });
     },
