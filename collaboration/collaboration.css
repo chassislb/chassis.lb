@@ -290,7 +290,6 @@
 }
 
 .collaboration-process .container,
-.collaboration-partners .container,
 .collaboration-standard .container,
 .collaboration-page-closing .container {
   position: relative;
@@ -404,250 +403,6 @@
   line-height: 1.72;
   color: rgba(0, 0, 0, 0.72);
   text-wrap: pretty;
-}
-
-/* =========================
-   PARTNERS
-========================= */
-
-.collaboration-partners {
-  position: relative;
-  background: #000000;
-  color: #ffffff;
-  padding: 68px 0 72px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-}
-
-.collaboration-partners::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 140px 140px;
-  opacity: 0.18;
-  pointer-events: none;
-}
-
-.collaboration-partners-heading {
-  margin-bottom: 34px;
-}
-
-.collaboration-partners-heading .eyebrow,
-.collaboration-page-closing-copy .eyebrow {
-  color: rgba(255, 255, 255, 0.45);
-}
-
-.collaboration-partners-heading .section-note {
-  color: rgba(255, 255, 255, 0.45);
-}
-
-.collaboration-partners-heading .section-heading-main h2 {
-  color: #ffffff;
-  max-width: 700px;
-}
-
-.collaboration-featured-partner {
-  display: grid;
-  grid-template-columns: 0.94fr 1.06fr;
-  gap: 38px;
-  align-items: start;
-  margin-bottom: 34px;
-}
-
-.collaboration-featured-partner-brand {
-  position: relative;
-  padding: 24px 24px 26px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.collaboration-featured-partner-brand::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2px;
-  height: 58px;
-  background: var(--yellow);
-}
-
-.collaboration-partner-logo-wrap {
-  width: 100%;
-  min-height: 108px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-bottom: 20px;
-  margin-bottom: 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.collaboration-partner-logo {
-  max-width: 180px;
-  width: auto;
-  max-height: 52px;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
-.collaboration-partner-label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.42);
-  margin-bottom: 8px;
-}
-
-.collaboration-partner-brand-copy h3 {
-  font-size: 1.46rem;
-  line-height: 1;
-  letter-spacing: -0.035em;
-  color: #ffffff;
-  margin-bottom: 12px;
-}
-
-.collaboration-partner-brand-copy p {
-  font-size: 0.92rem;
-  line-height: 1.66;
-  color: rgba(255, 255, 255, 0.68);
-}
-
-.collaboration-featured-partner-body {
-  display: grid;
-  gap: 24px;
-}
-
-.collaboration-featured-partner-copy {
-  display: grid;
-  gap: 14px;
-  max-width: 640px;
-}
-
-.collaboration-featured-partner-copy p {
-  font-size: 0.94rem;
-  line-height: 1.72;
-  color: rgba(255, 255, 255, 0.68);
-}
-
-.collaboration-featured-partner-split {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.partner-split-column {
-  position: relative;
-  padding: 18px 18px 20px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.partner-split-column::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2px;
-  height: 46px;
-  background: var(--blue);
-}
-
-.partner-split-column:first-child::before {
-  background: var(--yellow);
-}
-
-.partner-split-title {
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.44);
-  margin-bottom: 14px;
-}
-
-.partner-split-column ul {
-  list-style: none;
-  display: grid;
-  gap: 10px;
-}
-
-.partner-split-column li {
-  position: relative;
-  padding-left: 16px;
-  font-size: 0.88rem;
-  line-height: 1.56;
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.partner-split-column li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 8px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.24);
-}
-
-.collaboration-partner-network {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.partner-network-card {
-  position: relative;
-  min-height: 100%;
-  padding: 20px 20px 22px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.partner-network-card::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2px;
-  height: 44px;
-  background: rgba(255, 255, 255, 0.16);
-}
-
-.partner-network-card-active::before {
-  background: var(--yellow);
-}
-
-.partner-network-status {
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 10px;
-}
-
-.partner-network-card h3 {
-  font-size: 1.02rem;
-  line-height: 1.08;
-  letter-spacing: -0.025em;
-  color: #ffffff;
-  margin-bottom: 10px;
-}
-
-.partner-network-card p {
-  font-size: 0.88rem;
-  line-height: 1.58;
-  color: rgba(255, 255, 255, 0.66);
-}
-
-.partner-network-card-muted {
-  opacity: 0.72;
 }
 
 /* =========================
@@ -793,6 +548,10 @@
   pointer-events: none;
 }
 
+.collaboration-page-closing-copy .eyebrow {
+  color: rgba(255, 255, 255, 0.45);
+}
+
 .collaboration-page-closing-grid {
   display: grid;
   grid-template-columns: minmax(0, 720px) auto;
@@ -874,9 +633,6 @@
 .collaboration-process .section-heading,
 .collaboration-process-intro,
 .collaboration-step-row,
-.collaboration-partners .section-heading,
-.collaboration-featured-partner,
-.partner-network-card,
 .collaboration-standard .section-heading,
 .collaboration-standard-column,
 .collaboration-standard-principles,
@@ -894,9 +650,6 @@
 .collaboration-process .section-heading.is-visible,
 .collaboration-process-intro.is-visible,
 .collaboration-step-row.is-visible,
-.collaboration-partners .section-heading.is-visible,
-.collaboration-featured-partner.is-visible,
-.partner-network-card.is-visible,
 .collaboration-standard .section-heading.is-visible,
 .collaboration-standard-column.is-visible,
 .collaboration-standard-principles.is-visible,
@@ -908,14 +661,12 @@
 
 .collaboration-page-band-grid p:nth-child(2),
 .collaboration-step-row:nth-child(2),
-.partner-network-card:nth-child(2),
 .collaboration-standard-column:nth-child(2) {
   transition-delay: 0.06s;
 }
 
 .collaboration-page-band-grid p:nth-child(3),
-.collaboration-step-row:nth-child(3),
-.partner-network-card:nth-child(3) {
+.collaboration-step-row:nth-child(3) {
   transition-delay: 0.12s;
 }
 
@@ -1018,11 +769,8 @@
   }
 
   .collaboration-step-head,
-  .collaboration-featured-partner,
-  .collaboration-featured-partner-split,
   .collaboration-standard-grid,
-  .collaboration-page-closing-grid,
-  .collaboration-partner-network {
+  .collaboration-page-closing-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1072,7 +820,6 @@
   }
 
   .collaboration-process,
-  .collaboration-partners,
   .collaboration-standard,
   .collaboration-page-closing {
     padding: 54px 0 60px;
@@ -1111,8 +858,6 @@
 
   .collaboration-step-lead,
   .collaboration-step-copy p,
-  .collaboration-featured-partner-copy p,
-  .collaboration-partner-brand-copy p,
   .collaboration-page-closing-copy p,
   .collaboration-process-intro p {
     font-size: 0.9rem;
@@ -1137,30 +882,20 @@
     padding: 13px 0 13px 20px;
   }
 
-  .collaboration-standard-column,
-  .collaboration-partners-note,
-  .collaboration-featured-partner-brand,
-  .partner-split-column,
-  .partner-network-card {
+  .collaboration-standard-column {
     padding: 20px 20px 22px;
   }
 
-  .collaboration-standard-title,
-  .collaboration-partners-note h3,
-  .collaboration-partner-brand-copy h3 {
+  .collaboration-standard-title {
     font-size: 1.05rem;
   }
 
   .collaboration-standard-list li,
-  .collaboration-partners-note li,
   .principle-item p,
-  .collaboration-process-intro p,
-  .partner-split-column li,
-  .partner-network-card p {
+  .collaboration-process-intro p {
     font-size: 0.86rem;
   }
 
-  .collaboration-partners-copy h2,
   .collaboration-page-closing-copy h2 {
     line-height: 1.08;
   }
@@ -1171,11 +906,6 @@
     font-size: 13px;
     padding: 0 22px;
   }
-
-  .collaboration-partner-logo {
-    max-width: 150px;
-    max-height: 44px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1184,9 +914,6 @@
   .collaboration-process .section-heading,
   .collaboration-process-intro,
   .collaboration-step-row,
-  .collaboration-partners .section-heading,
-  .collaboration-featured-partner,
-  .partner-network-card,
   .collaboration-standard .section-heading,
   .collaboration-standard-column,
   .collaboration-standard-principles,
