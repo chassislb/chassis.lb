@@ -2,137 +2,979 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Business Diagnosis | Chassis</title>
+  <meta
+    name="description"
+    content="Start a smart business diagnosis with Chassis to understand what is unclear, messy, or missing inside your business."
+  />
 
-  <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="diagnosis.css">
+  <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="diagnosis.css" />
 </head>
 
 <body>
+  <a href="https://wa.me/96171085824" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with Chassis on WhatsApp">
+    <span class="whatsapp-float-accent"></span>
+    <span class="whatsapp-float-icon">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path fill="currentColor" d="M12.04 2C6.56 2 2.12 6.42 2.12 11.88c0 1.94.5 3.8 1.46 5.44L2 22l4.83-1.58a9.86 9.86 0 005.21 1.5c5.48 0 9.92-4.42 9.92-9.88C21.96 6.42 17.52 2 12.04 2zm0 17.92c-1.6 0-3.17-.43-4.54-1.24l-.32-.19-2.86.94.93-2.79-.2-.34a7.87 7.87 0 01-1.2-4.2c0-4.36 3.56-7.9 7.95-7.9 4.38 0 7.94 3.54 7.94 7.9s-3.56 7.9-7.94 7.9zm4.33-5.93c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12s-.62.78-.76.94c-.14.16-.28.18-.52.06-.24-.12-1-.36-1.9-1.14-.7-.62-1.18-1.38-1.32-1.62-.14-.24-.02-.36.1-.48.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.42-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.02.4 1.36.52.58.18 1.1.16 1.52.1.46-.06 1.43-.58 1.63-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
+      </svg>
+    </span>
+    <span class="whatsapp-float-label">WhatsApp</span>
+  </a>
 
-<header class="site-header">
-  <div class="header-top">
-    <div class="container header-top-inner">
-      <div class="header-brand">
-        <a href="../index.html">
-          <img src="../assets/logo/chassis-logo-white.png" class="site-logo"/>
-        </a>
-      </div>
+  <header class="site-header">
+    <div class="header-top">
+      <div class="container header-top-inner">
+        <div class="header-brand">
+          <a href="../index.html" class="logo-link" aria-label="Chassis home">
+            <img src="../assets/logo/chassis-logo-white.png" alt="Chassis logo" class="site-logo" />
+          </a>
+          <p class="brand-meta">Business Structuring / Operations Systems / Execution Infrastructure</p>
+        </div>
 
-      <div class="header-right">
-        <a href="../contact/" class="header-cta">Start a Conversation</a>
+        <div class="header-right">
+          <a href="../contact/" class="header-cta">Start a Conversation</a>
+        </div>
       </div>
     </div>
-  </div>
-</header>
 
-<main class="diagnosis-page">
+    <div class="header-bottom">
+      <div class="container header-bottom-inner">
+        <nav class="header-center" aria-label="Main navigation">
+          <a href="../index.html">Home</a>
+          <a href="../about/">About</a>
+          <a href="../services/">Services</a>
+          <a href="../case-studies/">Case Studies</a>
+          <a href="../collaboration/">Collaboration</a>
+          <a href="../insights/">Insights</a>
+          <a href="../contact/">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-  <div class="container diagnosis-container">
+  <main class="diagnosis-page">
+    <section class="diagnosis-hero">
+      <div class="container diagnosis-shell">
+        <div class="diagnosis-intro">
+          <p class="eyebrow">Business Diagnosis</p>
+          <h1>
+            Let’s find what is actually wrong.
+          </h1>
+          <p>
+            This diagnosis will ask you one question at a time. Your answers will decide the next questions, so Chassis can understand whether your business needs structure, operations, infrastructure, or advisory.
+          </p>
+        </div>
 
-    <h1>Start Your Business Diagnosis</h1>
-    <p class="diag-sub">
-      Answer a few questions so we understand what’s actually broken.
-    </p>
+        <div class="diagnosis-card">
+          <div class="diagnosis-progress">
+            <div id="progressBar"></div>
+          </div>
 
-    <form id="diagnosisForm" class="diag-form">
+          <div id="questionArea"></div>
 
-      <input type="text" id="name" placeholder="Your Name" required>
-      <input type="text" id="businessName" placeholder="Business Name" required>
-      <input type="text" id="phone" placeholder="Phone / WhatsApp" required>
+          <div class="diagnosis-actions">
+            <button id="backBtn" type="button">Back</button>
+            <button id="nextBtn" type="button">Next</button>
+          </div>
 
-      <textarea id="mainProblem" placeholder="What is not working?" required></textarea>
+          <p id="diagnosisStatus" class="diagnosis-status"></p>
+        </div>
 
-      <select id="offerClarity" required>
-        <option value="">Do you have clear offers?</option>
-        <option value="Clear">Yes</option>
-        <option value="Semi">Somewhat</option>
-        <option value="Unclear">No</option>
-      </select>
+        <div id="finalResult" class="diagnosis-result">
+          <p class="eyebrow">Diagnosis Result</p>
+          <h2 id="resultTitle"></h2>
+          <p id="resultSummary"></p>
 
-      <select id="dependency" required>
-        <option value="">Does everything depend on you?</option>
-        <option value="Low">No</option>
-        <option value="Medium">Partially</option>
-        <option value="High">Yes</option>
-      </select>
+          <div class="result-grid">
+            <div>
+              <h3>Recommended Service</h3>
+              <p id="recommendedService"></p>
+            </div>
 
-      <select id="systems" required>
-        <option value="">Do you have systems/tools?</option>
-        <option value="Good">Yes</option>
-        <option value="Weak">Weak</option>
-        <option value="None">None</option>
-      </select>
+            <div>
+              <h3>Secondary Need</h3>
+              <p id="secondaryService"></p>
+            </div>
 
-      <button type="submit">Submit Diagnosis</button>
+            <div>
+              <h3>Internal Score</h3>
+              <p id="scoreText"></p>
+            </div>
+          </div>
 
-      <div id="status"></div>
-      <div id="resultBox"></div>
+          <a id="whatsappResultLink" class="btn btn-primary" target="_blank" rel="noopener">Send to WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    </form>
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo-link" aria-label="Chassis home">
+          <img src="../assets/logo/chassis-logo-white.png" alt="Chassis logo" class="footer-logo" />
+        </a>
+        <p>Business Structuring. Operations Systems. Execution Infrastructure.</p>
+      </div>
 
-  </div>
+      <div class="footer-nav-group">
+        <div class="footer-nav">
+          <a href="../index.html">Home</a>
+          <a href="../about/">About</a>
+          <a href="../services/">Services</a>
+          <a href="../case-studies/">Case Studies</a>
+          <a href="../collaboration/">Collaboration</a>
+          <a href="../insights/">Insights</a>
+          <a href="../contact/">Contact</a>
+        </div>
+      </div>
+    </div>
 
-</main>
+    <div class="container footer-bottom">
+      <p>© 2026 Chassis. All rights reserved.</p>
+      <p class="footer-credit">Structured by Chassis</p>
+    </div>
+  </footer>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyD8dQCCGkYEXGWIZhQrMIOfKWNaMmSLx-s",
-  authDomain: "chassis-os.firebaseapp.com",
-  projectId: "chassis-os",
-  storageBucket: "chassis-os.firebasestorage.app",
-  messagingSenderId: "20008886384",
-  appId: "1:20008886384:web:4547f02320bf21941b94b5"
-};
+    const firebaseConfig = {
+      apiKey: "AIzaSyD8dQCCGkYEXGWIZhQrMIOfKWNaMmSLx-s",
+      authDomain: "chassis-os.firebaseapp.com",
+      projectId: "chassis-os",
+      storageBucket: "chassis-os.firebasestorage.app",
+      messagingSenderId: "20008886384",
+      appId: "1:20008886384:web:4547f02320bf21941b94b5",
+      measurementId: "G-4NE41QX1DL"
+    };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-const form = document.getElementById("diagnosisForm");
-const status = document.getElementById("status");
-const resultBox = document.getElementById("resultBox");
+    const answers = {};
+    const historyStack = [];
+    let currentQuestionId = "client_name";
 
-function recommendService(o, d, s) {
-  if (o === "Unclear") return "Business Structuring";
-  if (d === "High") return "Operations & Systems";
-  if (s === "None" || s === "Weak") return "Execution Infrastructure";
-  return "Strategic Advisory";
-}
+    const questionArea = document.getElementById("questionArea");
+    const backBtn = document.getElementById("backBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const progressBar = document.getElementById("progressBar");
+    const diagnosisStatus = document.getElementById("diagnosisStatus");
+    const finalResult = document.getElementById("finalResult");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+    const questions = {
+      client_name: {
+        section: "Basic Information",
+        question: "What is your full name?",
+        type: "text",
+        placeholder: "Write your name",
+        required: true,
+        next: "business_name"
+      },
 
-  status.innerText = "Submitting...";
+      business_name: {
+        section: "Basic Information",
+        question: "What is the name of your business or project?",
+        type: "text",
+        placeholder: "Business name",
+        required: true,
+        next: "phone"
+      },
 
-  const o = offerClarity.value;
-  const d = dependency.value;
-  const s = systems.value;
+      phone: {
+        section: "Basic Information",
+        question: "What is your phone or WhatsApp number?",
+        type: "text",
+        placeholder: "+961...",
+        required: true,
+        next: "business_stage"
+      },
 
-  const rec = recommendService(o, d, s);
+      business_stage: {
+        section: "Business Stage",
+        question: "Which situation best describes your business right now?",
+        type: "choice",
+        required: true,
+        options: [
+          {
+            label: "I only have an idea and need to turn it into a business",
+            value: "idea",
+            next: "idea_description"
+          },
+          {
+            label: "The business exists, but it is messy or unclear",
+            value: "existing_messy",
+            next: "business_description"
+          },
+          {
+            label: "The business is working, but I want to improve or grow it",
+            value: "working_growth",
+            next: "business_description"
+          },
+          {
+            label: "I mainly need a website, app, or digital system",
+            value: "infrastructure_need",
+            next: "infrastructure_reason"
+          }
+        ]
+      },
 
-  await addDoc(collection(db, "diagnosis_requests"), {
-    name: name.value,
-    businessName: businessName.value,
-    phone: phone.value,
-    mainProblem: mainProblem.value,
-    offerClarity: o,
-    dependency: d,
-    systems: s,
-    recommendedService: rec,
-    createdAt: serverTimestamp()
-  });
+      idea_description: {
+        section: "Idea Clarity",
+        question: "Explain the idea in detail. What do you want to build, sell, or launch?",
+        type: "textarea",
+        placeholder: "Write as much detail as possible",
+        required: true,
+        next: "idea_offer_status"
+      },
 
-  status.innerText = "Submitted.";
-  resultBox.innerHTML = "<strong>Recommended:</strong> " + rec;
+      idea_offer_status: {
+        section: "Idea Clarity",
+        question: "Do you already know exactly what you will sell?",
+        type: "choice",
+        required: true,
+        options: [
+          {
+            label: "Yes, I know exactly what I will sell",
+            value: "clear",
+            next: "pricing_status"
+          },
+          {
+            label: "Somewhat, but it still needs structure",
+            value: "semi",
+            next: "offer_confusion"
+          },
+          {
+            label: "No, the idea is still unclear",
+            value: "unclear",
+            next: "offer_confusion"
+          }
+        ]
+      },
 
-  form.reset();
-});
-</script>
+      business_description: {
+        section: "Business Overview",
+        question: "What does your business currently do? Explain the current reality, not the ideal version.",
+        type: "textarea",
+        placeholder: "What do you do, who do you serve, how does it work today?",
+        required: true,
+        next: "current_clients"
+      },
 
+      current_clients: {
+        section: "Business Overview",
+        question: "Who are your current clients or customers?",
+        type: "textarea",
+        placeholder: "Describe the actual people or businesses buying from you now",
+        required: true,
+        next: "client_source"
+      },
+
+      client_source: {
+        section: "Business Overview",
+        question: "How do clients currently find you?",
+        type: "multi",
+        required: true,
+        options: [
+          "Instagram",
+          "Facebook",
+          "Website",
+          "Referrals",
+          "Walk-ins",
+          "Ads",
+          "WhatsApp",
+          "Personal network",
+          "Other"
+        ],
+        next: "offer_status"
+      },
+
+      offer_status: {
+        section: "Offer Clarity",
+        question: "Do you have clear offers, packages, or services that clients can easily understand?",
+        type: "choice",
+        required: true,
+        options: [
+          {
+            label: "Yes, everything is clear and packaged",
+            value: "clear",
+            next: "pricing_status"
+          },
+          {
+            label: "Some services are clear, but not everything",
+            value: "semi",
+            next: "offer_confusion"
+          },
+          {
+            label: "No, I usually explain case by case",
+            value: "unclear",
+            next: "offer_confusion"
+          }
+        ]
+      },
+
+      offer_confusion: {
+        section: "Offer Clarity",
+        question: "What feels unclear about what you sell?",
+        type: "multi",
+        required: true,
+        options: [
+          "I do many things and don’t know what to focus on",
+          "Clients don’t understand my services easily",
+          "Pricing changes depending on the person",
+          "I don’t have packages",
+          "I don’t know how to position the business",
+          "I know what I do, but I don’t know how to explain it"
+        ],
+        next: "pricing_status"
+      },
+
+      pricing_status: {
+        section: "Pricing",
+        question: "How do you currently price your work, products, or services?",
+        type: "choice",
+        required: true,
+        options: [
+          {
+            label: "Fixed prices",
+            value: "fixed",
+            next: "average_sale"
+          },
+          {
+            label: "It depends on the client",
+            value: "depends",
+            next: "pricing_problem"
+          },
+          {
+            label: "I usually guess or decide emotionally",
+            value: "unstable",
+            next: "pricing_problem"
+          },
+          {
+            label: "I do not have pricing yet",
+            value: "none",
+            next: "pricing_problem"
+          }
+        ]
+      },
+
+      pricing_problem: {
+        section: "Pricing",
+        question: "What is the biggest pricing problem you face?",
+        type: "choice",
+        required: true,
+        options: [
+          {
+            label: "I underprice because I’m afraid to lose clients",
+            value: "underpricing",
+            next: "average_sale"
+          },
+          {
+            label: "Clients negotiate too much",
+            value: "negotiation",
+            next: "average_sale"
+          },
+          {
+            label: "I don’t know what the service is worth",
+            value: "unclear_value",
+            next: "average_sale"
+          },
+          {
+            label: "Pricing is not my main issue",
+            value: "not_main",
+            next: "average_sale"
+          }
+        ]
+      },
+
+      average_sale: {
+        section: "Revenue",
+        question: "What is your average sale or average project value? A rough number is fine.",
+        type: "text",
+        placeholder: "Example: $100, $500, $1,500, not sure",
+        required: false,
+        next: "operations_state"
+      },
+
+      operations_state: {
+        section: "Operations",
+        question: "How does your business run day to day?",
+        type: "choice",
+        required: true,
+        options: [
+          {
+            label: "There is a clear workflow and everyone knows what to do",
+            value: "structured",
+            next: "systems_status"
+          },
+          {
+            label: "It works, but there is confusion and inconsistency",
+            value: "messy",
+            next: "workflow_details"
+          },
+          {
+            label: "Everything is reactive and depends on the day",
+            value: "chaos",
+            next: "workflow_details"
+          },
+          {
+            label: "I don’t have operations yet because it is still an idea",
+            value: "not_started",
+            next: "systems_status"
+          }
+        ]
+      },
+
+      workflow_details: {
+        section: "Operations",
+        question: "Walk through what happens from the moment a client contacts you until the work is delivered or the sale is completed.",
+        type: "textarea",
+        placeholder: "Step 1, step 2, step 3...",
+        required: true,
+        next: "bottlenecks"
+      },
+
+      bottlenecks: {
+        section: "Operations",
+        question: "Where does work usually slow down, break, or become messy?",
+        type: "multi",
+        required: true,
+        options: [
+          "Client communication",
+          "Pricing and quotations",
+          "Staff or team follow-up",
+          "Delivery timing",
+          "Decision-making",
+          "Quality control",
+          "Money collection",
+          "Content or marketing",
+          "Everything depends on me"
+        ],
+        next: "owner_dependency"
+      },
+
+      owner_dependency: {
+        section: "Dependency",
+        question: "If you stop working for three days, what happens?",
+        type: "choice",
+        required: true,
+        options: [
+          {
+            label: "The business continues normally",
+            value: "low",
+            next: "systems_status"
+          },
+          {
+            label: "Some things continue, but important decisions wait for me",
+            value: "medium",
+            next: "dependency_details"
+          },
+          {
+            label: "Most things stop or become messy",
+            value: "high",
+            next: "dependency_details"
+          }
+        ]
+      },
+
+      dependency_details: {
+        section: "Dependency",
+        question: "What exactly depends on you personally?",
+        type: "multi",
+        required: true,
+        options: [
+          "Sales",
+          "Pricing",
+          "Client communication",
+          "Operations",
+          "Team decisions",
+          "Quality control",
+          "Payments",
+          "Marketing",
+          "Everything"
+        ],
+        next: "systems_status"
+      },
+
+      infrastructure_reason: {
+        section: "Infrastructure",
+        question: "What do you need built right now?",
+        type: "multi",
+        required: true,
+        options: [
+          "Website",
+          "Mobile app",
+          "Booking system",
+          "Client intake form",
+          "Internal dashboard",
+          "Payment flow",
+          "Portfolio page",
+          "Not sure yet"
+        ],
+        next: "infrastructure_clarity"
+      },
+
+      infrastructure_clarity: {
+        section: "Infrastructure",
+        question: "Is the business structure already clear before building this?",
+        type: "choice",
+        required: true,
+        options: [
+          {
+            label: "Yes, the offer and business direction are clear",
+            value: "clear",
+            next: "systems_status"
+          },
+          {
+            label: "Somewhat, but it still needs direction",
+            value: "semi",
+            next: "offer_confusion"
+          },
+          {
+            label: "No, I just know I need something online",
+            value: "unclear",
+            next: "offer_confusion"
+          }
+        ]
+      },
+
+      systems_status: {
+        section: "Systems & Tools",
+        question: "What tools or systems do you currently use?",
+        type: "multi",
+        required: true,
+        options: [
+          "Website",
+          "Instagram / Facebook only",
+          "WhatsApp only",
+          "Excel or Google Sheets",
+          "CRM",
+          "Booking tool",
+          "Payment system",
+          "Internal dashboard",
+          "None"
+        ],
+        next: "systems_effectiveness"
+      },
+
+      systems_effectiveness: {
+        section: "Systems & Tools",
+        question: "Are your current tools helping the business work better?",
+        type: "choice",
+        required: true,
+        options: [
+          {
+            label: "Yes, they support the business well",
+            value: "good",
+            next: "main_goal"
+          },
+          {
+            label: "Somewhat, but they are weak or disconnected",
+            value: "weak",
+            next: "tool_problem"
+          },
+          {
+            label: "No, they create more confusion or are missing",
+            value: "none",
+            next: "tool_problem"
+          }
+        ]
+      },
+
+      tool_problem: {
+        section: "Systems & Tools",
+        question: "What is the main issue with your current tools or digital presence?",
+        type: "multi",
+        required: true,
+        options: [
+          "No website",
+          "Website does not explain the business properly",
+          "No proper client intake",
+          "No quotation system",
+          "No payment system",
+          "No internal tracking",
+          "Social media is not structured",
+          "Tools exist but are not connected"
+        ],
+        next: "main_goal"
+      },
+
+      main_goal: {
+        section: "Goals",
+        question: "What are you trying to achieve in the next three months?",
+        type: "multi",
+        required: true,
+        options: [
+          "Get clearer offers",
+          "Increase sales",
+          "Reduce chaos",
+          "Stop depending on myself for everything",
+          "Build a website or app",
+          "Create systems",
+          "Improve operations",
+          "Prepare for growth",
+          "Understand what is wrong"
+        ],
+        next: "urgency"
+      },
+
+      urgency: {
+        section: "Urgency",
+        question: "How urgent is this?",
+        type: "choice",
+        required: true,
+        options: [
+          {
+            label: "Low, I am exploring",
+            value: "low",
+            next: "budget_readiness"
+          },
+          {
+            label: "Medium, I want to start soon",
+            value: "medium",
+            next: "budget_readiness"
+          },
+          {
+            label: "High, I need this fixed quickly",
+            value: "high",
+            next: "budget_readiness"
+          }
+        ]
+      },
+
+      budget_readiness: {
+        section: "Budget",
+        question: "Are you ready to invest if the diagnosis shows that the business needs structure, systems, or infrastructure?",
+        type: "choice",
+        required: true,
+        options: [
+          {
+            label: "Yes, if the solution makes sense",
+            value: "ready",
+            next: "final_notes"
+          },
+          {
+            label: "Maybe, I need to understand the cost first",
+            value: "maybe",
+            next: "final_notes"
+          },
+          {
+            label: "Not now, I am only checking",
+            value: "not_ready",
+            next: "final_notes"
+          }
+        ]
+      },
+
+      final_notes: {
+        section: "Final Details",
+        question: "Add anything important that was not covered.",
+        type: "textarea",
+        placeholder: "Write any extra details, context, deadlines, or concerns",
+        required: false,
+        next: "finish"
+      }
+    };
+
+    const totalPossibleQuestions = Object.keys(questions).length;
+
+    function renderQuestion() {
+      const q = questions[currentQuestionId];
+      const answeredCount = Object.keys(answers).length;
+      const progressPercent = Math.min((answeredCount / 16) * 100, 100);
+
+      progressBar.style.width = progressPercent + "%";
+      diagnosisStatus.textContent = "";
+      finalResult.style.display = "none";
+
+      backBtn.style.display = historyStack.length ? "inline-flex" : "none";
+      nextBtn.textContent = q.next === "finish" ? "Finish Diagnosis" : "Next";
+
+      let html = `
+        <div class="question-block">
+          <p class="question-section">${q.section}</p>
+          <h2>${q.question}</h2>
+      `;
+
+      if (q.type === "text") {
+        html += `
+          <input
+            type="text"
+            id="answerInput"
+            value="${answers[currentQuestionId] || ""}"
+            placeholder="${q.placeholder || ""}"
+          />
+        `;
+      }
+
+      if (q.type === "textarea") {
+        html += `
+          <textarea
+            id="answerInput"
+            placeholder="${q.placeholder || ""}"
+          >${answers[currentQuestionId] || ""}</textarea>
+        `;
+      }
+
+      if (q.type === "choice") {
+        html += `<div class="choice-list">`;
+        q.options.forEach(option => {
+          const checked = answers[currentQuestionId] === option.value ? "checked" : "";
+          html += `
+            <label class="choice-option">
+              <input type="radio" name="answerChoice" value="${option.value}" data-next="${option.next}" ${checked}>
+              <span>${option.label}</span>
+            </label>
+          `;
+        });
+        html += `</div>`;
+      }
+
+      if (q.type === "multi") {
+        html += `<div class="choice-list">`;
+        q.options.forEach(option => {
+          const saved = answers[currentQuestionId] || [];
+          const checked = saved.includes(option) ? "checked" : "";
+          html += `
+            <label class="choice-option">
+              <input type="checkbox" name="answerMulti" value="${option}" ${checked}>
+              <span>${option}</span>
+            </label>
+          `;
+        });
+        html += `</div>`;
+      }
+
+      html += `</div>`;
+      questionArea.innerHTML = html;
+    }
+
+    function getCurrentAnswer() {
+      const q = questions[currentQuestionId];
+
+      if (q.type === "text" || q.type === "textarea") {
+        return document.getElementById("answerInput").value.trim();
+      }
+
+      if (q.type === "choice") {
+        const selected = document.querySelector("input[name='answerChoice']:checked");
+        return selected ? selected.value : "";
+      }
+
+      if (q.type === "multi") {
+        const selected = Array.from(document.querySelectorAll("input[name='answerMulti']:checked"));
+        return selected.map(item => item.value);
+      }
+
+      return "";
+    }
+
+    function getNextQuestionId(answer) {
+      const q = questions[currentQuestionId];
+
+      if (q.type === "choice") {
+        const selected = document.querySelector("input[name='answerChoice']:checked");
+        return selected ? selected.dataset.next : q.next;
+      }
+
+      return q.next;
+    }
+
+    function calculateDiagnosis() {
+      let scores = {
+        businessStructuring: 0,
+        operationsSystems: 0,
+        executionInfrastructure: 0,
+        strategicAdvisory: 0,
+        redFlags: 0
+      };
+
+      if (answers.business_stage === "idea") scores.businessStructuring += 4;
+      if (answers.business_stage === "existing_messy") operationsAdd(2);
+      if (answers.business_stage === "working_growth") scores.strategicAdvisory += 2;
+      if (answers.business_stage === "infrastructure_need") scores.executionInfrastructure += 3;
+
+      if (answers.offer_status === "unclear" || answers.idea_offer_status === "unclear") scores.businessStructuring += 5;
+      if (answers.offer_status === "semi" || answers.idea_offer_status === "semi") scores.businessStructuring += 3;
+
+      if (answers.offer_confusion && answers.offer_confusion.length) {
+        scores.businessStructuring += answers.offer_confusion.length;
+      }
+
+      if (answers.pricing_status === "unstable" || answers.pricing_status === "none" || answers.pricing_status === "depends") {
+        scores.businessStructuring += 3;
+      }
+
+      if (answers.operations_state === "chaos") operationsAdd(5);
+      if (answers.operations_state === "messy") operationsAdd(3);
+
+      if (answers.bottlenecks && answers.bottlenecks.length) {
+        operationsAdd(answers.bottlenecks.length);
+      }
+
+      if (answers.owner_dependency === "high") operationsAdd(4);
+      if (answers.owner_dependency === "medium") operationsAdd(2);
+
+      if (answers.dependency_details && answers.dependency_details.length) {
+        operationsAdd(answers.dependency_details.length);
+      }
+
+      if (answers.infrastructure_reason && answers.infrastructure_reason.length) {
+        scores.executionInfrastructure += answers.infrastructure_reason.length + 2;
+      }
+
+      if (answers.infrastructure_clarity === "unclear") scores.businessStructuring += 3;
+      if (answers.infrastructure_clarity === "clear") scores.executionInfrastructure += 2;
+
+      if (answers.systems_effectiveness === "weak") scores.executionInfrastructure += 3;
+      if (answers.systems_effectiveness === "none") scores.executionInfrastructure += 4;
+
+      if (answers.tool_problem && answers.tool_problem.length) {
+        scores.executionInfrastructure += answers.tool_problem.length;
+      }
+
+      if (answers.budget_readiness === "not_ready") scores.redFlags += 2;
+      if (answers.budget_readiness === "maybe") scores.redFlags += 1;
+
+      function operationsAdd(value) {
+        scores.operationsSystems += value;
+      }
+
+      const serviceScores = [
+        { name: "Business Structuring", key: "businessStructuring", score: scores.businessStructuring },
+        { name: "Operations & Systems Setup", key: "operationsSystems", score: scores.operationsSystems },
+        { name: "Execution Infrastructure", key: "executionInfrastructure", score: scores.executionInfrastructure },
+        { name: "Strategic Advisory", key: "strategicAdvisory", score: scores.strategicAdvisory }
+      ];
+
+      serviceScores.sort((a, b) => b.score - a.score);
+
+      const primary = serviceScores[0];
+      const secondary = serviceScores[1];
+
+      let summary = "";
+
+      if (primary.name === "Business Structuring") {
+        summary = "The main issue appears to be unclear offer, pricing, positioning, or business direction. Before building more tools or pushing growth, the business needs clearer structure.";
+      }
+
+      if (primary.name === "Operations & Systems Setup") {
+        summary = "The main issue appears to be operational chaos, owner dependency, or inconsistent execution. The business needs workflows, rules, and systems that reduce daily pressure.";
+      }
+
+      if (primary.name === "Execution Infrastructure") {
+        summary = "The main issue appears to be missing or weak infrastructure. The business needs a website, tool, system, or digital layer that supports how it should function.";
+      }
+
+      if (primary.name === "Strategic Advisory") {
+        summary = "The business appears to have some structure already, but needs direction, decision validation, and ongoing strategic correction.";
+      }
+
+      return {
+        scores,
+        primary,
+        secondary,
+        summary
+      };
+    }
+
+    async function finishDiagnosis() {
+      diagnosisStatus.textContent = "Submitting diagnosis...";
+
+      const diagnosis = calculateDiagnosis();
+
+      const data = {
+        answers,
+        diagnosis,
+        clientName: answers.client_name || "",
+        businessName: answers.business_name || "",
+        phone: answers.phone || "",
+        recommendedService: diagnosis.primary.name,
+        secondaryService: diagnosis.secondary.name,
+        diagnosisSummary: diagnosis.summary,
+        status: "New",
+        paymentStatus: "Not Paid",
+        createdAt: serverTimestamp()
+      };
+
+      try {
+        await addDoc(collection(db, "diagnosis_requests"), data);
+
+        document.getElementById("resultTitle").textContent = "Your business needs " + diagnosis.primary.name;
+        document.getElementById("resultSummary").textContent = diagnosis.summary;
+        document.getElementById("recommendedService").textContent = diagnosis.primary.name;
+        document.getElementById("secondaryService").textContent = diagnosis.secondary.name;
+        document.getElementById("scoreText").textContent =
+          "Structuring: " + diagnosis.scores.businessStructuring +
+          " | Operations: " + diagnosis.scores.operationsSystems +
+          " | Infrastructure: " + diagnosis.scores.executionInfrastructure +
+          " | Advisory: " + diagnosis.scores.strategicAdvisory;
+
+        const whatsappMessage =
+          "Hello Chassis, I completed the business diagnosis.%0A%0A" +
+          "Name: " + encodeURIComponent(answers.client_name || "") + "%0A" +
+          "Business: " + encodeURIComponent(answers.business_name || "") + "%0A" +
+          "Recommended Service: " + encodeURIComponent(diagnosis.primary.name) + "%0A" +
+          "Secondary Need: " + encodeURIComponent(diagnosis.secondary.name);
+
+        document.getElementById("whatsappResultLink").href =
+          "https://wa.me/96171085824?text=" + whatsappMessage;
+
+        finalResult.style.display = "block";
+        document.querySelector(".diagnosis-card").style.display = "none";
+        diagnosisStatus.textContent = "";
+      } catch (error) {
+        console.error(error);
+        diagnosisStatus.textContent = "Something went wrong. Please try again or contact Chassis directly.";
+      }
+    }
+
+    nextBtn.addEventListener("click", () => {
+      const q = questions[currentQuestionId];
+      const answer = getCurrentAnswer();
+
+      if (q.required) {
+        if (!answer || (Array.isArray(answer) && answer.length === 0)) {
+          diagnosisStatus.textContent = "Please answer this question before continuing.";
+          return;
+        }
+      }
+
+      answers[currentQuestionId] = answer;
+
+      const nextQuestionId = getNextQuestionId(answer);
+
+      if (nextQuestionId === "finish") {
+        finishDiagnosis();
+        return;
+      }
+
+      historyStack.push(currentQuestionId);
+      currentQuestionId = nextQuestionId;
+      renderQuestion();
+    });
+
+    backBtn.addEventListener("click", () => {
+      if (!historyStack.length) return;
+      currentQuestionId = historyStack.pop();
+      renderQuestion();
+    });
+
+    renderQuestion();
+  </script>
+
+  <script src="../script.js"></script>
 </body>
 </html>
