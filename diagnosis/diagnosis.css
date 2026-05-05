@@ -1,0 +1,53 @@
+.diagnosis-page {
+  background: #000;
+  color: #fff;
+  padding: 80px 0;
+}
+
+.diagnosis-container {
+  max-width: 700px;
+}
+
+.diagnosis-page h1 {
+  color: #f3cc31;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.diag-sub {
+  color: #b4b4b5;
+  margin-bottom: 30px;
+}
+
+.diag-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.diag-form input,
+.diag-form textarea,
+.diag-form select {
+  padding: 14px;
+  background: #111;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+.diag-form button {
+  background: #36c6f4;
+  color: #000;
+  padding: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#status {
+  margin-top: 10px;
+  color: #36c6f4;
+}
+
+#resultBox {
+  margin-top: 15px;
+  color: #f3cc31;
+}

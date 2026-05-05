@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Business Diagnosis | Chassis</title>
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="diagnosis.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="header-top">
+    <div class="container header-top-inner">
+      <div class="header-brand">
+        <a href="../index.html">
+          <img src="../assets/logo/chassis-logo-white.png" class="site-logo"/>
+        </a>
+      </div>
+
+      <div class="header-right">
+        <a href="../contact/" class="header-cta">Start a Conversation</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="diagnosis-page">
+
+  <div class="container diagnosis-container">
+
+    <h1>Start Your Business Diagnosis</h1>
+    <p class="diag-sub">
+      Answer a few questions so we understand what’s actually broken.
+    </p>
+
+    <form id="diagnosisForm" class="diag-form">
+
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="text" id="businessName" placeholder="Business Name" required>
+      <input type="text" id="phone" placeholder="Phone / WhatsApp" required>
+
+      <textarea id="mainProblem" placeholder="What is not working?" required></textarea>
+
+      <select id="offerClarity" required>
+        <option value="">Do you have clear offers?</option>
+        <option value="Clear">Yes</option>
+        <option value="Semi">Somewhat</option>
+        <option value="Unclear">No</option>
+      </select>
+
+      <select id="dependency" required>
+        <option value="">Does everything depend on you?</option>
+        <option value="Low">No</option>
+        <option value="Medium">Partially</option>
+        <option value="High">Yes</option>
+      </select>
+
+      <select id="systems" required>
+        <option value="">Do you have systems/tools?</option>
+        <option value="Good">Yes</option>
+        <option value="Weak">Weak</option>
+        <option value="None">None</option>
+      </select>
+
+      <button type="submit">Submit Diagnosis</button>
+
+      <div id="status"></div>
+      <div id="resultBox"></div>
+
+    </form>
+
+  </div>
+
+</main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD8dQCCGkYEXGWIZhQrMIOfKWNaMmSLx-s",
+  authDomain: "chassis-os.firebaseapp.com",
+  projectId: "chassis-os",
+  storageBucket: "chassis-os.firebasestorage.app",
+  messagingSenderId: "20008886384",
+  appId: "1:20008886384:web:4547f02320bf21941b94b5"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const form = document.getElementById("diagnosisForm");
+const status = document.getElementById("status");
+const resultBox = document.getElementById("resultBox");
+
+function recommendService(o, d, s) {
+  if (o === "Unclear") return "Business Structuring";
+  if (d === "High") return "Operations & Systems";
+  if (s === "None" || s === "Weak") return "Execution Infrastructure";
+  return "Strategic Advisory";
+}
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  status.innerText = "Submitting...";
+
+  const o = offerClarity.value;
+  const d = dependency.value;
+  const s = systems.value;
+
+  const rec = recommendService(o, d, s);
+
+  await addDoc(collection(db, "diagnosis_requests"), {
+    name: name.value,
+    businessName: businessName.value,
+    phone: phone.value,
+    mainProblem: mainProblem.value,
+    offerClarity: o,
+    dependency: d,
+    systems: s,
+    recommendedService: rec,
+    createdAt: serverTimestamp()
+  });
+
+  status.innerText = "Submitted.";
+  resultBox.innerHTML = "<strong>Recommended:</strong> " + rec;
+
+  form.reset();
+});
+</script>
+
+</body>
+</html>
