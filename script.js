@@ -129,11 +129,11 @@ function initChassisDiagnosisAssistant() {
 
   document.body.appendChild(assistant);
 
-  const launcher = assistant.querySelector(".diagnosis-launcher");
-  const chat = assistant.querySelector(".diagnosis-chat");
-  const closeBtn = assistant.querySelector(".diagnosis-close");
-  const chatArea = assistant.querySelector(".diagnosis-question-area");
-  const footer = assistant.querySelector(".diagnosis-chat-footer");
+  const launcher   = assistant.querySelector(".diagnosis-launcher");
+  const chat       = assistant.querySelector(".diagnosis-chat");
+  const closeBtn   = assistant.querySelector(".diagnosis-close");
+  const chatArea   = assistant.querySelector(".diagnosis-question-area");
+  const footer     = assistant.querySelector(".diagnosis-chat-footer");
   const progressBar = assistant.querySelector(".diagnosis-progress-bar");
 
   const answers = {};
@@ -141,757 +141,160 @@ function initChassisDiagnosisAssistant() {
   let currentQuestionId = "client_name";
   let diagnosisFinished = false;
 
+  // ─── QUESTIONS ─────────────────────────────────────────────────────────────
+
   const questions = {
+
     client_name: {
-      section: "Basic Information",
-      question: "First, what is your full name?",
+      section: "Let's start",
+      question: "What's your name?",
       type: "text",
-      placeholder: "Write your name",
+      placeholder: "Your first name is fine",
       required: true,
-      next: "business_name",
-      response: "Perfect. I’ll keep the summary tied to your name."
+      next: "business_description",
+      response: null
     },
 
-    business_name: {
-      section: "Basic Information",
-      question: "What is the name of your business or project?",
-      type: "text",
-      placeholder: "Business or project name",
+    business_description: {
+      section: "Your Business",
+      question: "What does your business do? One or two sentences, in your own words. Don't overthink it.",
+      type: "textarea",
+      placeholder: "e.g. I run a dental clinic in Beirut. I offer coaching for professionals. I have a restaurant in Tripoli.",
       required: true,
-      next: "phone",
-      response: "Good. I’ll also need your WhatsApp number so the summary can be sent properly if you want Chassis to review it."
+      next: "biggest_feeling",
+      response: "Got it. Now the real question."
     },
 
-    phone: {
-      section: "Basic Information",
-      question: "What is your WhatsApp number?",
+    biggest_feeling: {
+      section: "The Real Problem",
+      question: "When you think about the business right now, which of these feels most true?",
+      type: "choice",
+      required: true,
+      options: [
+        { label: "Everything goes through me. I can't step away.",          value: "owner_dependent",   next: "what_breaks" },
+        { label: "I can't explain what I sell in one clear sentence.",       value: "unclear_offer",     next: "what_breaks" },
+        { label: "The business works, but it feels chaotic and reactive.",   value: "operational_chaos", next: "what_breaks" },
+        { label: "I'm not growing and I don't know exactly why.",            value: "plateaued",         next: "what_breaks" },
+        { label: "We look weaker online than we actually are.",              value: "weak_presence",     next: "what_breaks" }
+      ],
+      responseMap: {
+        owner_dependent:   "That's one of the most common and most exhausting problems. Let's go deeper.",
+        unclear_offer:     "If you can't explain it clearly, neither can your clients. That affects everything downstream.",
+        operational_chaos: "Chaos isn't a personality trait. It's a missing system.",
+        plateaued:         "Hitting a ceiling usually means the current structure can't support more weight.",
+        weak_presence:     "Looking smaller than you are costs you real money. Let's figure out where that starts."
+      }
+    },
+
+    what_breaks: {
+      section: "Where It Breaks",
+      question: "Where does the business actually slow down or fall apart? Pick everything that applies.",
+      type: "multi",
+      required: true,
+      options: [
+        "Clients don't understand what I offer or what it costs",
+        "Decisions wait for me, even small ones",
+        "Delivery is inconsistent, things fall through",
+        "I repeat myself constantly to clients or the team",
+        "Sales happen, but not enough of the right ones",
+        "The website or social presence doesn't reflect reality",
+        "I don't have time to think, only react",
+        "I don't know what to fix first"
+      ],
+      next: "client_quality",
+      response: "Useful. That tells me where the pressure is actually coming from."
+    },
+
+    client_quality: {
+      section: "Your Clients",
+      question: "What's happening with the clients or customers you're getting right now?",
+      type: "choice",
+      required: true,
+      options: [
+        { label: "Good clients, not enough of them",             value: "good_not_enough",  next: "stage" },
+        { label: "Enough clients, but the wrong type",           value: "wrong_type",       next: "stage" },
+        { label: "People inquire but don't convert",             value: "no_conversion",    next: "stage" },
+        { label: "Very few inquiries at all",                    value: "low_volume",       next: "stage" },
+        { label: "Clients are fine. The problem is internal.",   value: "internal_problem", next: "stage" }
+      ],
+      responseMap: {
+        good_not_enough:  "That usually points to a visibility or positioning problem, not a product problem.",
+        wrong_type:       "Wrong clients are usually a positioning signal. The offer or the message is attracting the wrong room.",
+        no_conversion:    "When people ask and don't buy, the gap is usually in how the offer is presented or priced.",
+        low_volume:       "Low volume usually means the business isn't structured to be found or trusted yet.",
+        internal_problem: "Internal problems compound fast. The sooner the structure is right, the less it costs."
+      }
+    },
+
+    stage: {
+      section: "Where You Are",
+      question: "Which of these best describes where the business is right now?",
+      type: "choice",
+      required: true,
+      options: [
+        { label: "Still early. Less than a year in, finding my footing.",      value: "early",       next: "tried_before" },
+        { label: "Running for 1 to 3 years. Has clients, but still messy.",    value: "mid",         next: "tried_before" },
+        { label: "Established. More than 3 years. Stuck or slowing down.",     value: "established", next: "tried_before" }
+      ],
+      responseMap: {
+        early:       "Early stage businesses that get structured properly save years of fixing things later.",
+        mid:         "The 1 to 3 year range is where most businesses start feeling the cost of missing structure.",
+        established: "Established businesses that hit a wall usually need to restructure, not just push harder."
+      }
+    },
+
+    tried_before: {
+      section: "What You've Tried",
+      question: "Have you tried to fix any of this before?",
+      type: "choice",
+      required: true,
+      options: [
+        { label: "Yes. Hired a freelancer or agency. Didn't really solve it.", value: "tried_agency", next: "readiness" },
+        { label: "Yes. Did it myself. Still feels incomplete.",                 value: "tried_self",   next: "readiness" },
+        { label: "No. This is the first time I'm properly looking at it.",      value: "first_time",   next: "readiness" }
+      ],
+      responseMap: {
+        tried_agency: "Most agencies fix the surface. They design, post, advertise. The structure underneath stays broken.",
+        tried_self:   "Self-built systems work until they don't. Usually they break when the business needs to grow.",
+        first_time:   "Good. Starting with a clear diagnosis saves a lot of wasted effort."
+      }
+    },
+
+    readiness: {
+      section: "Your Readiness",
+      question: "If the diagnosis pointed to a clear starting point, what would you do with it?",
+      type: "choice",
+      required: true,
+      options: [
+        { label: "Book a call. I'm ready to move.",          value: "ready",     next: "contact_number" },
+        { label: "Review it first, then decide.",            value: "reviewing", next: "contact_number" },
+        { label: "I'm just exploring for now.",              value: "exploring", next: "contact_number" }
+      ],
+      responseMap: {
+        ready:     "Good. That's exactly who this is built for.",
+        reviewing: "Fair. A clear summary will give you something concrete to look at.",
+        exploring: "That's fine. The diagnosis still gives you a useful picture of where things stand."
+      }
+    },
+
+    contact_number: {
+      section: "One Last Thing",
+      question: "What's your WhatsApp number? Sophia reviews every diagnosis personally before reaching out.",
       type: "text",
       placeholder: "+961...",
       required: true,
-      next: "business_stage",
-      response: "Great. Now I’ll diagnose the business through structured questions."
-    },
-
-    business_stage: {
-      section: "Business Stage",
-      question: "Which situation best describes your business right now?",
-      type: "choice",
-      required: true,
-      options: [
-        {
-          label: "I only have an idea and need to turn it into a business",
-          value: "idea",
-          next: "business_type"
-        },
-        {
-          label: "The business exists, but it feels messy or unclear",
-          value: "existing_messy",
-          next: "business_type"
-        },
-        {
-          label: "The business is working, but I want to improve or grow it",
-          value: "working_growth",
-          next: "business_type"
-        },
-        {
-          label: "I mainly need a website, app, or digital system",
-          value: "infrastructure_need",
-          next: "business_type"
-        }
-      ],
-      responseMap: {
-        idea: "That usually means the first layer is business structure before execution.",
-        existing_messy: "That often points to structure, operations, or workflow issues.",
-        working_growth: "Good. The next step is checking whether the current structure can support growth.",
-        infrastructure_need: "Good. I’ll still check the business behind the website or system before estimating the direction."
-      }
-    },
-
-    business_type: {
-      section: "Business Type",
-      question: "What type of business is this closest to?",
-      type: "choice",
-      required: true,
-      options: [
-        {
-          label: "Service-based business",
-          value: "service",
-          next: "business_model"
-        },
-        {
-          label: "Product-based business",
-          value: "product",
-          next: "business_model"
-        },
-        {
-          label: "Restaurant, café, hospitality, or food business",
-          value: "hospitality",
-          next: "business_model"
-        },
-        {
-          label: "Personal brand, consultant, expert, or professional profile",
-          value: "personal_brand",
-          next: "business_model"
-        },
-        {
-          label: "Online platform, app, or digital concept",
-          value: "platform",
-          next: "business_model"
-        },
-        {
-          label: "Mixed or not fully clear yet",
-          value: "mixed",
-          next: "business_model"
-        }
-      ],
-      responseMap: {
-        service: "Service businesses usually need clear offers, pricing logic, and client flow.",
-        product: "Product businesses usually need positioning, pricing, packaging, and sales flow.",
-        hospitality: "Hospitality businesses usually need operational consistency, service flow, and positioning.",
-        personal_brand: "Personal brands need clear authority, service packaging, and trust-building infrastructure.",
-        platform: "Digital concepts need structure before development, or the build becomes messy.",
-        mixed: "That is exactly where structure helps: deciding what the business should sell and how it should flow."
-      }
-    },
-
-    business_model: {
-      section: "Business Model",
-      question: "What best describes how the business makes or plans to make money?",
-      type: "choice",
-      required: true,
-      options: [
-        {
-          label: "Selling services directly to clients",
-          value: "services",
-          next: "offer_clarity_level"
-        },
-        {
-          label: "Selling physical products",
-          value: "products",
-          next: "offer_clarity_level"
-        },
-        {
-          label: "Selling packages or programs",
-          value: "packages",
-          next: "offer_clarity_level"
-        },
-        {
-          label: "Bookings, reservations, or appointments",
-          value: "bookings",
-          next: "offer_clarity_level"
-        },
-        {
-          label: "Custom projects quoted case by case",
-          value: "custom",
-          next: "offer_clarity_level"
-        },
-        {
-          label: "I am not sure yet",
-          value: "not_sure",
-          next: "offer_clarity_level"
-        }
-      ],
-      responseMap: {
-        services: "Good. Service businesses need offer clarity and a clean client journey.",
-        products: "Good. Product businesses need clear positioning, pricing, and buying triggers.",
-        packages: "Good. Packages can make sales easier when they are structured properly.",
-        bookings: "Good. Booking-based businesses need clear flow from interest to confirmation.",
-        custom: "Custom work can be strong, but it needs pricing logic and scope control.",
-        not_sure: "That means the business model itself may need structuring first."
-      }
-    },
-
-    offer_clarity_level: {
-      section: "Offer Clarity",
-      question: "How clear is what you sell?",
-      type: "choice",
-      required: true,
-      options: [
-        {
-          label: "Very clear. People understand it quickly",
-          value: "clear",
-          next: "offer_confusion"
-        },
-        {
-          label: "Somewhat clear, but I still explain a lot",
-          value: "semi",
-          next: "offer_confusion"
-        },
-        {
-          label: "Not clear. People ask many questions before understanding",
-          value: "unclear",
-          next: "offer_confusion"
-        },
-        {
-          label: "I do many things and I don’t know what to focus on",
-          value: "scattered",
-          next: "offer_confusion"
-        },
-        {
-          label: "I have an idea, but not a proper offer yet",
-          value: "no_offer",
-          next: "offer_confusion"
-        }
-      ],
-      responseMap: {
-        clear: "Good. Clear offers make sales and execution easier.",
-        semi: "That usually means the offer needs better packaging.",
-        unclear: "That usually means the business needs clearer explanation, positioning, and structure.",
-        scattered: "That is a strong sign that the business needs focus and offer architecture.",
-        no_offer: "That usually means offer creation should come before marketing or infrastructure."
-      }
-    },
-
-    offer_confusion: {
-      section: "Offer Clarity",
-      question: "What feels unclear or weak about the offer?",
-      type: "multi",
-      required: true,
-      options: [
-        "People don’t understand what I do",
-        "I don’t know what to focus on",
-        "I don’t have clear packages",
-        "I don’t know how to explain the value",
-        "My services or products feel scattered",
-        "Clients compare me too much to cheaper alternatives",
-        "The offer exists, but it does not feel premium",
-        "The offer is clear enough"
-      ],
-      next: "pricing_status",
-      response: "Good. Offer clarity directly affects pricing, sales, and the type of system the business needs."
-    },
-
-    pricing_status: {
-      section: "Pricing",
-      question: "How do you currently price your work, products, or services?",
-      type: "choice",
-      required: true,
-      options: [
-        {
-          label: "Fixed prices",
-          value: "fixed",
-          next: "pricing_problem"
-        },
-        {
-          label: "Packages with clear prices",
-          value: "packages",
-          next: "pricing_problem"
-        },
-        {
-          label: "It depends on the client or project",
-          value: "depends",
-          next: "pricing_problem"
-        },
-        {
-          label: "I usually guess or decide emotionally",
-          value: "unstable",
-          next: "pricing_problem"
-        },
-        {
-          label: "I do not have pricing yet",
-          value: "none",
-          next: "pricing_problem"
-        }
-      ],
-      responseMap: {
-        fixed: "Good. Fixed prices work best when the scope is also clear.",
-        packages: "Good. Packages are strong when they are easy to understand and deliver.",
-        depends: "Custom pricing can work, but it needs strong logic behind it.",
-        unstable: "That usually means the pricing structure needs work.",
-        none: "That is common in early-stage businesses. Pricing can be built clearly."
-      }
-    },
-
-    pricing_problem: {
-      section: "Pricing",
-      question: "What is the biggest pricing issue?",
-      type: "multi",
-      required: true,
-      options: [
-        "I underprice because I’m afraid to lose clients",
-        "Clients negotiate too much",
-        "I don’t know what the service or product is worth",
-        "The price changes too much depending on the person",
-        "People do not understand why it costs that much",
-        "I don’t have a clear payment structure",
-        "Pricing is not my main issue"
-      ],
-      next: "sales_problem",
-      response: "Good. Pricing problems usually connect to offer clarity, positioning, and trust."
-    },
-
-    sales_problem: {
-      section: "Sales & Conversion",
-      question: "Where do you feel sales are getting stuck?",
-      type: "multi",
-      required: true,
-      options: [
-        "People ask but do not buy",
-        "People say it is expensive",
-        "People do not understand the value",
-        "People need too much explanation",
-        "I do not get enough inquiries",
-        "I get inquiries but they are not serious",
-        "I do not know how to follow up",
-        "Sales are not the main issue"
-      ],
-      next: "client_flow",
-      response: "That helps identify whether the issue is demand, trust, offer clarity, or follow-up."
-    },
-
-    client_flow: {
-      section: "Client Flow",
-      question: "What happens when someone becomes interested?",
-      type: "choice",
-      required: true,
-      options: [
-        {
-          label: "There is a clear process from inquiry to payment",
-          value: "clear",
-          next: "operations_state"
-        },
-        {
-          label: "I reply manually and explain everything each time",
-          value: "manual",
-          next: "operations_state"
-        },
-        {
-          label: "People message, then the conversation gets messy",
-          value: "messy",
-          next: "operations_state"
-        },
-        {
-          label: "I do not have a clear intake, booking, or quotation flow",
-          value: "no_flow",
-          next: "operations_state"
-        }
-      ],
-      responseMap: {
-        clear: "Good. A clear client flow makes conversion easier.",
-        manual: "That usually means the business needs a more structured client intake or quotation process.",
-        messy: "That often means the business is losing potential clients inside the communication flow.",
-        no_flow: "That is a strong sign that a client flow system would help."
-      }
-    },
-
-    operations_state: {
-      section: "Operations",
-      question: "How does the business run day to day?",
-      type: "choice",
-      required: true,
-      options: [
-        {
-          label: "There is a clear workflow and people know what to do",
-          value: "structured",
-          next: "operations_problem"
-        },
-        {
-          label: "It works, but there is confusion and inconsistency",
-          value: "messy",
-          next: "operations_problem"
-        },
-        {
-          label: "Everything is reactive and depends on the day",
-          value: "chaos",
-          next: "operations_problem"
-        },
-        {
-          label: "Everything depends on me personally",
-          value: "owner_dependent",
-          next: "operations_problem"
-        },
-        {
-          label: "There are no operations yet because it is still an idea",
-          value: "not_started",
-          next: "operations_problem"
-        }
-      ],
-      responseMap: {
-        structured: "Good. Structured operations are a strong base for growth.",
-        messy: "That usually means the business relies more on effort than on systems.",
-        chaos: "That usually means workflows, roles, and standards need clarification.",
-        owner_dependent: "That usually means too much of the business still lives in the owner’s head.",
-        not_started: "That makes sense for an early-stage idea."
-      }
-    },
-
-    operations_problem: {
-      section: "Operations",
-      question: "Where does work usually slow down or become messy?",
-      type: "multi",
-      required: true,
-      options: [
-        "Client communication",
-        "Pricing and quotations",
-        "Team follow-up",
-        "Delivery timing",
-        "Decision-making",
-        "Quality control",
-        "Money collection",
-        "Content or marketing",
-        "Inventory or stock",
-        "Bookings or scheduling",
-        "Everything depends on me",
-        "Operations are not my main issue"
-      ],
-      next: "owner_dependency",
-      response: "Good. These answers show where structure may reduce pressure."
-    },
-
-    owner_dependency: {
-      section: "Owner Dependency",
-      question: "If you stop working for three days, what happens?",
-      type: "choice",
-      required: true,
-      options: [
-        {
-          label: "The business continues normally",
-          value: "low",
-          next: "systems_status"
-        },
-        {
-          label: "Some things continue, but important decisions wait for me",
-          value: "medium",
-          next: "dependency_details"
-        },
-        {
-          label: "Most things stop or become messy",
-          value: "high",
-          next: "dependency_details"
-        },
-        {
-          label: "There is no team or system yet",
-          value: "no_system",
-          next: "systems_status"
-        }
-      ],
-      responseMap: {
-        low: "Good. Low owner dependency is a healthy sign.",
-        medium: "That means some structure exists, but decision-making still depends heavily on you.",
-        high: "That usually means the business needs clearer systems and delegation logic.",
-        no_system: "That is normal for early-stage or solo businesses, but it should be structured before growth."
-      }
-    },
-
-    dependency_details: {
-      section: "Owner Dependency",
-      question: "What depends on you personally?",
-      type: "multi",
-      required: true,
-      options: [
-        "Sales",
-        "Pricing",
-        "Client communication",
-        "Operations",
-        "Team decisions",
-        "Quality control",
-        "Payments",
-        "Marketing",
-        "Approvals",
-        "Everything"
-      ],
-      next: "systems_status",
-      response: "That helps define what should become documented, structured, or easier to delegate."
-    },
-
-    systems_status: {
-      section: "Systems & Tools",
-      question: "What tools or systems do you currently use?",
-      type: "multi",
-      required: true,
-      options: [
-        "Website",
-        "Instagram / Facebook only",
-        "WhatsApp only",
-        "Excel or Google Sheets",
-        "CRM",
-        "Booking tool",
-        "Payment system",
-        "Internal dashboard",
-        "Content calendar",
-        "None"
-      ],
-      next: "tool_problem",
-      response: "Tools are useful only when they support the business flow."
-    },
-
-    tool_problem: {
-      section: "Systems & Tools",
-      question: "What is missing or weak in your current digital setup?",
-      type: "multi",
-      required: true,
-      options: [
-        "No website",
-        "Website does not explain the business properly",
-        "No proper client intake",
-        "No quotation system",
-        "No payment flow",
-        "No internal tracking",
-        "No booking or request system",
-        "Social media is not structured",
-        "Tools exist but are disconnected",
-        "I mainly need a website or app",
-        "Digital setup is not my main issue"
-      ],
-      next: "infrastructure_need",
-      response: "Good. This shows whether digital infrastructure is a priority or a later layer."
-    },
-
-    infrastructure_need: {
-      section: "Infrastructure",
-      question: "What type of infrastructure would help most?",
-      type: "multi",
-      required: true,
-      options: [
-        "Website that explains the business clearly",
-        "Website that generates inquiries",
-        "Client intake form",
-        "Quotation or request flow",
-        "Booking system",
-        "Payment flow",
-        "Internal dashboard",
-        "Mobile app",
-        "Portfolio or professional profile",
-        "I am not sure yet",
-        "Infrastructure can wait"
-      ],
-      next: "brand_positioning",
-      response: "Good. Infrastructure should support the business, not just look nice."
-    },
-
-    brand_positioning: {
-      section: "Positioning",
-      question: "How does the business currently look to people?",
-      type: "choice",
-      required: true,
-      options: [
-        {
-          label: "Clear, professional, and trustworthy",
-          value: "strong",
-          next: "growth_goal"
-        },
-        {
-          label: "Good but not strong enough",
-          value: "average",
-          next: "positioning_problem"
-        },
-        {
-          label: "Unclear or not premium enough",
-          value: "weak",
-          next: "positioning_problem"
-        },
-        {
-          label: "The business barely has a public presence",
-          value: "missing",
-          next: "positioning_problem"
-        }
-      ],
-      responseMap: {
-        strong: "Good. Strong positioning helps every other layer perform better.",
-        average: "That usually means the business needs stronger messaging and presentation.",
-        weak: "That can affect trust, pricing, and conversion.",
-        missing: "That usually means visibility and credibility infrastructure need attention."
-      }
-    },
-
-    positioning_problem: {
-      section: "Positioning",
-      question: "What feels weak about the business image or positioning?",
-      type: "multi",
-      required: true,
-      options: [
-        "People do not understand what we do",
-        "The business does not look premium enough",
-        "The page or website feels weak",
-        "The message is not clear",
-        "The offer does not feel valuable enough",
-        "The brand does not build trust quickly",
-        "The business looks inconsistent",
-        "Positioning is not my main issue"
-      ],
-      next: "growth_goal",
-      response: "Good. Positioning is often what makes pricing and sales easier to accept."
-    },
-
-    growth_goal: {
-      section: "Goals",
-      question: "What are you trying to improve in the next three months?",
-      type: "multi",
-      required: true,
-      options: [
-        "Clarify what we sell",
-        "Increase sales",
-        "Get better clients",
-        "Reduce operational chaos",
-        "Stop depending on myself for everything",
-        "Build a website or app",
-        "Create systems",
-        "Improve brand trust",
-        "Prepare for growth",
-        "Understand what is wrong first"
-      ],
-      next: "priority_first",
-      response: "Good. Now I need to understand what should be handled first."
-    },
-
-    priority_first: {
-      section: "Priority",
-      question: "If you could fix only one layer first, what would you choose?",
-      type: "choice",
-      required: true,
-      options: [
-        {
-          label: "Clarify the business, offers, and pricing",
-          value: "structure",
-          next: "business_size"
-        },
-        {
-          label: "Fix workflows, operations, and owner dependency",
-          value: "operations",
-          next: "business_size"
-        },
-        {
-          label: "Build or fix the website, app, or digital system",
-          value: "infrastructure",
-          next: "business_size"
-        },
-        {
-          label: "Improve positioning, trust, and sales message",
-          value: "positioning",
-          next: "business_size"
-        },
-        {
-          label: "I don’t know. I need Chassis to decide",
-          value: "diagnose_first",
-          next: "business_size"
-        }
-      ],
-      responseMap: {
-        structure: "Good. That points toward business structuring as the starting layer.",
-        operations: "Good. That points toward operations and systems as the starting layer.",
-        infrastructure: "Good. That points toward digital infrastructure as the starting layer.",
-        positioning: "Good. That points toward offer, trust, and positioning work.",
-        diagnose_first: "That is fine. The diagnosis will suggest the most useful starting point."
-      }
-    },
-
-    business_size: {
-      section: "Business Size",
-      question: "How big is the business right now?",
-      type: "choice",
-      required: true,
-      options: [
-        {
-          label: "Idea stage or pre-launch",
-          value: "idea_stage",
-          next: "urgency"
-        },
-        {
-          label: "Solo project or one-person business",
-          value: "solo",
-          next: "urgency"
-        },
-        {
-          label: "Small business with 2 to 5 people",
-          value: "small",
-          next: "urgency"
-        },
-        {
-          label: "Active business with 6 to 15 people",
-          value: "medium",
-          next: "urgency"
-        },
-        {
-          label: "Larger business or more complex operations",
-          value: "large",
-          next: "urgency"
-        }
-      ],
-      responseMap: {
-        idea_stage: "Good. Early-stage businesses need structure without overcomplication.",
-        solo: "Good. Solo businesses need sharp systems without making the work heavy.",
-        small: "Good. Small teams usually need clearer roles, workflow, and offer logic.",
-        medium: "That adds operational complexity and usually needs deeper system work.",
-        large: "That usually requires a more serious diagnosis before confirming scope."
-      }
-    },
-
-    urgency: {
-      section: "Urgency",
-      question: "How urgent is this?",
-      type: "choice",
-      required: true,
-      options: [
-        {
-          label: "Low. I am exploring",
-          value: "low",
-          next: "budget_readiness"
-        },
-        {
-          label: "Medium. I want to start soon",
-          value: "medium",
-          next: "budget_readiness"
-        },
-        {
-          label: "High. I need this fixed quickly",
-          value: "high",
-          next: "budget_readiness"
-        }
-      ],
-      responseMap: {
-        low: "Understood. I’ll keep the recommendation exploratory.",
-        medium: "Good. That usually needs a clear starting point and delivery sequence.",
-        high: "High urgency may affect the scope because faster work needs tighter priority handling."
-      }
-    },
-
-    budget_readiness: {
-      section: "Budget",
-      question: "How ready are you to discuss investment if the recommended direction makes sense?",
-      type: "choice",
-      required: true,
-      options: [
-        {
-          label: "Ready, if the solution makes sense",
-          value: "ready",
-          next: "final_notes"
-        },
-        {
-          label: "Maybe. I need to understand the cost first",
-          value: "maybe",
-          next: "final_notes"
-        },
-        {
-          label: "Not now. I am only checking",
-          value: "not_ready",
-          next: "final_notes"
-        }
-      ],
-      responseMap: {
-        ready: "Good. I’ll show an estimated starting direction.",
-        maybe: "Fair. I’ll show the estimate clearly so you can review it calmly.",
-        not_ready: "Understood. I’ll still show the diagnosis, and the next step can stay exploratory."
-      }
-    },
-
-    final_notes: {
-      section: "Final Details",
-      question: "Anything important you want Chassis to know before reviewing this?",
-      type: "textarea",
-      placeholder: "Optional: deadlines, context, concerns, or extra details",
-      required: false,
       next: "finish",
-      response: "Thank you. I have enough structured answers to prepare the diagnosis summary."
+      response: "Done. Let me put your diagnosis together now."
     }
+
   };
+
+  // ─── ENGINE ────────────────────────────────────────────────────────────────
 
   launcher.addEventListener("click", () => {
     chat.classList.add("is-open");
     launcher.classList.add("is-hidden");
-
-    if (!askedQuestions.length && !diagnosisFinished) {
-      startConversation();
-    }
+    if (!askedQuestions.length && !diagnosisFinished) startConversation();
   });
 
   closeBtn.addEventListener("click", () => {
@@ -902,22 +305,14 @@ function initChassisDiagnosisAssistant() {
   function startConversation() {
     chatArea.innerHTML = "";
     footer.innerHTML = "";
-
-    addBotMessage("Hello. I’ll walk through your business through structured questions to understand what may need clearer structure, smoother operations, stronger positioning, or better digital flow.");
-
-    setTimeout(() => {
-      askQuestion(currentQuestionId);
-    }, 450);
+    addBotMessage("This takes about two minutes. No forms. No pricing. Just a few direct questions so Sophia can understand what your business actually needs before you speak.");
+    setTimeout(() => askQuestion(currentQuestionId), 450);
   }
 
   function askQuestion(questionId) {
     const q = questions[questionId];
     currentQuestionId = questionId;
-
-    if (!askedQuestions.includes(questionId)) {
-      askedQuestions.push(questionId);
-    }
-
+    if (!askedQuestions.includes(questionId)) askedQuestions.push(questionId);
     updateProgress();
     addBotMessage(q.question, q.section);
     renderAnswerInput(q);
@@ -929,20 +324,14 @@ function initChassisDiagnosisAssistant() {
     if (q.type === "choice") {
       const choiceBox = document.createElement("div");
       choiceBox.className = "diagnosis-choice-list";
-
       q.options.forEach((option) => {
         const button = document.createElement("button");
         button.type = "button";
         button.className = "diagnosis-choice-option";
         button.innerHTML = `<span>${escapeHtml(option.label)}</span>`;
-
-        button.addEventListener("click", () => {
-          handleAnswer(option.value, option.label, option.next);
-        });
-
+        button.addEventListener("click", () => handleAnswer(option.value, option.label, option.next));
         choiceBox.appendChild(button);
       });
-
       footer.appendChild(choiceBox);
       return;
     }
@@ -950,88 +339,55 @@ function initChassisDiagnosisAssistant() {
     if (q.type === "multi") {
       const wrapper = document.createElement("div");
       wrapper.className = "diagnosis-multi-panel";
-
       const selected = new Set();
-
       const choiceBox = document.createElement("div");
       choiceBox.className = "diagnosis-choice-list";
-
       q.options.forEach((option) => {
         const button = document.createElement("button");
         button.type = "button";
         button.className = "diagnosis-choice-option";
         button.innerHTML = `<span>${escapeHtml(option)}</span>`;
-
         button.addEventListener("click", () => {
-          if (selected.has(option)) {
-            selected.delete(option);
-            button.classList.remove("is-selected");
-          } else {
-            selected.add(option);
-            button.classList.add("is-selected");
-          }
+          if (selected.has(option)) { selected.delete(option); button.classList.remove("is-selected"); }
+          else                      { selected.add(option);    button.classList.add("is-selected"); }
         });
-
         choiceBox.appendChild(button);
       });
-
-      const sendBtn = document.createElement("button");
-      sendBtn.type = "button";
-      sendBtn.className = "diagnosis-next";
-      sendBtn.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none" width="18" height="18" aria-hidden="true">
-          <path d="M3 11.5L20 4l-5.5 16-2.8-5.7L3 11.5z" fill="currentColor"/>
-        </svg>
-      `;
-
-      sendBtn.addEventListener("click", () => {
-        if (q.required && selected.size === 0) {
-          addBotMessage("Please choose at least one option so I can continue the diagnosis properly.");
-          return;
-        }
-
+      const sendBtn = makeSendButton(() => {
+        if (q.required && selected.size === 0) { addBotMessage("Pick at least one so I can continue."); return; }
         const values = Array.from(selected);
         handleAnswer(values, values.join(", "), q.next);
       });
-
       wrapper.appendChild(choiceBox);
       wrapper.appendChild(sendBtn);
       footer.appendChild(wrapper);
       return;
     }
 
+    // text / textarea
     const inputRow = document.createElement("div");
     inputRow.className = q.type === "textarea"
       ? "diagnosis-input-row diagnosis-input-row-textarea"
       : "diagnosis-input-row";
 
     let input;
-
     if (q.type === "textarea") {
       input = document.createElement("textarea");
       input.rows = 3;
     } else {
       input = document.createElement("input");
-      input.type = currentQuestionId === "phone" ? "tel" : "text";
-      input.inputMode = currentQuestionId === "phone" ? "tel" : "text";
+      input.type = currentQuestionId === "contact_number" ? "tel" : "text";
+      input.inputMode = currentQuestionId === "contact_number" ? "tel" : "text";
     }
-
     input.id = "diagnosisAnswer";
     input.placeholder = q.placeholder || "";
 
     const speechSupported = window.SpeechRecognition || window.webkitSpeechRecognition;
-
     if (speechSupported) {
       const voiceBtn = document.createElement("button");
       voiceBtn.type = "button";
       voiceBtn.className = "diagnosis-voice-btn";
-      voiceBtn.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true">
-          <path d="M12 15a3 3 0 003-3V7a3 3 0 10-6 0v5a3 3 0 003 3z" fill="currentColor"/>
-          <path d="M19 11a1 1 0 112 0 9 9 0 11-18 0 1 1 0 112 0 7 7 0 0014 0z" fill="currentColor"/>
-        </svg>
-      `;
-
+      voiceBtn.innerHTML = micIcon();
       voiceBtn.addEventListener("click", () => startVoiceInput(input, voiceBtn));
       inputRow.appendChild(input);
       inputRow.appendChild(voiceBtn);
@@ -1039,851 +395,206 @@ function initChassisDiagnosisAssistant() {
       inputRow.appendChild(input);
     }
 
-    const sendBtn = document.createElement("button");
-    sendBtn.type = "button";
-    sendBtn.className = "diagnosis-next";
-    sendBtn.innerHTML = `
-      <svg viewBox="0 0 24 24" fill="none" width="18" height="18" aria-hidden="true">
-        <path d="M3 11.5L20 4l-5.5 16-2.8-5.7L3 11.5z" fill="currentColor"/>
-      </svg>
-    `;
-
-    sendBtn.addEventListener("click", () => {
+    const sendBtn = makeSendButton(() => {
       const value = input.value.trim();
-
-      if (q.required && !value) {
-        addBotMessage("Please answer this so I can continue the diagnosis properly.");
-        return;
-      }
-
-      handleAnswer(value, value || "No extra details added", q.next);
+      if (q.required && !value) { addBotMessage("I need an answer here to continue."); return; }
+      handleAnswer(value, value || "Skipped", q.next);
     });
 
-    input.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" && q.type !== "textarea") {
-        event.preventDefault();
-        sendBtn.click();
-      }
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && q.type !== "textarea") { e.preventDefault(); sendBtn.click(); }
     });
 
     footer.appendChild(inputRow);
     footer.appendChild(sendBtn);
-
     setTimeout(() => input.focus(), 100);
+  }
+
+  function makeSendButton(onClick) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "diagnosis-next";
+    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" width="18" height="18" aria-hidden="true"><path d="M3 11.5L20 4l-5.5 16-2.8-5.7L3 11.5z" fill="currentColor"/></svg>`;
+    btn.addEventListener("click", onClick);
+    return btn;
   }
 
   function handleAnswer(value, displayValue, nextQuestionId) {
     const q = questions[currentQuestionId];
-
     answers[currentQuestionId] = value;
-
     addUserMessage(displayValue);
-
     footer.innerHTML = "";
 
     const response = getResponseForAnswer(q, value);
-
-    if (response) {
-      setTimeout(() => addBotMessage(response), 350);
-    }
+    if (response) setTimeout(() => addBotMessage(response), 350);
 
     if (nextQuestionId === "finish") {
       setTimeout(() => renderFinalDiagnosis(), 850);
       return;
     }
-
-    setTimeout(() => {
-      askQuestion(nextQuestionId);
-    }, response ? 950 : 450);
+    setTimeout(() => askQuestion(nextQuestionId), response ? 950 : 450);
   }
 
   function getResponseForAnswer(question, value) {
-    if (question.responseMap && !Array.isArray(value)) {
-      return question.responseMap[value] || question.response || "";
-    }
-
+    if (question.responseMap && !Array.isArray(value)) return question.responseMap[value] || question.response || "";
     return question.response || "";
   }
 
-  function addBotMessage(message, section = "") {
-    const messageBox = document.createElement("div");
-    messageBox.className = "diagnosis-message diagnosis-message-bot";
+  // ─── AI DIAGNOSIS ──────────────────────────────────────────────────────────
 
-    messageBox.innerHTML = `
-      ${section ? `<p class="diagnosis-question-section">${escapeHtml(section)}</p>` : ""}
-      <p>${escapeHtml(message)}</p>
-    `;
-
-    chatArea.appendChild(messageBox);
-    scrollChatToBottom();
-  }
-
-  function addUserMessage(message) {
-    const messageBox = document.createElement("div");
-    messageBox.className = "diagnosis-message diagnosis-message-user";
-
-    messageBox.innerHTML = `<p>${escapeHtml(message)}</p>`;
-
-    chatArea.appendChild(messageBox);
-    scrollChatToBottom();
-  }
-
-  function updateProgress() {
-    const totalQuestionsEstimate = 21;
-    const progress = Math.min((askedQuestions.length / totalQuestionsEstimate) * 100, 100);
-    progressBar.style.width = `${progress}%`;
-  }
-
-  function calculateDiagnosis() {
-    const scores = {
-      businessStructuring: 0,
-      operationsSystems: 0,
-      executionInfrastructure: 0,
-      positioningTrust: 0,
-      strategicAdvisory: 0,
-      complexity: 0,
-      urgency: 0
+  async function fetchAIDiagnosis() {
+    const feelingLabels = {
+      owner_dependent:   "Everything goes through the owner. They can't step away.",
+      unclear_offer:     "They can't explain what they sell in one clear sentence.",
+      operational_chaos: "The business works but feels chaotic and reactive.",
+      plateaued:         "They're not growing and don't know exactly why.",
+      weak_presence:     "They look weaker online than they actually are."
     };
 
-    addBusinessStageScores(scores);
-    addBusinessTypeScores(scores);
-    addOfferScores(scores);
-    addPricingScores(scores);
-    addSalesScores(scores);
-    addClientFlowScores(scores);
-    addOperationsScores(scores);
-    addSystemsScores(scores);
-    addPositioningScores(scores);
-    addGoalScores(scores);
-    addPriorityScores(scores);
-    addComplexityScores(scores);
-
-    const serviceScores = [
-      {
-        name: "Business Structure & Offer Clarity",
-        key: "businessStructuring",
-        score: scores.businessStructuring
-      },
-      {
-        name: "Operations & Workflow System",
-        key: "operationsSystems",
-        score: scores.operationsSystems
-      },
-      {
-        name: "Website & Digital Flow Setup",
-        key: "executionInfrastructure",
-        score: scores.executionInfrastructure
-      },
-      {
-        name: "Positioning & Sales Clarity",
-        key: "positioningTrust",
-        score: scores.positioningTrust
-      },
-      {
-        name: "Growth Direction Session",
-        key: "strategicAdvisory",
-        score: scores.strategicAdvisory
-      }
-    ];
-
-    serviceScores.sort((a, b) => b.score - a.score);
-
-    const primary = serviceScores[0];
-    const secondary = serviceScores[1];
-    const third = serviceScores[2];
-
-    const summary = buildDiagnosisSummary(primary, secondary, scores);
-    const quotation = calculateQuotation(primary.name, secondary.name, third.name);
-
-    return {
-      scores,
-      primary,
-      secondary,
-      third,
-      summary,
-      quotation
-    };
-  }
-
-  function addBusinessStageScores(scores) {
-    if (answers.business_stage === "idea") {
-      scores.businessStructuring += 5;
-      scores.strategicAdvisory += 2;
-    }
-
-    if (answers.business_stage === "existing_messy") {
-      scores.businessStructuring += 2;
-      scores.operationsSystems += 4;
-    }
-
-    if (answers.business_stage === "working_growth") {
-      scores.operationsSystems += 2;
-      scores.positioningTrust += 2;
-      scores.strategicAdvisory += 3;
-    }
-
-    if (answers.business_stage === "infrastructure_need") {
-      scores.executionInfrastructure += 4;
-      scores.businessStructuring += 1;
-    }
-  }
-
-  function addBusinessTypeScores(scores) {
-    if (answers.business_type === "service") {
-      scores.businessStructuring += 2;
-      scores.positioningTrust += 1;
-    }
-
-    if (answers.business_type === "product") {
-      scores.positioningTrust += 2;
-      scores.businessStructuring += 2;
-    }
-
-    if (answers.business_type === "hospitality") {
-      scores.operationsSystems += 3;
-      scores.positioningTrust += 1;
-    }
-
-    if (answers.business_type === "personal_brand") {
-      scores.positioningTrust += 3;
-      scores.executionInfrastructure += 1;
-    }
-
-    if (answers.business_type === "platform") {
-      scores.executionInfrastructure += 3;
-      scores.businessStructuring += 2;
-    }
-
-    if (answers.business_type === "mixed") {
-      scores.businessStructuring += 4;
-      scores.strategicAdvisory += 2;
-    }
-  }
-
-  function addOfferScores(scores) {
-    if (answers.business_model === "custom") {
-      scores.businessStructuring += 2;
-      scores.operationsSystems += 1;
-    }
-
-    if (answers.business_model === "not_sure") {
-      scores.businessStructuring += 4;
-      scores.strategicAdvisory += 2;
-    }
-
-    if (answers.offer_clarity_level === "semi") scores.businessStructuring += 3;
-    if (answers.offer_clarity_level === "unclear") scores.businessStructuring += 5;
-    if (answers.offer_clarity_level === "scattered") scores.businessStructuring += 5;
-    if (answers.offer_clarity_level === "no_offer") scores.businessStructuring += 6;
-
-    if (Array.isArray(answers.offer_confusion)) {
-      answers.offer_confusion.forEach((item) => {
-        if (item === "The offer is clear enough") return;
-
-        scores.businessStructuring += 1;
-
-        if (
-          item === "People don’t understand what I do" ||
-          item === "I don’t know how to explain the value" ||
-          item === "The offer exists, but it does not feel premium" ||
-          item === "Clients compare me too much to cheaper alternatives"
-        ) {
-          scores.positioningTrust += 2;
-        }
-
-        if (
-          item === "I do many things and don’t know what to focus on" ||
-          item === "My services or products feel scattered" ||
-          item === "I don’t have clear packages"
-        ) {
-          scores.businessStructuring += 2;
-        }
-      });
-    }
-  }
-
-  function addPricingScores(scores) {
-    if (answers.pricing_status === "depends") scores.businessStructuring += 2;
-    if (answers.pricing_status === "unstable") scores.businessStructuring += 4;
-    if (answers.pricing_status === "none") scores.businessStructuring += 4;
-
-    if (Array.isArray(answers.pricing_problem)) {
-      answers.pricing_problem.forEach((item) => {
-        if (item === "Pricing is not my main issue") return;
-
-        scores.businessStructuring += 1;
-
-        if (
-          item === "People do not understand why it costs that much" ||
-          item === "Clients negotiate too much" ||
-          item === "I don’t know what the service or product is worth"
-        ) {
-          scores.positioningTrust += 2;
-        }
-
-        if (
-          item === "I don’t have a clear payment structure" ||
-          item === "The price changes too much depending on the person"
-        ) {
-          scores.operationsSystems += 1;
-        }
-      });
-    }
-  }
-
-  function addSalesScores(scores) {
-    if (Array.isArray(answers.sales_problem)) {
-      answers.sales_problem.forEach((item) => {
-        if (item === "Sales are not the main issue") return;
-
-        if (
-          item === "People ask but do not buy" ||
-          item === "People say it is expensive" ||
-          item === "People do not understand the value" ||
-          item === "People need too much explanation" ||
-          item === "I get inquiries but they are not serious"
-        ) {
-          scores.positioningTrust += 2;
-          scores.businessStructuring += 1;
-        }
-
-        if (item === "I do not get enough inquiries") {
-          scores.positioningTrust += 2;
-          scores.executionInfrastructure += 1;
-        }
-
-        if (item === "I do not know how to follow up") {
-          scores.operationsSystems += 2;
-        }
-      });
-    }
-  }
-
-  function addClientFlowScores(scores) {
-    if (answers.client_flow === "manual") {
-      scores.operationsSystems += 2;
-      scores.executionInfrastructure += 1;
-    }
-
-    if (answers.client_flow === "messy") {
-      scores.operationsSystems += 3;
-      scores.executionInfrastructure += 2;
-    }
-
-    if (answers.client_flow === "no_flow") {
-      scores.operationsSystems += 3;
-      scores.executionInfrastructure += 3;
-    }
-  }
-
-  function addOperationsScores(scores) {
-    if (answers.operations_state === "messy") scores.operationsSystems += 3;
-    if (answers.operations_state === "chaos") scores.operationsSystems += 5;
-    if (answers.operations_state === "owner_dependent") scores.operationsSystems += 5;
-    if (answers.operations_state === "not_started") scores.businessStructuring += 2;
-
-    if (Array.isArray(answers.operations_problem)) {
-      answers.operations_problem.forEach((item) => {
-        if (item === "Operations are not my main issue") return;
-
-        scores.operationsSystems += 1;
-
-        if (
-          item === "Pricing and quotations" ||
-          item === "Money collection" ||
-          item === "Bookings or scheduling"
-        ) {
-          scores.executionInfrastructure += 1;
-        }
-
-        if (item === "Content or marketing") {
-          scores.positioningTrust += 1;
-        }
-
-        if (item === "Everything depends on me") {
-          scores.operationsSystems += 3;
-        }
-      });
-    }
-
-    if (answers.owner_dependency === "medium") scores.operationsSystems += 2;
-    if (answers.owner_dependency === "high") scores.operationsSystems += 4;
-    if (answers.owner_dependency === "no_system") scores.operationsSystems += 2;
-
-    if (Array.isArray(answers.dependency_details)) {
-      answers.dependency_details.forEach((item) => {
-        scores.operationsSystems += 1;
-
-        if (item === "Marketing") scores.positioningTrust += 1;
-        if (item === "Payments") scores.executionInfrastructure += 1;
-        if (item === "Everything") scores.operationsSystems += 3;
-      });
-    }
-  }
-
-  function addSystemsScores(scores) {
-    if (Array.isArray(answers.systems_status)) {
-      if (answers.systems_status.includes("None")) {
-        scores.executionInfrastructure += 3;
-        scores.operationsSystems += 1;
-      }
-
-      if (answers.systems_status.includes("WhatsApp only")) {
-        scores.executionInfrastructure += 1;
-        scores.operationsSystems += 1;
-      }
-
-      if (answers.systems_status.includes("Instagram / Facebook only")) {
-        scores.positioningTrust += 1;
-        scores.executionInfrastructure += 1;
-      }
-    }
-
-    if (Array.isArray(answers.tool_problem)) {
-      answers.tool_problem.forEach((item) => {
-        if (item === "Digital setup is not my main issue") return;
-
-        if (
-          item === "No website" ||
-          item === "Website does not explain the business properly" ||
-          item === "No proper client intake" ||
-          item === "No quotation system" ||
-          item === "No payment flow" ||
-          item === "No internal tracking" ||
-          item === "No booking or request system" ||
-          item === "Tools exist but are disconnected" ||
-          item === "I mainly need a website or app"
-        ) {
-          scores.executionInfrastructure += 2;
-        }
-
-        if (item === "Social media is not structured") {
-          scores.positioningTrust += 2;
-        }
-      });
-    }
-
-    if (Array.isArray(answers.infrastructure_need)) {
-      answers.infrastructure_need.forEach((item) => {
-        if (item === "Infrastructure can wait") return;
-
-        if (
-          item === "Website that explains the business clearly" ||
-          item === "Website that generates inquiries" ||
-          item === "Client intake form" ||
-          item === "Quotation or request flow" ||
-          item === "Booking system" ||
-          item === "Payment flow" ||
-          item === "Internal dashboard" ||
-          item === "Mobile app" ||
-          item === "Portfolio or professional profile"
-        ) {
-          scores.executionInfrastructure += 2;
-        }
-
-        if (
-          item === "Website that explains the business clearly" ||
-          item === "Website that generates inquiries" ||
-          item === "Portfolio or professional profile"
-        ) {
-          scores.positioningTrust += 1;
-        }
-      });
-    }
-  }
-
-  function addPositioningScores(scores) {
-    if (answers.brand_positioning === "average") scores.positioningTrust += 2;
-    if (answers.brand_positioning === "weak") scores.positioningTrust += 4;
-    if (answers.brand_positioning === "missing") {
-      scores.positioningTrust += 4;
-      scores.executionInfrastructure += 2;
-    }
-
-    if (Array.isArray(answers.positioning_problem)) {
-      answers.positioning_problem.forEach((item) => {
-        if (item === "Positioning is not my main issue") return;
-
-        scores.positioningTrust += 2;
-
-        if (
-          item === "People do not understand what we do" ||
-          item === "The message is not clear" ||
-          item === "The offer does not feel valuable enough"
-        ) {
-          scores.businessStructuring += 1;
-        }
-
-        if (
-          item === "The page or website feels weak" ||
-          item === "The brand does not build trust quickly"
-        ) {
-          scores.executionInfrastructure += 1;
-        }
-      });
-    }
-  }
-
-  function addGoalScores(scores) {
-    if (Array.isArray(answers.growth_goal)) {
-      answers.growth_goal.forEach((item) => {
-        if (item === "Clarify what we sell") scores.businessStructuring += 3;
-        if (item === "Increase sales") scores.positioningTrust += 2;
-        if (item === "Get better clients") scores.positioningTrust += 2;
-        if (item === "Reduce operational chaos") scores.operationsSystems += 3;
-        if (item === "Stop depending on myself for everything") scores.operationsSystems += 3;
-        if (item === "Build a website or app") scores.executionInfrastructure += 3;
-        if (item === "Create systems") scores.operationsSystems += 2;
-        if (item === "Improve brand trust") scores.positioningTrust += 3;
-        if (item === "Prepare for growth") scores.strategicAdvisory += 2;
-        if (item === "Understand what is wrong first") scores.strategicAdvisory += 2;
-      });
-    }
-  }
-
-  function addPriorityScores(scores) {
-    if (answers.priority_first === "structure") scores.businessStructuring += 4;
-    if (answers.priority_first === "operations") scores.operationsSystems += 4;
-    if (answers.priority_first === "infrastructure") scores.executionInfrastructure += 4;
-    if (answers.priority_first === "positioning") scores.positioningTrust += 4;
-    if (answers.priority_first === "diagnose_first") scores.strategicAdvisory += 3;
-  }
-
-  function addComplexityScores(scores) {
-    if (answers.business_size === "idea_stage") scores.complexity += 1;
-    if (answers.business_size === "solo") scores.complexity += 1;
-    if (answers.business_size === "small") scores.complexity += 2;
-    if (answers.business_size === "medium") scores.complexity += 3;
-    if (answers.business_size === "large") scores.complexity += 4;
-
-    if (answers.urgency === "medium") {
-      scores.urgency += 1;
-      scores.complexity += 1;
-    }
-
-    if (answers.urgency === "high") {
-      scores.urgency += 2;
-      scores.complexity += 2;
-    }
-  }
-
-  function buildDiagnosisSummary(primary, secondary) {
-    const summaries = {
-      "Business Structure & Offer Clarity": "The business may benefit from clearer offers, better pricing logic, stronger packaging, and a sharper direction before scaling further.",
-      "Operations & Workflow System": "The business may benefit from smoother workflows, clearer responsibilities, better follow-up systems, and less daily pressure on the owner.",
-      "Website & Digital Flow Setup": "The business may benefit from stronger digital infrastructure that supports trust, inquiries, bookings, quotations, payments, or internal tracking.",
-      "Positioning & Sales Clarity": "The business may benefit from clearer positioning, stronger trust signals, better sales messaging, and a more convincing presentation of value.",
-      "Growth Direction Session": "The business may benefit from a focused strategic review to decide what should be fixed first before investing in execution."
+    const clientLabels = {
+      good_not_enough:  "Good clients, not enough of them.",
+      wrong_type:       "Enough clients but the wrong type.",
+      no_conversion:    "People inquire but don't convert.",
+      low_volume:       "Very few inquiries at all.",
+      internal_problem: "Clients are fine. The problem is internal."
     };
 
-    return `${summaries[primary.name]} The secondary layer appears to be ${secondary.name}, which means the work can be phased instead of handled all at once.`;
-  }
-
-  function calculateQuotation(primaryService, secondaryService, thirdService) {
-    const today = new Date();
-    const quotationNumber = `CH-${today.getFullYear()}${String(today.getMonth() + 1).padStart(2, "0")}${String(today.getDate()).padStart(2, "0")}-${Math.floor(100 + Math.random() * 900)}`;
-
-    const lineItems = [];
-
-    addPrimaryLineItems(lineItems, primaryService);
-    addSecondaryLineItem(lineItems, secondaryService, primaryService);
-    addOptionalLaterLineItem(lineItems, thirdService, primaryService, secondaryService);
-    addComplexityLineItems(lineItems);
-
-    const total = lineItems
-      .filter((item) => !item.optional)
-      .reduce((sum, item) => sum + item.price, 0);
-
-    const downPayment = Math.round(total * 0.5);
-    const balance = total - downPayment;
-
-    return {
-      quotationNumber,
-      date: formatDate(today),
-      validUntil: formatDate(addDays(today, 15)),
-      lineItems,
-      total,
-      downPayment,
-      balance
-    };
-  }
-
-  function addPrimaryLineItems(lineItems, primaryService) {
-    if (primaryService === "Business Structure & Offer Clarity") {
-      lineItems.push({
-        item: "Business Structure Diagnosis & Direction Map",
-        price: 150,
-        phase: "Priority"
-      });
-
-      lineItems.push({
-        item: "Offer, Positioning & Pricing Structure",
-        price: 450,
-        phase: "Priority"
-      });
-    }
-
-    if (primaryService === "Operations & Workflow System") {
-      lineItems.push({
-        item: "Operational Diagnosis & Workflow Mapping",
-        price: 250,
-        phase: "Priority"
-      });
-
-      lineItems.push({
-        item: "Operations & Workflow System",
-        price: 950,
-        phase: "Priority"
-      });
-    }
-
-    if (primaryService === "Website & Digital Flow Setup") {
-      lineItems.push({
-        item: "Website / System Planning & User Flow",
-        price: 250,
-        phase: "Priority"
-      });
-
-      lineItems.push({
-        item: "Website / Digital Flow Setup",
-        price: 850,
-        phase: "Priority"
-      });
-    }
-
-    if (primaryService === "Positioning & Sales Clarity") {
-      lineItems.push({
-        item: "Positioning Review & Sales Message Direction",
-        price: 150,
-        phase: "Priority"
-      });
-
-      lineItems.push({
-        item: "Offer Presentation & Sales Clarity Setup",
-        price: 450,
-        phase: "Priority"
-      });
-    }
-
-    if (primaryService === "Growth Direction Session") {
-      lineItems.push({
-        item: "Growth Direction Session",
-        price: 150,
-        phase: "Priority"
-      });
-
-      lineItems.push({
-        item: "Next-Step Execution Roadmap",
-        price: 250,
-        phase: "Priority"
-      });
-    }
-  }
-
-  function addSecondaryLineItem(lineItems, secondaryService, primaryService) {
-    if (secondaryService === primaryService) return;
-
-    const secondaryItems = {
-      "Business Structure & Offer Clarity": {
-        item: "Secondary Offer & Structure Layer",
-        price: 250
-      },
-      "Operations & Workflow System": {
-        item: "Secondary Operations Review Layer",
-        price: 300
-      },
-      "Website & Digital Flow Setup": {
-        item: "Secondary Digital Flow Direction Layer",
-        price: 250
-      },
-      "Positioning & Sales Clarity": {
-        item: "Secondary Positioning & Sales Clarity Layer",
-        price: 250
-      },
-      "Growth Direction Session": {
-        item: "Secondary Growth Direction Layer",
-        price: 150
-      }
+    const stageLabels = {
+      early:       "Less than a year in.",
+      mid:         "1 to 3 years in. Has clients but still messy.",
+      established: "More than 3 years. Stuck or slowing down."
     };
 
-    if (secondaryItems[secondaryService]) {
-      lineItems.push({
-        ...secondaryItems[secondaryService],
-        phase: "Recommended"
-      });
-    }
-  }
-
-  function addOptionalLaterLineItem(lineItems, thirdService, primaryService, secondaryService) {
-    if (!thirdService || thirdService === primaryService || thirdService === secondaryService) return;
-
-    const optionalItems = {
-      "Business Structure & Offer Clarity": "Business structure can be refined later if the priority is not offer clarity now.",
-      "Operations & Workflow System": "Operations can be improved later if the first priority is structure or digital setup.",
-      "Website & Digital Flow Setup": "Digital infrastructure can be added later after the offer and process are clearer.",
-      "Positioning & Sales Clarity": "Positioning can be strengthened later after the core structure is fixed.",
-      "Growth Direction Session": "A strategic review can be added later if execution becomes unclear."
+    const triedLabels = {
+      tried_agency: "Tried an agency or freelancer. Didn't really solve it.",
+      tried_self:   "Tried to fix it themselves. Still feels incomplete.",
+      first_time:   "First time properly looking at this."
     };
 
-    lineItems.push({
-      item: optionalItems[thirdService] || "Additional layer can be added later",
-      price: 0,
-      phase: "Can Wait",
-      optional: true
+    const breaks = Array.isArray(answers.what_breaks) ? answers.what_breaks.join(", ") : "";
+
+    const prompt = `You are Sophia Ayoubi, founder of Chassis — a business structuring and execution practice based in Lebanon. Your job is to read a business owner's diagnosis answers and write a short, honest, specific summary of what their business actually needs.
+
+CHASSIS CONTEXT:
+Chassis works with founders and operators who are unclear, chaotic, or stuck. The four layers Chassis addresses are:
+1. Business Structure — offer clarity, pricing logic, positioning, revenue model
+2. Operations — workflows, SOPs, decision rules, removing owner dependency
+3. Digital Infrastructure — website structure, booking flows, client intake, digital tools
+4. Positioning and Trust — how the business appears, sales messaging, credibility
+
+YOUR TONE:
+Sharp. Direct. Human. No fluff. No motivational language. No dashes as punctuation. Speak like a smart operator who has seen this before, not like a chatbot. Never say "great question" or "thank you for sharing." Be specific about what you see in their answers. Do not give generic advice.
+
+THE PERSON'S ANSWERS:
+Name: ${answers.client_name || ""}
+Business description (in their own words): "${answers.business_description || ""}"
+Main feeling about the business: ${feelingLabels[answers.biggest_feeling] || answers.biggest_feeling || ""}
+Where things break down: ${breaks || "Not specified"}
+Client situation: ${clientLabels[answers.client_quality] || ""}
+Business stage: ${stageLabels[answers.stage] || ""}
+What they have tried before: ${triedLabels[answers.tried_before] || ""}
+
+YOUR TASK:
+Write a diagnosis summary with exactly three parts. Use this structure:
+
+WHAT I SEE:
+Two to three sentences. Read their business description and their answers together. Name what the actual problem appears to be, specifically. If the business description is vague or nonsensical, say so directly and honestly. Do not pretend the answers are clear if they are not.
+
+WHERE TO START:
+One to two sentences. Name the one layer that needs attention first and why, based on what they told you. Be specific to their situation.
+
+WHAT THIS MEANS FOR THEM:
+One sentence. Connect the starting layer to the outcome they care about.
+
+Do not use bullet points. Do not use headers with # symbols. Write in plain paragraphs under each label. Keep the whole thing under 120 words. Do not mention pricing. Do not mention specific service names from Chassis.`;
+
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        messages: [{ role: "user", content: prompt }]
+      })
     });
+
+    const data = await response.json();
+    const text = data.content && data.content[0] && data.content[0].text
+      ? data.content[0].text.trim()
+      : null;
+
+    return text;
   }
 
-  function addComplexityLineItems(lineItems) {
-    if (answers.business_size === "medium") {
-      lineItems.push({
-        item: "Operational Scope Adjustment",
-        price: 250,
-        phase: "Scope"
-      });
-    }
+  // ─── RESULT CARD ───────────────────────────────────────────────────────────
 
-    if (answers.business_size === "large") {
-      lineItems.push({
-        item: "Advanced Operational Scope Adjustment",
-        price: 500,
-        phase: "Scope"
-      });
-    }
-
-    if (answers.urgency === "high") {
-      const subtotalBeforePriority = lineItems
-        .filter((item) => !item.optional)
-        .reduce((sum, item) => sum + item.price, 0);
-
-      lineItems.push({
-        item: "Priority Timeline Adjustment",
-        price: Math.round(subtotalBeforePriority * 0.25),
-        phase: "Timeline"
-      });
-    }
-  }
-
-  function renderFinalDiagnosis() {
+  async function renderFinalDiagnosis() {
     diagnosisFinished = true;
-
-    const diagnosis = calculateDiagnosis();
-    const whatsappMessage = buildWhatsAppMessage(diagnosis);
-    const whatsappUrl = `https://wa.me/96171085824?text=${encodeURIComponent(whatsappMessage)}`;
-
     updateProgress();
     progressBar.style.width = "100%";
     footer.innerHTML = "";
 
-    addBotMessage("I finished reviewing your structured answers. Here is the recommended starting direction.");
+    const name = answers.client_name || "there";
+    addBotMessage(`${name}, give me a moment. I'm reading through your answers now.`);
+
+    // Show thinking state
+    const thinkingMsg = document.createElement("div");
+    thinkingMsg.className = "diagnosis-message diagnosis-message-bot";
+    thinkingMsg.innerHTML = `<p style="opacity:0.5; font-style:italic;">Putting your diagnosis together...</p>`;
+    chatArea.appendChild(thinkingMsg);
+    scrollChatToBottom();
+
+    let diagnosisText = null;
+
+    try {
+      diagnosisText = await fetchAIDiagnosis();
+    } catch (err) {
+      console.error("Chassis diagnosis API error:", err);
+    }
+
+    // Remove thinking message
+    thinkingMsg.remove();
+
+    if (!diagnosisText) {
+      diagnosisText = "WHAT I SEE:\nSomething went wrong generating your diagnosis. This sometimes happens with a connection issue.\n\nWHERE TO START:\nBook a discovery call and Sophia will review your answers directly.\n\nWHAT THIS MEANS FOR THEM:\nA 30-minute call will give you a clearer picture than any automated tool.";
+    }
+
+    // Parse the three sections
+    const sections = parseDiagnosisSections(diagnosisText);
+
+    const whatsappMessage = buildWhatsAppMessage(diagnosisText);
+    const whatsappUrl  = `https://wa.me/96171085824?text=${encodeURIComponent(whatsappMessage)}`;
+    const calendlyUrl  = "https://calendly.com/chassis-lb/chassis-discovery-call";
 
     const resultCard = document.createElement("div");
     resultCard.className = "diagnosis-result-card";
 
-    const priorityItemsHtml = diagnosis.quotation.lineItems
-      .filter((item) => !item.optional)
-      .map((item) => {
-        return `
-          <div>
-            <span>${escapeHtml(item.phase)}: ${escapeHtml(item.item)}</span>
-            <strong>$${item.price}</strong>
-          </div>
-        `;
-      })
-      .join("");
-
-    const optionalItemsHtml = diagnosis.quotation.lineItems
-      .filter((item) => item.optional)
-      .map((item) => {
-        return `
-          <div>
-            <span>${escapeHtml(item.phase)}: ${escapeHtml(item.item)}</span>
-            <strong>Later</strong>
-          </div>
-        `;
-      })
-      .join("");
-
     resultCard.innerHTML = `
-      <p class="diagnosis-question-section">Business Direction Summary</p>
-      <h3>Recommended Starting Point</h3>
+      <p class="diagnosis-question-section">Your Diagnosis</p>
 
-      <p>${escapeHtml(diagnosis.summary)}</p>
+      <h3>What I see</h3>
+      <p>${escapeHtml(sections.whatISee)}</p>
+
+      <h3>Where to start</h3>
+      <p>${escapeHtml(sections.whereToStart)}</p>
+
+      <h3>What this means for you</h3>
+      <p>${escapeHtml(sections.whatItMeans)}</p>
 
       <div class="diagnosis-result-note">
-        <p>Not every business needs every layer immediately. This summary separates what appears to be the priority now from what can wait.</p>
-      </div>
-
-      <div class="diagnosis-result-grid">
-        <div>
-          <span>Primary Recommendation</span>
-          <strong>${escapeHtml(diagnosis.primary.name)}</strong>
-        </div>
-
-        <div>
-          <span>Secondary Layer</span>
-          <strong>${escapeHtml(diagnosis.secondary.name)}</strong>
-        </div>
+        <p>This is a read based on what you shared. The full diagnosis happens in a conversation.</p>
       </div>
 
       <div class="diagnosis-result-note">
-        <p><strong>Estimated Direction ${escapeHtml(diagnosis.quotation.quotationNumber)}</strong></p>
-        <p>Date: ${escapeHtml(diagnosis.quotation.date)}</p>
-        <p>Valid until: ${escapeHtml(diagnosis.quotation.validUntil)}</p>
+        <p>The discovery call is 30 minutes. No pitch. Sophia looks at your specific situation and tells you honestly what needs to be done and whether Chassis is the right fit.</p>
       </div>
 
-      <div class="diagnosis-result-note">
-        <p><strong>Priority Fixes</strong></p>
-        <p>These are the areas that appear most useful to start with based on the diagnosis.</p>
-      </div>
+      <a class="diagnosis-whatsapp-link" href="${calendlyUrl}" target="_blank" rel="noopener">
+        Book a Discovery Call
+      </a>
 
-      <div class="diagnosis-result-grid">
-        ${priorityItemsHtml}
-      </div>
-
-      ${
-        optionalItemsHtml
-          ? `
-            <div class="diagnosis-result-note">
-              <p><strong>Can Be Added Later</strong></p>
-              <p>This layer does not need to be handled immediately unless the scope is confirmed manually.</p>
-            </div>
-
-            <div class="diagnosis-result-grid">
-              ${optionalItemsHtml}
-            </div>
-          `
-          : ""
-      }
-
-      <div class="diagnosis-result-grid">
-        <div>
-          <span>Estimated Starting Investment</span>
-          <strong>$${diagnosis.quotation.total}</strong>
-        </div>
-
-        <div>
-          <span>Suggested Starting Deposit</span>
-          <strong>$${diagnosis.quotation.downPayment}</strong>
-        </div>
-
-        <div>
-          <span>Remaining Balance</span>
-          <strong>$${diagnosis.quotation.balance}</strong>
-        </div>
-
-        <div>
-          <span>Payment Method</span>
-          <strong>Whish / Wish Money</strong>
-        </div>
-      </div>
-
-      <div class="diagnosis-result-note">
-        <p>This is an estimated direction generated from your answers. Chassis reviews every business manually before confirming the final scope.</p>
-        <p>You can send this summary to WhatsApp to review what should be started now and what can wait.</p>
-      </div>
-
-      <a class="diagnosis-whatsapp-link" href="${whatsappUrl}" target="_blank" rel="noopener">
-        Review This Diagnosis on WhatsApp
+      <a class="diagnosis-whatsapp-link" href="${whatsappUrl}" target="_blank" rel="noopener" style="margin-top:10px; background:transparent; border:1px solid currentColor; opacity:0.7;">
+        Send This to WhatsApp Instead
       </a>
 
       <button class="diagnosis-restart" type="button">Start Again</button>
@@ -1892,10 +603,8 @@ function initChassisDiagnosisAssistant() {
     chatArea.appendChild(resultCard);
     scrollChatToBottom();
 
-    const restartBtn = resultCard.querySelector(".diagnosis-restart");
-
-    restartBtn.addEventListener("click", () => {
-      Object.keys(answers).forEach((key) => delete answers[key]);
+    resultCard.querySelector(".diagnosis-restart").addEventListener("click", () => {
+      Object.keys(answers).forEach((k) => delete answers[k]);
       askedQuestions.length = 0;
       currentQuestionId = "client_name";
       diagnosisFinished = false;
@@ -1903,128 +612,71 @@ function initChassisDiagnosisAssistant() {
     });
   }
 
-  function buildWhatsAppMessage(diagnosis) {
-    const priorityItems = diagnosis.quotation.lineItems
-      .filter((item) => !item.optional)
-      .map((item) => `- ${item.phase}: ${item.item}: $${item.price}`)
-      .join("\n");
+  function parseDiagnosisSections(text) {
+    // Try to extract the three labeled sections
+    const whatISeeMatch      = text.match(/WHAT I SEE[:\s]*([\s\S]*?)(?=WHERE TO START|$)/i);
+    const whereToStartMatch  = text.match(/WHERE TO START[:\s]*([\s\S]*?)(?=WHAT THIS MEANS|$)/i);
+    const whatItMeansMatch   = text.match(/WHAT THIS MEANS(?:\s+FOR\s+(?:YOU|THEM))?[:\s]*([\s\S]*?)$/i);
 
-    const optionalItems = diagnosis.quotation.lineItems
-      .filter((item) => item.optional)
-      .map((item) => `- ${item.phase}: ${item.item}`)
-      .join("\n");
-
-    return `Hello Chassis, I completed the business diagnosis.
-
-Prepared For:
-Name: ${answers.client_name || ""}
-Business: ${answers.business_name || ""}
-Phone: ${answers.phone || ""}
-
-Business Direction Summary:
-${diagnosis.summary}
-
-Recommended Starting Point:
-${diagnosis.primary.name}
-
-Secondary Layer:
-${diagnosis.secondary.name}
-
-Priority Fixes:
-${priorityItems}
-
-${optionalItems ? `Can Be Added Later:\n${optionalItems}\n` : ""}
-
-Estimated Starting Investment:
-$${diagnosis.quotation.total}
-
-Suggested Starting Deposit:
-$${diagnosis.quotation.downPayment}
-
-Remaining Balance:
-$${diagnosis.quotation.balance}
-
-Payment:
-If the direction is confirmed, the next step can be arranged through Whish / Wish Money.
-
-Main Answers:
-Business stage: ${formatAnswer(answers.business_stage)}
-Business type: ${formatAnswer(answers.business_type)}
-Business model: ${formatAnswer(answers.business_model)}
-Offer clarity: ${formatAnswer(answers.offer_clarity_level)}
-Offer issues: ${formatAnswer(answers.offer_confusion)}
-Pricing status: ${formatAnswer(answers.pricing_status)}
-Pricing issues: ${formatAnswer(answers.pricing_problem)}
-Sales issues: ${formatAnswer(answers.sales_problem)}
-Client flow: ${formatAnswer(answers.client_flow)}
-Operations state: ${formatAnswer(answers.operations_state)}
-Operations issues: ${formatAnswer(answers.operations_problem)}
-Owner dependency: ${formatAnswer(answers.owner_dependency)}
-Systems used: ${formatAnswer(answers.systems_status)}
-Tool problems: ${formatAnswer(answers.tool_problem)}
-Infrastructure needs: ${formatAnswer(answers.infrastructure_need)}
-Positioning: ${formatAnswer(answers.brand_positioning)}
-Positioning issues: ${formatAnswer(answers.positioning_problem)}
-Goal: ${formatAnswer(answers.growth_goal)}
-Priority: ${formatAnswer(answers.priority_first)}
-Business size: ${formatAnswer(answers.business_size)}
-Urgency: ${formatAnswer(answers.urgency)}
-Budget readiness: ${formatAnswer(answers.budget_readiness)}
-Extra notes: ${answers.final_notes || "No extra notes added"}
-
-I would like Chassis to review this diagnosis and discuss the next step.`;
+    return {
+      whatISee:     whatISeeMatch    ? whatISeeMatch[1].trim()    : text,
+      whereToStart: whereToStartMatch ? whereToStartMatch[1].trim() : "",
+      whatItMeans:  whatItMeansMatch  ? whatItMeansMatch[1].trim()  : ""
+    };
   }
 
-  function startVoiceInput(input, voiceBtn) {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  function buildWhatsAppMessage(diagnosisText) {
+    const breaks = Array.isArray(answers.what_breaks) ? answers.what_breaks.join(", ") : answers.what_breaks || "";
 
-    if (!SpeechRecognition || !input) return;
+    const feelingLabels = {
+      owner_dependent:   "Everything goes through me. I can't step away.",
+      unclear_offer:     "I can't explain what I sell in one clear sentence.",
+      operational_chaos: "The business works but feels chaotic and reactive.",
+      plateaued:         "I'm not growing and I don't know exactly why.",
+      weak_presence:     "We look weaker online than we actually are."
+    };
 
-    const recognition = new SpeechRecognition();
-    recognition.lang = "en-US";
-    recognition.interimResults = true;
-    recognition.maxAlternatives = 1;
+    return `Hello Chassis. I completed the business diagnosis on your website.
 
-    voiceBtn.innerHTML = `
-      <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true">
-        <circle cx="12" cy="12" r="8" fill="currentColor"/>
-      </svg>
+Name: ${answers.client_name || ""}
+WhatsApp: ${answers.contact_number || ""}
+
+Business: ${answers.business_description || ""}
+
+Main feeling: ${feelingLabels[answers.biggest_feeling] || answers.biggest_feeling || ""}
+Where things break: ${breaks}
+
+Diagnosis summary:
+${diagnosisText || ""}
+
+I'd like to understand more about what Chassis can do for my situation.`;
+  }
+
+  // ─── UI HELPERS ────────────────────────────────────────────────────────────
+
+  function addBotMessage(message, section = "") {
+    const box = document.createElement("div");
+    box.className = "diagnosis-message diagnosis-message-bot";
+    box.innerHTML = `
+      ${section ? `<p class="diagnosis-question-section">${escapeHtml(section)}</p>` : ""}
+      <p>${escapeHtml(message)}</p>
     `;
+    chatArea.appendChild(box);
+    scrollChatToBottom();
+  }
 
-    recognition.start();
+  function addUserMessage(message) {
+    const box = document.createElement("div");
+    box.className = "diagnosis-message diagnosis-message-user";
+    box.innerHTML = `<p>${escapeHtml(message)}</p>`;
+    chatArea.appendChild(box);
+    scrollChatToBottom();
+  }
 
-    let finalTranscript = "";
-
-    recognition.onresult = (event) => {
-      let interimTranscript = "";
-
-      for (let i = event.resultIndex; i < event.results.length; i += 1) {
-        const transcript = event.results[i][0].transcript;
-
-        if (event.results[i].isFinal) {
-          finalTranscript += transcript;
-        } else {
-          interimTranscript += transcript;
-        }
-      }
-
-      const currentValue = input.value.trim();
-      const newValue = `${currentValue ? currentValue + " " : ""}${finalTranscript || interimTranscript}`.trim();
-      input.value = newValue;
-    };
-
-    recognition.onerror = () => {
-      addBotMessage("Voice input did not work this time. Please type the answer manually.");
-    };
-
-    recognition.onend = () => {
-      voiceBtn.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true">
-          <path d="M12 15a3 3 0 003-3V7a3 3 0 10-6 0v5a3 3 0 003 3z" fill="currentColor"/>
-          <path d="M19 11a1 1 0 112 0 9 9 0 11-18 0 1 1 0 7 7 0 0014 0z" fill="currentColor"/>
-        </svg>
-      `;
-    };
+  function updateProgress() {
+    const total    = Object.keys(questions).length;
+    const progress = Math.min((askedQuestions.length / total) * 100, 100);
+    progressBar.style.width = `${progress}%`;
   }
 
   function scrollChatToBottom() {
@@ -2032,26 +684,36 @@ I would like Chassis to review this diagnosis and discuss the next step.`;
     body.scrollTop = body.scrollHeight;
   }
 
-  function formatDate(date) {
-    return date.toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric"
-    });
+  function micIcon() {
+    return `<svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true"><path d="M12 15a3 3 0 003-3V7a3 3 0 10-6 0v5a3 3 0 003 3z" fill="currentColor"/><path d="M19 11a1 1 0 112 0 9 9 0 11-18 0 1 1 0 112 0 7 7 0 0014 0z" fill="currentColor"/></svg>`;
   }
 
-  function addDays(date, days) {
-    const result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
-  }
+  function startVoiceInput(input, voiceBtn) {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition || !input) return;
 
-  function formatAnswer(value) {
-    if (Array.isArray(value)) {
-      return value.length ? value.join(", ") : "";
-    }
+    const recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.interimResults = true;
+    recognition.maxAlternatives = 1;
 
-    return value || "";
+    voiceBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="currentColor"/></svg>`;
+    recognition.start();
+
+    let finalTranscript = "";
+
+    recognition.onresult = (event) => {
+      let interim = "";
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const t = event.results[i][0].transcript;
+        if (event.results[i].isFinal) finalTranscript += t;
+        else interim += t;
+      }
+      input.value = `${input.value.trim() ? input.value.trim() + " " : ""}${finalTranscript || interim}`.trim();
+    };
+
+    recognition.onerror = () => addBotMessage("Voice input didn't work this time. Type it instead.");
+    recognition.onend   = () => { voiceBtn.innerHTML = micIcon(); };
   }
 
   function escapeHtml(value) {
