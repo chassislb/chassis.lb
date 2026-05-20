@@ -265,20 +265,15 @@
    SERVICES ARCHITECTURE
 ========================= */
 
-.services-architecture,
-.services-pricing-signal {
+.services-architecture {
   position: relative;
   background: #ffffff;
   color: var(--black);
   padding: 72px 0 88px;
 }
 
-.services-pricing-signal {
-  padding-top: 0;
-}
-
 .services-architecture::before,
-.services-pricing-signal::before {
+.services-faq::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -291,14 +286,14 @@
 }
 
 .services-architecture .container,
-.services-pricing-signal .container,
+.services-faq .container,
 .services-closing .container {
   position: relative;
   z-index: 1;
 }
 
 .services-architecture-heading,
-.services-pricing-heading {
+.services-faq-heading {
   margin-bottom: 34px;
 }
 
@@ -496,6 +491,135 @@
 }
 
 /* =========================
+   PRICING NOTE
+========================= */
+
+.services-pricing-note {
+  position: relative;
+  margin-top: 44px;
+  padding: 34px 36px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background:
+    linear-gradient(135deg, rgba(243, 204, 49, 0.08), rgba(54, 198, 244, 0.045)),
+    #ffffff;
+  overflow: hidden;
+}
+
+.services-pricing-note::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--yellow);
+}
+
+.services-pricing-note::after {
+  content: "";
+  position: absolute;
+  right: -80px;
+  top: -80px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(54, 198, 244, 0.16);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.services-pricing-note-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 820px;
+}
+
+.services-pricing-note-copy h2 {
+  max-width: 760px;
+  margin: 10px 0 14px;
+  font-size: clamp(1.55rem, 2.1vw, 2.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: #000000;
+  text-wrap: balance;
+}
+
+.services-pricing-note-copy p:not(.eyebrow) {
+  font-size: 0.94rem;
+  line-height: 1.74;
+  color: rgba(0, 0, 0, 0.72);
+  text-wrap: pretty;
+}
+
+/* =========================
+   FAQ
+========================= */
+
+.services-faq {
+  position: relative;
+  background: #ffffff;
+  color: var(--black);
+  padding: 72px 0 88px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.services-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.services-faq-item {
+  position: relative;
+  min-height: 100%;
+  padding: 24px 24px 26px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.services-faq-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 0, 0, 0.14);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.06);
+}
+
+.services-faq-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 52px;
+  background: var(--blue);
+}
+
+.services-faq-item:nth-child(odd)::before {
+  background: var(--yellow);
+}
+
+.services-faq-item h3 {
+  max-width: 520px;
+  margin-bottom: 12px;
+  font-size: 1.08rem;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: #000000;
+  text-wrap: balance;
+}
+
+.services-faq-item p {
+  font-size: 0.9rem;
+  line-height: 1.66;
+  color: rgba(0, 0, 0, 0.72);
+  text-wrap: pretty;
+}
+
+/* =========================
    CLOSING CTA
 ========================= */
 
@@ -632,9 +756,11 @@
 .services-hero-content,
 .services-scope-grid p,
 .services-architecture .section-heading,
-.services-pricing-signal .section-heading,
 .services-architecture-intro,
 .service-detail-row,
+.services-pricing-note,
+.services-faq .section-heading,
+.services-faq-item,
 .services-closing-copy,
 .services-closing .btn {
   opacity: 0;
@@ -647,9 +773,11 @@
 .services-hero-content.is-visible,
 .services-scope-grid p.is-visible,
 .services-architecture .section-heading.is-visible,
-.services-pricing-signal .section-heading.is-visible,
 .services-architecture-intro.is-visible,
 .service-detail-row.is-visible,
+.services-pricing-note.is-visible,
+.services-faq .section-heading.is-visible,
+.services-faq-item.is-visible,
 .services-closing-copy.is-visible,
 .services-closing .btn.is-visible {
   opacity: 1;
@@ -674,6 +802,10 @@
   .service-detail-head,
   .service-detail-body,
   .services-closing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-faq-grid {
     grid-template-columns: 1fr;
   }
 
@@ -714,13 +846,9 @@
   }
 
   .services-architecture,
-  .services-pricing-signal,
+  .services-faq,
   .services-closing {
     padding: 56px 0 62px;
-  }
-
-  .services-pricing-signal {
-    padding-top: 0;
   }
 
   .services-scope-grid {
@@ -755,9 +883,15 @@
   .service-detail-copy p,
   .service-detail-for p,
   .services-closing-copy p,
-  .services-architecture-intro p {
+  .services-architecture-intro p,
+  .services-pricing-note-copy p:not(.eyebrow),
+  .services-faq-item p {
     font-size: 0.9rem;
     line-height: 1.64;
+  }
+
+  .services-pricing-note {
+    padding: 26px 24px;
   }
 
   .services-closing .btn,
@@ -793,8 +927,23 @@
     font-size: 0.86rem;
   }
 
+  .services-pricing-note {
+    margin-top: 34px;
+    padding: 24px 20px;
+  }
+
+  .services-pricing-note-copy h2,
+  .services-faq-heading .section-heading-main h2,
   .services-closing-copy h2 {
     line-height: 1.08;
+  }
+
+  .services-faq-item {
+    padding: 22px 20px 24px;
+  }
+
+  .services-faq-item h3 {
+    font-size: 1rem;
   }
 }
 
@@ -802,9 +951,11 @@
   .services-hero-content,
   .services-scope-grid p,
   .services-architecture .section-heading,
-  .services-pricing-signal .section-heading,
   .services-architecture-intro,
   .service-detail-row,
+  .services-pricing-note,
+  .services-faq .section-heading,
+  .services-faq-item,
   .services-closing-copy,
   .services-closing .btn {
     transition: none !important;
