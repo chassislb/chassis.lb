@@ -34,6 +34,8 @@ function initRevealAnimations() {
     .about-belief-copy,
     .about-patterns-panel,
     .about-pattern-item,
+    .about-founder-image-col,
+    .about-founder-copy-col,
     .about-model .section-heading,
     .model-card,
     .about-model-outcomes,

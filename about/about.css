@@ -399,6 +399,253 @@
 }
 
 /* =========================
+   FOUNDER (NEW)
+========================= */
+
+.about-founder {
+  position: relative;
+  background: #000000;
+  color: #ffffff;
+  padding: 80px 0 88px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.about-founder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 120px 120px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.about-founder::after {
+  content: "";
+  position: absolute;
+  left: 0%;
+  top: 20%;
+  width: 480px;
+  height: 380px;
+  border-radius: 999px;
+  background: rgba(243, 204, 49, 0.028);
+  filter: blur(120px);
+  pointer-events: none;
+}
+
+.about-founder-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 72px;
+  align-items: center;
+}
+
+/* Photo */
+.about-founder-image-col {
+  position: relative;
+}
+
+.about-founder-photo-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.about-founder-photo {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(12%);
+}
+
+.about-founder-photo-accent {
+  position: absolute;
+  bottom: -14px;
+  right: -14px;
+  width: 72px;
+  height: 72px;
+  background: var(--yellow);
+  z-index: -1;
+}
+
+.about-founder-photo-wrap::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: -1;
+}
+
+/* Copy */
+.about-founder-copy-col {
+  max-width: 560px;
+}
+
+.about-founder-copy-col .eyebrow {
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.about-founder-name {
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.96;
+  color: #ffffff;
+  margin: 0 0 6px;
+}
+
+.about-founder-title {
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 28px;
+}
+
+.about-founder-bio {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-founder-bio p {
+  font-size: 0.95rem;
+  line-height: 1.76;
+  color: rgba(255, 255, 255, 0.7);
+  text-wrap: pretty;
+}
+
+.about-founder-bio-emphasis {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-size: 1.02rem !important;
+}
+
+.about-founder-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-founder-cta {
+  display: inline-block;
+  padding: 13px 28px;
+  background: var(--yellow);
+  color: #000000;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-founder-cta:hover {
+  background: #e8c020;
+  transform: translateY(-1px);
+}
+
+.btn-founder-linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.86rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-founder-linkedin svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.btn-founder-linkedin:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+/* =========================
+   HEADER CTA (Book a Call)
+========================= */
+
+.header-cta-book {
+  background: var(--yellow) !important;
+  color: #000000 !important;
+  border-color: var(--yellow) !important;
+  font-weight: 700;
+}
+
+.header-cta-book:hover {
+  background: #e8c020 !important;
+  border-color: #e8c020 !important;
+}
+
+/* =========================
+   CLOSING ACTIONS (NEW)
+========================= */
+
+.about-closing-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.btn-closing-cta {
+  display: inline-block;
+  padding: 13px 28px;
+  background: var(--yellow);
+  color: #000000;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-closing-cta:hover {
+  background: #e8c020;
+  transform: translateY(-1px);
+}
+
+.btn-closing-secondary {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.86rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-closing-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+}
+
+/* =========================
    MODEL
 ========================= */
 
@@ -691,7 +938,7 @@
   max-width: 760px;
 }
 
-.about-closing-copy p:last-child {
+.about-closing-copy p:not(.btn-closing-cta):not(.btn-closing-secondary) {
   max-width: 680px;
   font-size: 0.95rem;
   line-height: 1.7;
@@ -709,6 +956,8 @@
 .about-belief-copy,
 .about-patterns-panel,
 .about-pattern-item,
+.about-founder-image-col,
+.about-founder-copy-col,
 .about-model .section-heading,
 .model-card,
 .about-model-outcomes,
@@ -728,6 +977,8 @@
 .about-belief-copy.is-visible,
 .about-patterns-panel.is-visible,
 .about-pattern-item.is-visible,
+.about-founder-image-col.is-visible,
+.about-founder-copy-col.is-visible,
 .about-model .section-heading.is-visible,
 .model-card.is-visible,
 .about-model-outcomes.is-visible,
@@ -736,6 +987,10 @@
 .about-closing-copy.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.about-founder-copy-col {
+  transition-delay: 0.1s;
 }
 
 .about-diagnosis-grid p:nth-child(2),
@@ -785,6 +1040,11 @@
   .about-line-box-2 {
     width: 110px;
     height: 110px;
+  }
+
+  .about-founder-inner {
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 52px;
   }
 }
 
@@ -849,6 +1109,11 @@
   .about-diagnosis-grid {
     grid-template-columns: 1fr;
   }
+
+  .about-founder-inner {
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 40px;
+  }
 }
 
 @media (max-width: 820px) {
@@ -893,7 +1158,8 @@
   .about-belief,
   .about-model,
   .about-readiness,
-  .about-closing {
+  .about-closing,
+  .about-founder {
     padding: 56px 0 62px;
   }
 
@@ -917,6 +1183,23 @@
 
   .about-patterns-panel {
     padding: 22px 20px 8px;
+  }
+
+  .about-founder-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .about-founder-photo {
+    max-width: 260px;
+  }
+
+  .header-right {
+    gap: 8px;
+  }
+
+  .header-cta-book {
+    display: none;
   }
 }
 
@@ -967,6 +1250,37 @@
   .about-belief-heading .section-heading-main h2 {
     line-height: 1.06;
   }
+
+  .about-founder-name {
+    font-size: 2rem;
+  }
+
+  .about-founder-bio p {
+    font-size: 0.9rem;
+  }
+
+  .about-founder-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-founder-cta,
+  .btn-founder-linkedin {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .about-closing-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-closing-cta,
+  .btn-closing-secondary {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -976,6 +1290,8 @@
   .about-belief-copy,
   .about-patterns-panel,
   .about-pattern-item,
+  .about-founder-image-col,
+  .about-founder-copy-col,
   .about-model .section-heading,
   .model-card,
   .about-model-outcomes,
