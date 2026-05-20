@@ -584,21 +584,7 @@
   color: #ffffff;
 }
 
-/* =========================
-   HEADER CTA (Book a Call)
-========================= */
 
-.header-cta-book {
-  background: var(--yellow) !important;
-  color: #000000 !important;
-  border-color: var(--yellow) !important;
-  font-weight: 700;
-}
-
-.header-cta-book:hover {
-  background: #e8c020 !important;
-  border-color: #e8c020 !important;
-}
 
 /* =========================
    CLOSING ACTIONS (NEW)
