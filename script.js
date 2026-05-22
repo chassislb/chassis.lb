@@ -49,6 +49,8 @@ function initRevealAnimations() {
 
     .services-hero-content,
     .services-scope-grid p,
+    .services-process .section-heading,
+    .services-process-step,
     .services-architecture .section-heading,
     .services-architecture-intro,
     .service-detail-row,
@@ -90,8 +92,8 @@ function initRevealAnimations() {
       });
     },
     {
-      threshold: 0.08,
-      rootMargin: "0px 0px -20px 0px",
+      threshold: 0.05,
+      rootMargin: "0px 0px -10px 0px",
     }
   );
 
@@ -348,7 +350,7 @@ function initChassisDiagnosisAssistant() {
         a.what_breaks.includes("I repeat myself constantly to clients or the team"),
       diagnosis: {
         whatISee:
-          "The business likely delivers real value, but the offer is too unclear for people to immediately understand why they should buy. You're compensating by repeating yourself instead of communicating from a strong position.",
+          "Based on what you shared, the business likely delivers real value, but the offer is too unclear for people to immediately understand why they should buy. You're compensating by repeating yourself instead of communicating from a strong position.",
         whereToStart:
           "Start with offer structure and positioning clarity. The messaging, pricing explanation, and service framing need to become simpler and sharper.",
         whatItMeans:
@@ -365,7 +367,7 @@ function initChassisDiagnosisAssistant() {
         a.what_breaks.includes("I don't have time to think, only react"),
       diagnosis: {
         whatISee:
-          "The business is operating through personal involvement instead of systems. You're acting as the workflow, the decision-maker, and the pressure release valve at the same time.",
+          "Based on what you shared, the business is operating through personal involvement instead of systems. You're acting as the workflow, the decision-maker, and the pressure release valve at the same time.",
         whereToStart:
           "Operations need structure first. Decision rules, delegation logic, and operational clarity should exist without depending on your constant presence.",
         whatItMeans:
@@ -381,7 +383,7 @@ function initChassisDiagnosisAssistant() {
         a.what_breaks.includes("The website or social presence doesn't reflect reality"),
       diagnosis: {
         whatISee:
-          "There is likely a gap between the actual quality of the business and how the business appears online. That creates trust loss before conversations even happen.",
+          "Based on what you shared, there is likely a gap between the actual quality of the business and how the business appears online. That creates trust loss before conversations even happen.",
         whereToStart:
           "The digital layer needs restructuring. The website, social positioning, and brand presentation should communicate authority immediately.",
         whatItMeans:
@@ -397,7 +399,7 @@ function initChassisDiagnosisAssistant() {
         a.what_breaks.includes("Delivery is inconsistent"),
       diagnosis: {
         whatISee:
-          "The business appears to be functioning reactively instead of systematically. Delivery inconsistency usually means the internal workflow is being improvised too often.",
+          "Based on what you shared, the business appears to function reactively instead of systematically. Delivery inconsistency usually means the internal workflow is being improvised too often.",
         whereToStart:
           "Operations should be standardized first. Workflow clarity, process structure, and execution consistency need attention before scaling further.",
         whatItMeans:
@@ -412,7 +414,7 @@ function initChassisDiagnosisAssistant() {
         a.client_quality === "good_not_enough",
       diagnosis: {
         whatISee:
-          "The business has traction, but the current structure likely cannot support another level of growth. This is common when systems stay informal for too long.",
+          "Based on what you shared, the business has traction, but the current structure likely cannot support another level of growth. This is common when systems stay informal for too long.",
         whereToStart:
           "The next layer is strategic structure. Positioning, operational clarity, and growth systems need alignment before scaling further.",
         whatItMeans:
@@ -423,9 +425,9 @@ function initChassisDiagnosisAssistant() {
 
   const fallbackDiagnosis = {
     whatISee:
-      "The business shows pressure across multiple areas at once. The issues don't appear isolated, which usually means the underlying structure has become unclear or reactive.",
+      "Based on your answers, the business shows pressure across multiple areas at once. That usually means the problem is layered, not isolated.",
     whereToStart:
-      "The first priority is identifying which operational layer creates the most friction day-to-day.",
+      "The first priority is identifying which operational layer creates the most friction day-to-day before deciding what to rebuild.",
     whatItMeans:
       "Once the structure becomes clearer, decisions become easier and growth becomes more controlled."
   };
@@ -458,7 +460,6 @@ function initChassisDiagnosisAssistant() {
 
   function askQuestion(questionId) {
     const q = questions[questionId];
-
     if (!q) return;
 
     currentQuestionId = questionId;
@@ -468,9 +469,7 @@ function initChassisDiagnosisAssistant() {
     }
 
     updateProgress();
-
     addBotMessage(q.question, q.section);
-
     renderAnswerInput(q);
   }
 
@@ -541,9 +540,7 @@ function initChassisDiagnosisAssistant() {
       ? document.createElement("textarea")
       : document.createElement("input");
 
-    if (q.type !== "textarea") {
-      input.type = "text";
-    }
+    if (q.type !== "textarea") input.type = "text";
 
     input.placeholder = q.placeholder || "";
 
@@ -593,15 +590,11 @@ function initChassisDiagnosisAssistant() {
   }
 
   function detectPatterns() {
-    return patterns.filter((pattern) =>
-      pattern.conditions(answers)
-    );
+    return patterns.filter((pattern) => pattern.conditions(answers));
   }
 
   function getPrimaryDiagnosis(matches) {
-    if (!matches.length) {
-      return fallbackDiagnosis;
-    }
+    if (!matches.length) return fallbackDiagnosis;
 
     matches.sort((a, b) => b.severity - a.severity);
     return matches[0].diagnosis;
@@ -693,8 +686,26 @@ I completed the business diagnosis.
 Name:
 ${answers.client_name || ""}
 
+WhatsApp:
+${answers.contact_number || ""}
+
 Business:
 ${answers.business_description || ""}
+
+Main Pressure:
+${answers.biggest_feeling || ""}
+
+What Breaks:
+${Array.isArray(answers.what_breaks) ? answers.what_breaks.join(", ") : ""}
+
+Client Situation:
+${answers.client_quality || ""}
+
+Business Stage:
+${answers.stage || ""}
+
+Readiness:
+${answers.readiness || ""}
 
 Diagnosis:
 
@@ -748,10 +759,7 @@ ${diagnosis.whatItMeans}
 
   function scrollChatToBottom() {
     const body = assistant.querySelector(".diagnosis-chat-body");
-
-    if (body) {
-      body.scrollTop = body.scrollHeight;
-    }
+    if (body) body.scrollTop = body.scrollHeight;
   }
 
   function escapeHtml(value) {
