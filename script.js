@@ -101,7 +101,7 @@ function initRevealAnimations() {
 }
 
 // ─────────────────────────────────────────────────────────────
-// MAIN ASSISTANT
+// CHASSIS DIAGNOSIS ASSISTANT
 // ─────────────────────────────────────────────────────────────
 
 function initChassisDiagnosisAssistant() {
@@ -120,10 +120,10 @@ function initChassisDiagnosisAssistant() {
       <div class="diagnosis-chat-header">
         <div>
           <p>Chassis Diagnosis Assistant</p>
-          <h2>Understand what needs structure</h2>
+          <h2>Find what needs structure</h2>
         </div>
 
-        <button class="diagnosis-close" type="button">×</button>
+        <button class="diagnosis-close" type="button" aria-label="Close diagnosis assistant">×</button>
       </div>
 
       <div class="diagnosis-chat-body">
@@ -155,7 +155,7 @@ function initChassisDiagnosisAssistant() {
 
   const questions = {
     client_name: {
-      section: "Let's start",
+      section: "Start",
       question: "What's your name?",
       type: "text",
       placeholder: "First name is enough",
@@ -164,272 +164,211 @@ function initChassisDiagnosisAssistant() {
     },
 
     business_description: {
-      section: "Your Business",
-      question: "What does your business do?",
+      section: "Business Context",
+      question: "Describe your business in 1–3 sentences. What do you sell, and to whom?",
       type: "textarea",
+      placeholder: "Example: We run a restaurant group / clinic / consulting service / online business...",
       required: true,
-      next: "biggest_feeling"
+      next: "business_type"
     },
 
-    biggest_feeling: {
-      section: "The Real Problem",
-      question: "Which feels most true right now?",
+    business_type: {
+      section: "Business Type",
+      question: "Which category is closest to your business?",
       type: "choice",
       required: true,
       options: [
-        {
-          label: "Everything goes through me. I can't step away.",
-          value: "owner_dependent",
-          next: "what_breaks"
-        },
-        {
-          label: "I can't explain what I sell clearly.",
-          value: "unclear_offer",
-          next: "what_breaks"
-        },
-        {
-          label: "The business works but feels chaotic.",
-          value: "operational_chaos",
-          next: "what_breaks"
-        },
-        {
-          label: "I'm not growing and don't know why.",
-          value: "plateaued",
-          next: "what_breaks"
-        },
-        {
-          label: "We look weaker online than we are.",
-          value: "weak_presence",
-          next: "what_breaks"
-        }
+        { label: "Hospitality / restaurant / food business", value: "hospitality", next: "business_stage" },
+        { label: "Clinic / medical / health service", value: "clinic", next: "business_stage" },
+        { label: "Expert / consultant / personal brand", value: "expert", next: "business_stage" },
+        { label: "Service business / agency / professional office", value: "service_business", next: "business_stage" },
+        { label: "Retail / product business", value: "retail_product", next: "business_stage" },
+        { label: "Startup / app / platform", value: "startup", next: "business_stage" },
+        { label: "Other", value: "other", next: "business_stage" }
       ]
     },
 
-    what_breaks: {
+    business_stage: {
+      section: "Stage",
+      question: "Where is the business right now?",
+      type: "choice",
+      required: true,
+      options: [
+        { label: "Still early. We are still shaping the offer.", value: "early", next: "main_pressure" },
+        { label: "Already operating, but still messy.", value: "operating_messy", next: "main_pressure" },
+        { label: "Established, but too dependent on the owner.", value: "established_owner_dependent", next: "main_pressure" },
+        { label: "Growing, but structure is not keeping up.", value: "growing_unstructured", next: "main_pressure" },
+        { label: "Stable, but we need better systems before scaling.", value: "stable_needs_systems", next: "main_pressure" }
+      ]
+    },
+
+    main_pressure: {
+      section: "Main Pressure",
+      question: "What feels like the biggest pressure right now?",
+      type: "choice",
+      required: true,
+      options: [
+        { label: "People don't clearly understand what we sell.", value: "unclear_offer", next: "broken_areas" },
+        { label: "Everything depends on the owner.", value: "owner_dependency", next: "broken_areas" },
+        { label: "The business works, but daily operations are chaotic.", value: "operational_chaos", next: "broken_areas" },
+        { label: "Execution is inconsistent. Things start but don't get completed properly.", value: "execution_inconsistency", next: "broken_areas" },
+        { label: "Our website/tools/social presence don't reflect how the business actually works.", value: "infrastructure_gap", next: "broken_areas" },
+        { label: "We are growing, but every growth step creates more pressure.", value: "growth_pressure", next: "broken_areas" }
+      ]
+    },
+
+    broken_areas: {
       section: "Where It Breaks",
-      question: "What keeps breaking?",
+      question: "Select everything that keeps repeating inside the business.",
       type: "multi",
       required: true,
       options: [
-        "Clients don't understand what I offer or what it costs",
-        "Decisions wait for me, even small ones",
-        "Delivery is inconsistent",
-        "I repeat myself constantly to clients or the team",
-        "Sales happen, but not enough of the right ones",
-        "The website or social presence doesn't reflect reality",
-        "I don't have time to think, only react",
-        "I don't know what to fix first"
+        { label: "Clients ask too many basic questions before understanding the offer.", value: "clients_confused" },
+        { label: "Pricing changes too much from client to client.", value: "pricing_improvised" },
+        { label: "The team waits for the owner to decide small things.", value: "team_waits_owner" },
+        { label: "The same instructions are repeated constantly.", value: "repeated_instructions" },
+        { label: "Workflows exist in people's heads, not in a system.", value: "workflow_in_heads" },
+        { label: "Delivery quality changes depending on who handles the work.", value: "delivery_inconsistent" },
+        { label: "There are no clear SOPs, checklists, or process documents.", value: "no_sops" },
+        { label: "The website or digital presence feels disconnected from the real business.", value: "digital_disconnected" },
+        { label: "Leads come in, but conversion is weak.", value: "weak_conversion" },
+        { label: "The business is busy, but nobody sees the full picture.", value: "no_visibility" },
+        { label: "New work creates more stress instead of more control.", value: "growth_creates_stress" },
+        { label: "I don't know what to fix first.", value: "no_priority" }
       ],
-      next: "client_quality"
+      next: "owner_dependency_level"
     },
 
-    client_quality: {
-      section: "Clients",
-      question: "What's happening with clients?",
+    owner_dependency_level: {
+      section: "Owner Dependency",
+      question: "If the owner disappears for two weeks, what happens?",
       type: "choice",
       required: true,
       options: [
-        {
-          label: "Good clients, not enough",
-          value: "good_not_enough",
-          next: "stage"
-        },
-        {
-          label: "Wrong type of clients",
-          value: "wrong_type",
-          next: "stage"
-        },
-        {
-          label: "People inquire but don't convert",
-          value: "no_conversion",
-          next: "stage"
-        },
-        {
-          label: "Very few inquiries",
-          value: "low_volume",
-          next: "stage"
-        },
-        {
-          label: "Clients are fine. Internal issue.",
-          value: "internal_problem",
-          next: "stage"
-        }
+        { label: "The business mostly stops.", value: "stops", next: "offer_clarity" },
+        { label: "The team continues, but decisions pile up.", value: "decisions_pile", next: "offer_clarity" },
+        { label: "Operations continue, but quality drops.", value: "quality_drops", next: "offer_clarity" },
+        { label: "The business can run, but not comfortably.", value: "runs_uncomfortably", next: "offer_clarity" },
+        { label: "It can run without major problems.", value: "runs_well", next: "offer_clarity" }
       ]
     },
 
-    stage: {
-      section: "Business Stage",
-      question: "Where is the business now?",
+    offer_clarity: {
+      section: "Offer Clarity",
+      question: "Can you explain what your business sells in one clear sentence?",
       type: "choice",
       required: true,
       options: [
-        {
-          label: "Still early",
-          value: "early",
-          next: "tried_before"
-        },
-        {
-          label: "1 to 3 years in",
-          value: "mid",
-          next: "tried_before"
-        },
-        {
-          label: "Established",
-          value: "established",
-          next: "tried_before"
-        }
+        { label: "Yes, easily.", value: "clear", next: "operations_maturity" },
+        { label: "Kind of, but it changes depending on the person.", value: "changes", next: "operations_maturity" },
+        { label: "Not really. It takes explanation.", value: "unclear", next: "operations_maturity" },
+        { label: "No. We do many things and it is hard to simplify.", value: "scattered", next: "operations_maturity" }
       ]
     },
 
-    tried_before: {
-      section: "Previous Attempts",
-      question: "Have you tried fixing this before?",
+    operations_maturity: {
+      section: "Operations",
+      question: "How structured are your internal operations right now?",
       type: "choice",
       required: true,
       options: [
-        {
-          label: "Hired freelancers or agencies",
-          value: "tried_agency",
-          next: "readiness"
-        },
-        {
-          label: "Tried fixing it myself",
-          value: "tried_self",
-          next: "readiness"
-        },
-        {
-          label: "First time properly addressing it",
-          value: "first_time",
-          next: "readiness"
-        }
+        { label: "Mostly informal. People just know what to do.", value: "informal", next: "systems_maturity" },
+        { label: "Some structure exists, but it is not consistent.", value: "some_structure", next: "systems_maturity" },
+        { label: "We have processes, but they are not followed properly.", value: "not_followed", next: "systems_maturity" },
+        { label: "We have clear workflows, but we need better tools.", value: "clear_workflows_need_tools", next: "systems_maturity" },
+        { label: "Operations are structured and mostly stable.", value: "structured", next: "systems_maturity" }
+      ]
+    },
+
+    systems_maturity: {
+      section: "Systems & Infrastructure",
+      question: "What systems or assets already exist?",
+      type: "multi",
+      required: true,
+      options: [
+        { label: "Website", value: "website" },
+        { label: "CRM or client database", value: "crm" },
+        { label: "SOPs / checklists / process documents", value: "sops" },
+        { label: "Project management tool", value: "project_management" },
+        { label: "Intake form or booking flow", value: "intake" },
+        { label: "Dashboards or reports", value: "dashboards" },
+        { label: "Social media presence", value: "social" },
+        { label: "None of these are properly structured", value: "none_structured" }
+      ],
+      next: "desired_outcome"
+    },
+
+    desired_outcome: {
+      section: "Outcome",
+      question: "What do you want to have at the end of working with Chassis?",
+      type: "multi",
+      required: true,
+      options: [
+        { label: "I want to know exactly what is broken and what to fix first.", value: "diagnosis" },
+        { label: "I want a clearer offer, pricing, and business direction.", value: "business_structuring" },
+        { label: "I want workflows, SOPs, roles, and internal systems.", value: "operations_systems" },
+        { label: "I want a website, platform, tool, CRM, or digital setup that supports the business.", value: "execution_infrastructure" },
+        { label: "I want ongoing operational follow-up and correction.", value: "operational_partnership" },
+        { label: "I am not sure. I need you to tell me what comes first.", value: "not_sure" }
+      ],
+      next: "urgency"
+    },
+
+    urgency: {
+      section: "Urgency",
+      question: "How urgent is this?",
+      type: "choice",
+      required: true,
+      options: [
+        { label: "Not urgent. I want to understand the problem first.", value: "low", next: "readiness" },
+        { label: "Soon. This is starting to block growth.", value: "medium", next: "readiness" },
+        { label: "Urgent. The business is already feeling pressure.", value: "high", next: "readiness" },
+        { label: "Very urgent. We need action fast.", value: "critical", next: "readiness" }
       ]
     },
 
     readiness: {
       section: "Readiness",
-      question: "What would you do with a clear diagnosis?",
+      question: "What would you do if the diagnosis is accurate?",
       type: "choice",
       required: true,
       options: [
-        {
-          label: "Book a call",
-          value: "ready",
-          next: "contact_number"
-        },
-        {
-          label: "Review it first",
-          value: "reviewing",
-          next: "contact_number"
-        },
-        {
-          label: "Just exploring",
-          value: "exploring",
-          next: "contact_number"
-        }
+        { label: "Book a discovery call.", value: "ready", next: "contact_number" },
+        { label: "Review the result first, then decide.", value: "reviewing", next: "contact_number" },
+        { label: "Send it internally to discuss.", value: "internal_review", next: "contact_number" },
+        { label: "Just exploring for now.", value: "exploring", next: "contact_number" }
       ]
     },
 
     contact_number: {
       section: "Final Step",
-      question: "What's your WhatsApp number?",
+      question: "What is your WhatsApp number so the diagnosis can be sent with your context?",
       type: "text",
+      placeholder: "+961...",
       required: true,
       next: "finish"
     }
   };
 
-  const patterns = [
-    {
-      id: "unclear_positioning",
-      severity: 5,
-      conditions: (a) =>
-        a.biggest_feeling === "unclear_offer" &&
-        a.client_quality === "no_conversion" &&
-        Array.isArray(a.what_breaks) &&
-        a.what_breaks.includes("Clients don't understand what I offer or what it costs") &&
-        a.what_breaks.includes("I repeat myself constantly to clients or the team"),
-      diagnosis: {
-        whatISee:
-          "Based on what you shared, the business likely delivers real value, but the offer is too unclear for people to immediately understand why they should buy. You're compensating by repeating yourself instead of communicating from a strong position.",
-        whereToStart:
-          "Start with offer structure and positioning clarity. The messaging, pricing explanation, and service framing need to become simpler and sharper.",
-        whatItMeans:
-          "Once people understand the value faster, conversion becomes easier and sales stop depending on constant explanation."
-      }
-    },
-    {
-      id: "owner_bottleneck",
-      severity: 5,
-      conditions: (a) =>
-        a.biggest_feeling === "owner_dependent" &&
-        Array.isArray(a.what_breaks) &&
-        a.what_breaks.includes("Decisions wait for me, even small ones") &&
-        a.what_breaks.includes("I don't have time to think, only react"),
-      diagnosis: {
-        whatISee:
-          "Based on what you shared, the business is operating through personal involvement instead of systems. You're acting as the workflow, the decision-maker, and the pressure release valve at the same time.",
-        whereToStart:
-          "Operations need structure first. Decision rules, delegation logic, and operational clarity should exist without depending on your constant presence.",
-        whatItMeans:
-          "Without operational structure, growth increases stress instead of stability."
-      }
-    },
-    {
-      id: "weak_digital_trust",
-      severity: 4,
-      conditions: (a) =>
-        a.biggest_feeling === "weak_presence" &&
-        Array.isArray(a.what_breaks) &&
-        a.what_breaks.includes("The website or social presence doesn't reflect reality"),
-      diagnosis: {
-        whatISee:
-          "Based on what you shared, there is likely a gap between the actual quality of the business and how the business appears online. That creates trust loss before conversations even happen.",
-        whereToStart:
-          "The digital layer needs restructuring. The website, social positioning, and brand presentation should communicate authority immediately.",
-        whatItMeans:
-          "A stronger digital presence improves trust, lead quality, and perceived value before the first interaction."
-      }
-    },
-    {
-      id: "operational_chaos",
-      severity: 4,
-      conditions: (a) =>
-        a.biggest_feeling === "operational_chaos" &&
-        Array.isArray(a.what_breaks) &&
-        a.what_breaks.includes("Delivery is inconsistent"),
-      diagnosis: {
-        whatISee:
-          "Based on what you shared, the business appears to function reactively instead of systematically. Delivery inconsistency usually means the internal workflow is being improvised too often.",
-        whereToStart:
-          "Operations should be standardized first. Workflow clarity, process structure, and execution consistency need attention before scaling further.",
-        whatItMeans:
-          "Better operational structure creates consistency, reduces stress, and protects client trust."
-      }
-    },
-    {
-      id: "plateau",
-      severity: 3,
-      conditions: (a) =>
-        a.biggest_feeling === "plateaued" &&
-        a.client_quality === "good_not_enough",
-      diagnosis: {
-        whatISee:
-          "Based on what you shared, the business has traction, but the current structure likely cannot support another level of growth. This is common when systems stay informal for too long.",
-        whereToStart:
-          "The next layer is strategic structure. Positioning, operational clarity, and growth systems need alignment before scaling further.",
-        whatItMeans:
-          "Without restructuring, the business risks staying stuck at the same ceiling."
-      }
-    }
-  ];
+  const serviceLabels = {
+    operationalDiagnosis: "Operational Diagnosis",
+    businessStructuring: "Business Structuring",
+    operationsSystems: "Operations & Systems Setup",
+    executionInfrastructure: "Execution Infrastructure",
+    operationalPartnership: "Operational Partnership"
+  };
 
-  const fallbackDiagnosis = {
-    whatISee:
-      "Based on your answers, the business shows pressure across multiple areas at once. That usually means the problem is layered, not isolated.",
-    whereToStart:
-      "The first priority is identifying which operational layer creates the most friction day-to-day before deciding what to rebuild.",
-    whatItMeans:
-      "Once the structure becomes clearer, decisions become easier and growth becomes more controlled."
+  const serviceDescriptions = {
+    operationalDiagnosis:
+      "Best when the business feels messy but the real priority is not clear yet.",
+    businessStructuring:
+      "Best when the offer, pricing, positioning, or business direction needs to become clearer before execution.",
+    operationsSystems:
+      "Best when the business already runs, but workflows, roles, SOPs, and daily operations are inconsistent.",
+    executionInfrastructure:
+      "Best when the business needs a website, CRM, intake flow, platform, tool, or digital system built around how it actually works.",
+    operationalPartnership:
+      "Best when the structure exists, but the business needs ongoing correction, follow-up, and operational alignment."
   };
 
   launcher.addEventListener("click", () => {
@@ -452,7 +391,7 @@ function initChassisDiagnosisAssistant() {
     currentQuestionId = "client_name";
 
     addBotMessage(
-      "This takes about two minutes. No forms. No pricing. Just a structured diagnosis."
+      "This is not a quote request. It is a structured diagnosis. The goal is to identify which operational layer needs attention first."
     );
 
     setTimeout(() => askQuestion(currentQuestionId), 500);
@@ -506,14 +445,14 @@ function initChassisDiagnosisAssistant() {
         const btn = document.createElement("button");
         btn.className = "diagnosis-choice-option";
         btn.type = "button";
-        btn.innerHTML = `<span>${escapeHtml(option)}</span>`;
+        btn.innerHTML = `<span>${escapeHtml(option.label)}</span>`;
 
         btn.addEventListener("click", () => {
-          if (selected.has(option)) {
-            selected.delete(option);
+          if (selected.has(option.value)) {
+            selected.delete(option.value);
             btn.classList.remove("is-selected");
           } else {
-            selected.add(option);
+            selected.add(option.value);
             btn.classList.add("is-selected");
           }
         });
@@ -523,12 +462,16 @@ function initChassisDiagnosisAssistant() {
 
       const sendBtn = makeSendButton(() => {
         if (!selected.size) {
-          addBotMessage("Pick at least one.");
+          addBotMessage("Pick at least one. A useful diagnosis needs a real signal.");
           return;
         }
 
         const values = Array.from(selected);
-        handleAnswer(values, values.join(", "), q.next);
+        const labels = q.options
+          .filter((option) => values.includes(option.value))
+          .map((option) => option.label);
+
+        handleAnswer(values, labels.join(", "), q.next);
       });
 
       footer.appendChild(wrapper);
@@ -552,7 +495,7 @@ function initChassisDiagnosisAssistant() {
       const value = input.value.trim();
 
       if (!value) {
-        addBotMessage("I need an answer here.");
+        addBotMessage("I need an answer here. The diagnosis depends on the context.");
         return;
       }
 
@@ -589,25 +532,244 @@ function initChassisDiagnosisAssistant() {
     }, 500);
   }
 
-  function detectPatterns() {
-    return patterns.filter((pattern) => pattern.conditions(answers));
+  function scoreDiagnosis() {
+    const scores = {
+      operationalDiagnosis: 0,
+      businessStructuring: 0,
+      operationsSystems: 0,
+      executionInfrastructure: 0,
+      operationalPartnership: 0
+    };
+
+    const broken = Array.isArray(answers.broken_areas) ? answers.broken_areas : [];
+    const systems = Array.isArray(answers.systems_maturity) ? answers.systems_maturity : [];
+    const outcomes = Array.isArray(answers.desired_outcome) ? answers.desired_outcome : [];
+
+    scores.operationalDiagnosis += 2;
+
+    if (answers.main_pressure === "unclear_offer") scores.businessStructuring += 5;
+    if (answers.main_pressure === "owner_dependency") scores.operationsSystems += 5;
+    if (answers.main_pressure === "operational_chaos") scores.operationsSystems += 5;
+    if (answers.main_pressure === "execution_inconsistency") scores.operationsSystems += 4;
+    if (answers.main_pressure === "infrastructure_gap") scores.executionInfrastructure += 5;
+    if (answers.main_pressure === "growth_pressure") {
+      scores.businessStructuring += 2;
+      scores.operationsSystems += 4;
+      scores.operationalPartnership += 2;
+    }
+
+    if (answers.business_stage === "early") {
+      scores.businessStructuring += 4;
+      scores.operationalDiagnosis += 2;
+    }
+
+    if (answers.business_stage === "operating_messy") {
+      scores.operationsSystems += 4;
+      scores.operationalDiagnosis += 2;
+    }
+
+    if (answers.business_stage === "established_owner_dependent") {
+      scores.operationsSystems += 5;
+      scores.operationalPartnership += 3;
+    }
+
+    if (answers.business_stage === "growing_unstructured") {
+      scores.operationsSystems += 4;
+      scores.operationalPartnership += 3;
+    }
+
+    if (answers.business_stage === "stable_needs_systems") {
+      scores.executionInfrastructure += 3;
+      scores.operationsSystems += 3;
+    }
+
+    if (broken.includes("clients_confused")) scores.businessStructuring += 3;
+    if (broken.includes("pricing_improvised")) scores.businessStructuring += 4;
+    if (broken.includes("team_waits_owner")) scores.operationsSystems += 4;
+    if (broken.includes("repeated_instructions")) scores.operationsSystems += 3;
+    if (broken.includes("workflow_in_heads")) scores.operationsSystems += 4;
+    if (broken.includes("delivery_inconsistent")) scores.operationsSystems += 4;
+    if (broken.includes("no_sops")) scores.operationsSystems += 4;
+    if (broken.includes("digital_disconnected")) scores.executionInfrastructure += 4;
+    if (broken.includes("weak_conversion")) scores.businessStructuring += 2;
+    if (broken.includes("no_visibility")) scores.operationalDiagnosis += 3;
+    if (broken.includes("growth_creates_stress")) {
+      scores.operationsSystems += 3;
+      scores.operationalPartnership += 2;
+    }
+    if (broken.includes("no_priority")) scores.operationalDiagnosis += 5;
+
+    if (answers.owner_dependency_level === "stops") {
+      scores.operationsSystems += 5;
+      scores.operationalPartnership += 3;
+    }
+
+    if (answers.owner_dependency_level === "decisions_pile") {
+      scores.operationsSystems += 4;
+      scores.operationalPartnership += 2;
+    }
+
+    if (answers.owner_dependency_level === "quality_drops") {
+      scores.operationsSystems += 4;
+    }
+
+    if (answers.owner_dependency_level === "runs_uncomfortably") {
+      scores.operationsSystems += 2;
+    }
+
+    if (answers.offer_clarity === "changes") scores.businessStructuring += 3;
+    if (answers.offer_clarity === "unclear") scores.businessStructuring += 5;
+    if (answers.offer_clarity === "scattered") scores.businessStructuring += 5;
+
+    if (answers.operations_maturity === "informal") scores.operationsSystems += 5;
+    if (answers.operations_maturity === "some_structure") scores.operationsSystems += 3;
+    if (answers.operations_maturity === "not_followed") {
+      scores.operationsSystems += 4;
+      scores.operationalPartnership += 2;
+    }
+
+    if (answers.operations_maturity === "clear_workflows_need_tools") {
+      scores.executionInfrastructure += 5;
+      scores.operationsSystems += 1;
+    }
+
+    if (systems.includes("none_structured")) {
+      scores.operationalDiagnosis += 2;
+      scores.operationsSystems += 3;
+      scores.executionInfrastructure += 2;
+    }
+
+    if (!systems.includes("website") && answers.main_pressure === "infrastructure_gap") {
+      scores.executionInfrastructure += 2;
+    }
+
+    if (!systems.includes("crm") && !systems.includes("intake")) {
+      scores.executionInfrastructure += 1;
+    }
+
+    if (!systems.includes("sops") && !systems.includes("project_management")) {
+      scores.operationsSystems += 2;
+    }
+
+    if (outcomes.includes("diagnosis")) scores.operationalDiagnosis += 5;
+    if (outcomes.includes("business_structuring")) scores.businessStructuring += 5;
+    if (outcomes.includes("operations_systems")) scores.operationsSystems += 5;
+    if (outcomes.includes("execution_infrastructure")) scores.executionInfrastructure += 5;
+    if (outcomes.includes("operational_partnership")) scores.operationalPartnership += 5;
+
+    if (outcomes.includes("not_sure")) {
+      scores.operationalDiagnosis += 4;
+      scores.businessStructuring += 1;
+      scores.operationsSystems += 1;
+    }
+
+    if (answers.urgency === "high") {
+      scores.operationalDiagnosis += 1;
+      scores.operationsSystems += 1;
+    }
+
+    if (answers.urgency === "critical") {
+      scores.operationalDiagnosis += 2;
+      scores.operationsSystems += 2;
+      scores.operationalPartnership += 1;
+    }
+
+    return scores;
   }
 
-  function getPrimaryDiagnosis(matches) {
-    if (!matches.length) return fallbackDiagnosis;
+  function getSortedServices(scores) {
+    return Object.keys(scores)
+      .map((key) => ({
+        key,
+        label: serviceLabels[key],
+        score: scores[key],
+        description: serviceDescriptions[key]
+      }))
+      .sort((a, b) => b.score - a.score);
+  }
 
-    matches.sort((a, b) => b.severity - a.severity);
-    return matches[0].diagnosis;
+  function getSeverityLevel(scores) {
+    const highest = Math.max(...Object.values(scores));
+    const broken = Array.isArray(answers.broken_areas) ? answers.broken_areas.length : 0;
+
+    if (highest >= 16 || broken >= 7 || answers.urgency === "critical") {
+      return {
+        label: "High operational pressure",
+        text: "The business is showing several structural pressure points at the same time. This usually means the issue is not cosmetic. It needs proper diagnosis and controlled implementation."
+      };
+    }
+
+    if (highest >= 11 || broken >= 4 || answers.urgency === "high") {
+      return {
+        label: "Moderate operational pressure",
+        text: "There is a clear operational pattern behind the symptoms. The business does not need random fixes. It needs the right layer handled first."
+      };
+    }
+
+    return {
+      label: "Early structural pressure",
+      text: "The business is not necessarily broken, but there are early signs that clearer structure would prevent future pressure."
+    };
+  }
+
+  function getBusinessContextLine() {
+    const business = answers.business_description || "your business";
+    const type = answers.business_type ? readableValue(answers.business_type) : "business";
+
+    return `Based on what you shared about ${business}, this looks closest to a ${type} with structural pressure that needs to be organized before more execution is added.`;
   }
 
   function generateDiagnosis() {
-    const matches = detectPatterns();
-    const diagnosis = getPrimaryDiagnosis(matches);
+    const scores = scoreDiagnosis();
+    const sortedServices = getSortedServices(scores);
+    const primary = sortedServices[0];
+    const secondary = sortedServices[1];
+    const severity = getSeverityLevel(scores);
+    const broken = Array.isArray(answers.broken_areas) ? answers.broken_areas : [];
+
+    let whatISee = getBusinessContextLine();
+
+    if (primary.key === "businessStructuring") {
+      whatISee += " The strongest signal is unclear business structure: offer clarity, pricing logic, service framing, or positioning may be creating friction before operations even begin.";
+    }
+
+    if (primary.key === "operationsSystems") {
+      whatISee += " The strongest signal is operational inconsistency: the business may be relying too much on memory, owner involvement, repeated instructions, or informal workflows.";
+    }
+
+    if (primary.key === "executionInfrastructure") {
+      whatISee += " The strongest signal is an infrastructure gap: the business may need better tools, website structure, intake flow, CRM, platform logic, or digital systems to support how it actually works.";
+    }
+
+    if (primary.key === "operationalPartnership") {
+      whatISee += " The strongest signal is ongoing operational dependency: the business may need continued correction, follow-up, and alignment after the structure is built.";
+    }
+
+    if (primary.key === "operationalDiagnosis") {
+      whatISee += " The strongest signal is unclear priority: there are enough mixed symptoms that the first move should be a proper operational diagnosis before choosing what to build.";
+    }
+
+    const whereToStart = `Start with ${primary.label}. ${primary.description} ${
+      secondary && secondary.score > 6
+        ? `After that, ${secondary.label} may become the second layer because it also scored strongly.`
+        : ""
+    }`;
+
+    const whatItMeans = `${severity.text} The immediate goal is not to do more work. The goal is to identify the correct operational layer, fix that first, and avoid spending time or money on the wrong solution.`;
+
+    const serviceRecommendation = {
+      primary,
+      secondary,
+      scores,
+      severity,
+      brokenCount: broken.length
+    };
 
     return {
-      whatISee: diagnosis.whatISee,
-      whereToStart: diagnosis.whereToStart,
-      whatItMeans: diagnosis.whatItMeans
+      whatISee,
+      whereToStart,
+      whatItMeans,
+      serviceRecommendation
     };
   }
 
@@ -626,17 +788,35 @@ function initChassisDiagnosisAssistant() {
     resultCard.innerHTML = `
       <p class="diagnosis-question-section">Your Diagnosis</p>
 
+      <h3>Primary recommended service</h3>
+      <p><strong>${escapeHtml(diagnosis.serviceRecommendation.primary.label)}</strong></p>
+      <p>${escapeHtml(diagnosis.serviceRecommendation.primary.description)}</p>
+
+      ${
+        diagnosis.serviceRecommendation.secondary &&
+        diagnosis.serviceRecommendation.secondary.score > 6
+          ? `
+            <h3>Possible second layer</h3>
+            <p><strong>${escapeHtml(diagnosis.serviceRecommendation.secondary.label)}</strong></p>
+            <p>${escapeHtml(diagnosis.serviceRecommendation.secondary.description)}</p>
+          `
+          : ""
+      }
+
+      <h3>Diagnosis level</h3>
+      <p><strong>${escapeHtml(diagnosis.serviceRecommendation.severity.label)}</strong></p>
+
       <h3>What I see</h3>
       <p>${escapeHtml(diagnosis.whatISee)}</p>
 
       <h3>Where to start</h3>
       <p>${escapeHtml(diagnosis.whereToStart)}</p>
 
-      <h3>What this means for you</h3>
+      <h3>What this means</h3>
       <p>${escapeHtml(diagnosis.whatItMeans)}</p>
 
       <div class="diagnosis-result-note">
-        <p>This diagnosis is based on operational patterns across your answers.</p>
+        <p>This result is based on your answers across offer clarity, owner dependency, operations, systems, infrastructure, urgency, and desired outcome.</p>
       </div>
 
       <a
@@ -653,9 +833,9 @@ function initChassisDiagnosisAssistant() {
         href="${whatsappUrl}"
         target="_blank"
         rel="noopener"
-        style="margin-top:10px; background:transparent; border:1px solid currentColor; opacity:0.7;"
+        style="margin-top:10px; background:transparent; border:1px solid currentColor; opacity:0.75;"
       >
-        Send to WhatsApp
+        Send Diagnosis to WhatsApp
       </a>
 
       <button class="diagnosis-restart" type="button">
@@ -683,31 +863,56 @@ Hello Chassis.
 
 I completed the business diagnosis.
 
-Name:
+NAME:
 ${answers.client_name || ""}
 
-WhatsApp:
+WHATSAPP:
 ${answers.contact_number || ""}
 
-Business:
+BUSINESS DESCRIPTION:
 ${answers.business_description || ""}
 
-Main Pressure:
-${answers.biggest_feeling || ""}
+BUSINESS TYPE:
+${readableValue(answers.business_type)}
 
-What Breaks:
-${Array.isArray(answers.what_breaks) ? answers.what_breaks.join(", ") : ""}
+BUSINESS STAGE:
+${readableValue(answers.business_stage)}
 
-Client Situation:
-${answers.client_quality || ""}
+MAIN PRESSURE:
+${readableValue(answers.main_pressure)}
 
-Business Stage:
-${answers.stage || ""}
+BROKEN AREAS:
+${readableList(answers.broken_areas)}
 
-Readiness:
-${answers.readiness || ""}
+OWNER DEPENDENCY:
+${readableValue(answers.owner_dependency_level)}
 
-Diagnosis:
+OFFER CLARITY:
+${readableValue(answers.offer_clarity)}
+
+OPERATIONS MATURITY:
+${readableValue(answers.operations_maturity)}
+
+CURRENT SYSTEMS:
+${readableList(answers.systems_maturity)}
+
+DESIRED OUTCOME:
+${readableList(answers.desired_outcome)}
+
+URGENCY:
+${readableValue(answers.urgency)}
+
+READINESS:
+${readableValue(answers.readiness)}
+
+PRIMARY RECOMMENDED SERVICE:
+${diagnosis.serviceRecommendation.primary.label}
+
+POSSIBLE SECOND LAYER:
+${diagnosis.serviceRecommendation.secondary ? diagnosis.serviceRecommendation.secondary.label : "None"}
+
+DIAGNOSIS LEVEL:
+${diagnosis.serviceRecommendation.severity.label}
 
 WHAT I SEE:
 ${diagnosis.whatISee}
@@ -718,6 +923,19 @@ ${diagnosis.whereToStart}
 WHAT THIS MEANS:
 ${diagnosis.whatItMeans}
 `;
+  }
+
+  function readableValue(value) {
+    if (!value) return "";
+
+    return String(value)
+      .replaceAll("_", " ")
+      .replace(/\b\w/g, (char) => char.toUpperCase());
+  }
+
+  function readableList(value) {
+    if (!Array.isArray(value)) return "";
+    return value.map(readableValue).join(", ");
   }
 
   function makeSendButton(onClick) {
