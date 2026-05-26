@@ -5,35 +5,57 @@
     <loc>https://www.chassislb.com/</loc>
     <priority>1.0</priority>
   </url>
-
   <url>
     <loc>https://www.chassislb.com/about/</loc>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://www.chassislb.com/services/</loc>
-    <priority>0.9</priority>
+    <loc>https://www.chassislb.com/ar/</loc>
+    <priority>0.8</priority>
   </url>
-
+  <url>
+    <loc>https://www.chassislb.com/ar/about/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chassislb.com/ar/case-studies/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chassislb.com/ar/contact/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chassislb.com/ar/privacy/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chassislb.com/ar/services/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chassislb.com/ar/terms/</loc>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://www.chassislb.com/case-studies/</loc>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://www.chassislb.com/contact/</loc>
     <priority>0.8</priority>
   </url>
-
   <url>
-  <loc>https://www.chassislb.com/terms/</loc>
-  <priority>0.6</priority>
-</url>
-
-<url>
-  <loc>https://www.chassislb.com/privacy/</loc>
-  <priority>0.6</priority>
-</url>
+    <loc>https://www.chassislb.com/privacy/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chassislb.com/services/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chassislb.com/terms/</loc>
+    <priority>0.8</priority>
+  </url>
 
 </urlset>
