@@ -619,19 +619,19 @@ html[dir="rtl"] .contact-hero-bg {
 
 html[dir="rtl"] .contact-info-item,
 html[dir="rtl"] .outcome-line {
-  padding-inline-start: 0;
-  padding-inline-end: 22px;
+  padding-inline-start: 0 !important;
+  padding-inline-end: 22px !important;
 }
 
 html[dir="rtl"] .readiness-list li {
-  padding-inline-start: 0;
-  padding-inline-end: 18px;
+  padding-inline-start: 0 !important;
+  padding-inline-end: 18px !important;
 }
 
 html[dir="rtl"] .service-detail-points li,
 html[dir="rtl"] .case-study-meta li {
-  padding-inline-start: 0;
-  padding-inline-end: 16px;
+  padding-inline-start: 0 !important;
+  padding-inline-end: 16px !important;
 }
 
 html[dir="rtl"] .contact-info-item span,
@@ -639,8 +639,141 @@ html[dir="rtl"] .outcome-line span,
 html[dir="rtl"] .readiness-list li::before,
 html[dir="rtl"] .service-detail-points li::before,
 html[dir="rtl"] .case-study-meta li::before {
-  inset-inline-start: auto;
-  inset-inline-end: 0;
+  inset-inline-start: auto !important;
+  inset-inline-end: 0 !important;
+}
+
+html[dir="rtl"] .case-impact {
+  padding-inline-start: 0;
+  padding-inline-end: 18px;
+  border-left: none;
+  border-right: 3px solid var(--yellow);
+}
+
+html[dir="rtl"] .diagnosis-message-bot {
+  border-left: none;
+  border-right: 4px solid var(--blue);
+}
+
+html[dir="rtl"] .diagnosis-message-user {
+  margin-left: 0;
+  margin-right: auto;
+  border-left: none;
+  border-right: 4px solid var(--yellow);
+}
+
+html[dir="rtl"] .footer-nav a:hover {
+  transform: translateX(-2px);
+}
+
+html[dir="rtl"] .contact-direct-links a:hover {
+  transform: translateX(-4px);
+}
+
+html[dir="rtl"] .contact-direct-links a::after {
+  left: auto;
+  right: 0;
+  transform-origin: right;
+}
+
+html[dir="rtl"] .contact-info-block::after {
+  right: auto;
+  left: 18px;
+  border-right: none;
+  border-left: 1px solid rgba(0,0,0,0.08);
+}
+
+html[dir="rtl"] .contact-form-shell::after {
+  right: auto;
+  left: 18px;
+  border-right: none;
+  border-left: 1px solid rgba(255,255,255,0.08);
+}
+
+html[dir="rtl"] .select-wrap::before {
+  right: auto;
+  left: 23px;
+}
+
+html[dir="rtl"] .select-wrap::after {
+  right: auto;
+  left: 18px;
+}
+
+html[dir="rtl"] .form-field select {
+  padding-inline-start: 52px;
+  padding-inline-end: 0;
+}
+
+html[dir="rtl"] .service-row:hover {
+  transform: translateX(-3px);
+}
+
+html[dir="rtl"] .service-detail-row:hover {
+  transform: translateX(-2px);
+}
+
+html[dir="rtl"] .case-study-row:hover {
+  transform: translateX(-4px);
+}
+
+html[dir="rtl"] .service-row::before,
+html[dir="rtl"] .case-study-row::before,
+html[dir="rtl"] .service-detail-row::before,
+html[dir="rtl"] .service-detail-for::before,
+html[dir="rtl"] .service-detail-points::before,
+html[dir="rtl"] .case-study-meta::before,
+html[dir="rtl"] .services-pricing-note::before,
+html[dir="rtl"] .contact-info-block::before,
+html[dir="rtl"] .about-patterns-panel::before,
+html[dir="rtl"] .model-card::before,
+html[dir="rtl"] .readiness-column::before {
+  left: auto;
+  right: 0;
+}
+
+html[dir="rtl"] .about-diagnosis-grid p,
+html[dir="rtl"] .services-scope-grid p,
+html[dir="rtl"] .case-studies-band-grid p,
+html[dir="rtl"] .statement-band-grid p {
+  padding-inline-start: 18px;
+  padding-inline-end: 36px;
+}
+
+html[dir="rtl"] .contact-band-grid p {
+  padding-inline-start: 20px;
+  padding-inline-end: 38px;
+}
+
+html[dir="rtl"] .about-diagnosis-grid p:not(:last-child),
+html[dir="rtl"] .services-scope-grid p:not(:last-child),
+html[dir="rtl"] .case-studies-band-grid p:not(:last-child),
+html[dir="rtl"] .statement-band-grid p:not(:last-child),
+html[dir="rtl"] .contact-band-grid p:not(:last-child) {
+  border-right: none;
+}
+
+html[dir="rtl"] .about-diagnosis-grid p:not(:last-child) {
+  border-left: 1px solid rgba(255,255,255,0.07);
+}
+
+html[dir="rtl"] .services-scope-grid p:not(:last-child) {
+  border-left: 1px solid rgba(255,255,255,0.05);
+}
+
+html[dir="rtl"] .case-studies-band-grid p:not(:last-child),
+html[dir="rtl"] .statement-band-grid p:not(:last-child),
+html[dir="rtl"] .contact-band-grid p:not(:last-child) {
+  border-left: 1px solid rgba(255,255,255,0.07);
+}
+
+html[dir="rtl"] .about-diagnosis-grid p::before,
+html[dir="rtl"] .services-scope-grid p::before,
+html[dir="rtl"] .case-studies-band-grid p::before,
+html[dir="rtl"] .statement-band-grid p::before,
+html[dir="rtl"] .contact-band-grid p::before {
+  left: auto;
+  right: 16px;
 }
 
 .diagnosis-choice-option span {
