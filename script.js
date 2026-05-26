@@ -165,7 +165,6 @@ function initChassisDiagnosisAssistant() {
   let diagnosisFinished = false;
 
   const questions = t.questions;
-
   const serviceLabels = t.serviceLabels;
   const serviceDescriptions = t.serviceDescriptions;
 
@@ -513,6 +512,90 @@ function initChassisDiagnosisAssistant() {
     return t.diagnosis.businessContext(business, type);
   }
 
+  function getOperationalSignals() {
+    const signals = [];
+    const broken = Array.isArray(answers.broken_areas) ? answers.broken_areas : [];
+    const systems = Array.isArray(answers.systems_maturity) ? answers.systems_maturity : [];
+    const desiredOutcome = Array.isArray(answers.desired_outcome)
+      ? answers.desired_outcome
+      : [];
+
+    if (
+      answers.main_pressure === "owner_dependency" ||
+      ["stops", "decisions_pile"].includes(answers.owner_dependency_level)
+    ) {
+      signals.push(t.signals.ownerDependency);
+    }
+
+    if (
+      ["unclear", "scattered", "changes"].includes(answers.offer_clarity) ||
+      answers.main_pressure === "unclear_offer"
+    ) {
+      signals.push(t.signals.offerClarity);
+    }
+
+    if (
+      broken.includes("workflow_in_heads") ||
+      broken.includes("repeated_instructions") ||
+      answers.operations_maturity === "informal"
+    ) {
+      signals.push(t.signals.workflowMemory);
+    }
+
+    if (
+      broken.includes("team_waits_owner") ||
+      answers.owner_dependency_level === "decisions_pile"
+    ) {
+      signals.push(t.signals.decisionRouting);
+    }
+
+    if (
+      broken.includes("digital_disconnected") ||
+      answers.main_pressure === "infrastructure_gap"
+    ) {
+      signals.push(t.signals.infrastructureGap);
+    }
+
+    if (
+      broken.includes("growth_creates_stress") ||
+      answers.business_stage === "growing_unstructured"
+    ) {
+      signals.push(t.signals.growthPressure);
+    }
+
+    if (broken.includes("no_priority") || desiredOutcome.includes("not_sure")) {
+      signals.push(t.signals.priorityUnclear);
+    }
+
+    if (systems.includes("none_structured")) {
+      signals.push(t.signals.noStructuredSystems);
+    }
+
+    return [...new Set(signals)].slice(0, 5);
+  }
+
+  function getLayeredPattern(sortedServices) {
+    const strongServices = sortedServices.filter((service) => service.score >= 8);
+
+    if (strongServices.length >= 3) {
+      return t.diagnosis.layeredPressure;
+    }
+
+    if (strongServices.length === 2) {
+      return t.diagnosis.twoLayerPressure(
+        strongServices[0].label,
+        strongServices[1].label
+      );
+    }
+
+    return "";
+  }
+
+  function getRecommendedPath(primary, secondary) {
+    const secondLayer = secondary && secondary.score > 6 ? secondary.label : "";
+    return t.diagnosis.recommendedPath(primary.label, secondLayer);
+  }
+
   function generateDiagnosis() {
     const scores = scoreDiagnosis();
     const sortedServices = getSortedServices(scores);
@@ -520,6 +603,8 @@ function initChassisDiagnosisAssistant() {
     const secondary = sortedServices[1];
     const severity = getSeverityLevel(scores);
     const broken = Array.isArray(answers.broken_areas) ? answers.broken_areas : [];
+    const signals = getOperationalSignals();
+    const layeredPattern = getLayeredPattern(sortedServices);
 
     let whatISee = getBusinessContextLine();
 
@@ -543,6 +628,10 @@ function initChassisDiagnosisAssistant() {
       whatISee += " " + t.diagnosis.primaryOperationalDiagnosis;
     }
 
+    if (layeredPattern) {
+      whatISee += " " + layeredPattern;
+    }
+
     const whereToStart = t.diagnosis.whereToStart(
       primary.label,
       primary.description,
@@ -550,11 +639,14 @@ function initChassisDiagnosisAssistant() {
     );
 
     const whatItMeans = t.diagnosis.whatItMeans(severity.text);
+    const recommendedPath = getRecommendedPath(primary, secondary);
 
     return {
       whatISee,
       whereToStart,
       whatItMeans,
+      recommendedPath,
+      signals,
       serviceRecommendation: {
         primary,
         secondary,
@@ -572,7 +664,9 @@ function initChassisDiagnosisAssistant() {
 
     const diagnosis = generateDiagnosis();
     const whatsappText = buildWhatsAppMessage(diagnosis);
-    const whatsappUrl = `https://wa.me/96171085824?text=${encodeURIComponent(whatsappText)}`;
+    const whatsappUrl = `https://wa.me/96171085824?text=${encodeURIComponent(
+      whatsappText
+    )}`;
 
     const resultCard = document.createElement("div");
     resultCard.className = "diagnosis-result-card";
@@ -601,8 +695,22 @@ function initChassisDiagnosisAssistant() {
       <h3>${escapeHtml(t.ui.whatISee)}</h3>
       <p>${escapeHtml(diagnosis.whatISee)}</p>
 
+      ${
+        diagnosis.signals.length
+          ? `
+            <h3>${escapeHtml(t.ui.keySignals)}</h3>
+            <ul class="diagnosis-signal-list">
+              ${diagnosis.signals.map((signal) => `<li>${escapeHtml(signal)}</li>`).join("")}
+            </ul>
+          `
+          : ""
+      }
+
       <h3>${escapeHtml(t.ui.whereToStart)}</h3>
       <p>${escapeHtml(diagnosis.whereToStart)}</p>
+
+      <h3>${escapeHtml(t.ui.recommendedPath)}</h3>
+      <p>${escapeHtml(diagnosis.recommendedPath)}</p>
 
       <h3>${escapeHtml(t.ui.whatThisMeans)}</h3>
       <p>${escapeHtml(diagnosis.whatItMeans)}</p>
@@ -701,7 +809,12 @@ ${answerLabels.readiness || ""}
 ${diagnosis.serviceRecommendation.primary.label}
 
 الطبقة الثانية المحتملة:
-${diagnosis.serviceRecommendation.secondary ? diagnosis.serviceRecommendation.secondary.label : "لا يوجد"}
+${
+  diagnosis.serviceRecommendation.secondary &&
+  diagnosis.serviceRecommendation.secondary.score > 6
+    ? diagnosis.serviceRecommendation.secondary.label
+    : "لا يوجد"
+}
 
 مستوى التشخيص:
 ${diagnosis.serviceRecommendation.severity.label}
@@ -709,8 +822,14 @@ ${diagnosis.serviceRecommendation.severity.label}
 ما يظهر في التشخيص:
 ${diagnosis.whatISee}
 
+الإشارات التشغيلية الأساسية:
+${diagnosis.signals.length ? diagnosis.signals.map((signal) => `- ${signal}`).join("\n") : "لا يوجد"}
+
 من أين يجب البدء:
 ${diagnosis.whereToStart}
+
+المسار المقترح:
+${diagnosis.recommendedPath}
 
 ماذا يعني ذلك:
 ${diagnosis.whatItMeans}
@@ -768,7 +887,12 @@ PRIMARY RECOMMENDED SERVICE:
 ${diagnosis.serviceRecommendation.primary.label}
 
 POSSIBLE SECOND LAYER:
-${diagnosis.serviceRecommendation.secondary ? diagnosis.serviceRecommendation.secondary.label : "None"}
+${
+  diagnosis.serviceRecommendation.secondary &&
+  diagnosis.serviceRecommendation.secondary.score > 6
+    ? diagnosis.serviceRecommendation.secondary.label
+    : "None"
+}
 
 DIAGNOSIS LEVEL:
 ${diagnosis.serviceRecommendation.severity.label}
@@ -776,8 +900,14 @@ ${diagnosis.serviceRecommendation.severity.label}
 WHAT I SEE:
 ${diagnosis.whatISee}
 
+KEY OPERATIONAL SIGNALS:
+${diagnosis.signals.length ? diagnosis.signals.map((signal) => `- ${signal}`).join("\n") : "None"}
+
 WHERE TO START:
 ${diagnosis.whereToStart}
+
+RECOMMENDED PATH:
+${diagnosis.recommendedPath}
 
 WHAT THIS MEANS:
 ${diagnosis.whatItMeans}
@@ -848,7 +978,9 @@ function getEnglishDiagnosisContent() {
       secondLayer: "Possible second layer",
       diagnosisLevel: "Diagnosis level",
       whatISee: "What I see",
+      keySignals: "Key operational signals",
       whereToStart: "Where to start",
+      recommendedPath: "Recommended path",
       whatThisMeans: "What this means",
       resultNote:
         "This result is based on your answers across offer clarity, owner dependency, operations, systems, infrastructure, urgency, and desired outcome.",
@@ -862,7 +994,7 @@ function getEnglishDiagnosisContent() {
     serviceLabels: {
       operationalDiagnosis: "Operational Diagnosis",
       businessStructuring: "Business Structuring",
-      operationsSystems: "Operations & Systems Setup",
+      operationsSystems: "Business Structuring",
       executionInfrastructure: "Execution Infrastructure",
       operationalPartnership: "Operational Partnership",
     },
@@ -871,9 +1003,9 @@ function getEnglishDiagnosisContent() {
       operationalDiagnosis:
         "Best when the business feels messy but the real priority is not clear yet.",
       businessStructuring:
-        "Best when the offer, pricing, positioning, or business direction needs to become clearer before execution.",
+        "Best when the offer, pricing, positioning, workflows, roles, or business direction need to become clearer before execution.",
       operationsSystems:
-        "Best when the business already runs, but workflows, roles, SOPs, and daily operations are inconsistent.",
+        "Best when the business already runs, but workflows, roles, decision rules, SOPs, and daily execution need structure.",
       executionInfrastructure:
         "Best when the business needs a website, CRM, intake flow, platform, tool, or digital system built around how it actually works.",
       operationalPartnership:
@@ -898,11 +1030,30 @@ function getEnglishDiagnosisContent() {
       },
     },
 
+    signals: {
+      ownerDependency:
+        "The business depends heavily on the owner for movement, decisions, or continuity.",
+      offerClarity:
+        "The offer or pricing logic is not clear enough to support clean execution.",
+      workflowMemory:
+        "Workflows appear to live in people's heads instead of a repeatable operating system.",
+      decisionRouting:
+        "Small decisions are still routing back to the owner instead of being handled by rules or authority limits.",
+      infrastructureGap:
+        "The current website, tools, intake flow, or digital setup does not fully support how the business actually works.",
+      growthPressure:
+        "Growth is adding pressure instead of control, which usually means structure is lagging behind demand.",
+      priorityUnclear:
+        "The business has multiple symptoms, but the first operational priority is not yet clear.",
+      noStructuredSystems:
+        "The business does not yet have enough structured systems to reduce operational friction.",
+    },
+
     diagnosis: {
       businessContext: (business, type) =>
         `Based on what you shared about ${business}, this looks closest to a ${type} with structural pressure that needs to be organized before more execution is added.`,
       primaryBusinessStructuring:
-        "The strongest signal is unclear business structure: offer clarity, pricing logic, service framing, or positioning may be creating friction before operations even begin.",
+        "The strongest signal is unclear business structure: offer clarity, pricing logic, service framing, workflows, roles, or positioning may be creating friction before proper execution can happen.",
       primaryOperationsSystems:
         "The strongest signal is operational inconsistency: the business may be relying too much on memory, owner involvement, repeated instructions, or informal workflows.",
       primaryExecutionInfrastructure:
@@ -911,6 +1062,14 @@ function getEnglishDiagnosisContent() {
         "The strongest signal is ongoing operational dependency: the business may need continued correction, follow-up, and alignment after the structure is built.",
       primaryOperationalDiagnosis:
         "The strongest signal is unclear priority: there are enough mixed symptoms that the first move should be a proper operational diagnosis before choosing what to build.",
+      layeredPressure:
+        "The pressure is distributed across several areas. That usually means this is not one isolated issue; it is a layered structural problem.",
+      twoLayerPressure: (firstLayer, secondLayer) =>
+        `The diagnosis is showing two strong layers: ${firstLayer} and ${secondLayer}. This means the problem should be handled in sequence, not randomly.`,
+      recommendedPath: (primaryLabel, secondaryLabel) =>
+        secondaryLabel
+          ? `Start with ${primaryLabel}. Then move into ${secondaryLabel} once the first layer is clear enough to support execution.`
+          : `Start with ${primaryLabel}. Do not add more execution until this layer is clear.`,
       whereToStart: (primaryLabel, primaryDescription, secondaryLabel) =>
         `Start with ${primaryLabel}. ${primaryDescription} ${
           secondaryLabel
@@ -946,7 +1105,9 @@ function getArabicDiagnosisContent() {
       secondLayer: "الطبقة الثانية المحتملة",
       diagnosisLevel: "مستوى التشخيص",
       whatISee: "ما الذي أراه",
+      keySignals: "الإشارات التشغيلية الأساسية",
       whereToStart: "من أين تبدأ",
+      recommendedPath: "المسار المقترح",
       whatThisMeans: "ماذا يعني ذلك",
       resultNote:
         "هذه النتيجة مبنية على إجاباتك حول وضوح العرض، اعتماد البزنس على المؤسس، العمليات، الأنظمة، البنية التنفيذية، الاستعجال، والنتيجة المطلوبة.",
@@ -960,7 +1121,7 @@ function getArabicDiagnosisContent() {
     serviceLabels: {
       operationalDiagnosis: "تشخيص تشغيلي",
       businessStructuring: "هيكلة البزنس",
-      operationsSystems: "إعداد العمليات والأنظمة",
+      operationsSystems: "هيكلة البزنس",
       executionInfrastructure: "بنية تنفيذية",
       operationalPartnership: "شراكة تشغيلية",
     },
@@ -969,9 +1130,9 @@ function getArabicDiagnosisContent() {
       operationalDiagnosis:
         "الأنسب عندما يكون البزنس غير واضح أو مضغوطاً، لكن الأولوية الحقيقية ليست محددة بعد.",
       businessStructuring:
-        "الأنسب عندما يحتاج العرض، التسعير، التموضع، أو اتجاه البزنس إلى وضوح قبل التنفيذ.",
+        "الأنسب عندما يحتاج العرض، التسعير، التموضع، سير العمل، الأدوار، أو اتجاه البزنس إلى وضوح قبل التنفيذ.",
       operationsSystems:
-        "الأنسب عندما يكون البزنس يعمل فعلاً، لكن سير العمل، الأدوار، الإجراءات، والعمليات اليومية غير ثابتة.",
+        "الأنسب عندما يكون البزنس يعمل فعلاً، لكن سير العمل، الأدوار، قواعد القرار، الإجراءات، والتنفيذ اليومي يحتاجون إلى هيكلة.",
       executionInfrastructure:
         "الأنسب عندما يحتاج البزنس إلى موقع، CRM، نظام استقبال طلبات، منصة، أداة، أو إعداد رقمي مبني حول طريقة العمل الفعلية.",
       operationalPartnership:
@@ -996,11 +1157,30 @@ function getArabicDiagnosisContent() {
       },
     },
 
+    signals: {
+      ownerDependency:
+        "البزنس يعتمد كثيراً على وجود المؤسس حتى يتحرك أو تُتخذ القرارات أو يستمر العمل.",
+      offerClarity:
+        "العرض أو منطق التسعير ليس واضحاً بما يكفي لدعم تنفيذ نظيف.",
+      workflowMemory:
+        "سير العمل يبدو موجوداً في رؤوس الناس أكثر من كونه نظاماً قابلاً للتكرار.",
+      decisionRouting:
+        "القرارات الصغيرة لا تزال ترجع إلى المؤسس بدل أن تُحسم بقواعد واضحة أو صلاحيات محددة.",
+      infrastructureGap:
+        "الموقع أو الأدوات أو نظام الاستقبال أو الإعداد الرقمي لا يدعم طريقة عمل البزنس الحقيقية بشكل كافٍ.",
+      growthPressure:
+        "النمو يضيف ضغطاً بدل أن يضيف سيطرة، وهذا يعني عادةً أن الهيكلة لا تواكب الطلب.",
+      priorityUnclear:
+        "هناك أعراض متعددة، لكن الأولوية التشغيلية الأولى ليست واضحة بعد.",
+      noStructuredSystems:
+        "البزنس لا يملك بعد أنظمة مهيكلة كافية لتخفيف الاحتكاك التشغيلي.",
+    },
+
     diagnosis: {
       businessContext: (business, type) =>
         `بناءً على ما شاركته عن ${business}، يبدو أن هذا أقرب إلى ${type} لديه ضغط هيكلي يحتاج إلى تنظيم قبل إضافة المزيد من التنفيذ.`,
       primaryBusinessStructuring:
-        "أقوى إشارة هي أن هيكلة البزنس غير واضحة: العرض، التسعير، طريقة تقديم الخدمة، أو التموضع قد يخلقون احتكاكاً قبل أن تبدأ العمليات أصلاً.",
+        "أقوى إشارة هي أن هيكلة البزنس غير واضحة: العرض، التسعير، طريقة تقديم الخدمة، سير العمل، الأدوار، أو التموضع قد يخلقون احتكاكاً قبل أن يبدأ التنفيذ الصحيح.",
       primaryOperationsSystems:
         "أقوى إشارة هي عدم ثبات العمليات: البزنس قد يعتمد كثيراً على الذاكرة، وجود المؤسس، تكرار التعليمات، أو سير عمل غير موثق.",
       primaryExecutionInfrastructure:
@@ -1009,6 +1189,14 @@ function getArabicDiagnosisContent() {
         "أقوى إشارة هي اعتماد تشغيلي مستمر: البزنس قد يحتاج إلى متابعة وتصحيح وتوجيه بعد بناء الهيكلة.",
       primaryOperationalDiagnosis:
         "أقوى إشارة هي أن الأولوية غير واضحة: هناك أعراض مختلطة كافية تجعل الخطوة الأولى تشخيصاً تشغيلياً قبل اختيار ما يجب بناؤه.",
+      layeredPressure:
+        "الضغط موزّع على أكثر من منطقة. هذا يعني غالباً أن المشكلة ليست نقطة واحدة منفصلة، بل خلل هيكلي متراكم على أكثر من طبقة.",
+      twoLayerPressure: (firstLayer, secondLayer) =>
+        `التشخيص يُظهر طبقتين قويتين: ${firstLayer} و${secondLayer}. هذا يعني أن المشكلة يجب أن تُعالج بالتسلسل، وليس بحلول عشوائية.`,
+      recommendedPath: (primaryLabel, secondaryLabel) =>
+        secondaryLabel
+          ? `ابدأ بـ ${primaryLabel}. ثم انتقل إلى ${secondaryLabel} عندما تصبح الطبقة الأولى واضحة بما يكفي لدعم التنفيذ.`
+          : `ابدأ بـ ${primaryLabel}. لا تضف المزيد من التنفيذ قبل أن تصبح هذه الطبقة واضحة.`,
       whereToStart: (primaryLabel, primaryDescription, secondaryLabel) =>
         `ابدأ بـ ${primaryLabel}. ${primaryDescription} ${
           secondaryLabel
