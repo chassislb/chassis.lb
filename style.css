@@ -1322,3 +1322,109 @@ html[dir="rtl"] .readiness-title {
 html[dir="rtl"] .about-closing-actions {
   justify-content: flex-start;
 }
+
+/* =========================
+   DIAGNOSIS ASSISTANT FINAL FLOW FIX
+========================= */
+
+.diagnosis-chat {
+  height: min(760px, calc(100vh - 44px)) !important;
+  max-height: calc(100vh - 44px) !important;
+  display: none;
+  flex-direction: column !important;
+}
+
+.diagnosis-chat.is-open {
+  display: flex !important;
+}
+
+.diagnosis-chat-header {
+  flex: 0 0 auto !important;
+}
+
+.diagnosis-progress-track {
+  flex: 0 0 6px !important;
+  margin: 0 !important;
+}
+
+.diagnosis-chat-body {
+  flex: 0 0 auto !important;
+  max-height: 30% !important;
+  min-height: 120px !important;
+  overflow-y: auto !important;
+  padding: 18px !important;
+}
+
+.diagnosis-chat-footer {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  padding: 14px 18px !important;
+}
+
+.diagnosis-choice-list {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow-y: auto !important;
+  display: grid !important;
+  gap: 9px !important;
+  padding-right: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+.diagnosis-next,
+.diagnosis-restart,
+.diagnosis-whatsapp-link {
+  flex: 0 0 auto !important;
+  position: sticky !important;
+  bottom: 0 !important;
+  z-index: 5 !important;
+}
+
+.diagnosis-current-question,
+.diagnosis-screen-card,
+.diagnosis-result-card {
+  padding: 16px !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  background: #ffffff !important;
+}
+
+.diagnosis-current-question h3,
+.diagnosis-screen-card h3 {
+  font-size: 1.08rem !important;
+  line-height: 1.35 !important;
+  font-weight: 800 !important;
+  color: #000000 !important;
+}
+
+.diagnosis-question-help {
+  margin-top: 8px !important;
+  font-size: 0.84rem !important;
+  line-height: 1.5 !important;
+  color: rgba(0, 0, 0, 0.65) !important;
+}
+
+@media (max-width: 640px) {
+  .diagnosis-chat {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    right: 0 !important;
+    bottom: 0 !important;
+  }
+
+  .diagnosis-chat-body {
+    max-height: 32% !important;
+    min-height: 130px !important;
+    padding: 14px !important;
+  }
+
+  .diagnosis-chat-footer {
+    padding: 12px 14px !important;
+  }
+}

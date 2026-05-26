@@ -5,6 +5,7 @@
 // NO API
 // NO BACKEND
 // NO COST
+// UPDATED FLOW + VALIDATION + OTHER INPUTS
 // ─────────────────────────────────────────────────────────────
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -136,11 +137,11 @@ function initChassisDiagnosisAssistant() {
         <button class="diagnosis-close" type="button" aria-label="${escapeHtml(t.ui.closeLabel)}">×</button>
       </div>
 
-      <div class="diagnosis-chat-body">
-        <div class="diagnosis-progress-track">
-          <div class="diagnosis-progress-bar"></div>
-        </div>
+      <div class="diagnosis-progress-track">
+        <div class="diagnosis-progress-bar"></div>
+      </div>
 
+      <div class="diagnosis-chat-body">
         <div class="diagnosis-question-area"></div>
       </div>
 
@@ -185,11 +186,29 @@ function initChassisDiagnosisAssistant() {
   function startConversation() {
     chatArea.innerHTML = "";
     footer.innerHTML = "";
+    askedQuestions.length = 0;
     currentQuestionId = "client_name";
+    diagnosisFinished = false;
 
-    addBotMessage(t.ui.intro);
+    showIntroScreen();
+  }
 
-    setTimeout(() => askQuestion(currentQuestionId), 500);
+  function showIntroScreen() {
+    chatArea.innerHTML = `
+      <div class="diagnosis-screen-card">
+        <p class="diagnosis-question-section">${escapeHtml(t.ui.headerKicker)}</p>
+        <h3>${escapeHtml(t.ui.introTitle)}</h3>
+        <p>${escapeHtml(t.ui.intro)}</p>
+      </div>
+    `;
+
+    footer.innerHTML = "";
+
+    const startBtn = makeSendButton(() => {
+      askQuestion("client_name");
+    }, t.ui.start);
+
+    footer.appendChild(startBtn);
   }
 
   function askQuestion(questionId) {
@@ -203,77 +222,181 @@ function initChassisDiagnosisAssistant() {
     }
 
     updateProgress();
-    addBotMessage(q.question, q.section);
+
+    chatArea.innerHTML = `
+      <div class="diagnosis-current-question">
+        <p class="diagnosis-question-section">${escapeHtml(q.section || "")}</p>
+        <h3>${escapeHtml(q.question)}</h3>
+        ${
+          q.help
+            ? `<p class="diagnosis-question-help">${escapeHtml(q.help)}</p>`
+            : ""
+        }
+      </div>
+    `;
+
     renderAnswerInput(q);
+    scrollChatToTop();
   }
 
   function renderAnswerInput(q) {
     footer.innerHTML = "";
 
     if (q.type === "choice") {
-      const wrapper = document.createElement("div");
-      wrapper.className = "diagnosis-choice-list";
-
-      q.options.forEach((option) => {
-        const btn = document.createElement("button");
-        btn.className = "diagnosis-choice-option";
-        btn.type = "button";
-        btn.innerHTML = `<span>${escapeHtml(option.label)}</span>`;
-
-        btn.addEventListener("click", () => {
-          handleAnswer(option.value, option.label, option.next);
-        });
-
-        wrapper.appendChild(btn);
-      });
-
-      footer.appendChild(wrapper);
+      renderChoiceInput(q);
       return;
     }
 
     if (q.type === "multi") {
-      const selected = new Set();
-      const wrapper = document.createElement("div");
-      wrapper.className = "diagnosis-choice-list";
-
-      q.options.forEach((option) => {
-        const btn = document.createElement("button");
-        btn.className = "diagnosis-choice-option";
-        btn.type = "button";
-        btn.innerHTML = `<span>${escapeHtml(option.label)}</span>`;
-
-        btn.addEventListener("click", () => {
-          if (selected.has(option.value)) {
-            selected.delete(option.value);
-            btn.classList.remove("is-selected");
-          } else {
-            selected.add(option.value);
-            btn.classList.add("is-selected");
-          }
-        });
-
-        wrapper.appendChild(btn);
-      });
-
-      const sendBtn = makeSendButton(() => {
-        if (!selected.size) {
-          addBotMessage(t.ui.pickOne);
-          return;
-        }
-
-        const values = Array.from(selected);
-        const labels = q.options
-          .filter((option) => values.includes(option.value))
-          .map((option) => option.label);
-
-        handleAnswer(values, labels.join(isArabic ? "، " : ", "), q.next);
-      });
-
-      footer.appendChild(wrapper);
-      footer.appendChild(sendBtn);
+      renderMultiInput(q);
       return;
     }
 
+    renderTextInput(q);
+  }
+
+  function renderChoiceInput(q) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "diagnosis-choice-list";
+
+    q.options.forEach((option) => {
+      const btn = document.createElement("button");
+      btn.className = "diagnosis-choice-option";
+      btn.type = "button";
+      btn.innerHTML = `<span>${escapeHtml(option.label)}</span>`;
+
+      btn.addEventListener("click", () => {
+        if (option.requiresText) {
+          renderOtherInput(option, false);
+          return;
+        }
+
+        handleAnswer(option.value, option.label, option.next);
+      });
+
+      wrapper.appendChild(btn);
+    });
+
+    footer.appendChild(wrapper);
+  }
+
+  function renderMultiInput(q) {
+    const selected = new Set();
+    const selectedLabels = new Map();
+    let otherText = "";
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "diagnosis-choice-list";
+
+    const otherArea = document.createElement("div");
+    otherArea.className = "diagnosis-other-area";
+    otherArea.style.display = "none";
+
+    const otherInput = document.createElement("textarea");
+    otherInput.placeholder = q.otherPlaceholder || t.ui.otherPlaceholder;
+    otherArea.appendChild(otherInput);
+
+    q.options.forEach((option) => {
+      const btn = document.createElement("button");
+      btn.className = "diagnosis-choice-option";
+      btn.type = "button";
+      btn.innerHTML = `<span>${escapeHtml(option.label)}</span>`;
+
+      btn.addEventListener("click", () => {
+        if (selected.has(option.value)) {
+          selected.delete(option.value);
+          selectedLabels.delete(option.value);
+          btn.classList.remove("is-selected");
+        } else {
+          selected.add(option.value);
+          selectedLabels.set(option.value, option.label);
+          btn.classList.add("is-selected");
+        }
+
+        const hasOther = Array.from(selected).some((value) =>
+          value.includes("other")
+        );
+
+        otherArea.style.display = hasOther ? "block" : "none";
+      });
+
+      wrapper.appendChild(btn);
+    });
+
+    const sendBtn = makeSendButton(() => {
+      if (!selected.size) {
+        showInlineError(t.ui.pickOne);
+        return;
+      }
+
+      const values = Array.from(selected);
+      const hasOther = values.some((value) => value.includes("other"));
+
+      if (hasOther) {
+        otherText = otherInput.value.trim();
+
+        if (!isMeaningfulText(otherText, 8)) {
+          showInlineError(t.ui.invalidOther);
+          return;
+        }
+
+        answers[`${currentQuestionId}_other_text`] = otherText;
+      }
+
+      const labels = values.map((value) => selectedLabels.get(value));
+
+      if (hasOther && otherText) {
+        labels.push(`${t.ui.otherLabel}: ${otherText}`);
+      }
+
+      handleAnswer(values, labels.join(isArabic ? "، " : ", "), q.next);
+    });
+
+    footer.appendChild(wrapper);
+    footer.appendChild(otherArea);
+    footer.appendChild(sendBtn);
+  }
+
+  function renderOtherInput(option, isMulti) {
+    footer.innerHTML = "";
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "diagnosis-other-area diagnosis-other-area-visible";
+
+    const label = document.createElement("p");
+    label.className = "diagnosis-other-label";
+    label.textContent = t.ui.otherQuestion;
+
+    const textarea = document.createElement("textarea");
+    textarea.placeholder = t.ui.otherPlaceholder;
+
+    wrapper.appendChild(label);
+    wrapper.appendChild(textarea);
+
+    const sendBtn = makeSendButton(() => {
+      const value = textarea.value.trim();
+
+      if (!isMeaningfulText(value, 8)) {
+        showInlineError(t.ui.invalidOther);
+        return;
+      }
+
+      answers[`${currentQuestionId}_other_text`] = value;
+
+      handleAnswer(
+        option.value,
+        `${option.label}: ${value}`,
+        option.next
+      );
+    });
+
+    footer.appendChild(wrapper);
+    footer.appendChild(sendBtn);
+
+    setTimeout(() => textarea.focus(), 100);
+  }
+
+  function renderTextInput(q) {
     const input =
       q.type === "textarea"
         ? document.createElement("textarea")
@@ -291,8 +414,27 @@ function initChassisDiagnosisAssistant() {
       const value = input.value.trim();
 
       if (!value) {
-        addBotMessage(t.ui.requiredAnswer);
+        showInlineError(t.ui.requiredAnswer);
         return;
+      }
+
+      if (q.kind === "phone") {
+        if (!isLikelyPhone(value)) {
+          showInlineError(t.ui.invalidPhone);
+          return;
+        }
+
+        handleAnswer(value, value, q.next);
+        return;
+      }
+
+      if (q.validate !== false) {
+        const minLength = q.minLength || (q.type === "textarea" ? 12 : 2);
+
+        if (!isMeaningfulText(value, minLength)) {
+          showInlineError(t.ui.invalidText);
+          return;
+        }
       }
 
       handleAnswer(value, value, q.next);
@@ -315,20 +457,32 @@ function initChassisDiagnosisAssistant() {
     answers[currentQuestionId] = value;
     answerLabels[currentQuestionId] = displayValue;
 
-    addUserMessage(displayValue);
-    footer.innerHTML = "";
-
     if (nextQuestionId === "finish") {
       setTimeout(() => {
         renderFinalDiagnosis();
-      }, 700);
+      }, 400);
       return;
     }
 
     setTimeout(() => {
       askQuestion(nextQuestionId);
-    }, 500);
+    }, 220);
   }
+
+  function showInlineError(message) {
+    const existing = footer.querySelector(".diagnosis-inline-error");
+    if (existing) existing.remove();
+
+    const error = document.createElement("p");
+    error.className = "diagnosis-inline-error";
+    error.textContent = message;
+
+    footer.appendChild(error);
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  // SCORING
+  // ─────────────────────────────────────────────────────────────
 
   function scoreDiagnosis() {
     const scores = {
@@ -350,6 +504,11 @@ function initChassisDiagnosisAssistant() {
     if (answers.main_pressure === "operational_chaos") scores.operationsSystems += 5;
     if (answers.main_pressure === "execution_inconsistency") scores.operationsSystems += 4;
     if (answers.main_pressure === "infrastructure_gap") scores.executionInfrastructure += 5;
+    if (answers.main_pressure === "visibility_positioning_gap") scores.businessStructuring += 4;
+    if (answers.main_pressure === "client_acquisition_gap") {
+      scores.businessStructuring += 3;
+      scores.executionInfrastructure += 2;
+    }
 
     if (answers.main_pressure === "growth_pressure") {
       scores.businessStructuring += 2;
@@ -357,9 +516,19 @@ function initChassisDiagnosisAssistant() {
       scores.operationalPartnership += 2;
     }
 
-    if (answers.business_stage === "early") {
+    if (answers.business_stage === "early_offer") {
       scores.businessStructuring += 4;
       scores.operationalDiagnosis += 2;
+    }
+
+    if (answers.business_stage === "early_visibility") {
+      scores.businessStructuring += 5;
+      scores.executionInfrastructure += 2;
+    }
+
+    if (answers.business_stage === "early_first_clients") {
+      scores.businessStructuring += 4;
+      scores.executionInfrastructure += 3;
     }
 
     if (answers.business_stage === "operating_messy") {
@@ -392,13 +561,13 @@ function initChassisDiagnosisAssistant() {
     if (broken.includes("digital_disconnected")) scores.executionInfrastructure += 4;
     if (broken.includes("weak_conversion")) scores.businessStructuring += 2;
     if (broken.includes("no_visibility")) scores.operationalDiagnosis += 3;
-
     if (broken.includes("growth_creates_stress")) {
       scores.operationsSystems += 3;
       scores.operationalPartnership += 2;
     }
-
     if (broken.includes("no_priority")) scores.operationalDiagnosis += 5;
+    if (broken.includes("no_first_clients")) scores.businessStructuring += 3;
+    if (broken.includes("people_do_not_understand_value")) scores.businessStructuring += 4;
 
     if (answers.owner_dependency_level === "stops") {
       scores.operationsSystems += 5;
@@ -421,15 +590,17 @@ function initChassisDiagnosisAssistant() {
     if (answers.offer_clarity === "changes") scores.businessStructuring += 3;
     if (answers.offer_clarity === "unclear") scores.businessStructuring += 5;
     if (answers.offer_clarity === "scattered") scores.businessStructuring += 5;
+    if (answers.offer_clarity === "clear_but_not_understood") {
+      scores.businessStructuring += 4;
+      scores.executionInfrastructure += 2;
+    }
 
     if (answers.operations_maturity === "informal") scores.operationsSystems += 5;
     if (answers.operations_maturity === "some_structure") scores.operationsSystems += 3;
-
     if (answers.operations_maturity === "not_followed") {
       scores.operationsSystems += 4;
       scores.operationalPartnership += 2;
     }
-
     if (answers.operations_maturity === "clear_workflows_need_tools") {
       scores.executionInfrastructure += 5;
       scores.operationsSystems += 1;
@@ -458,6 +629,14 @@ function initChassisDiagnosisAssistant() {
     if (outcomes.includes("operations_systems")) scores.operationsSystems += 5;
     if (outcomes.includes("execution_infrastructure")) scores.executionInfrastructure += 5;
     if (outcomes.includes("operational_partnership")) scores.operationalPartnership += 5;
+    if (outcomes.includes("market_entry")) {
+      scores.businessStructuring += 4;
+      scores.executionInfrastructure += 2;
+    }
+    if (outcomes.includes("first_clients")) {
+      scores.businessStructuring += 4;
+      scores.executionInfrastructure += 2;
+    }
 
     if (outcomes.includes("not_sure")) {
       scores.operationalDiagnosis += 4;
@@ -476,7 +655,77 @@ function initChassisDiagnosisAssistant() {
       scores.operationalPartnership += 1;
     }
 
+    applyKeywordScoring(scores);
+
     return scores;
+  }
+
+  function applyKeywordScoring(scores) {
+    const text = getAllTypedContext().toLowerCase();
+
+    const keywordGroups = [
+      {
+        words: ["consultant", "استشاري", "خبير", "chef", "culinary", "شيف", "طباخ"],
+        add: { businessStructuring: 3, executionInfrastructure: 1 },
+      },
+      {
+        words: ["restaurant", "مطعم", "hospitality", "ضيافة", "food", "kitchen", "مطبخ"],
+        add: { operationsSystems: 2, executionInfrastructure: 2 },
+      },
+      {
+        words: ["clinic", "doctor", "medical", "عيادة", "طبيب", "صحي"],
+        add: { executionInfrastructure: 2, operationsSystems: 2 },
+      },
+      {
+        words: ["first client", "first clients", "أول عميل", "اول عميل", "عملاء", "زبائن"],
+        add: { businessStructuring: 4, executionInfrastructure: 2 },
+      },
+      {
+        words: ["people don't understand", "people do not understand", "ما بيفهموا", "ما فهموا", "مش مفهوم", "غير واضح"],
+        add: { businessStructuring: 4 },
+      },
+      {
+        words: ["pricing", "price", "أسعار", "اسعار", "تسعير"],
+        add: { businessStructuring: 3 },
+      },
+      {
+        words: ["workflow", "process", "sop", "system", "عمليات", "نظام", "سير العمل", "اجراءات"],
+        add: { operationsSystems: 4 },
+      },
+      {
+        words: ["website", "crm", "platform", "app", "موقع", "منصة", "تطبيق"],
+        add: { executionInfrastructure: 4 },
+      },
+      {
+        words: ["team", "staff", "employee", "فريق", "موظفين", "موظف"],
+        add: { operationsSystems: 3, operationalPartnership: 1 },
+      },
+      {
+        words: ["chaos", "mess", "messy", "فوضى", "ملخبط", "ضايع", "ضغط"],
+        add: { operationalDiagnosis: 2, operationsSystems: 3 },
+      },
+    ];
+
+    keywordGroups.forEach((group) => {
+      if (group.words.some((word) => text.includes(word))) {
+        Object.keys(group.add).forEach((key) => {
+          scores[key] += group.add[key];
+        });
+      }
+    });
+  }
+
+  function getAllTypedContext() {
+    return [
+      answers.business_description,
+      answers.business_type_other_text,
+      answers.business_stage_other_text,
+      answers.main_pressure_other_text,
+      answers.broken_areas_other_text,
+      answers.desired_outcome_other_text,
+    ]
+      .filter(Boolean)
+      .join(" ");
   }
 
   function getSortedServices(scores) {
@@ -494,11 +743,11 @@ function initChassisDiagnosisAssistant() {
     const highest = Math.max(...Object.values(scores));
     const broken = Array.isArray(answers.broken_areas) ? answers.broken_areas.length : 0;
 
-    if (highest >= 16 || broken >= 7 || answers.urgency === "critical") {
+    if (highest >= 18 || broken >= 7 || answers.urgency === "critical") {
       return t.severity.high;
     }
 
-    if (highest >= 11 || broken >= 4 || answers.urgency === "high") {
+    if (highest >= 12 || broken >= 4 || answers.urgency === "high") {
       return t.severity.moderate;
     }
 
@@ -528,8 +777,8 @@ function initChassisDiagnosisAssistant() {
     }
 
     if (
-      ["unclear", "scattered", "changes"].includes(answers.offer_clarity) ||
-      answers.main_pressure === "unclear_offer"
+      ["unclear", "scattered", "changes", "clear_but_not_understood"].includes(answers.offer_clarity) ||
+      ["unclear_offer", "visibility_positioning_gap", "client_acquisition_gap"].includes(answers.main_pressure)
     ) {
       signals.push(t.signals.offerClarity);
     }
@@ -571,7 +820,14 @@ function initChassisDiagnosisAssistant() {
       signals.push(t.signals.noStructuredSystems);
     }
 
-    return [...new Set(signals)].slice(0, 5);
+    if (
+      answers.business_stage === "early_first_clients" ||
+      desiredOutcome.includes("first_clients")
+    ) {
+      signals.push(t.signals.marketEntry);
+    }
+
+    return [...new Set(signals)].slice(0, 6);
   }
 
   function getLayeredPattern(sortedServices) {
@@ -668,6 +924,8 @@ function initChassisDiagnosisAssistant() {
       whatsappText
     )}`;
 
+    chatArea.innerHTML = "";
+
     const resultCard = document.createElement("div");
     resultCard.className = "diagnosis-result-card";
 
@@ -718,42 +976,32 @@ function initChassisDiagnosisAssistant() {
       <div class="diagnosis-result-note">
         <p>${escapeHtml(t.ui.resultNote)}</p>
       </div>
-
-      <a
-        class="diagnosis-whatsapp-link"
-        href="https://calendly.com/chassis-lb/chassis-discovery-call"
-        target="_blank"
-        rel="noopener"
-      >
-        ${escapeHtml(t.ui.bookCall)}
-      </a>
-
-      <a
-        class="diagnosis-whatsapp-link"
-        href="${whatsappUrl}"
-        target="_blank"
-        rel="noopener"
-        style="margin-top:10px; background:transparent; border:1px solid currentColor; opacity:0.75;"
-      >
-        ${escapeHtml(t.ui.sendWhatsapp)}
-      </a>
-
-      <button class="diagnosis-restart" type="button">
-        ${escapeHtml(t.ui.startAgain)}
-      </button>
     `;
 
     chatArea.appendChild(resultCard);
-    scrollChatToBottom();
 
-    resultCard.querySelector(".diagnosis-restart").addEventListener("click", () => {
+    const bookBtn = makeLinkButton(
+      "https://calendly.com/chassis-lb/chassis-discovery-call",
+      t.ui.bookCall
+    );
+
+    const whatsappBtn = makeLinkButton(whatsappUrl, t.ui.sendWhatsapp, true);
+
+    const restartBtn = document.createElement("button");
+    restartBtn.className = "diagnosis-restart";
+    restartBtn.type = "button";
+    restartBtn.textContent = t.ui.startAgain;
+    restartBtn.addEventListener("click", () => {
       Object.keys(answers).forEach((key) => delete answers[key]);
       Object.keys(answerLabels).forEach((key) => delete answerLabels[key]);
-      askedQuestions.length = 0;
-      currentQuestionId = "client_name";
-      diagnosisFinished = false;
       startConversation();
     });
+
+    footer.appendChild(bookBtn);
+    footer.appendChild(whatsappBtn);
+    footer.appendChild(restartBtn);
+
+    scrollChatToTop();
   }
 
   function buildWhatsAppMessage(diagnosis) {
@@ -774,15 +1022,19 @@ ${answers.business_description || ""}
 
 نوع البزنس:
 ${answerLabels.business_type || ""}
+${answers.business_type_other_text ? `تفصيل نوع البزنس: ${answers.business_type_other_text}` : ""}
 
 مرحلة البزنس:
 ${answerLabels.business_stage || ""}
+${answers.business_stage_other_text ? `تفصيل المرحلة: ${answers.business_stage_other_text}` : ""}
 
 أكبر ضغط:
 ${answerLabels.main_pressure || ""}
+${answers.main_pressure_other_text ? `تفصيل الضغط: ${answers.main_pressure_other_text}` : ""}
 
 الأمور التي تتكرر:
 ${answerLabels.broken_areas || ""}
+${answers.broken_areas_other_text ? `تفصيل إضافي: ${answers.broken_areas_other_text}` : ""}
 
 اعتماد البزنس على المؤسس:
 ${answerLabels.owner_dependency_level || ""}
@@ -798,6 +1050,7 @@ ${answerLabels.systems_maturity || ""}
 
 النتيجة المطلوبة:
 ${answerLabels.desired_outcome || ""}
+${answers.desired_outcome_other_text ? `تفصيل النتيجة المطلوبة: ${answers.desired_outcome_other_text}` : ""}
 
 الاستعجال:
 ${answerLabels.urgency || ""}
@@ -852,15 +1105,19 @@ ${answers.business_description || ""}
 
 BUSINESS TYPE:
 ${answerLabels.business_type || ""}
+${answers.business_type_other_text ? `Business type detail: ${answers.business_type_other_text}` : ""}
 
 BUSINESS STAGE:
 ${answerLabels.business_stage || ""}
+${answers.business_stage_other_text ? `Stage detail: ${answers.business_stage_other_text}` : ""}
 
 MAIN PRESSURE:
 ${answerLabels.main_pressure || ""}
+${answers.main_pressure_other_text ? `Pressure detail: ${answers.main_pressure_other_text}` : ""}
 
 BROKEN AREAS:
 ${answerLabels.broken_areas || ""}
+${answers.broken_areas_other_text ? `Extra detail: ${answers.broken_areas_other_text}` : ""}
 
 OWNER DEPENDENCY:
 ${answerLabels.owner_dependency_level || ""}
@@ -876,6 +1133,7 @@ ${answerLabels.systems_maturity || ""}
 
 DESIRED OUTCOME:
 ${answerLabels.desired_outcome || ""}
+${answers.desired_outcome_other_text ? `Desired outcome detail: ${answers.desired_outcome_other_text}` : ""}
 
 URGENCY:
 ${answerLabels.urgency || ""}
@@ -914,35 +1172,25 @@ ${diagnosis.whatItMeans}
 `;
   }
 
-  function makeSendButton(onClick) {
+  function makeSendButton(onClick, label = t.ui.send) {
     const btn = document.createElement("button");
     btn.className = "diagnosis-next";
     btn.type = "button";
-    btn.innerHTML = escapeHtml(t.ui.send);
+    btn.textContent = label;
     btn.addEventListener("click", onClick);
     return btn;
   }
 
-  function addBotMessage(message, section = "") {
-    const box = document.createElement("div");
-    box.className = "diagnosis-message diagnosis-message-bot";
-
-    box.innerHTML = `
-      ${section ? `<p class="diagnosis-question-section">${escapeHtml(section)}</p>` : ""}
-      <p>${escapeHtml(message)}</p>
-    `;
-
-    chatArea.appendChild(box);
-    scrollChatToBottom();
-  }
-
-  function addUserMessage(message) {
-    const box = document.createElement("div");
-    box.className = "diagnosis-message diagnosis-message-user";
-    box.innerHTML = `<p>${escapeHtml(message)}</p>`;
-
-    chatArea.appendChild(box);
-    scrollChatToBottom();
+  function makeLinkButton(url, label, secondary = false) {
+    const link = document.createElement("a");
+    link.className = secondary
+      ? "diagnosis-whatsapp-link diagnosis-whatsapp-secondary"
+      : "diagnosis-whatsapp-link";
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = label;
+    return link;
   }
 
   function updateProgress() {
@@ -951,9 +1199,9 @@ ${diagnosis.whatItMeans}
     progressBar.style.width = `${progress}%`;
   }
 
-  function scrollChatToBottom() {
+  function scrollChatToTop() {
     const body = assistant.querySelector(".diagnosis-chat-body");
-    if (body) body.scrollTop = body.scrollHeight;
+    if (body) body.scrollTop = 0;
   }
 }
 
@@ -968,11 +1216,18 @@ function getEnglishDiagnosisContent() {
       headerKicker: "Chassis Diagnosis Assistant",
       headerTitle: "Find what needs structure",
       closeLabel: "Close diagnosis assistant",
+      introTitle: "This is not a generic form.",
       intro:
-        "This is not a quote request. It is a structured diagnosis. The goal is to identify which operational layer needs attention first.",
+        "Answer a few focused questions. The tool will identify which operational layer needs attention first: diagnosis, structuring, infrastructure, or operational partnership.",
+      start: "Start Diagnosis",
       pickOne: "Pick at least one. A useful diagnosis needs a real signal.",
       requiredAnswer: "I need an answer here. The diagnosis depends on the context.",
-      send: "Send",
+      invalidText:
+        "This does not look like a real answer. Please write a clearer answer so the diagnosis can be useful.",
+      invalidOther:
+        "Please explain the other option clearly. One or two real sentences are enough.",
+      invalidPhone: "Please add a real WhatsApp number.",
+      send: "Continue",
       resultTitle: "Your Diagnosis",
       primaryService: "Primary recommended service",
       secondLayer: "Possible second layer",
@@ -983,12 +1238,15 @@ function getEnglishDiagnosisContent() {
       recommendedPath: "Recommended path",
       whatThisMeans: "What this means",
       resultNote:
-        "This result is based on your answers across offer clarity, owner dependency, operations, systems, infrastructure, urgency, and desired outcome.",
+        "This result is based on your selected answers and written context. It is a directional diagnosis, not a final quotation.",
       bookCall: "Book a Discovery Call",
       sendWhatsapp: "Send Diagnosis to WhatsApp",
       startAgain: "Start Again",
       yourBusiness: "your business",
       business: "business",
+      otherLabel: "Other",
+      otherQuestion: "Explain what you mean.",
+      otherPlaceholder: "Write the specific situation here...",
     },
 
     serviceLabels: {
@@ -1034,7 +1292,7 @@ function getEnglishDiagnosisContent() {
       ownerDependency:
         "The business depends heavily on the owner for movement, decisions, or continuity.",
       offerClarity:
-        "The offer or pricing logic is not clear enough to support clean execution.",
+        "The offer, pricing, value, or positioning is not clear enough to support clean execution.",
       workflowMemory:
         "Workflows appear to live in people's heads instead of a repeatable operating system.",
       decisionRouting:
@@ -1047,13 +1305,15 @@ function getEnglishDiagnosisContent() {
         "The business has multiple symptoms, but the first operational priority is not yet clear.",
       noStructuredSystems:
         "The business does not yet have enough structured systems to reduce operational friction.",
+      marketEntry:
+        "The business may need a clearer market entry path before execution can convert properly.",
     },
 
     diagnosis: {
       businessContext: (business, type) =>
         `Based on what you shared about ${business}, this looks closest to a ${type} with structural pressure that needs to be organized before more execution is added.`,
       primaryBusinessStructuring:
-        "The strongest signal is unclear business structure: offer clarity, pricing logic, service framing, workflows, roles, or positioning may be creating friction before proper execution can happen.",
+        "The strongest signal is unclear business structure: offer clarity, pricing logic, service framing, workflows, roles, market entry, or positioning may be creating friction before proper execution can happen.",
       primaryOperationsSystems:
         "The strongest signal is operational inconsistency: the business may be relying too much on memory, owner involvement, repeated instructions, or informal workflows.",
       primaryExecutionInfrastructure:
@@ -1095,11 +1355,18 @@ function getArabicDiagnosisContent() {
       headerKicker: "مساعد التشخيص من Chassis",
       headerTitle: "اكتشف ما الذي يحتاج إلى هيكلة",
       closeLabel: "إغلاق مساعد التشخيص",
+      introTitle: "هذا ليس فورم عادي.",
       intro:
-        "هذا ليس طلب عرض سعر. هذا تشخيص منظم هدفه تحديد أي طبقة تشغيلية تحتاج إلى معالجة أولاً.",
+        "أجب عن أسئلة مركّزة. الأداة ستحدد أي طبقة تشغيلية تحتاج إلى معالجة أولاً: التشخيص، الهيكلة، البنية التنفيذية، أو الشراكة التشغيلية.",
+      start: "ابدأ التشخيص",
       pickOne: "اختر جواباً واحداً على الأقل. التشخيص الجيد يحتاج إلى إشارة واضحة.",
       requiredAnswer: "أحتاج إلى جواب هنا. التشخيص يعتمد على السياق.",
-      send: "إرسال",
+      invalidText:
+        "هذا لا يبدو كجواب واضح. اكتب جواباً حقيقياً أكثر حتى يكون التشخيص مفيداً.",
+      invalidOther:
+        "اشرح الخيار الآخر بوضوح. جملة أو جملتان تكفيان.",
+      invalidPhone: "اكتب رقم واتساب حقيقي.",
+      send: "متابعة",
       resultTitle: "تشخيصك",
       primaryService: "الخدمة المقترحة أولاً",
       secondLayer: "الطبقة الثانية المحتملة",
@@ -1110,12 +1377,15 @@ function getArabicDiagnosisContent() {
       recommendedPath: "المسار المقترح",
       whatThisMeans: "ماذا يعني ذلك",
       resultNote:
-        "هذه النتيجة مبنية على إجاباتك حول وضوح العرض، اعتماد البزنس على المؤسس، العمليات، الأنظمة، البنية التنفيذية، الاستعجال، والنتيجة المطلوبة.",
+        "هذه النتيجة مبنية على اختياراتك والسياق الذي كتبته. هي تشخيص اتجاهي، وليست عرض سعر نهائي.",
       bookCall: "احجز مكالمة اكتشاف",
       sendWhatsapp: "أرسل التشخيص على واتساب",
       startAgain: "ابدأ من جديد",
       yourBusiness: "بزنسك",
       business: "بزنس",
+      otherLabel: "غير ذلك",
+      otherQuestion: "اشرح ماذا تقصد.",
+      otherPlaceholder: "اكتب الوضع بالتحديد هنا...",
     },
 
     serviceLabels: {
@@ -1161,7 +1431,7 @@ function getArabicDiagnosisContent() {
       ownerDependency:
         "البزنس يعتمد كثيراً على وجود المؤسس حتى يتحرك أو تُتخذ القرارات أو يستمر العمل.",
       offerClarity:
-        "العرض أو منطق التسعير ليس واضحاً بما يكفي لدعم تنفيذ نظيف.",
+        "العرض أو التسعير أو القيمة أو التموضع ليس واضحاً بما يكفي لدعم تنفيذ نظيف.",
       workflowMemory:
         "سير العمل يبدو موجوداً في رؤوس الناس أكثر من كونه نظاماً قابلاً للتكرار.",
       decisionRouting:
@@ -1174,13 +1444,15 @@ function getArabicDiagnosisContent() {
         "هناك أعراض متعددة، لكن الأولوية التشغيلية الأولى ليست واضحة بعد.",
       noStructuredSystems:
         "البزنس لا يملك بعد أنظمة مهيكلة كافية لتخفيف الاحتكاك التشغيلي.",
+      marketEntry:
+        "البزنس قد يحتاج إلى مسار دخول أوضح للسوق قبل أن يتحول التنفيذ إلى عملاء فعليين.",
     },
 
     diagnosis: {
       businessContext: (business, type) =>
         `بناءً على ما شاركته عن ${business}، يبدو أن هذا أقرب إلى ${type} لديه ضغط هيكلي يحتاج إلى تنظيم قبل إضافة المزيد من التنفيذ.`,
       primaryBusinessStructuring:
-        "أقوى إشارة هي أن هيكلة البزنس غير واضحة: العرض، التسعير، طريقة تقديم الخدمة، سير العمل، الأدوار، أو التموضع قد يخلقون احتكاكاً قبل أن يبدأ التنفيذ الصحيح.",
+        "أقوى إشارة هي أن هيكلة البزنس غير واضحة: العرض، التسعير، طريقة تقديم الخدمة، سير العمل، الأدوار، الدخول إلى السوق، أو التموضع قد يخلقون احتكاكاً قبل أن يبدأ التنفيذ الصحيح.",
       primaryOperationsSystems:
         "أقوى إشارة هي عدم ثبات العمليات: البزنس قد يعتمد كثيراً على الذاكرة، وجود المؤسس، تكرار التعليمات، أو سير عمل غير موثق.",
       primaryExecutionInfrastructure:
@@ -1224,7 +1496,8 @@ function getSharedQuestions(lang) {
       question: ar ? "ما اسمك؟" : "What's your name?",
       type: "text",
       placeholder: ar ? "الاسم الأول يكفي" : "First name is enough",
-      required: true,
+      minLength: 2,
+      validate: true,
       next: "business_description",
     },
 
@@ -1233,11 +1506,15 @@ function getSharedQuestions(lang) {
       question: ar
         ? "صف بزنسك بجملة إلى ثلاث جمل. ماذا تبيع؟ ولمن؟"
         : "Describe your business in 1–3 sentences. What do you sell, and to whom?",
+      help: ar
+        ? "اكتب شيئاً حقيقياً. هذا الجواب يؤثر على التشخيص."
+        : "Write something real. This answer affects the diagnosis.",
       type: "textarea",
       placeholder: ar
-        ? "مثال: نملك مطعماً / عيادة / خدمة استشارية / بزنس أونلاين..."
-        : "Example: We run a restaurant group / clinic / consulting service / online business...",
-      required: true,
+        ? "مثال: أنا استشاري مطاعم أساعد أصحاب المطاعم على تطوير المنيو والعمليات، لكن الناس لا يفهمون بعد كيف يطلبون الخدمة..."
+        : "Example: I am a culinary consultant helping restaurants improve menus and operations, but people still do not understand how to buy the service...",
+      minLength: 18,
+      validate: true,
       next: "business_type",
     },
 
@@ -1247,7 +1524,6 @@ function getSharedQuestions(lang) {
         ? "أي فئة أقرب إلى بزنسك؟"
         : "Which category is closest to your business?",
       type: "choice",
-      required: true,
       options: [
         {
           label: ar ? "مطاعم / ضيافة / بزنس غذائي" : "Hospitality / restaurant / food business",
@@ -1280,8 +1556,9 @@ function getSharedQuestions(lang) {
           next: "business_stage",
         },
         {
-          label: ar ? "غير ذلك" : "Other",
-          value: "other",
+          label: ar ? "غير ذلك / اشرح" : "Other / explain",
+          value: "business_type_other",
+          requiresText: true,
           next: "business_stage",
         },
       ],
@@ -1291,11 +1568,24 @@ function getSharedQuestions(lang) {
       section: ar ? "المرحلة" : "Stage",
       question: ar ? "أين البزنس الآن؟" : "Where is the business right now?",
       type: "choice",
-      required: true,
       options: [
         {
-          label: ar ? "ما زلنا في البداية ونشكّل العرض." : "Still early. We are still shaping the offer.",
-          value: "early",
+          label: ar ? "البزنس جديد، وما زلنا نوضّح العرض." : "The business is new, and we are still clarifying the offer.",
+          value: "early_offer",
+          next: "main_pressure",
+        },
+        {
+          label: ar
+            ? "البزنس واضح داخلياً، لكن الناس بعد لا يفهمون قيمته أو كيف يطلبونه."
+            : "The business is clear internally, but people still do not understand its value or how to buy it.",
+          value: "early_visibility",
+          next: "main_pressure",
+        },
+        {
+          label: ar
+            ? "عندنا عرض، لكن نحتاج أول عملاء أو أول مبيعات فعلية."
+            : "We have an offer, but we need first clients or first real sales.",
+          value: "early_first_clients",
           next: "main_pressure",
         },
         {
@@ -1318,6 +1608,12 @@ function getSharedQuestions(lang) {
           value: "stable_needs_systems",
           next: "main_pressure",
         },
+        {
+          label: ar ? "غير ذلك / اشرح" : "Other / explain",
+          value: "business_stage_other",
+          requiresText: true,
+          next: "main_pressure",
+        },
       ],
     },
 
@@ -1327,11 +1623,20 @@ function getSharedQuestions(lang) {
         ? "ما الذي يشكّل أكبر ضغط الآن؟"
         : "What feels like the biggest pressure right now?",
       type: "choice",
-      required: true,
       options: [
         {
           label: ar ? "الناس لا يفهمون بوضوح ماذا نبيع." : "People don't clearly understand what we sell.",
           value: "unclear_offer",
+          next: "broken_areas",
+        },
+        {
+          label: ar ? "الناس يفهمون الفكرة، لكن لا يعرفون لماذا يدفعون لنا." : "People understand the idea, but do not know why they should pay us.",
+          value: "visibility_positioning_gap",
+          next: "broken_areas",
+        },
+        {
+          label: ar ? "نحتاج أول عملاء أو طريقة أوضح لجلب العملاء." : "We need first clients or a clearer way to get clients.",
+          value: "client_acquisition_gap",
           next: "broken_areas",
         },
         {
@@ -1365,6 +1670,12 @@ function getSharedQuestions(lang) {
           value: "growth_pressure",
           next: "broken_areas",
         },
+        {
+          label: ar ? "غير ذلك / اشرح" : "Other / explain",
+          value: "main_pressure_other",
+          requiresText: true,
+          next: "broken_areas",
+        },
       ],
     },
 
@@ -1373,12 +1684,25 @@ function getSharedQuestions(lang) {
       question: ar
         ? "اختر كل ما يتكرر داخل البزنس."
         : "Select everything that keeps repeating inside the business.",
+      help: ar
+        ? "يمكنك اختيار أكثر من جواب. زر المتابعة سيبقى في الأسفل."
+        : "You can choose more than one. The continue button stays at the bottom.",
       type: "multi",
-      required: true,
+      otherPlaceholder: ar
+        ? "اكتب الشيء الآخر الذي يتكرر داخل البزنس..."
+        : "Write the other recurring issue inside the business...",
       options: [
         {
           label: ar ? "العملاء يسألون أسئلة أساسية كثيرة قبل فهم العرض." : "Clients ask too many basic questions before understanding the offer.",
           value: "clients_confused",
+        },
+        {
+          label: ar ? "الناس لا يفهمون قيمة الخدمة بسرعة." : "People do not understand the value of the service quickly.",
+          value: "people_do_not_understand_value",
+        },
+        {
+          label: ar ? "نحتاج أول عملاء أو أول مبيعات." : "We need first clients or first sales.",
+          value: "no_first_clients",
         },
         {
           label: ar ? "التسعير يتغير كثيراً من عميل إلى آخر." : "Pricing changes too much from client to client.",
@@ -1424,6 +1748,10 @@ function getSharedQuestions(lang) {
           label: ar ? "لا أعرف ماذا يجب أن أصلح أولاً." : "I don't know what to fix first.",
           value: "no_priority",
         },
+        {
+          label: ar ? "غير ذلك / اشرح" : "Other / explain",
+          value: "broken_areas_other",
+        },
       ],
       next: "owner_dependency_level",
     },
@@ -1431,10 +1759,9 @@ function getSharedQuestions(lang) {
     owner_dependency_level: {
       section: ar ? "اعتماد البزنس على المؤسس" : "Owner Dependency",
       question: ar
-        ? "إذا غاب المؤسس أسبوعين، ماذا يحدث؟"
+        ? "إذا غاب صاحب البزنس أسبوعين، ماذا يحدث؟"
         : "If the owner disappears for two weeks, what happens?",
       type: "choice",
-      required: true,
       options: [
         {
           label: ar ? "البزنس يتوقف تقريباً." : "The business mostly stops.",
@@ -1470,11 +1797,15 @@ function getSharedQuestions(lang) {
         ? "هل يمكنك شرح ما يبيعه بزنسك بجملة واحدة واضحة؟"
         : "Can you explain what your business sells in one clear sentence?",
       type: "choice",
-      required: true,
       options: [
         {
           label: ar ? "نعم، بسهولة." : "Yes, easily.",
           value: "clear",
+          next: "operations_maturity",
+        },
+        {
+          label: ar ? "نعم داخلياً، لكن الناس لا يفهمونه بسرعة." : "Yes internally, but people do not understand it quickly.",
+          value: "clear_but_not_understood",
           next: "operations_maturity",
         },
         {
@@ -1483,7 +1814,7 @@ function getSharedQuestions(lang) {
           next: "operations_maturity",
         },
         {
-          label: ar ? "ليس تماماً. يحتاج إلى شرح." : "Not really. It takes explanation.",
+          label: ar ? "ليس تماماً. يحتاج إلى شرح طويل." : "Not really. It takes a long explanation.",
           value: "unclear",
           next: "operations_maturity",
         },
@@ -1501,7 +1832,6 @@ function getSharedQuestions(lang) {
         ? "ما مدى هيكلة العمليات الداخلية حالياً؟"
         : "How structured are your internal operations right now?",
       type: "choice",
-      required: true,
       options: [
         {
           label: ar ? "غالباً غير رسمية. الناس يعرفون ماذا يفعلون فقط." : "Mostly informal. People just know what to do.",
@@ -1537,7 +1867,9 @@ function getSharedQuestions(lang) {
         ? "ما الأنظمة أو الأصول الموجودة حالياً؟"
         : "What systems or assets already exist?",
       type: "multi",
-      required: true,
+      otherPlaceholder: ar
+        ? "اكتب أي نظام أو أداة أخرى موجودة..."
+        : "Write any other system or tool you already have...",
       options: [
         { label: ar ? "موقع إلكتروني" : "Website", value: "website" },
         { label: ar ? "CRM أو قاعدة بيانات عملاء" : "CRM or client database", value: "crm" },
@@ -1547,6 +1879,7 @@ function getSharedQuestions(lang) {
         { label: ar ? "لوحات متابعة أو تقارير" : "Dashboards or reports", value: "dashboards" },
         { label: ar ? "حضور على السوشال ميديا" : "Social media presence", value: "social" },
         { label: ar ? "لا شيء من هذه الأمور مهيكل بشكل صحيح" : "None of these are properly structured", value: "none_structured" },
+        { label: ar ? "غير ذلك / اشرح" : "Other / explain", value: "systems_maturity_other" },
       ],
       next: "desired_outcome",
     },
@@ -1557,7 +1890,9 @@ function getSharedQuestions(lang) {
         ? "ماذا تريد أن تحصل عليه بعد العمل مع Chassis؟"
         : "What do you want to have at the end of working with Chassis?",
       type: "multi",
-      required: true,
+      otherPlaceholder: ar
+        ? "اكتب النتيجة التي تريدها بالتحديد..."
+        : "Write the specific outcome you want...",
       options: [
         {
           label: ar ? "أريد أن أعرف بالضبط ما الخلل وماذا أصلح أولاً." : "I want to know exactly what is broken and what to fix first.",
@@ -1566,6 +1901,14 @@ function getSharedQuestions(lang) {
         {
           label: ar ? "أريد عرضاً أوضح، وتسعيراً أوضح، واتجاهاً أوضح للبزنس." : "I want a clearer offer, pricing, and business direction.",
           value: "business_structuring",
+        },
+        {
+          label: ar ? "أريد أن يفهم الناس قيمة البزنس وكيف يطلبون الخدمة." : "I want people to understand the business value and how to buy.",
+          value: "market_entry",
+        },
+        {
+          label: ar ? "أريد أول عملاء أو مسار أوضح لجلب العملاء." : "I want first clients or a clearer client acquisition path.",
+          value: "first_clients",
         },
         {
           label: ar ? "أريد سير عمل، SOPs، أدوار، وأنظمة داخلية." : "I want workflows, SOPs, roles, and internal systems.",
@@ -1583,6 +1926,10 @@ function getSharedQuestions(lang) {
           label: ar ? "لست متأكداً. أحتاج أن تخبروني من أين أبدأ." : "I am not sure. I need you to tell me what comes first.",
           value: "not_sure",
         },
+        {
+          label: ar ? "غير ذلك / اشرح" : "Other / explain",
+          value: "desired_outcome_other",
+        },
       ],
       next: "urgency",
     },
@@ -1591,7 +1938,6 @@ function getSharedQuestions(lang) {
       section: ar ? "الاستعجال" : "Urgency",
       question: ar ? "ما مدى استعجال الموضوع؟" : "How urgent is this?",
       type: "choice",
-      required: true,
       options: [
         {
           label: ar ? "ليس مستعجلاً. أريد فهم المشكلة أولاً." : "Not urgent. I want to understand the problem first.",
@@ -1622,7 +1968,6 @@ function getSharedQuestions(lang) {
         ? "ماذا ستفعل إذا كان التشخيص دقيقاً؟"
         : "What would you do if the diagnosis is accurate?",
       type: "choice",
-      required: true,
       options: [
         {
           label: ar ? "أحجز مكالمة اكتشاف." : "Book a discovery call.",
@@ -1653,16 +1998,56 @@ function getSharedQuestions(lang) {
         ? "ما رقم واتسابك حتى يتم إرسال التشخيص مع السياق؟"
         : "What is your WhatsApp number so the diagnosis can be sent with your context?",
       type: "text",
+      kind: "phone",
       placeholder: "+961...",
-      required: true,
+      validate: true,
       next: "finish",
     },
   };
 }
 
 // ─────────────────────────────────────────────────────────────
-// HELPERS
+// VALIDATION HELPERS
 // ─────────────────────────────────────────────────────────────
+
+function isMeaningfulText(value, minLength = 6) {
+  const text = String(value || "").trim();
+
+  if (text.length < minLength) return false;
+
+  const letters = text.match(/[a-zA-Z\u0600-\u06FF]/g) || [];
+  if (letters.length < Math.min(4, minLength)) return false;
+
+  const compact = text.replace(/\s+/g, "").toLowerCase();
+
+  if (/^(.)\1{4,}$/.test(compact)) return false;
+  if (/^[0-9\s+\-().]+$/.test(text)) return false;
+  if (/^[^a-zA-Z\u0600-\u06FF]+$/.test(text)) return false;
+
+  const nonsensePatterns = [
+    "asdf",
+    "qwerty",
+    "testtest",
+    "aaaa",
+    "bbbb",
+    "xxxx",
+    "zzzz",
+    "jfjfjf",
+    "hahaha",
+  ];
+
+  if (nonsensePatterns.some((pattern) => compact.includes(pattern))) {
+    return false;
+  }
+
+  return true;
+}
+
+function isLikelyPhone(value) {
+  const cleaned = String(value || "").replace(/[^\d+]/g, "");
+  const digits = cleaned.replace(/\D/g, "");
+  return digits.length >= 7 && digits.length <= 15;
+}
 
 function escapeHtml(value) {
   return String(value)
