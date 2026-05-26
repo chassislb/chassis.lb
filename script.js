@@ -1252,7 +1252,7 @@ function getEnglishDiagnosisContent() {
     serviceLabels: {
       operationalDiagnosis: "Operational Diagnosis",
       businessStructuring: "Business Structuring",
-      operationsSystems: "Business Structuring",
+      operationsSystems: "Operations & Systems Setup",
       executionInfrastructure: "Execution Infrastructure",
       operationalPartnership: "Operational Partnership",
     },
@@ -1391,7 +1391,7 @@ function getArabicDiagnosisContent() {
     serviceLabels: {
       operationalDiagnosis: "تشخيص تشغيلي",
       businessStructuring: "هيكلة البزنس",
-      operationsSystems: "هيكلة البزنس",
+      operationsSystems: "إعداد العمليات والأنظمة",
       executionInfrastructure: "بنية تنفيذية",
       operationalPartnership: "شراكة تشغيلية",
     },
