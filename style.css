@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Zain:wght@400;500;600;700;800;900&display=swap');
 
 :root {
   --bg: #ffffff;
@@ -82,17 +82,14 @@ main {
 
 .header-brand {
   min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .language-switch,
 .header-right {
   flex-shrink: 0;
-}
-
-.header-brand {
-  display: flex;
-  align-items: center;
-  gap: 20px;
 }
 
 .logo-link {
@@ -608,174 +605,6 @@ main {
   background: rgba(243, 204, 49, 0.18);
 }
 
-html[dir="rtl"] .hero-system-bg,
-html[dir="rtl"] .about-hero-bg,
-html[dir="rtl"] .services-hero-bg,
-html[dir="rtl"] .case-studies-hero-bg,
-html[dir="rtl"] .contact-hero-bg {
-  transform: scaleX(-1);
-  transform-origin: center;
-}
-
-html[dir="rtl"] .contact-info-item,
-html[dir="rtl"] .outcome-line {
-  padding-inline-start: 0 !important;
-  padding-inline-end: 22px !important;
-}
-
-html[dir="rtl"] .readiness-list li {
-  padding-inline-start: 0 !important;
-  padding-inline-end: 18px !important;
-}
-
-html[dir="rtl"] .service-detail-points li,
-html[dir="rtl"] .case-study-meta li {
-  padding-inline-start: 0 !important;
-  padding-inline-end: 16px !important;
-}
-
-html[dir="rtl"] .contact-info-item span,
-html[dir="rtl"] .outcome-line span,
-html[dir="rtl"] .readiness-list li::before,
-html[dir="rtl"] .service-detail-points li::before,
-html[dir="rtl"] .case-study-meta li::before {
-  inset-inline-start: auto !important;
-  inset-inline-end: 0 !important;
-}
-
-html[dir="rtl"] .case-impact {
-  padding-inline-start: 0;
-  padding-inline-end: 18px;
-  border-left: none;
-  border-right: 3px solid var(--yellow);
-}
-
-html[dir="rtl"] .diagnosis-message-bot {
-  border-left: none;
-  border-right: 4px solid var(--blue);
-}
-
-html[dir="rtl"] .diagnosis-message-user {
-  margin-left: 0;
-  margin-right: auto;
-  border-left: none;
-  border-right: 4px solid var(--yellow);
-}
-
-html[dir="rtl"] .footer-nav a:hover {
-  transform: translateX(-2px);
-}
-
-html[dir="rtl"] .contact-direct-links a:hover {
-  transform: translateX(-4px);
-}
-
-html[dir="rtl"] .contact-direct-links a::after {
-  left: auto;
-  right: 0;
-  transform-origin: right;
-}
-
-html[dir="rtl"] .contact-info-block::after {
-  right: auto;
-  left: 18px;
-  border-right: none;
-  border-left: 1px solid rgba(0,0,0,0.08);
-}
-
-html[dir="rtl"] .contact-form-shell::after {
-  right: auto;
-  left: 18px;
-  border-right: none;
-  border-left: 1px solid rgba(255,255,255,0.08);
-}
-
-html[dir="rtl"] .select-wrap::before {
-  right: auto;
-  left: 23px;
-}
-
-html[dir="rtl"] .select-wrap::after {
-  right: auto;
-  left: 18px;
-}
-
-html[dir="rtl"] .form-field select {
-  padding-inline-start: 52px;
-  padding-inline-end: 0;
-}
-
-html[dir="rtl"] .service-row:hover {
-  transform: translateX(-3px);
-}
-
-html[dir="rtl"] .service-detail-row:hover {
-  transform: translateX(-2px);
-}
-
-html[dir="rtl"] .case-study-row:hover {
-  transform: translateX(-4px);
-}
-
-html[dir="rtl"] .service-row::before,
-html[dir="rtl"] .case-study-row::before,
-html[dir="rtl"] .service-detail-row::before,
-html[dir="rtl"] .service-detail-for::before,
-html[dir="rtl"] .service-detail-points::before,
-html[dir="rtl"] .case-study-meta::before,
-html[dir="rtl"] .services-pricing-note::before,
-html[dir="rtl"] .contact-info-block::before,
-html[dir="rtl"] .about-patterns-panel::before,
-html[dir="rtl"] .model-card::before,
-html[dir="rtl"] .readiness-column::before {
-  left: auto;
-  right: 0;
-}
-
-html[dir="rtl"] .about-diagnosis-grid p,
-html[dir="rtl"] .services-scope-grid p,
-html[dir="rtl"] .case-studies-band-grid p,
-html[dir="rtl"] .statement-band-grid p {
-  padding-inline-start: 18px;
-  padding-inline-end: 36px;
-}
-
-html[dir="rtl"] .contact-band-grid p {
-  padding-inline-start: 20px;
-  padding-inline-end: 38px;
-}
-
-html[dir="rtl"] .about-diagnosis-grid p:not(:last-child),
-html[dir="rtl"] .services-scope-grid p:not(:last-child),
-html[dir="rtl"] .case-studies-band-grid p:not(:last-child),
-html[dir="rtl"] .statement-band-grid p:not(:last-child),
-html[dir="rtl"] .contact-band-grid p:not(:last-child) {
-  border-right: none;
-}
-
-html[dir="rtl"] .about-diagnosis-grid p:not(:last-child) {
-  border-left: 1px solid rgba(255,255,255,0.07);
-}
-
-html[dir="rtl"] .services-scope-grid p:not(:last-child) {
-  border-left: 1px solid rgba(255,255,255,0.05);
-}
-
-html[dir="rtl"] .case-studies-band-grid p:not(:last-child),
-html[dir="rtl"] .statement-band-grid p:not(:last-child),
-html[dir="rtl"] .contact-band-grid p:not(:last-child) {
-  border-left: 1px solid rgba(255,255,255,0.07);
-}
-
-html[dir="rtl"] .about-diagnosis-grid p::before,
-html[dir="rtl"] .services-scope-grid p::before,
-html[dir="rtl"] .case-studies-band-grid p::before,
-html[dir="rtl"] .statement-band-grid p::before,
-html[dir="rtl"] .contact-band-grid p::before {
-  left: auto;
-  right: 16px;
-}
-
 .diagnosis-choice-option span {
   font-size: 0.82rem;
   line-height: 1.5;
@@ -865,7 +694,7 @@ html[dir="rtl"] .contact-band-grid p::before {
   transform: translateY(0);
 }
 
-/* EMERGENCY HOMEPAGE IMAGE FIX */
+/* HOMEPAGE IMAGE FIX */
 
 .featured-case-study-image {
   max-width: 420px !important;
@@ -886,6 +715,274 @@ html[dir="rtl"] .contact-band-grid p::before {
   max-width: 90px !important;
   max-height: 70px !important;
   object-fit: contain !important;
+}
+
+/* =========================
+   RTL / ARABIC GLOBAL FIXES
+========================= */
+
+html[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Zain', 'Poppins', sans-serif;
+}
+
+html[dir="rtl"] .brand-meta,
+html[dir="rtl"] .eyebrow,
+html[dir="rtl"] .header-cta,
+html[dir="rtl"] .hero-link,
+html[dir="rtl"] .text-link,
+html[dir="rtl"] .btn,
+html[dir="rtl"] .footer-credit,
+html[dir="rtl"] .minimal-break p,
+html[dir="rtl"] .case-type,
+html[dir="rtl"] .diagnosis-launcher,
+html[dir="rtl"] .diagnosis-next,
+html[dir="rtl"] .diagnosis-restart,
+html[dir="rtl"] .diagnosis-whatsapp-link,
+html[dir="rtl"] .diagnosis-question-section {
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] h5,
+html[dir="rtl"] h6,
+html[dir="rtl"] p,
+html[dir="rtl"] li,
+html[dir="rtl"] a,
+html[dir="rtl"] .section-note,
+html[dir="rtl"] .eyebrow,
+html[dir="rtl"] .hero-kicker {
+  text-align: right;
+}
+
+html[dir="rtl"] .header-top-inner,
+html[dir="rtl"] .header-bottom-inner,
+html[dir="rtl"] .header-brand,
+html[dir="rtl"] .header-center,
+html[dir="rtl"] .footer-top,
+html[dir="rtl"] .footer-bottom,
+html[dir="rtl"] .footer-brand,
+html[dir="rtl"] .footer-nav,
+html[dir="rtl"] .footer-social,
+html[dir="rtl"] .language-switch,
+html[dir="rtl"] .hero-actions,
+html[dir="rtl"] .about-founder-actions,
+html[dir="rtl"] .about-closing-actions,
+html[dir="rtl"] .services-closing-grid {
+  direction: rtl;
+}
+
+html[dir="rtl"] .header-center a.active::after,
+html[dir="rtl"] .footer-nav a::after {
+  left: auto;
+  right: 0;
+}
+
+html[dir="rtl"] .footer-nav a:hover {
+  transform: translateX(-2px);
+}
+
+html[dir="rtl"] .hero-system-bg,
+html[dir="rtl"] .about-hero-bg,
+html[dir="rtl"] .services-hero-bg,
+html[dir="rtl"] .case-studies-hero-bg,
+html[dir="rtl"] .contact-hero-bg {
+  transform: scaleX(-1);
+  transform-origin: center;
+}
+
+/* RTL DARK BANDS */
+
+html[dir="rtl"] .statement-band-grid p,
+html[dir="rtl"] .about-diagnosis-grid p,
+html[dir="rtl"] .services-scope-grid p,
+html[dir="rtl"] .case-studies-band-grid p,
+html[dir="rtl"] .contact-band-grid p {
+  padding-left: 18px !important;
+  padding-right: 42px !important;
+  text-align: right;
+}
+
+html[dir="rtl"] .statement-band-grid p::before,
+html[dir="rtl"] .about-diagnosis-grid p::before,
+html[dir="rtl"] .services-scope-grid p::before,
+html[dir="rtl"] .case-studies-band-grid p::before,
+html[dir="rtl"] .contact-band-grid p::before {
+  left: auto !important;
+  right: 18px !important;
+}
+
+html[dir="rtl"] .statement-band-grid p:not(:last-child),
+html[dir="rtl"] .about-diagnosis-grid p:not(:last-child),
+html[dir="rtl"] .services-scope-grid p:not(:last-child),
+html[dir="rtl"] .case-studies-band-grid p:not(:last-child),
+html[dir="rtl"] .contact-band-grid p:not(:last-child) {
+  border-right: none !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+/* RTL LISTS + BULLETS */
+
+html[dir="rtl"] ul,
+html[dir="rtl"] ol {
+  padding-right: 0;
+}
+
+html[dir="rtl"] .readiness-list li,
+html[dir="rtl"] .service-detail-points li,
+html[dir="rtl"] .case-study-meta li {
+  padding-left: 0 !important;
+  padding-right: 20px !important;
+  text-align: right;
+}
+
+html[dir="rtl"] .readiness-list li::before,
+html[dir="rtl"] .service-detail-points li::before,
+html[dir="rtl"] .case-study-meta li::before {
+  left: auto !important;
+  right: 0 !important;
+}
+
+/* RTL LEFT / RIGHT ACCENTS */
+
+html[dir="rtl"] .service-row::before,
+html[dir="rtl"] .case-study-row::before,
+html[dir="rtl"] .service-detail-row::before,
+html[dir="rtl"] .service-detail-outcome::before,
+html[dir="rtl"] .service-detail-for::before,
+html[dir="rtl"] .service-detail-points::before,
+html[dir="rtl"] .case-study-meta::before,
+html[dir="rtl"] .services-pricing-note::before,
+html[dir="rtl"] .services-process-step::before,
+html[dir="rtl"] .services-faq-item::before,
+html[dir="rtl"] .contact-info-block::before,
+html[dir="rtl"] .about-patterns-panel::before,
+html[dir="rtl"] .model-card::before,
+html[dir="rtl"] .readiness-column::before {
+  left: auto !important;
+  right: 0 !important;
+}
+
+html[dir="rtl"] .case-impact {
+  padding-left: 0;
+  padding-right: 18px;
+  border-left: none;
+  border-right: 3px solid var(--yellow);
+}
+
+html[dir="rtl"] .outcome-line {
+  padding-left: 0 !important;
+  padding-right: 24px !important;
+}
+
+html[dir="rtl"] .outcome-line span {
+  left: auto !important;
+  right: 0 !important;
+}
+
+html[dir="rtl"] .service-detail-for,
+html[dir="rtl"] .service-detail-points {
+  padding-left: 0 !important;
+  padding-right: 22px !important;
+}
+
+html[dir="rtl"] .service-detail-outcome {
+  padding-left: 20px !important;
+  padding-right: 22px !important;
+}
+
+/* RTL HOVERS */
+
+html[dir="rtl"] .service-row:hover,
+html[dir="rtl"] .service-detail-row:hover,
+html[dir="rtl"] .case-study-row:hover {
+  transform: translateX(-3px);
+}
+
+html[dir="rtl"] .contact-direct-links a:hover {
+  transform: translateX(-4px);
+}
+
+html[dir="rtl"] .contact-direct-links a::after {
+  left: auto;
+  right: 0;
+  transform-origin: right;
+}
+
+/* RTL CONTACT FORM */
+
+html[dir="rtl"] .contact-info-item {
+  padding-left: 0 !important;
+  padding-right: 22px !important;
+}
+
+html[dir="rtl"] .contact-info-item span {
+  left: auto !important;
+  right: 0 !important;
+}
+
+html[dir="rtl"] .contact-info-block::after {
+  right: auto;
+  left: 18px;
+  border-right: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+html[dir="rtl"] .contact-form-shell::after {
+  right: auto;
+  left: 18px;
+  border-right: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html[dir="rtl"] .select-wrap::before {
+  right: auto;
+  left: 23px;
+}
+
+html[dir="rtl"] .select-wrap::after {
+  right: auto;
+  left: 18px;
+}
+
+html[dir="rtl"] .form-field select {
+  padding-left: 52px;
+  padding-right: 0;
+}
+
+/* RTL DIAGNOSIS ASSISTANT */
+
+html[dir="rtl"] .chassis-diagnosis-widget,
+html[dir="rtl"] .diagnosis-chat {
+  right: auto;
+  left: 22px;
+  font-family: 'Zain', 'Poppins', sans-serif;
+}
+
+html[dir="rtl"] .diagnosis-chat-header,
+html[dir="rtl"] .diagnosis-chat-body,
+html[dir="rtl"] .diagnosis-chat-footer,
+html[dir="rtl"] .diagnosis-choice-option,
+html[dir="rtl"] .diagnosis-input-row input,
+html[dir="rtl"] .diagnosis-input-row textarea {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .diagnosis-message-bot {
+  border-left: none;
+  border-right: 4px solid var(--blue);
+}
+
+html[dir="rtl"] .diagnosis-message-user {
+  margin-left: 0;
+  margin-right: auto;
+  border-left: none;
+  border-right: 4px solid var(--yellow);
 }
 
 /* RESPONSIVE */
@@ -953,6 +1050,23 @@ html[dir="rtl"] .contact-band-grid p::before {
   .featured-case-study-image img {
     height: 420px !important;
     max-height: 420px !important;
+  }
+
+  html[dir="rtl"] .statement-band-grid p,
+  html[dir="rtl"] .about-diagnosis-grid p,
+  html[dir="rtl"] .services-scope-grid p,
+  html[dir="rtl"] .case-studies-band-grid p,
+  html[dir="rtl"] .contact-band-grid p {
+    padding-left: 0 !important;
+    padding-right: 24px !important;
+  }
+
+  html[dir="rtl"] .statement-band-grid p::before,
+  html[dir="rtl"] .about-diagnosis-grid p::before,
+  html[dir="rtl"] .services-scope-grid p::before,
+  html[dir="rtl"] .case-studies-band-grid p::before,
+  html[dir="rtl"] .contact-band-grid p::before {
+    right: 0 !important;
   }
 }
 
@@ -1049,4 +1163,162 @@ html[dir="rtl"] .contact-band-grid p::before {
     height: 360px !important;
     max-height: 360px !important;
   }
+
+  html[dir="rtl"] .chassis-diagnosis-widget {
+    right: auto;
+    left: 14px;
+  }
+
+  html[dir="rtl"] .diagnosis-chat {
+    left: 0;
+    right: auto;
+  }
+}
+
+/* =========================
+   RTL CASE STUDIES EXTRA FIXES
+========================= */
+
+html[dir="rtl"] .case-study-featured-grid,
+html[dir="rtl"] .case-study-head,
+html[dir="rtl"] .case-study-body,
+html[dir="rtl"] .case-studies-closing-grid {
+  direction: rtl;
+}
+
+html[dir="rtl"] .case-study-featured-tags {
+  justify-content: flex-start;
+  direction: rtl;
+}
+
+html[dir="rtl"] .case-study-featured-image::before {
+  left: auto;
+  right: -18px;
+}
+
+html[dir="rtl"] .case-study-meta {
+  padding-left: 0 !important;
+  padding-right: 22px !important;
+}
+
+html[dir="rtl"] .case-study-meta h3 {
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] .case-studies-closing::after {
+  right: auto;
+  left: 8%;
+}
+
+@media (max-width: 820px) {
+  html[dir="rtl"] .case-studies-band-grid p {
+    padding-left: 0 !important;
+    padding-right: 24px !important;
+  }
+
+  html[dir="rtl"] .case-studies-band-grid p::before {
+    right: 0 !important;
+    left: auto !important;
+  }
+}
+
+/* =========================
+   RTL CONTACT EXTRA FIXES
+========================= */
+
+html[dir="rtl"] .contact-main-grid,
+html[dir="rtl"] .form-grid,
+html[dir="rtl"] .contact-form-actions {
+  direction: rtl;
+}
+
+html[dir="rtl"] .contact-form-actions {
+  align-items: flex-start;
+}
+
+html[dir="rtl"] .contact-info-block > p,
+html[dir="rtl"] .contact-form-intro,
+html[dir="rtl"] .form-note,
+html[dir="rtl"] .form-status {
+  text-align: right;
+}
+
+html[dir="rtl"] .contact-info-block::after {
+  right: auto !important;
+  left: 18px !important;
+  border-right: none !important;
+  border-left: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+html[dir="rtl"] .contact-form-shell::after {
+  right: auto !important;
+  left: 18px !important;
+  border-right: none !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html[dir="rtl"] .contact-form input,
+html[dir="rtl"] .contact-form textarea,
+html[dir="rtl"] .contact-form select {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .contact-form input::placeholder,
+html[dir="rtl"] .contact-form textarea::placeholder {
+  text-align: right;
+}
+
+html[dir="rtl"] .select-wrap::before {
+  right: auto !important;
+  left: 23px !important;
+}
+
+html[dir="rtl"] .select-wrap::after {
+  right: auto !important;
+  left: 18px !important;
+}
+
+html[dir="rtl"] .form-field select {
+  padding-right: 16px !important;
+  padding-left: 52px !important;
+}
+
+html[dir="rtl"] .contact-direct-links a {
+  width: fit-content;
+}
+
+html[dir="rtl"] .contact-direct-links a::after {
+  left: auto !important;
+  right: 0 !important;
+  transform-origin: right !important;
+}
+
+html[dir="rtl"] .contact-direct-links a:hover {
+  transform: translateX(-4px) !important;
+}
+
+/* =========================
+   RTL TERMS EXTRA FIXES
+========================= */
+
+html[dir="rtl"] .about-belief-grid,
+html[dir="rtl"] .about-model-grid,
+html[dir="rtl"] .about-model-outcomes,
+html[dir="rtl"] .about-readiness-grid {
+  direction: rtl;
+}
+
+html[dir="rtl"] .about-pattern-item {
+  direction: rtl;
+}
+
+html[dir="rtl"] .about-patterns-label,
+html[dir="rtl"] .about-model-outcomes-label,
+html[dir="rtl"] .readiness-title {
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] .about-closing-actions {
+  justify-content: flex-start;
 }

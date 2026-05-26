@@ -437,6 +437,74 @@
 }
 
 /* =========================
+   READINESS / OWNERSHIP SECTION
+========================= */
+
+.about-readiness-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.readiness-column {
+  position: relative;
+  padding: 24px 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.readiness-column::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 62px;
+  height: 2px;
+  background: var(--yellow);
+}
+
+.readiness-column-muted::before {
+  background: var(--blue);
+}
+
+.readiness-title {
+  font-size: 1.12rem;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 18px;
+}
+
+.readiness-list {
+  list-style: none;
+  display: grid;
+  gap: 14px;
+}
+
+.readiness-list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.91rem;
+  line-height: 1.64;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.readiness-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(243, 204, 49, 0.95);
+}
+
+.readiness-column-muted .readiness-list li::before {
+  background: rgba(54, 198, 244, 0.95);
+}
+
+/* =========================
    FINAL SECTION
 ========================= */
 
