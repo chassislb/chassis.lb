@@ -347,6 +347,10 @@
   border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
+html[dir="rtl"] .contact-info-item {
+  padding: 0 22px 14px 0;
+}
+
 .contact-info-item span {
   position: absolute;
   left: 0;
@@ -355,6 +359,11 @@
   height: 8px;
   border-radius: 50%;
   background: var(--yellow);
+}
+
+html[dir="rtl"] .contact-info-item span {
+  left: auto;
+  right: 0;
 }
 
 .contact-info-item p {

@@ -73,10 +73,20 @@ main {
 
 .header-top-inner {
   min-height: 72px;
-  display: grid;
-  grid-template-columns: auto 1fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 24px;
+  flex-wrap: wrap;
+}
+
+.header-brand {
+  min-width: 0;
+}
+
+.language-switch,
+.header-right {
+  flex-shrink: 0;
 }
 
 .header-brand {
@@ -111,7 +121,36 @@ main {
 }
 
 .language-switch {
-  display: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.language-switch a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.language-switch a.active {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: #000000;
+}
+
+.language-switch a:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .header-cta {
@@ -569,6 +608,41 @@ main {
   background: rgba(243, 204, 49, 0.18);
 }
 
+html[dir="rtl"] .hero-system-bg,
+html[dir="rtl"] .about-hero-bg,
+html[dir="rtl"] .services-hero-bg,
+html[dir="rtl"] .case-studies-hero-bg,
+html[dir="rtl"] .contact-hero-bg {
+  transform: scaleX(-1);
+  transform-origin: center;
+}
+
+html[dir="rtl"] .contact-info-item,
+html[dir="rtl"] .outcome-line {
+  padding-inline-start: 0;
+  padding-inline-end: 22px;
+}
+
+html[dir="rtl"] .readiness-list li {
+  padding-inline-start: 0;
+  padding-inline-end: 18px;
+}
+
+html[dir="rtl"] .service-detail-points li,
+html[dir="rtl"] .case-study-meta li {
+  padding-inline-start: 0;
+  padding-inline-end: 16px;
+}
+
+html[dir="rtl"] .contact-info-item span,
+html[dir="rtl"] .outcome-line span,
+html[dir="rtl"] .readiness-list li::before,
+html[dir="rtl"] .service-detail-points li::before,
+html[dir="rtl"] .case-study-meta li::before {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+}
+
 .diagnosis-choice-option span {
   font-size: 0.82rem;
   line-height: 1.5;
@@ -685,13 +759,15 @@ main {
 
 @media (max-width: 1100px) {
   .header-top-inner {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 14px;
     padding: 16px 0;
   }
 
   .header-right {
-    justify-content: flex-start;
+    justify-content: flex-end;
   }
 
   .header-bottom-inner {
