@@ -1290,3 +1290,50 @@
     opacity: 1 !important;
   }
 }
+
+/* ── FOUNDER STATS ─────────────────────────────────────────── */
+.about-founder-stats {
+  display: flex;
+  gap: 32px;
+  margin: 32px 0 36px;
+  padding: 28px 0;
+  border-top: 1px solid #1f1f1f;
+  border-bottom: 1px solid #1f1f1f;
+  flex-wrap: wrap;
+}
+
+.founder-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.founder-stat-number {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: #F3CC31;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.founder-stat-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #B4B4B5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  max-width: 160px;
+  line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+  .about-founder-stats {
+    gap: 24px;
+  }
+
+  .founder-stat-number {
+    font-size: 26px;
+  }
+}
