@@ -780,6 +780,33 @@
 }
 
 /* =========================
+   CASE STUDY LINKS
+========================= */
+
+.case-study-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--black);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease;
+}
+
+.case-study-read-more:hover {
+  border-color: var(--black);
+}
+
+.case-study-title-link {
+  color: inherit;
+}
+
+/* =========================
    RESPONSIVE
 ========================= */
 

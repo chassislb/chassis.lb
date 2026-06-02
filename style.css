@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Zain:wght@400;500;600;700;800;900&display=swap');
 
 :root {
   --bg: #ffffff;
@@ -983,6 +982,56 @@ html[dir="rtl"] .diagnosis-message-user {
   margin-right: auto;
   border-left: none;
   border-right: 4px solid var(--yellow);
+}
+
+/* =========================
+   ARABIC TYPOGRAPHY SCALE
+   Zain renders ~10% larger than Poppins at the same px.
+   These rules reduce Arabic text proportionally so it
+   visually matches the English scale at each level.
+========================= */
+
+html[dir="rtl"] body {
+  font-size: 0.94em;
+}
+
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] h5,
+html[dir="rtl"] h6 {
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] h3,
+html[dir="rtl"] h4 {
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+html[dir="rtl"] p,
+html[dir="rtl"] li,
+html[dir="rtl"] td,
+html[dir="rtl"] th {
+  font-weight: 400;
+  line-height: 1.85;
+}
+
+html[dir="rtl"] .eyebrow {
+  font-size: 9.5px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+html[dir="rtl"] .brand-meta {
+  font-size: 10px;
+}
+
+html[dir="rtl"] .hero-kicker {
+  font-size: 9.5px;
 }
 
 /* RESPONSIVE */
