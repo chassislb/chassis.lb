@@ -22,6 +22,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.chassislb.com/ar/case-studies/michel-karam/</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.chassislb.com/ar/contact/</loc>
     <priority>0.8</priority>
   </url>
@@ -40,6 +44,10 @@
   <url>
     <loc>https://www.chassislb.com/case-studies/</loc>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chassislb.com/case-studies/michel-karam/</loc>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.chassislb.com/contact/</loc>
