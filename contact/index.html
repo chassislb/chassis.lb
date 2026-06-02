@@ -246,34 +246,12 @@
               </div>
 
               <div class="form-field">
-                <label for="businessName">Business Name</label>
-                <input
-                  type="text"
-                  id="businessName"
-                  name="Business Name"
-                  placeholder="Business or brand name"
-                  required
-                />
-              </div>
-
-              <div class="form-field">
                 <label for="email">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="Email"
                   placeholder="name@email.com"
-                  required
-                />
-              </div>
-
-              <div class="form-field">
-                <label for="phone">Phone / WhatsApp</label>
-                <input
-                  type="text"
-                  id="phone"
-                  name="Phone / WhatsApp"
-                  placeholder="+961 ..."
                   required
                 />
               </div>
@@ -296,7 +274,7 @@
                   <select id="neededSupport" name="Needed Support" required>
                     <option value="" disabled selected>Select support type</option>
                     <option>Business Structuring</option>
-                    <option>Operations & Systems Setup</option>
+                    <option>Operations &amp; Systems Setup</option>
                     <option>Execution Infrastructure</option>
                     <option>Strategic Advisory</option>
                     <option>Not sure yet</option>
@@ -314,24 +292,28 @@
                   required
                 ></textarea>
               </div>
-
-              <div class="form-field form-field-full">
-                <label for="details">Anything else that matters?</label>
-                <textarea
-                  id="details"
-                  name="Additional Details"
-                  rows="4"
-                  placeholder="Add any useful context, timeline, urgency, budget range, or existing assets."
-                ></textarea>
-              </div>
             </div>
 
             <div class="contact-form-actions">
               <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+            </div>
 
-              <p class="form-note">
-                After submission, WhatsApp will open with your inquiry pre-filled.
-              </p>
+            <div class="contact-next-steps">
+              <p class="contact-next-title">What happens after you submit</p>
+              <div class="contact-next-grid">
+                <div class="contact-next-item">
+                  <span class="contact-next-num">01</span>
+                  <p>You hear back within 24 hours by email or WhatsApp.</p>
+                </div>
+                <div class="contact-next-item">
+                  <span class="contact-next-num">02</span>
+                  <p>The first call is 30 minutes. No charge. We figure out fit before anything starts.</p>
+                </div>
+                <div class="contact-next-item">
+                  <span class="contact-next-num">03</span>
+                  <p>If there is a fit, scope and next steps are defined clearly before any engagement begins.</p>
+                </div>
+              </div>
             </div>
 
             <p id="formStatus" class="form-status" aria-live="polite"></p>

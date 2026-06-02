@@ -240,34 +240,12 @@
               </div>
 
               <div class="form-field">
-                <label for="businessName">اسم البزنس</label>
-                <input
-                  type="text"
-                  id="businessName"
-                  name="Business Name"
-                  placeholder="اسم البزنس أو البراند"
-                  required
-                />
-              </div>
-
-              <div class="form-field">
                 <label for="email">البريد الإلكتروني</label>
                 <input
                   type="email"
                   id="email"
                   name="Email"
                   placeholder="name@email.com"
-                  required
-                />
-              </div>
-
-              <div class="form-field">
-                <label for="phone">الهاتف / واتساب</label>
-                <input
-                  type="text"
-                  id="phone"
-                  name="Phone / WhatsApp"
-                  placeholder="+961 ..."
                   required
                 />
               </div>
@@ -308,24 +286,28 @@
                   required
                 ></textarea>
               </div>
-
-              <div class="form-field form-field-full">
-                <label for="details">هل هناك أي شيء آخر مهم؟</label>
-                <textarea
-                  id="details"
-                  name="Additional Details"
-                  rows="4"
-                  placeholder="أضف أي سياق مفيد، التوقيت، الاستعجال، الميزانية التقريبية، أو أصول موجودة."
-                ></textarea>
-              </div>
             </div>
 
             <div class="contact-form-actions">
               <button type="submit" class="btn btn-primary">إرسال الاستفسار</button>
+            </div>
 
-              <p class="form-note">
-                بعد الإرسال، سيتم فتح واتساب مع الاستفسار مكتوباً مسبقاً.
-              </p>
+            <div class="contact-next-steps">
+              <p class="contact-next-title">ماذا يحدث بعد الإرسال</p>
+              <div class="contact-next-grid">
+                <div class="contact-next-item">
+                  <span class="contact-next-num">01</span>
+                  <p>ستتلقى رداً خلال 24 ساعة عبر البريد الإلكتروني أو واتساب.</p>
+                </div>
+                <div class="contact-next-item">
+                  <span class="contact-next-num">02</span>
+                  <p>المكالمة الأولى مدتها 30 دقيقة. مجاناً. نحدد مدى الملاءمة قبل أي التزام.</p>
+                </div>
+                <div class="contact-next-item">
+                  <span class="contact-next-num">03</span>
+                  <p>إذا كان هناك توافق، يتم تحديد النطاق والخطوات التالية بوضوح قبل بدء أي تعاون.</p>
+                </div>
+              </div>
             </div>
 
             <p id="formStatus" class="form-status" aria-live="polite"></p>
